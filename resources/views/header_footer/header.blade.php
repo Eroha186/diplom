@@ -8,7 +8,7 @@
 					<li class="header-top__nav-item"><a href="#">Архив конкурсов</a></li>
 					<li class="header-top__nav-item"><a href="#">Публикации</a></li>
 				</ul>
-				<button class="header-top__nav-button col-md-2 ">Личный кабинет</button>
+					<a class="header-top__nav-button col-md-2 " href="#">Личный кабинет</a>
 			</nav>
 		</div>
 	</div>
