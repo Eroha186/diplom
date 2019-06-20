@@ -8,6 +8,22 @@
 				font-size: 16px
 				font-weight: bold
 				list-style: none
+				& a
+					position: relative
+				& a:hover
+					color: $space
+				& a::before
+					content: ''
+					position: absolute
+					width: 100%
+					height: 2px
+					bottom: -1px
+					left: 0
+					background-color: $red
+					transition: 0.2s
+					transform: scalex(0)
+				& a:hover:before
+					transform: scalex(1)
 				&s
 					display: flex
 					margin: 0

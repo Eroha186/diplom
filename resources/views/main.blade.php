@@ -131,7 +131,7 @@
 							@endfor
 						</div>
 					@endfor
-					<div class="more"><a href="#">Больше конкурсвов > ></a></div>
+					<div class="more"><a href="#">Больше конкурсов > ></a></div>
 				</div>
 			</div>
 			<div class="tab-content" data-tab="2">
@@ -195,7 +195,7 @@
 
 	<section class="main-page__winner">
 		<div class="container">
-			<h2 class="section-title ta-center">Поздровляем победителей!</h2>
+			<h2 class="section-title ta-center">Поздравляем победителей!</h2>
 			<div class="row justify-content-center">
 				<div class="col-md-10">
 					<div class="winner__desr ta-center">Более 1234 педагогов опубликовались на нашем сайте за последние 2 года. Спасибо вам за даверие! Мы, в свою очередь, гарантируем прозрачность
@@ -220,21 +220,135 @@
 						</div>
 						<div class="winer-block__info">
 							<img src="{{asset('images/main_page/services-icon-1.png')}}" alt="Иконка">
-							<a href="">Зимние забавы</a>
-							<div class="date-time"></div>
-							<div class="descк"></div>
-							<a href="#" class="button">Результаты</a>
+							<a href="" class="name">Зимние забавы</a>
+							<div class="date-time">Сроки проведения: <span>01.01.2019-04.04.2019</span></div>
+							<div class="descr">Международный конкурс детского рисунка на тему зимних видов спорта</div>
+							<a href="#" class="button transparent-btn">Результаты</a>
 						</div>
 					</div>
 				@endsection
-				<div class="row">
-					<div class="col-md-6">
-						@yield('winers')
+				<div class="winners">
+					@for ($i = 0; $i < 4; $i++)
+						<div class="row">
+							@for ($j = 0; $j < 2; $j++)
+								<div class="col-md-6">
+									@yield('winers')
+								</div>
+							@endfor
+						</div>
+					@endfor
+				</div>
+			</div>
+			<div class="more"><a href="#">Перейти в архив конкурсов > ></a></div>
+		</div>
+	</section>
+
+	<section class="main-page__questions">
+		<div class="container">
+			<h2 class="section__title ta-center">Часто задаваемые вопросы</h2>
+			<div class="questions__acord-wrap">
+				<div class="questions__acord">
+					<div class="head">
+						<div class="arrow"></div>
+						<div class="title "><span>Сколько стоит участие в конкурсе?</span></div>
+					</div>
+					<div class="body">
+						Ответ ОтветОтветОтвет Ответ ОтветОтветОтветОтветОтвет Ответ Ответ ОтветОтвет Ответ ОтветОтвет
+					</div>
+				</div>
+				<div class="questions__acord">
+					<div class="head">
+						<div class="arrow"></div>
+						<div class="title "><span>Как я могу скачать свой сертификат?</span></div>
+					</div>
+					<div class="body">
+						Ответ ОтветОтветОтвет Ответ ОтветОтветОтветОтветОтвет Ответ Ответ ОтветОтвет Ответ ОтветОтвет
+					</div>
+				</div>
+				<div class="questions__acord">
+					<div class="head">
+						<div class="arrow"></div>
+						<div class="title "><span>Как разместить публикацию на сайте?</span></div>
+					</div>
+					<div class="body">
+						Ответ ОтветОтветОтвет Ответ ОтветОтветОтветОтветОтвет Ответ Ответ ОтветОтвет Ответ ОтветОтвет
+					</div>
+				</div>
+				<div class="questions__acord">
+					<div class="head">
+						<div class="arrow"></div>
+						<div class="title "><span>Сертификат будет один на ребенка и преподавателя?</span></div>
+					</div>
+					<div class="body">
+						Ответ ОтветОтветОтвет Ответ ОтветОтветОтветОтветОтвет Ответ Ответ ОтветОтвет Ответ ОтветОтвет
+					</div>
+				</div>
+				<div class="questions__acord">
+					<div class="head">
+						<div class="arrow"></div>
+						<div class="title "><span>Кто может участвовать в конкурсе?</span></div>
+					</div>
+					<div class="body">
+						Ответ ОтветОтветОтвет Ответ ОтветОтветОтветОтветОтвет Ответ Ответ ОтветОтвет Ответ ОтветОтвет
+					</div>
+				</div>
+				<div class="questions__acord">
+					<div class="head">
+						<div class="arrow"></div>
+						<div class="title "><span>Сколько конкурсов проводится ежемесячно?</span></div>
+					</div>
+					<div class="body">
+						Ответ ОтветОтветОтвет Ответ ОтветОтветОтветОтветОтвет Ответ Ответ ОтветОтвет Ответ ОтветОтвет
+					</div>
+				</div>
+				<div class="questions__acord">
+					<div class="head">
+						<div class="arrow"></div>
+						<div class="title "><span>Какие тематики статей принимаются к публикации?</span></div>
+					</div>
+					<div class="body">
+						Ответ ОтветОтветОтвет Ответ ОтветОтветОтветОтветОтвет Ответ Ответ ОтветОтвет Ответ ОтветОтвет
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+
+	<section class="main-page__surprise">
+		<div class="container">
+			<h2 class="section-title ta-center">Подарок для вас!</h2>
+			<div class="sub-title ta-center">Получите 50 бонусных рублей для <span>оплаты публикации</span></div>
+			<img src="{{asset('images/main_page/form-img.png')}}" alt="Дети">
+		</div>
+	</section>
+
+	<div class="main-page__form">
+		<div class="container">
+			<h2 class="section-title ta-center">Подпишитесь на расслыку обновлений</h2>
+			<p class="ta-center">Баллы будут зачислены на Ваш бонусный счет</p>
+			<form action="" class="main-form">
+				<div class="row">
+					<div class="col-md-4">
+						<span>Ваше имя</span>
+						<input type="text" placeholder="Ваше имя">
+					</div>
+					<div class="col-md-4">
+						<span>Ваш email</span>
+						<input type="text" placeholder="Ваш email">
+					</div>
+					<div class="col-md-4">
+						<span>Ваш телефон</span>
+						<input type="text" placeholder="Ваш телефон">
+					</div>
+				</div>
+				<div class="ta-center">
+					<button class="button">Отправить</button>
+				</div>
+				<img src="{{asset('images/main_page/airplane.png')}}" alt="">
+			</form>
+		</div>
+	</div>
+
 	@include('script')
 </body>
 </html>
