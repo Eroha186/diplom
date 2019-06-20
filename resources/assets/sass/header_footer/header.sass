@@ -11,23 +11,14 @@
 				& a
 					position: relative
 				& a:hover
-					color: $space
-				& a::before
-					content: ''
-					position: absolute
-					width: 100%
-					height: 2px
-					bottom: -1px
-					left: 0
-					background-color: $red
-					transition: 0.2s
-					transform: scalex(0)
-				& a:hover:before
-					transform: scalex(1)
+					color: $red
 				&s
 					display: flex
 					margin: 0
 					align-items: center
+				&_active
+					a
+						color: $red
 			&-button
 				max-width: 140px
 				padding: 9px 8px
@@ -40,6 +31,8 @@
 				text-transform: uppercase
 				position: relative
 				color: $white
+				&:hover
+					color: $red
 	&-bottom
 		padding: 25px 0
 		background-image: url("/images/header-bg.png")

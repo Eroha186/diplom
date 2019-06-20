@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('main');
 });
+Route::get('/account', function () {
+	return view('account');
+});
+

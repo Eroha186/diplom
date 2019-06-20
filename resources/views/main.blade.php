@@ -148,9 +148,9 @@
 								<img src="{{asset('images/text.svg')}}" alt="Иконка">
 							</div>
 							<div class="publications__descr">
-								<div class="title">
+								<a href="#" class="title">
 									Конспект занатия в старшей группе по теме: "Воздух и его свойства"
-								</div>
+								</a>
 								<div class="date-time">
 									23.05.2019
 								</div>
@@ -342,7 +342,7 @@
 					</div>
 				</div>
 				<div class="ta-center">
-					<button class="button">Отправить</button>
+					<button class="button transparent-btn">Отправить</button>
 				</div>
 				<img src="{{asset('images/main_page/airplane.png')}}" alt="">
 			</form>

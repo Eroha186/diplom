@@ -176,6 +176,8 @@
 		.title
 			font-size: 16px
 			font-weight: bold
+			&:hover
+				color: $space
 		.date-time
 			font-size: 12px
 			color: #ABA7A7
@@ -294,7 +296,7 @@
 			font-size: 12px
 			font-weight: 500
 			color: $white
-		a:hover
+		.button:hover
 			color: $yellow
 
 .fa-eye:before
@@ -369,9 +371,12 @@
 			color: $red
 	.button
 		padding: 8px 25px
+		border: 1px solid $red
 		background: $red
 		font-weight: bold
 		color: $white
+		&:hover
+			color: $red
 	input
 		width: 98%
 		margin-bottom: 25px

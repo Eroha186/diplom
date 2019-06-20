@@ -199,26 +199,7 @@ a:hover {
 }
 
 .header-top__nav-item a:hover {
-  color: #313131;
-}
-
-.header-top__nav-item a::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  bottom: -1px;
-  left: 0;
-  background-color: #ff2001;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-  -webkit-transform: scalex(0);
-          transform: scalex(0);
-}
-
-.header-top__nav-item a:hover:before {
-  -webkit-transform: scalex(1);
-          transform: scalex(1);
+  color: #ff2001;
 }
 
 .header-top__nav-items {
@@ -229,6 +210,10 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.header-top__nav-item_active a {
+  color: #ff2001;
 }
 
 .header-top__nav-button {
@@ -243,6 +228,10 @@ a:hover {
   text-transform: uppercase;
   position: relative;
   color: #fff;
+}
+
+.header-top__nav-button:hover {
+  color: #ff2001;
 }
 
 .header-bottom {
@@ -533,6 +522,10 @@ a:hover {
   font-weight: bold;
 }
 
+.publications__descr .title:hover {
+  color: #313131;
+}
+
 .publications__descr .date-time {
   font-size: 12px;
   color: #ABA7A7;
@@ -733,7 +726,7 @@ a:hover {
   color: #fff;
 }
 
-.winer-block__info a:hover {
+.winer-block__info .button:hover {
   color: #f8c145;
 }
 
@@ -849,9 +842,14 @@ a:hover {
 
 .main-form .button {
   padding: 8px 25px;
+  border: 1px solid #ff2001;
   background: #ff2001;
   font-weight: bold;
   color: #fff;
+}
+
+.main-form .button:hover {
+  color: #ff2001;
 }
 
 .main-form input {
@@ -866,5 +864,9 @@ a:hover {
   position: absolute;
   bottom: -55px;
   right: 18%;
+}
+
+.account {
+  background: url("/images/mian-page/bg.png");
 }
 
