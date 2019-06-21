@@ -76,13 +76,20 @@ module.exports = __webpack_require__(2);
 /***/ (function(module, exports) {
 
 $(function () {
-
+	/*
+  *  Для элементов, которые являются вкладками табов класс прописывается следующим образом
+  * class=" name_class tab".
+  * И никак иначе
+ */
 	$('.tab').on('click', function () {
 		var tab = $(this).data('tab');
-		$('.tab').removeClass('tab_active');
-		$('.tab-content').removeClass('tab-content_active');
-		$(this).addClass('tab_active');
-		$('.tab-content[data-tab="' + tab + '"]').addClass('tab-content_active');
+		var className = $(this).attr('class');
+		className = className.split(' ');
+		className = className[0];
+		$('.tab').removeClass('' + className + '_active');
+		$('.tab-content').removeClass('content_active');
+		$(this).addClass('' + className + '_active');
+		$('.tab-content[data-tab="' + tab + '"]').addClass('content_active');
 	});
 
 	$('.head').on('click', function () {

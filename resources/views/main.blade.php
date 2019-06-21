@@ -91,10 +91,10 @@
 		</div>
 		<div id="tabs">
 			<ul class="tabs">
-				<li class="tab tab_active" data-tab="1">Конкурсы</li>
-				<li class="tab" data-tab="2">Публикации</li>
+				<li class="mark tab mark_active" data-tab="1">Конкурсы</li>
+				<li class="mark tab" data-tab="2">Публикации</li>
 			</ul>
-			<div class="tab-content tab-content_active" data-tab="1">
+			<div class="tab-content content_active" data-tab="1">
 				<div class="container">
 					<div class="row justify-content-center">
 						<div class="col-md-6 contents__descr">
