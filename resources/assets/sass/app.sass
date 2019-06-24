@@ -1,4 +1,5 @@
 @import 'variables.sass'
+
 .transparent-btn
 	color: #ffffff
 	text-shadow: none
@@ -18,6 +19,7 @@
 	box-shadow: 0 0 1px transparent
 	transition-property: color
 	transition-duration: 0.3s
+
 	&:before
 		content: ""
 		position: absolute
@@ -41,6 +43,7 @@
 	&:focus:before,
 	&:active:before
 		transform: scaleY(1)
+
 .filled-btn
 	color: #313131
 	text-shadow: none
@@ -78,6 +81,7 @@
 	&:focus:before,
 	&:active:before
 		transform: scaleY(1)
+
 *
 	box-sizing: border-box
 	font-family: 'Roboto', sans-serif
@@ -88,7 +92,6 @@
 a
 	text-decoration: none
 	color: $space
-
 	&:hover
 		text-decoration: none
 		color: $white
@@ -114,8 +117,15 @@ a
 .ta-center
 	text-align: center
 
+.tab-content
+	display: none
+
+.content_active
+	display: block
+
 .margin-bottom-0
 	margin-bottom: 0
+
 .button
 	padding: 5px 10px
 	border: 2px solid $white
@@ -126,9 +136,16 @@ a
 	font-size: 12px
 	font-weight: 500
 	color: $white
+
 li
 	list-style: none
 
+.standart-link
+	text-decoration: underline
+	color: #0000FF
+	&:hover
+		text-decoration: none
+		color: #0000ff
 @import 'header_footer/header.sass'
 @import 'main_page/main_page.sass'
 @import 'account/account.sass'

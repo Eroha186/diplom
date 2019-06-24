@@ -163,6 +163,14 @@ a:hover {
   text-align: center;
 }
 
+.tab-content {
+  display: none;
+}
+
+.content_active {
+  display: block;
+}
+
 .margin-bottom-0 {
   margin-bottom: 0;
 }
@@ -181,6 +189,16 @@ a:hover {
 
 li {
   list-style: none;
+}
+
+.standart-link {
+  text-decoration: underline;
+  color: #0000FF;
+}
+
+.standart-link:hover {
+  text-decoration: none;
+  color: #0000ff;
 }
 
 .header-top {
@@ -448,19 +466,12 @@ li {
   color: #313131;
 }
 
-.tab-content {
-  display: none;
+.tab-section {
   padding-top: 40px;
   padding-bottom: 150px;
   margin-top: -1px;
   border-top: 1px solid #d1cece;
   background: #fff;
-}
-
-.content_active {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 .competition {
@@ -876,15 +887,12 @@ li {
   background: url("/images/main_page/bg_section_1.png");
 }
 
-.account__main a:hover {
-  color: #313131;
-}
-
 .account {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   padding: 40px;
+  padding-right: 10px;
   background: #fff;
   border: 1px solid #d1cece;
   border-radius: 4px;
@@ -895,11 +903,16 @@ li {
 }
 
 .nav-block {
+  min-width: 243px;
   padding: 25px 45px 20px 40px;
   margin-bottom: 10px;
   background: #c2f173;
   border: 1px solid #d1cece;
   border-radius: 4px;
+}
+
+.nav-block a:hover {
+  color: #313131;
 }
 
 .nav-block .profile {
@@ -933,7 +946,7 @@ li {
   border: none;
 }
 
-.nav-item_active span {
+.nav-item_active a {
   font-weight: 700;
   color: black;
 }
@@ -1017,5 +1030,72 @@ li {
 
 .personal-data__form .filled-btn:before {
   background: #86cd5b;
+}
+
+.my-publications {
+  margin-left: -35px;
+}
+
+.table-publication {
+  max-height: 430px;
+  overflow: auto;
+}
+
+.table-publication table {
+  table-layout: fixed;
+}
+
+.table-publication table th {
+  padding: 2px 10px 2px 10px;
+  font-size: 14px;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.table-publication table td {
+  padding: 5px 7px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.table-publication table tr:nth-child(odd) {
+  background: #f7f7f7;
+}
+
+.table-publication table .standart-link {
+  font-weight: 400;
+}
+
+.table-publication table .certificate {
+  width: 140px;
+}
+
+.table-publication table .download-button {
+  border: none;
+  padding: 5px 25px;
+  border-radius: 6px;
+  font-size: 12px;
+  background: #ff8a11;
+  color: white;
+}
+
+.table-publication table .participation-button {
+  border: none;
+  border-radius: 6px;
+  background: #86cd5b;
+  color: #fff;
+}
+
+.table-publication table .author {
+  white-space: nowrap;
+}
+
+.table-title {
+  border: 1px solid #d1cece;
+}
+
+.part-in-contests {
+  max-width: 812px;
+  margin-left: -35px;
 }
 

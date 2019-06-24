@@ -14,7 +14,16 @@
 Route::get('/', function () {
     return view('main');
 });
+Route::prefix('/account')->group(function () {
+	Route::get('/personal-data', function () {
+		return view('account/personal-data');
+	});
+
+});
+
+
+
 Route::get('/account', function () {
-	return view('account');
+
 });
 
