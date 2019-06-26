@@ -13,12 +13,26 @@
 
 Route::get('/', function () {
     return view('main');
-});
+})->name('home');
+Route::get('/competitions', function () {
+	return view('competitions/competitions');
+})->name('competitions');
 Route::prefix('/account')->group(function () {
 	Route::get('/personal-data', function () {
 		return view('account/personal-data');
 	});
-
+	Route::get('/my-publication', function () {
+		return view('account/my-publication');
+	});
+	Route::get('/part-in-contests', function () {
+		return view('account/part-contests');
+	});
+	Route::get('/order', function() {
+		return view('account/order');
+	});
+	Route::get('/order-publication', function() {
+		return view('account/order-publication');
+	});
 });
 
 

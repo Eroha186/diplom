@@ -1,4 +1,5 @@
 .account__main
+	padding-bottom: 500px
 	padding-top: 60px
 	background: url("/images/main_page/bg_section_1.png")
 .account
@@ -63,7 +64,8 @@
 		margin: 0
 		font-weight: 500
 		margin-bottom: 5px
-	input
+	.input-style
+		min-height: 36px
 		width: 100%
 		margin-bottom: 15px
 		padding: 5px 10px
@@ -90,6 +92,41 @@
 	.filled-btn
 		&:before
 			background: $green
+	.work
+		display: flex
+		align-items: center
+		justify-content: space-between
+		.work__name
+			width: 70%
+		.work__type
+			width: 28%
+	.wrap-button
+		display: flex
+		justify-content: space-between
+		button
+			width: 48%
+			&:first-child
+				background: $green
+				color: $white
+			&:last-child
+				border: 1px solid $line_dote_space
+				color: $line_dote_space
+	.price
+		margin: 10px 0
+		font-size: 28px
+		font-weight: bold
+	input[type=checkbox]
+		margin-right: 5px
+	.coins
+		display: flex
+		align-items: center
+	.number-coin
+		margin: 0
+		margin-left: 7px
+		padding-right: 0
+		width: 8%
+		max-height: 25px
+		min-height: 0
 .my-publications
 	margin-left: -35px
 .table-publication
@@ -121,6 +158,11 @@
 			background: $orange
 			color: white
 		.participation-button
+			border: none
+			border-radius: 6px
+			background: $green
+			color: $white
+		.order-button
 			border: none
 			border-radius: 6px
 			background: $green

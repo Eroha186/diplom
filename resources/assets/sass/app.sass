@@ -87,7 +87,6 @@
 	font-family: 'Roboto', sans-serif
 	margin: 0
 	padding: 0
-	color: $space
 
 a
 	text-decoration: none
@@ -140,12 +139,26 @@ a
 li
 	list-style: none
 
+.breadcrumb
+	background: transparent
+	color: $border_color
+	font-size: 12px
+	a
+		color: $border_color
+		text-decoration: underline
+		&:hover
+			color: $border_color
+			text-decoration: none
+
 .standart-link
 	text-decoration: underline
 	color: #0000FF
 	&:hover
 		text-decoration: none
 		color: #0000ff
+textarea
+	resize: none
 @import 'header_footer/header.sass'
 @import 'main_page/main_page.sass'
 @import 'account/account.sass'
+@import 'competitions/competitions.sass'
