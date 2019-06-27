@@ -5,8 +5,8 @@
 				<ul class="col-md-10 header-top__nav-items">
 					<li class="header-top__nav-item {{request()->is('/') ? 'header-top__nav-item_active' : ''}}"><a href="/">Главная</a></li>
 					<li class="header-top__nav-item {{request()->is('competitions') ? 'header-top__nav-item_active' : ''}}"><a href="/competitions">Конкурсы</a></li>
-					<li class="header-top__nav-item "><a href="#">Архив конкурсов</a></li>
-					<li class="header-top__nav-item "><a href="#">Публикации</a></li>
+					<li class="header-top__nav-item  {{request()->is('archive-competitions') ? 'header-top__nav-item_active' : ''}} "><a href="/archive-competitions">Архив конкурсов</a></li>
+					<li class="header-top__nav-item {{request()->is('publications') ? 'header-top__nav-item_active' : ''}} "><a href="/publications">Публикации</a></li>
 				</ul>
 					<a class="header-top__nav-button col-md-2 transparent-btn" href="/account/personal-data">Личный кабинет</a>
 			</nav>

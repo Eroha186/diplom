@@ -1,4 +1,4 @@
-.competitions__main
+.bg-arch
 	position: relative
 	padding: 120px 0px
 	background: url("/images/competitions_bg.jpg") no-repeat center
@@ -32,7 +32,7 @@
 	left: 50%
 	transform: translateX(-64px)
 	z-index: 9999
-.competitions-list
+.filtres
 	padding-top: 70px
 	.search-competitions
 		position: relative
@@ -55,7 +55,8 @@
 				border-bottom: 1px dotted $red
 		.placement-date,
 		.duration-event,
-		.completion_date
+		.completion_date,
+		.fiteres-name
 			margin-left: 10px
 			color: $space
 			cursor: pointer
@@ -64,6 +65,8 @@
 				border: none
 				color: $red
 				display: none
+.competitions-list
+	padding-top: 30px
 .search-wrap
 	&::before
 		content: ''

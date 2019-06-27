@@ -6,7 +6,7 @@
 </head>
 <body>
   @include('header_footer/header')
-  <section class="competitions__main">
+  <section class="competitions__main bg-arch">
 	  <div class="container">
 			<h2 class="section-title">
 				Текущие конкурсы
@@ -21,27 +21,57 @@
 		  </div>
 	  </div>
   </section>
+  <section class="filtres">
+	  <div class="container">
+		  {!!Breadcrumbs::render('competitions')!!}
+		  <h2 class="section-title">Перечь актуальных конкурсов</h2>
+		  <div class="row">
+			  <div class="col-md-11">
+				  <div class="search-wrap">
+					  <input class="search-competitions" type="text" placeholder="Поиск по конкурсам">
+				  </div>
+			  </div>
+		  </div>
+		  <div class="filter">
+			  Сортировать по:
+			  <div class="placement-date">
+				  <span class="filter-name"  data-condition="1">по дате размещения </span> <span class="arrow-down">&darr;</span> <span class="arrow-up">&uarr;</span>
+			  </div>
+			  <div class="duration-event">
+				  <span class="filter-name"  data-condition="1">длительность проведения</span> <span class="arrow-down">&darr;</span> <span class="arrow-up">&uarr;</span>
+			  </div>
+			  <div class="completion_date"> <span class="filter-name" data-condition="1">дата завершения</span> <span class="arrow-down">&darr;</span> <span class="arrow-up">&uarr;</span></div>
+		  </div>
+	  </div>
+  </section>
   <section class="competitions-list">
 		<div class="container">
-			{!!Breadcrumbs::render('competitions')!!}
-			<h2 class="section-title">Перечь актуальных конкурсов</h2>
-			<div class="row">
-				<div class="col-md-11">
-					<div class="search-wrap">
-						<input class="search-competitions" type="text" placeholder="Поиск по конкурсам">
-					</div>
+			@for ( $i=0; $i < 4; $i++)
+				<div class="row">
+					@for ($j=0; $j<2; $j++)
+						<div class="col-md-6">
+							<div class="competition">
+								<div class="competition__img">
+									<img src="{{asset('images/skier.png')}}" alt="Обложка">
+								</div>
+								<div class="competition__descr ta-center">
+									<div class="title">
+										Новогодняя мастерская - 2019
+									</div>
+									<div class="name">
+										Конкурс поделок
+									</div>
+									<div class="date-time">
+										С 11.11.2011
+										<span>по 12.11.2011</span>
+									</div>
+									<a href="/competitions/{{$j + $i}}" class="button transparent-btn">подробнее</a>
+								</div>
+							</div>
+						</div>
+					@endfor
 				</div>
-			</div>
-			<div class="filter">
-				Сортировать по:
-				<div class="placement-date">
-					<span class="filter-name"  data-condition="1">По дате размещения </span> <span class="arrow-down">&darr;</span> <span class="arrow-up">&uarr;</span>
-				</div>
-				<div class="duration-event">
-					<span class="filter-name"  data-condition="1">Длительность проведения</span> <span class="arrow-down">&darr;</span> <span class="arrow-up">&uarr;</span>
-				</div>
-				<div class="completion_date"> <span class="filter-name" data-condition="1">Дата заверщения</span> <span class="arrow-down">&darr;</span> <span class="arrow-up">&uarr;</span></div>
-			</div>
+			@endfor
 		</div>
   </section>
 	@include('script')

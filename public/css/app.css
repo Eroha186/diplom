@@ -1198,14 +1198,14 @@ textarea {
   margin-left: -35px;
 }
 
-.competitions__main {
+.bg-arch {
   position: relative;
   padding: 120px 0px;
   background: url("/images/competitions_bg.jpg") no-repeat center;
   background-size: cover;
 }
 
-.competitions__main::after {
+.bg-arch::after {
   content: '';
   position: absolute;
   height: 11px;
@@ -1215,7 +1215,7 @@ textarea {
   z-index: 999;
 }
 
-.competitions__main .section-title {
+.bg-arch .section-title {
   margin-bottom: 10px;
   text-transform: uppercase;
   color: #fff;
@@ -1249,11 +1249,11 @@ textarea {
   z-index: 9999;
 }
 
-.competitions-list {
+.filtres {
   padding-top: 70px;
 }
 
-.competitions-list .search-competitions {
+.filtres .search-competitions {
   position: relative;
   width: 100%;
   margin-bottom: 15px;
@@ -1263,7 +1263,7 @@ textarea {
   border-radius: 4px;
 }
 
-.competitions-list .filter {
+.filtres .filter {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1272,32 +1272,39 @@ textarea {
   line-height: 14px;
 }
 
-.competitions-list .filter-name {
+.filtres .filter-name {
   border-bottom: 1px dotted #313131;
 }
 
-.competitions-list .filter-name_active {
+.filtres .filter-name_active {
   color: #ff2001;
   border-bottom: 1px dotted #ff2001;
 }
 
-.competitions-list .filter .placement-date,
-.competitions-list .filter .duration-event,
-.competitions-list .filter .completion_date {
+.filtres .filter .placement-date,
+.filtres .filter .duration-event,
+.filtres .filter .completion_date,
+.filtres .filter .fiteres-name {
   margin-left: 10px;
   color: #313131;
   cursor: pointer;
 }
 
-.competitions-list .filter .placement-date .arrow-up,
-.competitions-list .filter .placement-date .arrow-down,
-.competitions-list .filter .duration-event .arrow-up,
-.competitions-list .filter .duration-event .arrow-down,
-.competitions-list .filter .completion_date .arrow-up,
-.competitions-list .filter .completion_date .arrow-down {
+.filtres .filter .placement-date .arrow-up,
+.filtres .filter .placement-date .arrow-down,
+.filtres .filter .duration-event .arrow-up,
+.filtres .filter .duration-event .arrow-down,
+.filtres .filter .completion_date .arrow-up,
+.filtres .filter .completion_date .arrow-down,
+.filtres .filter .fiteres-name .arrow-up,
+.filtres .filter .fiteres-name .arrow-down {
   border: none;
   color: #ff2001;
   display: none;
+}
+
+.competitions-list {
+  padding-top: 30px;
 }
 
 .search-wrap::before {
@@ -1309,5 +1316,96 @@ textarea {
   top: 7px;
   right: 30px;
   z-index: 999;
+}
+
+.publish-publication {
+  width: 100%;
+  padding: 7px 20px;
+  background: #86cd5b;
+  border-radius: 4px;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.publish-publication:hover {
+  color: #fff;
+}
+
+.publications-filtres .section-title {
+  margin-top: 15px;
+}
+
+.publications-filtres .search-wrap {
+  margin-top: 15px;
+}
+
+.publications-filtres .search-wrap::before {
+  top: 22px;
+}
+
+.select-filter select {
+  width: 100%;
+  padding: 5px 10px;
+  background: #f7f7f7;
+  border: 1px solid #d1cece;
+  border-radius: 4px;
+}
+
+.p15 {
+  padding: 0px 15px;
+}
+
+.publications-list {
+  padding-top: 20px;
+}
+
+.publications-list .publication {
+  padding: 15px 15px;
+  background: #f7f7f7;
+  border: 1px solid #d1cece;
+  border-radius: 4px;
+}
+
+.publications-list .publication__title {
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.publications-list .publish__date {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #d1cece;
+}
+
+.publications-list .publication__author {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #606060;
+}
+
+.publications-list .publication__descr {
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.publications-list .publication__img {
+  margin-bottom: 5px;
+}
+
+.publications-list .publication__img .img {
+  width: 120px;
+  height: 115px;
+  border: 1px solid #d1cece;
+  border-bottom: 4px solid #A95A7A;
+  border-radius: 4px;
+  background: url("/images/fox&bread.png") center no-repeat;
+  background-size: cover;
+}
+
+.publications-list .publication__teg {
+  font-size: 14px;
+  color: #d1cece;
 }
 
