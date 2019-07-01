@@ -63,7 +63,7 @@
 				<div class="col-md-12 publication">
 					<div class="row">
 						<div class="col-md-10">
-							<div class="publication__title">	Конспект занатия в старшей группе по теме: "Воздух и его свойства"</div>
+							<div class="publication__title"><a href="#">	Конспект занатия в старшей группе по теме: "Воздух и его свойства"</a></div>
 						</div>
 					</div>
 					<div class="publish__date">Опублековано 24.05.2019</div>

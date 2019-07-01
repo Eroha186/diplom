@@ -1373,6 +1373,10 @@ textarea {
   font-weight: bold;
 }
 
+.publications-list .publication__title a:hover {
+  color: #313131;
+}
+
 .publications-list .publish__date {
   margin-bottom: 5px;
   font-size: 14px;
