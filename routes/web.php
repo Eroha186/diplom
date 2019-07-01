@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('main');
-})->name('home');
+Route::get('/', 'MainPageController@show')->name('home');
 
 Route::get('/competitions', function () {
 	return view('competitions/competitions');
@@ -46,8 +44,6 @@ Route::prefix('/account')->group(function () {
 });
 
 
+Auth::routes();
 
-Route::get('/account', function () {
-
-});
-
+Route::get('/home', 'HomeController@index')->name('home');

@@ -142,31 +142,28 @@
 							<p class="ta-center">Победители определяются в течение 48 часов</p>
 						</div>
 					</div>
-					@section ('publications')
-						<div class="publications">
-							<div class="publications__img">
-								<img src="{{asset('images/text.svg')}}" alt="Иконка">
-							</div>
-							<div class="publications__descr">
-								<a href="#" class="title">
-									Конспект занатия в старшей группе по теме: "Воздух и его свойства"
-								</a>
-								<div class="date-time">
-									23.05.2019
-								</div>
-								<div class="author">
-									Иванова А.А., учитель младших классов
-								</div>
-							</div>
-						</div>
-					@endsection
-					@for ($i=0; $i<6; $i++)
+					@for ($i=0; $i<count($data); $i++)
 						<div class="row">
-							@for ($j=0; $j<2; $j++)
+							@foreach($data as $one)
 								<div class="col-md-6">
-									@yield('publications')
+									<div class="publications">
+										<div class="publications__img">
+											<img src="{{asset('images/text.svg')}}" alt="Иконка">
+										</div>
+										<div class="publications__descr">
+											<a href="#" class="title">
+												{{$one->title}}
+											</a>
+											<div class="date-time">
+												{{$one->date_add}}
+											</div>
+											<div class="author">
+												{{$one->f}}, {{$one->stuff}}
+											</div>
+										</div>
+									</div>
 								</div>
-							@endfor
+							@endforeach
 						</div>
 					@endfor
 					<div class="more"><a href="#">Больше публикаций > ></a></div>
