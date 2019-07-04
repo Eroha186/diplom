@@ -15,10 +15,11 @@ class CreateFilesTable extends Migration
 	{
 		Schema::create('files', function (Blueprint $table) {
 			$table->increments('id');
-			$table->integer('id_publ');
+			$table->unsignedInteger('publ_id');
 			$table->string('url');
 			$table->string('type', 15);
 		});
+
 	}
 
 	/**

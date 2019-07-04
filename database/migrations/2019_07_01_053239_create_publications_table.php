@@ -15,12 +15,12 @@ class CreatePublicationsTable extends Migration
 	{
 		Schema::create('publications', function (Blueprint $table) {
 			$table->increments('id');
-			$table->integer('id_user');
+			$table->unsignedInteger('user_id');
 			$table->string('title');
 			$table->string('annatation');
-			$table->integer('id_type');
-			$table->integer('id_kind');
-			$table->integer('id_education');
+			$table->unsignedInteger('type_id');
+			$table->unsignedInteger('kind_id');
+			$table->unsignedInteger('education_id');
 			$table->text('text');
 			$table->integer('moderation');
 			$table->timestamps('date_add');
