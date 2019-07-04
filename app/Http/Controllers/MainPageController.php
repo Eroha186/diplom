@@ -10,7 +10,8 @@ class MainPageController extends Controller
 {
 	public function show()
 	{
-    $data = Publication::all()->get();
-		return view('main', ['data' => $data]);
+    $data = Publication::find(1);
+    dump($data);
+		//return view('main', ['data' => $data]);
 	}
 }
