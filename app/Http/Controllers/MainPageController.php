@@ -8,15 +8,27 @@ use Illuminate\Support\Facades\DB;
 
 class MainPageController extends Controller
 {
-	public function show()
+	public function show(Publication $publicationsModel)
 	{
-<<<<<<< HEAD
-    $data = Publication::find(1);
-    dump($data);
-		//return view('main', ['data' => $data]);
-=======
-    $data = Publication::all()->get();
-		return view('main', ['data' => $data]);
->>>>>>> 659d1a7... migration
+    $fieldPublication = [
+        'educations.name as education',
+        'kinds.name as kind',
+        'publications.title',
+        'publications.annatation',
+        'publications.text',
+        'publications.moderation',
+        'publications.date_add',
+        'types.name as type',
+        'users.f',
+        'users.i',
+        'users.o',
+        'users.stuff',
+
+    ];
+
+	  $publications = $publicationsModel->getPublications($fieldPublication) ;
+	  dump($publications);
+		return view('main', ['publications' => $publications]);
+
 	}
 }

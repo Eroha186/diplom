@@ -540,33 +540,42 @@ textarea {
   color: #00bbdc;
 }
 
-.publications {
+.publication-snippet {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.publication {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 50%;
   margin-bottom: 15px;
   padding-right: 55px;
 }
 
-.publications__img {
+.publication__img {
   margin-right: 25px;
 }
 
-.publications__descr .title {
-  font-size: 16px;
+.publication__descr .title {
+  font-size: 18px;
   font-weight: bold;
 }
 
-.publications__descr .title:hover {
+.publication__descr .title:hover {
   color: #313131;
 }
 
-.publications__descr .date-time {
+.publication__descr .date-time {
   font-size: 12px;
   color: #ABA7A7;
 }
 
-.publications__descr .author {
+.publication__descr .author {
   font-size: 14px;
   color: #606060;
 }

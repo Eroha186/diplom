@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddForeignFilesTable extends Migration
+class AddColumnRemberTokenInUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddForeignFilesTable extends Migration
      */
     public function up()
     {
-        Schema::table('files', function (Blueprint $table) {
-          $table->foreign('publ_id')->references('id')->on('publications');
+        Schema::table('users', function (Blueprint $table) {
+            $table->rememberToken();
         });
     }
 
@@ -25,8 +25,8 @@ class AddForeignFilesTable extends Migration
      */
     public function down()
     {
-        Schema::table('files', function (Blueprint $table) {
-            $table->dropForeign('files_publ_id_foreign');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('remember_token');
         });
     }
 }

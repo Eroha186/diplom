@@ -12,14 +12,14 @@ class SeedPublications extends Seeder
      */
     public function run()
     {
-      for ($i=1; $i<=5; $i++) {
+      for ($i=1; $i<5; $i++) {
         DB::table('publications')->insert([
             'user_id' => $i,
             'title' => str_random(10),
             'annatation' => str_random('50'),
-            'type_id' => random_int(1,5),
-            'kind_id' => random_int(1,5),
-            'education_id' => random_int(1,5),
+            'type_id' => random_int(1,4),
+            'kind_id' => random_int(1,4),
+            'education_id' => random_int(1,4),
             'text' => 'Ход беседы
                       1. Дети входят в зал под песню «Настоящий друг».
                       Воспитатель: Доброе утро, ребята! Я очень рада видеть вас. Ребята, вам знакома эта песня? Кто мне скажет, о чем она? (Ответы детей) Правильно, вы очень внимательные. И сегодня наша беседа будет посвящена  дружбе и друзьям.
