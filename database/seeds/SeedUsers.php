@@ -32,8 +32,8 @@ class SeedUsers extends Seeder
     ];
     for($i = 0; $i < 4; $i++) {
       DB::table('users')->insert([
-          'f' => $name[$i],
-          'i' => $surName[$i],
+          'f' => $surName[$i],
+          'i' => $name[$i],
           'o' => $kristianName[$i],
           'email' => str_random(10) . '@mail.ru',
           'password' => password_hash('admin', PASSWORD_DEFAULT),

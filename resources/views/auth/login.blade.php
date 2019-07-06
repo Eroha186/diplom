@@ -8,7 +8,8 @@
 @include('header_footer/header')
 <div class="container">
     <div class="row justify-content-center">
-        <form style="transform: translateY(50%);">
+        <form style="transform: translateY(50%);" method="POST" action="">
+            {{ csrf_field() }}
             <div class="form-group">
                 <label for="exampleInputEmail1">E-mail</label>
                 <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Введите ваш e-mail">

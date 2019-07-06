@@ -11,20 +11,23 @@ class Publication extends Model
 
   public $timestamps = false;
 
-
-  /**
-   * @param $field
-   */
-  public function getPublications($field)
+  public function author()
   {
-    $publications = Publication::select($field)
-        ->leftJoin('users', 'publications.user_id', '=', 'users.id')
-        ->leftJoin('types', 'publications.type_id', '=', 'types.id')
-        ->leftJoin('educations', 'publications.education_id', '=', 'educations.id')
-        ->leftJoin('kinds', 'publications.kind_id', '=', 'kinds.id')
-        ->latest('date_add')
-        ->get();
-    return $publications;
+    return $this->belongsTo('App\User', 'id');
+  }
+
+  public function type()
+  {
+    return $this->belongsTo('App\Type', 'id');
+  }
+
+  public function kind()
+  {
+    return $this->belongsTo('App\Kind', 'id');
+  }
+
+  public function education() {
+    return $this->belongsTo('App\Education', 'id');
   }
 
 
