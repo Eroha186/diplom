@@ -8,7 +8,9 @@
 					<li class="header-top__nav-item  {{request()->is('archive-competitions') ? 'header-top__nav-item_active' : ''}} "><a href="/archive-competitions">Архив конкурсов</a></li>
 					<li class="header-top__nav-item {{request()->is('publications') ? 'header-top__nav-item_active' : ''}} "><a href="/publications">Публикации</a></li>
 				</ul>
+				@if(!(request()->is('login') || request()->is('register')))
 					<a class="header-top__nav-button col-md-2 transparent-btn" href="/account/personal-data">Личный кабинет</a>
+				@endif
 			</nav>
 		</div>
 	</div>

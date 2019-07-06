@@ -23,7 +23,7 @@ class CreatePublicationsTable extends Migration
 			$table->unsignedInteger('education_id');
 			$table->text('text');
 			$table->integer('moderation');
-			$table->timestamp('date_add');
+			$table->timestamp('date_add')->nullable();
 		});
 	}
 

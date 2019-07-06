@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
 			$table->string('town',50);
 			$table->string('job');
 			$table->integer('confirm');
-			$table->timestamp('date_reg');
+			$table->timestamp('date_reg')->nullable();
 		});
 	}
 
