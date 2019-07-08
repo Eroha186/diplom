@@ -15,7 +15,7 @@ class User extends Authenticatable
    * @var array
    */
   protected $fillable = [
-      'name', 'email', 'password',
+      'f','i','o', 'email', 'password', 'stuff', 'town', 'job',
   ];
 
   /**
@@ -27,8 +27,11 @@ class User extends Authenticatable
       'password', 'remember_token',
   ];
 
+  public $timestamps = false;
+
   public function publications()
   {
-   // return $this->hasMany('App\Publication', 'user_id');
+    return $this->hasMany('App\Publication', 'user_id');
   }
+
 }

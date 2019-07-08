@@ -18,12 +18,12 @@ class CreateUsersTable extends Migration
 			$table->string('f', 30);
 			$table->string('i', 30);
 			$table->string('o', 30);
-			$table->string('email', 50);
+			$table->string('email', 60)->unique();
 			$table->string('password');
 			$table->string('stuff', 100);
 			$table->string('town',50);
 			$table->string('job');
-			$table->integer('confirm');
+			$table->boolean('confirm')->default(0);
 			$table->timestamp('date_reg')->nullable();
 		});
 	}

@@ -25,10 +25,10 @@ Route::get('/publications', function () {
 	return view('publication/publication');
 })->name('publications');
 
-Route::prefix('/account')->group(function () {
-	Route::get('/personal-data', function () {
-		return view('account/personal-data');
-	});
+Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
+	Route::get('personal-data', 'AccountController@showPersonalData');
+  Route::post('personal-data', 'AccountController@saveChangePersonalData')->name('personal-data');
+
 	Route::get('/my-publication', function () {
 		return view('account/my-publication');
 	});
@@ -43,10 +43,4 @@ Route::prefix('/account')->group(function () {
 	});
 });
 
-Route::get('/login', function() {
-    return view('auth.login');
-});
-
-Route::get('/register', function() {
-  return view('auth.register');
-});
+Route::auth();

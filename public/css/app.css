@@ -1369,45 +1369,45 @@ textarea {
   padding-top: 20px;
 }
 
-.publications-list .publication {
+.publications-list .publication-card {
   padding: 15px 15px;
   background: #f7f7f7;
   border: 1px solid #d1cece;
   border-radius: 4px;
 }
 
-.publications-list .publication__title {
+.publications-list .publication-card__title {
   margin-bottom: 5px;
   font-size: 18px;
   font-weight: bold;
 }
 
-.publications-list .publication__title a:hover {
+.publications-list .publication-card__title a:hover {
   color: #313131;
 }
 
-.publications-list .publish__date {
+.publications-list .publish-card__date {
   margin-bottom: 5px;
   font-size: 14px;
   color: #d1cece;
 }
 
-.publications-list .publication__author {
+.publications-list .publication-card__author {
   margin-bottom: 5px;
   font-size: 14px;
   color: #606060;
 }
 
-.publications-list .publication__descr {
+.publications-list .publication-card__descr {
   margin-bottom: 5px;
   font-weight: 500;
 }
 
-.publications-list .publication__img {
+.publications-list .publication-card__img {
   margin-bottom: 5px;
 }
 
-.publications-list .publication__img .img {
+.publications-list .publication-card__img .img {
   width: 120px;
   height: 115px;
   border: 1px solid #d1cece;
@@ -1417,7 +1417,7 @@ textarea {
   background-size: cover;
 }
 
-.publications-list .publication__teg {
+.publications-list .publication-card__teg {
   font-size: 14px;
   color: #d1cece;
 }

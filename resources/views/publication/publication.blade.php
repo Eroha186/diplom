@@ -60,28 +60,28 @@
 	<section class="publications-list">
 		<div class="container">
 			<div class="row p15">
-				<div class="col-md-12 publication">
+				<div class="col-md-12 publication-card">
 					<div class="row">
 						<div class="col-md-10">
-							<div class="publication__title"><a href="#">	Конспект занатия в старшей группе по теме: "Воздух и его свойства"</a></div>
+							<div class="publication-card__title"><a href="#">	Конспект занатия в старшей группе по теме: "Воздух и его свойства"</a></div>
 						</div>
 					</div>
-					<div class="publish__date">Опублековано 24.05.2019</div>
+					<div class="publish-card__date">Опублековано 24.05.2019</div>
 					<div class="row">
 						<div class="col-md-10">
-							<div class="publication__author">Автор Иванова А.И., учитель младших классов, г.Растов на Дону, Детский сад №24</div>
+							<div class="publication-card__author">Автор Иванова А.И., учитель младших классов, г.Растов на Дону, Детский сад №24</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-10">
-							<div class="publication__descr">Данное занятие развивает у детей позновательный интерес, через знакомоство с техникой проведения опытов с воздухом</div>
+							<div class="publication-card__descr">Данное занятие развивает у детей позновательный интерес, через знакомоство с техникой проведения опытов с воздухом</div>
 						</div>
 					</div>
-					<div class="publication__img">
+					<div class="publication-card__img">
 						<div class="img">
 						</div>
 					</div>
-					<div class="publication__teg">
+					<div class="publication-card__teg">
 						тут тег
 					</div>
 				</div>

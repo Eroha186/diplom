@@ -10,7 +10,10 @@
 			</div>
 			<ul>
 				<li class="nav-item {{request()->is('account/personal-data') ? 'nav-item_active': ''}}"><a href="/account/personal-data">Личные данные</a></li>
-				<li class="nav-item"><a href="#">Выход</a></li>
+				<li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">Выход</a>	</li>
+				<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none">
+					{{ csrf_field()}}
+				</form>
 			</ul>
 		</div>
 		<div class="nav-block">

@@ -8,7 +8,7 @@
 @include('header_footer/header')
 <div class="container">
     <div class="row justify-content-center">
-        <form style="transform: translateY(50%);" method="POST" action="">
+        <form style="transform: translateY(50%);" method="POST" action="{{route('login')}}">
             {{ csrf_field() }}
             <div class="form-group">
                 <label for="exampleInputEmail1">E-mail</label>
