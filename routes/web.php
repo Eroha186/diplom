@@ -27,7 +27,7 @@ Route::get('/publications', function () {
 
 Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
 	Route::get('personal-data', 'AccountController@showPersonalData');
-  Route::post('personal-data', 'AccountController@saveChangePersonalData')->name('personal-data');
+  Route::post('personal-data', ['middleware' => 'web', 'as' => 'personal-data','uses' => 'AccountController@saveChangePersonalData' ]);
 
 	Route::get('/my-publication', function () {
 		return view('account/my-publication');

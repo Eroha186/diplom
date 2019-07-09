@@ -80,19 +80,4 @@ class RegisterController extends Controller
         'date_reg' => date('Y-m-d H:i:s')
     ]);
   }
-
-  public function getRegister()
-  {
-    return view('auth/register');
-  }
-
-  public function postRegister(Request $request)
-  {
-    $validator = $this->validator($request->all());
-    if ($validator->fails()) {
-      throwValidationException($request, $validator);
-    };
-    $user = $this->create($request->all());
-  }
-
 }

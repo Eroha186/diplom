@@ -11,15 +11,19 @@ class AccountController extends Controller
 {
   protected function validator(array $data)
   {
-    return Validator::make($data, [
+    $validate = [
         'f' => 'required|string|max:30',
         'i' => 'required|string|max:30',
         'o' => 'required|string|max:30',
-        'email' => 'required|email|max:60|unique:users',
         'town' => 'required|string',
         'job' => 'required|string',
         'stuff' => 'required|string',
-    ]);
+    ];
+    if($data['email'] !== Auth::user()->email) {
+      $validate['email'] = 'required|email|max:60|unique:users';
+    }
+
+    return Validator::make($data, $validate);
   }
 
 
@@ -56,5 +60,4 @@ class AccountController extends Controller
     }
     return $this->showPersonalData();
   }
-
 }
