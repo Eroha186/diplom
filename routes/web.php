@@ -44,3 +44,5 @@ Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
 });
 
 Route::auth();
+
+Route::get('/verify/{token}', 'Auth\RegisterController@verifyUser');

@@ -15,7 +15,7 @@ class User extends Authenticatable
    * @var array
    */
   protected $fillable = [
-      'f','i','o', 'email', 'stuff', 'town', 'job', 'confirm'
+      'f','i','o', 'password','email', 'stuff', 'town', 'job', 'confirm'
   ];
 
   /**
@@ -32,6 +32,11 @@ class User extends Authenticatable
   public function publications()
   {
     return $this->hasMany('App\Publication', 'user_id');
+  }
+
+  public function verifyUser()
+  {
+    return $this->hasOne('App\VerifyUser');
   }
 
 }

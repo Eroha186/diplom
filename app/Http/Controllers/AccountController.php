@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Auth\RegisterController;
 
 class AccountController extends Controller
 {
@@ -43,6 +44,7 @@ class AccountController extends Controller
 
   protected function userUpdate(array $data)
   {
+    $user = User::where('email',$data['email'])->first();
     $info = [
         'f' => $data['f'],
         'i' => $data['i'],
@@ -51,13 +53,24 @@ class AccountController extends Controller
         'stuff' => $data['stuff'],
         'job' => $data['job'],
     ];
-    if (isset($data['email'])) {
+    if ($data['email'] !== $user['email']) {
       $info['email'] = $data['email'];
       $info['confirm'] = 0;
       User::where('id', Auth::user()->id)->update($info);
+      $user = User::where('id', Auth::user()->id)->first();
+      $verify = new RegisterController();
+      $verify->verifyCreate($user);
+      $this->guard()->logout();
+      return redirect('/login')->with('status', 'Мы отправили вам код активации. Проверьте свою электронную почту и нажмите на ссылку, чтобы подтвердить.');
     } else {
       User::where('id', Auth::user()->id)->update($info);
+      return $this->showPersonalData();
     }
-    return $this->showPersonalData();
   }
+
+  protected function guard()
+  {
+    return Auth::guard();
+  }
+
 }

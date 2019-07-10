@@ -220,6 +220,10 @@ textarea {
   resize: none;
 }
 
+.error {
+  border: 1px solid #ff2001;
+}
+
 .header-top {
   -webkit-box-shadow: 0 1px 3px #d1cece;
           box-shadow: 0 1px 3px #d1cece;
