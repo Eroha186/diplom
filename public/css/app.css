@@ -1482,6 +1482,7 @@ textarea {
 }
 
 .border-form-publication {
+  margin-bottom: 30px;
   padding: 12px 7px;
   border: 2px solid #86cd5b;
   border-radius: 4px;
