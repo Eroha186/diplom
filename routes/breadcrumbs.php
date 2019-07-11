@@ -18,3 +18,9 @@ Breadcrumbs::register('publications', function($breadcrumbs) {
 	$breadcrumbs->parent('home', route('home'));
 	$breadcrumbs->push('Публикации', route('publications'));
 });
+
+Breadcrumbs::register('form-publication', function($breadcrumbs) {
+  $breadcrumbs->parent('home', route('home'));
+  $breadcrumbs->push('Публикации', route('publications'));
+  $breadcrumbs->push('Заявление на публикацию', route('form-publication'));
+});

@@ -191,6 +191,9 @@ li {
 }
 
 .breadcrumb {
+  padding: 0;
+  padding-top: 10px;
+  margin-bottom: 20px;
   background: transparent;
   color: #d1cece;
   font-size: 12px;
@@ -1375,6 +1378,7 @@ textarea {
 
 .publications-list .publication-card {
   padding: 15px 15px;
+  margin-bottom: 25px;
   background: #f7f7f7;
   border: 1px solid #d1cece;
   border-radius: 4px;
@@ -1417,12 +1421,20 @@ textarea {
   border: 1px solid #d1cece;
   border-bottom: 4px solid #A95A7A;
   border-radius: 4px;
-  background: url("/images/fox&bread.png") center no-repeat;
-  background-size: cover;
+}
+
+.publications-list .publication-card__img .img img {
+  width: 100%;
+  height: 100%;
 }
 
 .publications-list .publication-card__teg {
   font-size: 14px;
   color: #d1cece;
+}
+
+.notice {
+  font-weight: bold;
+  font-size: 15px;
 }
 

@@ -21,9 +21,8 @@ Route::get('/archive-competitions', function () {
 	return view('competitions/arch-competitions');
 })->name('arch-competitions');
 
-Route::get('/publications', function () {
-	return view('publication/publication');
-})->name('publications');
+Route::get('/publications', ['as'=>'publications', 'uses' => 'PublicationsPageController@show']);
+Route::get('/form-publication', ['as'=>'form-publication', 'uses' => 'PublicationsPageController@showForm']);
 
 Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
 	Route::get('personal-data', 'AccountController@showPersonalData');

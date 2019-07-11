@@ -162,13 +162,14 @@
                   {{$publication->date_add}}
                 </div>
                 <div class="author">
-                  {{$publication->author->f}}, {{$publication->author->stuff}}
+                  {{$publication->author->f}} {{$publication->author->i}}. {{$publication->author->i}}.,
+                   {{$publication->author->stuff}}
                 </div>
               </div>
             </div>
         @endforeach
         </div>
-        <div class="more"><a href="#">Больше публикаций > ></a></div>
+        <div class="more"><a href="{{route('publications')}}">Больше публикаций > ></a></div>
       </div>
     </div>
   </div>

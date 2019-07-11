@@ -9,7 +9,8 @@
 <div class="container">
   <div class="row justify-content-center">
 
-    <form style="transform: translateY(50%); min-width: 455px; max-width: 500px" method="POST" action="{{route('login')}}">
+    <form style="transform: translateY(50%); min-width: 455px; max-width: 500px" method="POST"
+          action="{{route('login')}}">
       {{ csrf_field() }}
       @if (count($errors) > 0)
         <div class="alert alert-danger">
@@ -44,7 +45,12 @@
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">Запомнить меня</label>
       </div>
-      <button type="submit" class="btn btn-primary">Войти</button>
+      <div class="form-group">
+          <button type="submit" class="btn btn-primary">Войти</button>
+          <a class="btn btn-link" href="{{ route('password.request') }}">
+            Забыл пароль
+          </a>
+      </div>
     </form>
   </div>
 </div>
