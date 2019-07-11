@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Publication;
+use App\User;
+use  Illuminate\Support\Facades\Auth;
 
 class PublicationsPageController extends Controller
 {
@@ -28,6 +30,12 @@ class PublicationsPageController extends Controller
   }
 
   public function showForm() {
-    return view('publication/form-publication');
+    if(Auth::check()) {
+      $user = User::where('id', Auth::user()->id)->first();
+      return view('publication/form-publication', ['data' => $user]);
+    } else {
+      return view('publication/form-publication');
+    }
+
   }
 }

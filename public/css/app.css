@@ -1020,6 +1020,20 @@ textarea {
   font-weight: 500;
 }
 
+.fio {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.fio-block {
+  margin-right: 20px;
+}
+
+.fio-block:last-child {
+  margin-right: 0;
+}
+
 .personal-data__form p {
   margin: 0;
   font-weight: 500;
@@ -1034,20 +1048,6 @@ textarea {
   background: #fcfcfc;
   border: 1px solid #d1cece;
   border-radius: 4px;
-}
-
-.personal-data__form .fio {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.personal-data__form .fio-block {
-  margin-right: 20px;
-}
-
-.personal-data__form .fio-block:last-child {
-  margin-right: 0;
 }
 
 .personal-data__form .button {
@@ -1436,5 +1436,54 @@ textarea {
 .notice {
   font-weight: bold;
   font-size: 15px;
+  margin-bottom: 25px;
+}
+
+.form-publication .form-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.form-publication__personal-data {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.form-publication__personal-data label {
+  position: relative;
+  margin: 0;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-publication__personal-data label::after {
+  content: '*';
+  position: relative;
+  color: #ff2001;
+  font-size: 13px;
+  top: -7px;
+  right: -2px;
+}
+
+.form-publication__personal-data .input-style {
+  min-height: 36px;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 5px 10px;
+  background: #fcfcfc;
+  border: 1px solid #d1cece;
+  border-radius: 4px;
+}
+
+.border-form-publication {
+  padding: 12px 7px;
+  border: 2px solid #86cd5b;
+  border-radius: 4px;
 }
 
