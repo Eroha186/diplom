@@ -23,6 +23,7 @@ Route::get('/archive-competitions', function () {
 
 Route::get('/publications', ['as'=>'publications', 'uses' => 'PublicationsPageController@show']);
 Route::get('/form-publication', ['as'=>'form-publication', 'uses' => 'PublicationsPageController@showForm']);
+Route::post('/form-publication', ['as'=>'form-publication', 'uses' => 'PublicationsPageController@savePublication']);
 
 Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
 	Route::get('personal-data', 'AccountController@showPersonalData');

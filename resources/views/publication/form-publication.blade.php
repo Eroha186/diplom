@@ -81,7 +81,7 @@
           <div style="font-weight: bold"><label for="themes" class="red-star">Тематика работы</label> (укажите не менее
             3-х тегов)
           </div>
-          <select name="themes" id="themes" class="input-style">
+          <select name="themes" multiple id="themes" class="input-style">
           </select>
           <div style="font-weight: bold">
             <label for="descr" class="red-star">Описание работы</label> (не более 100 символов)

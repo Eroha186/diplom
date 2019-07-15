@@ -38,4 +38,8 @@ class PublicationsPageController extends Controller
     }
 
   }
+
+  public function savePublication() {
+    
+  }
 }
