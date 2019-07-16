@@ -65,4 +65,6 @@ $(function () {
     $('.radio-button').removeClass('radio-button_active');
     $(this).addClass('radio-button_active');
   });
+
+  $('.select2').select2();
 });

@@ -57,7 +57,7 @@
 
         </div>
 
-        <div class="form-publication__personal-data border-form-publication">
+        <div class="form-publication__work border-form-publication">
           <h3 class="form-title" style="margin-bottom: 20px;">
             2) Работа
           </h3>
@@ -81,9 +81,16 @@
           <div style="font-weight: bold"><label for="themes" class="red-star">Тематика работы</label> (укажите не менее
             3-х тегов)
           </div>
-          <select name="themes" multiple id="themes" class="input-style">
+          <select name="themes"  id="themes" multiple class="input-style select2">
+            <option value="">17 вфополждфврповф</option>
+            <option value="">27 пфапфа</option>
+            <option value="">37 фап</option>
+            <option value="">47 фапфав</option>
+            <option value="">5 фапфап7</option>
+            <option value="">67 gadf gaf</option>
+            <option value="">77 gafgdag afg afg afg</option>
           </select>
-          <div style="font-weight: bold">
+          <div style="font-weight: bold; margin-top: 30px;">
             <label for="descr" class="red-star">Описание работы</label> (не более 100 символов)
           </div>
           <textarea name="descr" id="descr" cols="30" rows="5" class="input-style"></textarea>

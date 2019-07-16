@@ -1452,6 +1452,46 @@ textarea {
   margin-bottom: 25px;
 }
 
+.form-publication__button-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-bottom: 50px;
+}
+
+.form-publication__button-wrap .transparent-btn:before {
+  background: #fff;
+}
+
+.form-publication__button-wrap .transparent-btn:hover {
+  color: #86cd5b;
+}
+
+.form-publication__button-wrap .filled-btn:before {
+  background: #A8A8A7;
+}
+
+.form-publication__btn {
+  padding: 8px 66px;
+  border: 1px solid #86cd5b;
+  border-radius: 4px;
+  background: #86cd5b;
+}
+
+.form-publication__btn:last-child {
+  padding: 8px 100px;
+  border: 1px solid #A8A8A7;
+  background: transparent;
+  font-size: 15px;
+  color: #a8a8a7;
+}
+
+.form-publication__btn:last-child:hover {
+  color: #fff;
+}
+
 .form-publication .form-title {
   font-size: 28px;
   font-weight: bold;
@@ -1483,7 +1523,7 @@ textarea {
           flex-direction: column;
 }
 
-.form-publication__personal-data .input-style {
+.form-publication .input-style {
   min-height: 36px;
   width: 100%;
   margin-bottom: 30px;
@@ -1491,6 +1531,16 @@ textarea {
   background: #fcfcfc;
   border: 1px solid #d1cece;
   border-radius: 4px;
+}
+
+.form-publication__work {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .border-form-publication {
@@ -1640,45 +1690,5 @@ input[type="radio"]:checked + .radio-button__title > span::after {
 
 .agreements-item label {
   margin: 0;
-}
-
-.form-publication__button-wrap {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  margin-bottom: 50px;
-}
-
-.form-publication__button-wrap .transparent-btn:before {
-  background: #fff;
-}
-
-.form-publication__button-wrap .transparent-btn:hover {
-  color: #86cd5b;
-}
-
-.form-publication__button-wrap .filled-btn:before {
-  background: #A8A8A7;
-}
-
-.form-publication__btn {
-  padding: 8px 66px;
-  border: 1px solid #86cd5b;
-  border-radius: 4px;
-  background: #86cd5b;
-}
-
-.form-publication__btn:last-child {
-  padding: 8px 100px;
-  border: 1px solid #A8A8A7;
-  background: transparent;
-  font-size: 15px;
-  color: #a8a8a7;
-}
-
-.form-publication__btn:last-child:hover {
-  color: #fff;
 }
 
