@@ -11,6 +11,15 @@
   <h2 class="section-title" style="margin-bottom: 20px;">
     Заполните все поля формы
   </h2>
+  @if (count($errors) > 0)
+    <div class="alert alert-danger">
+      <ul>
+        @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+  @endif
   <div class="row">
     <div class="col-md-7 notice">
       Внимательно проверяйте правильность заполнения полей формы! Внесенные Вами данные
@@ -19,7 +28,7 @@
   </div>
   <div class="row">
     <div class="col-md-7">
-      <form class="form-publication" enctype="multipart/form-data" action="">
+      <form class="form-publication" enctype="multipart/form-data" action="{{route('form-publication')}}" method="POST">
         {{ csrf_field() }}
         <div class="form-publication__personal-data border-form-publication">
           <h3 class="form-title" style="margin-bottom: 20px;">
@@ -29,31 +38,32 @@
             <div class="fio-block">
               <label for="f" class="red-star">Фамилия</label>
               <input name="f" id="f" class="input-style" type="text" placeholder="Иванов"
-                     value="{{isset($data) ? $data->f : ''}}">
+                     value="{{isset($user) ? $user->f : ''}}" {{isset($user) ? 'readonly' : ''}}>
             </div>
             <div class="fio-block">
               <label for="i" class="red-star">Имя</label>
               <input name="i" id="i" class="input-style" type="text" placeholder="Иван"
-                     value="{{isset($data) ? $data->i : ''}}">
+                     value="{{isset($user) ? $user->i : ''}}" {{isset($user) ? 'readonly' : ''}}>
             </div>
             <div class="fio-block">
               <label for="o" class="red-star">Отчество</label>
               <input name="o" id="o" class="input-style" type="text" placeholder="Иванович"
-                     value="{{isset($data) ? $data->o : ''}}">
+                     value="{{isset($user) ? $user->o : ''}}" {{isset($user) ? 'readonly' : ''}}>
             </div>
           </div>
           <label for="stuff" class="red-star">Должность</label>
           <input name="job" id="job" class="input-style" type="text"
-                 placeholder="Учитель начальных классов" value="{{isset($data) ? $data->job : ''}}">
+                 placeholder="Учитель начальных классов"
+                 value="{{isset($user) ? $user->job : ''}}" {{isset($user) ? 'readonly' : ''}}>
           <label for="email" class="red-star">E-mail</label>
           <input name="email" id="email" class="input-style" type="text" placeholder="teacher@mail.ru"
-                 value="{{isset($data) ? $data->email : ''}}">
+                 value="{{isset($user) ? $user->email : ''}}" {{isset($user) ? 'readonly' : ''}}>
           <label for="job" class="red-star">Наименования образовательного учреждения</label>
           <input name="stuff" id="stuff" class="input-style" type="text" placeholder="МБОУ СОШ №11"
-                 value="{{isset($data) ? $data->stuff : ''}}">
+                 value="{{isset($user) ? $user->stuff : ''}}" {{isset($user) ? 'readonly' : ''}}>
           <label for="town" class="red-star">Населенный пункт</label>
           <input name="town" id="town" class="input-style" type="text" placeholder="г. Москва"
-                 value="{{isset($data) ? $data->town : ''}}">
+                 value="{{isset($user) ? $user->town : ''}}" {{isset($user) ? 'readonly' : ''}}>
 
         </div>
 
@@ -62,8 +72,11 @@
             2) Работа
           </h3>
           <label for="kind" class="red-star">Вид публикации</label>
-          <select name="stuff" id="kind" class="input-style">
-
+          <select name="kind" id="kind" class="input-style">
+            <option value="0" disabled selected style="color: #757575">Выберите вид публикации</option>
+            @foreach($kinds as $kind)
+              <option value="{{$kind->id}}">{{$kind->name}}</option>
+            @endforeach
           </select>
           <div style="display: flex; justify-content: space-between ">
             <div class="col-md-7" style="padding: 0;">
@@ -73,7 +86,10 @@
             <div class="col-md-4" style="padding: 0;">
               <label for="type" class="red-star">Тип работы</label>
               <select name="type" id="type" class="input-style">
-
+                <option value="0" disabled selected>Выберите тип работы</option>
+                @foreach($types as $type)
+                  <option value="{{$type->id}}">{{$type->name}}</option>
+                @endforeach
               </select>
             </div>
           </div>
@@ -81,26 +97,22 @@
           <div style="font-weight: bold"><label for="themes" class="red-star">Тематика работы</label> (укажите не менее
             3-х тегов)
           </div>
-          <select name="themes"  id="themes" multiple class="input-style select2">
-            <option value="">17 вфополждфврповф</option>
-            <option value="">27 пфапфа</option>
-            <option value="">37 фап</option>
-            <option value="">47 фапфав</option>
-            <option value="">5 фапфап7</option>
-            <option value="">67 gadf gaf</option>
-            <option value="">77 gafgdag afg afg afg</option>
+          <select name="themes[]" id="themes" multiple class="input-style select2">
+            @foreach($themes as $theme)
+              <option value="{{$theme->id}}">{{$theme->name}}</option>
+            @endforeach
           </select>
           <div style="font-weight: bold; margin-top: 30px;">
-            <label for="descr" class="red-star">Описание работы</label> (не более 100 символов)
+            <label for="annatation" class="red-star">Описание работы</label> (не более 100 символов)
           </div>
-          <textarea name="descr" id="descr" cols="30" rows="5" class="input-style"></textarea>
+          <textarea name="annatation" id="annatation" cols="30" rows="5" class="input-style"
+                    placeholder="Описание работы...."></textarea>
           <div style="font-weight: bold; margin-bottom: 30px;">
             <label class="red-star">Прекрепите файл работы</label> (допустимые типы файлов: .jpg, .png, .doc, .docx,
-            .pdf,
-            .ppt, .pptx)
+            .pdf, .ppt, .pptx)
           </div>
           <div>
-            <input type="file" id="upload" multiple data-multiple-caption="Загружено {count} файлов " name="files"
+            <input type="file" id="upload" multiple data-multiple-caption="Загружено {count} файлов " name="files[]"
                    class="hide">
             <label for="upload" class="upload filled-btn">Загрузить файл</label> <span class="file-display">Файл не выбран</span>
           </div>
@@ -154,17 +166,17 @@
 
           <ul class="agreements">
             <li class="agreements-item">
-              <input type="checkbox" id="offer">
+              <input type="checkbox" id="offer" name="offer">
               <label for="offer">Согласен с условием <a href="" class="standart-link">оферты</a></label>
             </li>
 
             <li class="agreements-item">
-              <input type="checkbox" id="processing-pd">
+              <input type="checkbox" id="processing-pd" name="processing-pd">
               <label for="processing-pd">Я подтверждаю свое согласие на обработку персональных данных</label>
             </li>
 
             <li class="agreements-item">
-              <input type="checkbox" id="distribution" checked="checked">
+              <input type="checkbox" id="distribution" name="distribution" checked="checked">
               <label for="distribution">Подписаться на рассылку новых обновлений</label>
             </li>
           </ul>

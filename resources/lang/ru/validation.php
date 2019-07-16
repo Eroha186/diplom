@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'accepted'             => 'The :attribute must be accepted.',
+    'accepted'             => ':attribute должно быть принято.',
     'active_url'           => 'The :attribute is not a valid URL.',
     'after'                => 'The :attribute must be a date after :date.',
     'after_or_equal'       => 'The :attribute must be a date after or equal to :date.',
@@ -56,7 +56,7 @@ return [
         'string'  => 'The :attribute may not be greater than :max characters.',
         'array'   => 'The :attribute may not have more than :max items.',
     ],
-    'mimes'                => 'The :attribute must be a file of type: :values.',
+    'mimes'                => ':attribute должен иметь одно из перечеслиных расшерений: :values.',
     'mimetypes'            => 'The :attribute must be a file of type: :values.',
     'min'                  => [
         'numeric' => 'The :attribute must be at least :min.',
@@ -117,8 +117,21 @@ return [
     */
 
     'attributes' => [
+        'f' => 'Фамилия',
+        'i' => 'Имя',
+        'o' => 'Отчество',
+        'stuff' => 'Наименование учебного заведения',
+        'town' => 'Город',
+        'job' => 'Должность',
         'password' => 'Пароль',
         'email' => 'E-mail',
+        'kind' => 'Вид публикации',
+        'name-work' => 'Имя работы',
+        'type' => 'Тип работы',
+        'annatation' => 'Описание',
+        'offer' => 'Согласие с условиями оферты',
+        'processing-pd' => 'Солгасие на обработку персональных данных',
+        'files.*' => 'Файлы'
     ],
 
 ];
