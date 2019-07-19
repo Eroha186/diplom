@@ -16,7 +16,7 @@ class SeedPublications extends Seeder
         DB::table('publications')->insert([
             'user_id' => $i,
             'title' => str_random(10),
-            'annatation' => str_random('50'),
+            'annotation' => str_random('50'),
             'type_id' => random_int(1,4),
             'kind_id' => random_int(1,4),
             'education_id' => random_int(1,4),

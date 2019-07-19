@@ -17,7 +17,7 @@ class CreatePublicationsTable extends Migration
 			$table->increments('id');
 			$table->unsignedInteger('user_id');
 			$table->string('title');
-			$table->string('annatation');
+			$table->string('annotation');
 			$table->unsignedInteger('type_id');
 			$table->unsignedInteger('kind_id');
 			$table->unsignedInteger('education_id');

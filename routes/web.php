@@ -22,6 +22,8 @@ Route::get('/archive-competitions', function () {
 })->name('arch-competitions');
 
 Route::get('/publications', ['as'=>'publications', 'uses' => 'PublicationsPageController@show']);
+Route::get('/publication/id{$id}', ['as' => 'publication']);
+//, 'uses' => 'PublicationController@show'
 Route::get('/form-publication', ['as'=>'form-publication', 'uses' => 'PublicationsPageController@showForm']);
 Route::post('/form-publication', ['as'=>'form-publication', 'uses' => 'PublicationsPageController@savePublication']);
 

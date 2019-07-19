@@ -22,8 +22,8 @@ class MainPageController extends Controller
     $publications = $publicationModel::with($field)->get();
     foreach ($publications as $publication) {
       $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
-      $publication['author']['i'] = substr($publication['author']['i'],0,2);
-      $publication['author']['o'] = substr($publication['author']['o'],0,2);
+      $publication['author']['i'] = mb_substr($publication['author']['i'],0,1);
+      $publication['author']['o'] = mb_substr($publication['author']['o'],0,1);
     }
 
     return view('main', ['publications' => $publications]);

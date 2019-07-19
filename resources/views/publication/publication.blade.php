@@ -68,7 +68,7 @@
         <div class="col-md-12 publication-card">
           <div class="row">
             <div class="col-md-10">
-              <div class="publication-card__title"><a href="#">{{$publication->title}}</a></div>
+              <div class="publication-card__title"><a href="/publication/id{{$publication->id}}">{{$publication->title}}</a></div>
             </div>
           </div>
           <div class="publish-card__date">Опублековано {{$publication->date_add}}</div>
@@ -85,7 +85,7 @@
           <div class="row">
             <div class="col-md-10">
               <div class="publication-card__descr">
-                {{$publication->annatation}}
+                {{$publication->annotation}}
               </div>
             </div>
           </div>
@@ -104,6 +104,7 @@
 </section>
 
 @include('script')
+
 </body>
 </html>
 

@@ -1,3 +1,7 @@
+// import('vendor.js');
+global.$ = require('jquery');
+global.select2 = require('select2');
+global.Quill = require('quill');
 $(function () {
   /*
    *  Для элементов, которые являются вкладками табов класс прописывается следующим образом
@@ -67,5 +71,17 @@ $(function () {
   });
 
   $('.select2').select2();
+  var quill = new Quill('#editor', {
+    modules: {
+      toolbar: '#toolBar'
+    },
+    placeholder: 'Введите полное описание текста...',
+    theme: 'snow'
+  });
+
+  $('.form-publication').on('submit', function() {
+    let about = $('input[name=text]');
+    about.val(JSON.stringify(quill.getContents()));
+  });
 
 });
