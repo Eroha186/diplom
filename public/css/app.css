@@ -1696,3 +1696,53 @@ input[type="radio"]:checked + .radio-button__title > span::after {
   margin: 0;
 }
 
+.publication-content {
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+.publication-content .btn {
+  width: 100%;
+  padding: 10px 0px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.publication-content .green {
+  background: #86cd5b;
+}
+
+.publication-content .orange {
+  background: #ff8a11;
+}
+
+.publication-content__title {
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.publication-content__date {
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #c8c7c7;
+}
+
+.publication-content__author {
+  margin-bottom: 15px;
+}
+
+.publication-content__text {
+  margin-top: 30px;
+}
+
+.publication-content__text .ql-editor {
+  padding: 0;
+}
+
+.publication-content__text .ql-editor p {
+  font-size: 15px;
+}
+

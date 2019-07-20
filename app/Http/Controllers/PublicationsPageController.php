@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Theme;
-use Illuminate\Http\Request;
-use App\Publication;
-use App\User;
-use App\Kind;
-use App\Type;
 use App\Education;
 use App\File;
 use App\Http\Requests\FormPublicationRequest;
-use  Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
+use App\Kind;
+use App\Publication;
+use App\Theme;
+use App\Type;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class PublicationsPageController extends Controller
 {
@@ -24,7 +22,8 @@ class PublicationsPageController extends Controller
             'author',
             'type',
             'education',
-            'kind'
+            'kind',
+            'files'
         ];
 
         $publications = $publicationModel::with($field)->get();
@@ -35,7 +34,7 @@ class PublicationsPageController extends Controller
             $publication['author']['o'] = mb_substr($publication['author']['o'], 0, 1);
         }
 
-        return view('publication/publication', ['publications' => $publications]);
+        return view('publication/publications', ['publications' => $publications]);
     }
 
     public function showForm()
@@ -113,6 +112,29 @@ class PublicationsPageController extends Controller
                 'type' => $type,
             ]);
         }
+    }
+
+    public function showPublication($id)
+    {
+        $field = [
+            'author',
+            'type',
+            'education',
+            'kind',
+            'files'
+        ];
+        $publicationModel = new Publication;
+        $publication = $publicationModel::with($field)->where('id', $id)->first();
+        $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
+        foreach ($publication['files'] as $file) {
+            if ($file['type'] == 'doc') {
+                $publication['doc'] = $file['url'];
+            }
+            if ($file['type'] == 'ppt') {
+                $publication['ppt'] = $file['url'];
+            }
+        }
+        return view('publication.publication', ['publication' => $publication]);
     }
 
 }

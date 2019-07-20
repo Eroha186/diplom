@@ -1,65 +1,35 @@
-.publish-publication
-	width: 100%
-	padding: 7px 20px
-	background: $green
-	border-radius: 4px
-	font-size: 18px
-	text-transform: uppercase
-	color: $white
-	&:hover
-		color: $white
-.publications-filtres
-	.section-title
-		margin-top: 15px
-	.search-wrap
-		margin-top: 15px
-		&::before
-			top: 22px
-.select-filter
-	select
-		width: 100%
-		padding: 5px 10px
-		background: #f7f7f7
-		border: 1px solid $border_color
-		border-radius: 4px
-.p15
-	padding:  0px 15px
-.publications-list
-	padding-top: 20px
-	.publication-card
-		padding: 15px 15px
-		margin-bottom: 25px
-		background: #f7f7f7
-		border: 1px solid $border_color
-		border-radius: 4px
-	.publication-card__title
-		margin-bottom: 5px
-		font-size: 18px
-		font-weight: bold
-		a:hover
-			color: $space
-	.publish-card__date
-		margin-bottom: 5px
-		font-size: 14px
-		color: $border_color
-	.publication-card__author
-		margin-bottom: 5px
-		font-size: 14px
-		color: #606060
-	.publication-card__descr
-		margin-bottom: 5px
-		font-weight: 500
-	.publication-card__img
-		margin-bottom: 5px
-		.img
-			width: 120px
-			height: 115px
-			border: 1px solid $border_color
-			border-bottom: 4px solid #A95A7A
-			border-radius: 4px
-			img
-				width: 100%
-				height: 100%
-	.publication-card__teg
-		font-size: 14px
-		color: $border_color
+.publication-content
+  padding-top: 70px
+  padding-bottom: 70px
+
+  .btn
+    width: 100%
+    padding: 10px 0px
+    font-size: 14px
+    font-weight: bold
+    color: $white
+    text-transform: uppercase
+
+  .green
+    background: $green
+
+  .orange
+    background: $orange
+
+  &__title
+    margin-bottom: 15px
+    font-size: 24px
+    font-weight: bold
+
+  &__date
+    margin-bottom: 15px
+    font-size: 16px
+    color: #c8c7c7
+  &__author
+    margin-bottom: 15px
+  &__text
+    margin-top: 30px
+    & .ql-editor
+      padding: 0
+      p
+        font-size: 15px
