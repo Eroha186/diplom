@@ -87,10 +87,10 @@ $(function () {
     });
 
     if ($('*').is('#publication-content__text')) {
-            let textPublication = JSON.parse($('#publication-content__text').val());
-            let readable = new Quill('#readable');
-            readable.disable();
-            readable.setContents(textPublication);
+        let textPublication = JSON.parse($('#publication-content__text').val());
+        let readable = new Quill('#readable');
+        readable.disable();
+        readable.setContents(textPublication);
     }
 
 });

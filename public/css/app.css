@@ -1411,7 +1411,7 @@ textarea {
   color: #313131;
 }
 
-.publications-list .publish-card__date {
+.publications-list .publication-card__date {
   margin-bottom: 5px;
   font-size: 14px;
   color: #d1cece;
@@ -1429,25 +1429,59 @@ textarea {
 }
 
 .publications-list .publication-card__img {
-  margin-bottom: 5px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .publications-list .publication-card__img .img {
   width: 120px;
   height: 115px;
+  margin-right: 10px;
   border: 1px solid #d1cece;
   border-bottom: 4px solid #A95A7A;
   border-radius: 4px;
 }
 
-.publications-list .publication-card__img .img img {
+.publications-list .publication-card__img .file {
+  padding: 15px 0;
+  border: 1px solid #d1cece;
+}
+
+.publications-list .publication-card__img .file img {
   width: 100%;
   height: 100%;
 }
 
-.publications-list .publication-card__teg {
+.publications-list .publication-card__tags {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.publications-list .publication-card__tags .tag {
+  margin-right: 22px;
+  position: relative;
   font-size: 14px;
-  color: #d1cece;
+  color: #c8c7c7;
+}
+
+.publications-list .publication-card__tags .tag::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  right: -14px;
+  top: 7px;
+  background: #c8c7c7;
+  border-radius: 50%;
+}
+
+.publications-list .publication-card__tags .tag:last-child:after {
+  width: 0;
+  height: 0;
 }
 
 .notice {
@@ -1719,9 +1753,35 @@ input[type="radio"]:checked + .radio-button__title > span::after {
 }
 
 .publication-content__title {
-  margin-bottom: 15px;
   font-size: 24px;
   font-weight: bold;
+}
+
+.publication-content__tags {
+  margin-bottom: 15px;
+}
+
+.publication-content__tags .tag {
+  margin-right: 22px;
+  position: relative;
+  font-size: 14px;
+  color: #c8c7c7;
+}
+
+.publication-content__tags .tag::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  right: -14px;
+  top: 5px;
+  background: #c8c7c7;
+  border-radius: 50%;
+}
+
+.publication-content__tags .tag:last-child:after {
+  width: 0;
+  height: 0;
 }
 
 .publication-content__date {

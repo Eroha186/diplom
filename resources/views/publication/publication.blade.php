@@ -32,7 +32,11 @@
         <div class="row">
             <div class="col-md-6 publication-content__title">{{$publication->title}}</div>
         </div>
-        <div class="publication-content__tags"></div>
+        <div class="publication-content__tags">
+            @foreach($publication->theme as $theme)
+                <span class="tag">{{$theme->name}}</span>
+            @endforeach
+        </div>
         <div class="publication-content__date">Опубликовано: {{$publication->date_add}}</div>
         <div class="publication-content__author">
             {{$publication->author->f}} {{$publication->author->i}} {{$publication->author->o}},

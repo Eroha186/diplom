@@ -8,6 +8,7 @@ use App\Http\Requests\FormPublicationRequest;
 use App\Kind;
 use App\Publication;
 use App\Theme;
+use App\ThemesAndPubl;
 use App\Type;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +23,7 @@ class PublicationsPageController extends Controller
             'author',
             'type',
             'education',
+            'theme',
             'kind',
             'files'
         ];
@@ -32,6 +34,14 @@ class PublicationsPageController extends Controller
             $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
             $publication['author']['i'] = mb_substr($publication['author']['i'], 0, 1);
             $publication['author']['o'] = mb_substr($publication['author']['o'], 0, 1);
+            foreach ($publication['files'] as $file) {
+                if ($file['type'] == 'doc') {
+                    $publication['doc'] = 1;
+                }
+                if ($file['type'] == 'ppt') {
+                    $publication['ppt'] = 1;
+                }
+            }
         }
 
         return view('publication/publications', ['publications' => $publications]);
@@ -79,6 +89,15 @@ class PublicationsPageController extends Controller
                 'moderation' => 0,
                 'date_add' => date('Y-m-d H:i:s'),
             ]);
+            dump($data['themes']);
+            dump($newPublication->id);
+            foreach ($data['themes'] as $theme) {
+                ThemesAndPubl::create([
+                    'publ_id' => $newPublication->id,
+                    'theme_id' => $theme,
+                ]);
+            }
+
         }
         $this->uploadFile($formRequest->file('files'), $newPublication->id);
         return redirect('/');
@@ -120,11 +139,13 @@ class PublicationsPageController extends Controller
             'author',
             'type',
             'education',
+            'theme',
             'kind',
             'files'
         ];
         $publicationModel = new Publication;
         $publication = $publicationModel::with($field)->where('id', $id)->first();
+        dump($publication);
         $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
         foreach ($publication['files'] as $file) {
             if ($file['type'] == 'doc') {

@@ -11,12 +11,17 @@ class SeedThemes extends Seeder
    */
   public function run()
   {
-    for ($i = 0; $i < 10; $i++) {
-      DB::table('themes')->insert(
-          [
-              'name' => str_random(10)
-          ]
-      );
-    }
+      $data = [
+          'День учителя',
+          'Динозавры',
+          'Какая-нибудь лабуда',
+          'Разное',
+      ];
+
+      foreach ($data as $one) {
+          DB::table('themes')->insert([
+              'name' => $one
+          ]);
+      }
   }
 }

@@ -17,19 +17,42 @@
     background: $orange
 
   &__title
-    margin-bottom: 15px
     font-size: 24px
     font-weight: bold
+
+  &__tags
+    margin-bottom: 15px
+    .tag
+      margin-right: 22px
+      position: relative
+      font-size: 14px
+      color: #c8c7c7
+      &::after
+        content: ''
+        position: absolute
+        width: 6px
+        height: 6px
+        right: -14px
+        top: 5px
+        background: #c8c7c7
+        border-radius: 50%
+      &:last-child:after
+        width: 0
+        height: 0
 
   &__date
     margin-bottom: 15px
     font-size: 16px
     color: #c8c7c7
+
   &__author
     margin-bottom: 15px
+
   &__text
     margin-top: 30px
+
     & .ql-editor
       padding: 0
+
       p
         font-size: 15px

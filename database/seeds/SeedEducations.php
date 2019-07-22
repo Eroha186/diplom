@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+
 class SeedEducations extends Seeder
 {
     /**
@@ -12,16 +13,24 @@ class SeedEducations extends Seeder
     public function run()
     {
         $educations = [
-          '1 класс',
-          '2 класс',
-          '3 класс',
-          '4 класс'
+            'Дошкольники',
+            '1 класс',
+            '2 класс',
+            '3 класс',
+            '4 класс',
+            '5 класс',
+            '6 класс',
+            '7 класс',
+            '8 класс',
+            '9 класс',
+            '10 класс',
+            '11 класс',
         ];
 
         foreach ($educations as $education) {
-          DB::table('educations')->insert([
-             'name' => $education
-          ]);
+            DB::table('educations')->insert([
+                'name' => $education
+            ]);
         }
 
     }

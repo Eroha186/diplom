@@ -15,7 +15,7 @@ class CreateThemesAndPublTable extends Migration
 	{
 		Schema::create('themes_and_publ', function (Blueprint $table) {
 			$table->unsignedInteger('publ_id');
-			$table->unsignedInteger('themes_id');
+			$table->unsignedInteger('theme_id');
 		});
 	}
 
