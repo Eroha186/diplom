@@ -21,13 +21,13 @@
         </div>
     @endif
     <div class="row">
-        <div class="col-md-7 notice">
+        <div class="col-xl-7 notice">
             Внимательно проверяйте правильность заполнения полей формы! Внесенные Вами данные
             будут использованы для размещения в дипломах и сертификатах
         </div>
     </div>
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-xl-7">
             <form class="form-publication" enctype="multipart/form-data" action="{{route('form-publication')}}"
                   method="POST">
                 {{ csrf_field() }}
@@ -86,11 +86,11 @@
                         @endforeach
                     </select>
                     <div style="display: flex; justify-content: space-between ">
-                        <div class="col-md-7" style="padding: 0;">
+                        <div class="col-xl-7" style="padding: 0;">
                             <label for="title" class="red-star">Название работы</label>
                             <input name="title" id="title" class="input-style" type="text" placeholder="С 8 марта!">
                         </div>
-                        <div class="col-md-4" style="padding: 0;">
+                        <div class="col-xl-4" style="padding: 0;">
                             <label for="type" class="red-star">Тип работы</label>
                             <select name="type" id="type" class="input-style">
                                 <option value="0" disabled selected>Выберите тип работы</option>
@@ -111,7 +111,7 @@
                         @endforeach
                     </select>
                     <div style="font-weight: bold; margin-top: 30px;">
-                        <label for="annotation" class="red-star">Описание работы</label> (не более 100 символов)
+                        <label for="annotation" class="red-star">Описание работы</label> (не более 200 символов)
                     </div>
                     <textarea name="annotation" id="annotation" cols="30" rows="5" class="input-style"
                               placeholder="Описание работы...."></textarea>

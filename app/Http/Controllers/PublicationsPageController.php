@@ -29,6 +29,10 @@ class PublicationsPageController extends Controller
         ];
 
         $publications = $publicationModel::with($field)->get();
+        $educations = Education::all();
+        $types = Type::all();
+        $kinds = Kind::all();
+        $themes = Theme::all();
 
         foreach ($publications as $publication) {
             $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
@@ -43,8 +47,13 @@ class PublicationsPageController extends Controller
                 }
             }
         }
-
-        return view('publication/publications', ['publications' => $publications]);
+        return view('publication/publications', [
+            'publications' => $publications,
+            'educations' => $educations,
+            'kinds' => $kinds,
+            'types' => $types,
+            'themes' => $themes,
+        ]);
     }
 
     public function showForm()
@@ -144,18 +153,48 @@ class PublicationsPageController extends Controller
             'files'
         ];
         $publicationModel = new Publication;
+        $images = [];
+
+        $newPublications = $this->formationSnippet($publicationModel);
         $publication = $publicationModel::with($field)->where('id', $id)->first();
-        dump($publication);
         $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
         foreach ($publication['files'] as $file) {
-            if ($file['type'] == 'doc') {
+            if ($file['type'] == 'doc' || $file['type'] == 'pdf') {
                 $publication['doc'] = $file['url'];
             }
             if ($file['type'] == 'ppt') {
                 $publication['ppt'] = $file['url'];
             }
+            if ($file['type'] == 'image') {
+                $images[] = $file['url'];
+            }
         }
-        return view('publication.publication', ['publication' => $publication]);
+
+        return view('publication.publication', ['publication' => $publication, 'images' => $images, 'newPublications' => $newPublications]);
     }
 
+    public function formationSnippet($publicationModel)
+    {
+
+        $field = [
+            'author',
+            'type',
+            'education',
+            'kind',
+            'files',
+        ];
+        $date = new \DateTime('-6 hours');
+        $date = $date->format('Y-m-d H:i:s');
+
+        $publications = $publicationModel::with($field)->where('date_add', '>', $date)
+            ->orderBy('id', 'desc')->limit(7)->get();
+        foreach ($publications as $publication) {
+            $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
+            $publication['author']['i'] = mb_substr($publication['author']['i'], 0, 1);
+            $publication['author']['o'] = mb_substr($publication['author']['o'], 0, 1);
+            $publication['file'] = $publication['files'][0]['type'];
+        }
+
+        return $publications;
+    }
 }

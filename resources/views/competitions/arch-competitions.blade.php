@@ -12,7 +12,7 @@
 			Архив конкурсов
 		</h2>
 		<div class="row">
-			<div class="col-md-6 competitions__descr">
+			<div class="col-xl-6 competitions__descr">
 				В настоящем разделе представлены актуальные конкурсы, на которые осуществляется прием заявок на участие. Участвуйте вместе с детьми и в конкурсах для педагогов на участие. Участвуйте вмместе с детьми и в конкурсах для педагогов!
 			</div>
 			<div class="cake">
@@ -26,7 +26,7 @@
 		{!!Breadcrumbs::render('competitions')!!}
 		<h2 class="section-title">Завершенные конкурсы</h2>
 		<div class="row">
-			<div class="col-md-11">
+			<div class="col-xl-11">
 				<div class="search-wrap">
 					<input class="search-competitions" type="text" placeholder="Поиск по конкурсам">
 				</div>
@@ -49,7 +49,7 @@
 		@for ( $i=0; $i < 4; $i++)
 			<div class="row">
 				@for ($j=0; $j<2; $j++)
-					<div class="col-md-6">
+					<div class="col-xl-6">
 						<div class="competition">
 							<div class="competition__img">
 								<img src="{{asset('images/skier.png')}}" alt="Обложка">

@@ -13,7 +13,7 @@
             Текущие конкурсы
         </h2>
         <div class="row">
-            <div class="col-md-6 competitions__descr">
+            <div class="col-xl-6 competitions__descr">
                 В настоящем разделе представлены актуальные конкурсы, на которые осуществляется прием заявок на участие.
                 Участвуйте вместе с детьми и в конкурсах для педагогов на участие. Участвуйте вмместе с детьми и в
                 конкурсах для
@@ -30,19 +30,47 @@
     <div class="container">
         {!!Breadcrumbs::render('publications')!!}
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-xl-3">
                 <a href="{{route('form-publication')}}" class="publish-publication">Опубликовать работу</a>
             </div>
         </div>
         <h2 class="section-title">Творческие и учебные материалы</h2>
         <div class="row select-filter">
-            <div class="col-md-3"><select name="" id=""></select></div>
-            <div class="col-md-3"><select name="" id=""></select></div>
-            <div class="col-md-3"><select name="" id=""></select></div>
-            <div class="col-md-2"><select name="" id=""></select></div>
+            <div class="col-xl-3">
+                <select name="education" id="education">
+                    <option value="0">Все уровни образования</option>
+                    @foreach($educations as $education)
+                        <option value="{{$education->id}}">{{$education->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-xl-3">
+                <select name="kind" id="kind">
+                    <option value="0">Все виды</option>
+                    @foreach($kinds as $kind)
+                        <option value="{{$kind->id}}">{{$kind->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-xl-3">
+                <select name="theme" id="theme">
+                    <option value="0">Все темы</option>
+                    @foreach($themes as $theme)
+                        <option value="{{$theme->id}}">{{$theme->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-xl-2">
+                <select name="type" id="type">
+                    <option value="0">Все типы</option>
+                    @foreach($types as $type)
+                        <option value="{{$type->id}}">{{$type->name}}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
         <div class="row">
-            <div class="col-md-11">
+            <div class="col-xl-11">
                 <div class="search-wrap">
                     <input class="search-competitions" type="text" placeholder="Поиск по конкурсам">
                 </div>
@@ -67,16 +95,17 @@
     <div class="container">
         @foreach($publications as $publication)
             <div class="row p15">
-                <div class="col-md-12 publication-card">
+                <div class="col-xl-12 publication-card">
                     <div class="row">
-                        <div class="col-md-10">
-                            <div class="publication-card__title"><a
-                                        href="/publication/{{$publication->id}}">{{$publication->title}}</a></div>
+                        <div class="col-xl-10">
+                            <div class="publication-card__title">
+                                <a href="/publication/{{$publication->id}}">{{$publication->title}}</a>
+                            </div>
                         </div>
                     </div>
                     <div class="publish-card__date">Опублековано {{$publication->date_add}}</div>
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-xl-10">
                             <div class="publication-card__author">Автор
                                 {{$publication->author->f}} {{$publication->author->i}}. {{$publication->author->i}}.,
                                 {{$publication->author->stuff}},
@@ -86,7 +115,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-xl-10">
                             <div class="publication-card__descr">
                                 {{$publication->annotation}}
                             </div>

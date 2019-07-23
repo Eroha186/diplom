@@ -8,7 +8,7 @@
 @include('header_footer/header')
 <div class="container">
   <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-xl-8 col-xl-offset-2">
       <div class="panel panel-default">
         <div class="panel-heading">Reset Password</div>
 
@@ -19,9 +19,9 @@
             <input type="hidden" name="token" value="{{ $token }}">
 
             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-              <label for="email" class="col-md-4 control-label">E-Mail</label>
+              <label for="email" class="col-xl-4 control-label">E-Mail</label>
 
-              <div class="col-md-6">
+              <div class="col-xl-6">
                 <input id="email" type="email" class="form-control" name="email" value="{{ $email or old('email') }}"
                        required autofocus>
 
@@ -34,9 +34,9 @@
             </div>
 
             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-              <label for="password" class="col-md-4 control-label">Пароль</label>
+              <label for="password" class="col-xl-4 control-label">Пароль</label>
 
-              <div class="col-md-6">
+              <div class="col-xl-6">
                 <input id="password" type="password" class="form-control" name="password" required>
 
                 @if ($errors->has('password'))
@@ -48,8 +48,8 @@
             </div>
 
             <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-              <label for="password-confirm" class="col-md-4 control-label">Повторите пароль</label>
-              <div class="col-md-6">
+              <label for="password-confirm" class="col-xl-4 control-label">Повторите пароль</label>
+              <div class="col-xl-6">
                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
 
                 @if ($errors->has('password_confirmation'))
@@ -61,7 +61,7 @@
             </div>
 
             <div class="form-group">
-              <div class="col-md-6 col-md-offset-4">
+              <div class="col-xl-6 col-xl-offset-4">
                 <button type="submit" class="btn btn-primary">
                   Сменить пароль
                 </button>

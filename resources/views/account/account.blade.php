@@ -10,7 +10,7 @@
 	<section class="account__main">
 		<div class="container">
 			<div class="row justify-content-center">
-				<div class="account col-md-12">
+				<div class="account col-xl-12">
 					@yield('nav')
 					<div class="account__content">
 						@yield('account-content')

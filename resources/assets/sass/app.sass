@@ -1,179 +1,195 @@
 @import 'variables.sass'
 #editor
-	height: 350px
-.transparent-btn
-	color: #ffffff
-	text-shadow: none
-	font-weight: 600
-	background-color: transparent
-	font-size: 15px
-	border: 2px solid #ffffff
-	border-radius: 3px
-	padding: 10px 25px 9px 25px
-	margin: 0 3px
-	position: relative
-	overflow: hidden
-	display: inline-block
-	vertical-align: middle
-	text-transform: uppercase
-	transform: perspective(1px) translateZ(0)
-	box-shadow: 0 0 1px transparent
-	transition-property: color
-	transition-duration: 0.3s
+  height: 350px
 
-	&:before
-		content: ""
-		position: absolute
-		z-index: -1
-		top: 0
-		left: 0
-		right: 0
-		bottom: 0
-		background: #ffffff
-		transform: scaleY(0)
-		transform-origin: 50% 100%
-		transition-property: transform
-		transition-duration: 0.3s
-		transition-timing-function: ease-out
-	&:hover,
-	&:focus,
-	&:active
-		color: #313131
-		text-decoration: none
-	&:hover:before,
-	&:focus:before,
-	&:active:before
-		transform: scaleY(1)
+.transparent-btn
+  color: #ffffff
+  text-shadow: none
+  font-weight: 600
+  background-color: transparent
+  font-size: 15px
+  border: 2px solid #ffffff
+  border-radius: 3px
+  padding: 10px 25px 9px 25px
+  margin: 0 3px
+  position: relative
+  overflow: hidden
+  display: inline-block
+  vertical-align: middle
+  text-transform: uppercase
+  transform: perspective(1px) translateZ(0)
+  box-shadow: 0 0 1px transparent
+  transition-property: color
+  transition-duration: 0.3s
+
+  &:before
+    content: ""
+    position: absolute
+    z-index: -1
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background: #ffffff
+    transform: scaleY(0)
+    transform-origin: 50% 100%
+    transition-property: transform
+    transition-duration: 0.3s
+    transition-timing-function: ease-out
+
+  &:hover,
+  &:focus,
+  &:active
+    color: #313131
+    text-decoration: none
+
+  &:hover:before,
+  &:focus:before,
+  &:active:before
+    transform: scaleY(1)
 
 .filled-btn
-	color: #313131
-	text-shadow: none
-	font-weight: 500
-	background-color: #ffffff
-	position: relative
-	overflow: hidden
-	display: inline-block
-	vertical-align: middle
-	text-transform: uppercase
-	transform: perspective(1px) translateZ(0)
-	box-shadow: 0 0 1px transparent
-	transition-property: color
-	transition-duration: 0.3s
-	&:before
-		content: ""
-		position: absolute
-		z-index: -1
-		top: 0
-		left: 0
-		right: 0
-		bottom: 0
-		background: #313131
-		transform: scaleY(0)
-		transform-origin: 50% 100%
-		transition-property: transform
-		transition-duration: 0.3s
-		transition-timing-function: ease-out
-	&:hover,
-	&:focus,
-	&:active
-		color: #ffffff
-		text-decoration: none
-	&:hover:before,
-	&:focus:before,
-	&:active:before
-		transform: scaleY(1)
+  color: #313131
+  text-shadow: none
+  font-weight: 500
+  background-color: #ffffff
+  position: relative
+  overflow: hidden
+  display: inline-block
+  vertical-align: middle
+  text-transform: uppercase
+  transform: perspective(1px) translateZ(0)
+  box-shadow: 0 0 1px transparent
+  transition-property: color
+  transition-duration: 0.3s
+
+  &:before
+    content: ""
+    position: absolute
+    z-index: -1
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background: #313131
+    transform: scaleY(0)
+    transform-origin: 50% 100%
+    transition-property: transform
+    transition-duration: 0.3s
+    transition-timing-function: ease-out
+
+  &:hover,
+  &:focus,
+  &:active
+    color: #ffffff
+    text-decoration: none
+
+  &:hover:before,
+  &:focus:before,
+  &:active:before
+    transform: scaleY(1)
 
 *
-	box-sizing: border-box
-	font-family: 'Roboto', sans-serif
-	margin: 0
-	padding: 0
+  box-sizing: border-box
+  font-family: 'Roboto', sans-serif
+  margin: 0
+  padding: 0
 
 a
-	text-decoration: none
-	color: $space
-	&:hover
-		text-decoration: none
-		color: $white
+  text-decoration: none
+  color: $space
+
+  &:hover
+    text-decoration: none
+    color: $white
 
 .section-title
-	margin: 0
-	margin-bottom: 30px
-	font-weight: bold
-	color: $space
+  margin: 0
+  margin-bottom: 30px
+  font-weight: bold
+  color: $space
 
 .green
-	color: $green
+  color: $green
 
 .yellow
-	color: $yellow
+  color: $yellow
 
 .orange
-	color: $orange
+  color: $orange
 
 .blue
-	color: $blue
+  color: $blue
 
 .ta-center
-	text-align: center
+  text-align: center
 
 .tab-content
-	display: none
+  display: none
 
 .content_active
-	display: block
+  display: block
 
 .margin-bottom-0
-	margin-bottom: 0
+  margin-bottom: 0
 
 .button
-	padding: 5px 10px
-	border: 2px solid $white
-	border-radius: 4px
-	background: transparent
-	cursor: pointer
-	text-transform: uppercase
-	font-size: 12px
-	font-weight: 500
-	color: $white
+  padding: 5px 10px
+  border: 2px solid $white
+  border-radius: 4px
+  background: transparent
+  cursor: pointer
+  text-transform: uppercase
+  font-size: 12px
+  font-weight: 500
+  color: $white
 
 li
-	list-style: none
+  list-style: none
 
 .breadcrumb
-	padding: 0
-	padding-top: 10px
-	margin-bottom: 20px
-	background: transparent
-	color: $border_color
-	font-size: 12px
-	a
-		color: $border_color
-		text-decoration: underline
-		&:hover
-			color: $border_color
-			text-decoration: none
+  padding: 0
+  padding-top: 10px
+  margin-bottom: 20px
+  background: transparent
+  color: $border_color
+  font-size: 12px
+
+  a
+    color: $border_color
+    text-decoration: underline
+
+    &:hover
+      color: $border_color
+      text-decoration: none
 
 .standart-link
-	text-decoration: underline
-	color: #0000FF
-	&:hover
-		text-decoration: none
-		color: #0000ff
-textarea
-	resize: none
-.error
-	border: 1px solid $red
-.hide
-	width: 0.1px
-	height: 0.1px
-	opacity: 0
-	overflow: hidden
-	position: absolute
-	z-index: -1
-.margin-right-7
-	margin-right: 7px
+  text-decoration: underline
+  color: #0000FF
 
+  &:hover
+    text-decoration: none
+    color: #0000ff
+
+textarea
+  resize: none
+
+.error
+  border: 1px solid $red
+
+.hide
+  width: 0.1px
+  height: 0.1px
+  opacity: 0
+  overflow: hidden
+  position: absolute
+  z-index: -1
+
+.margin-right-7
+  margin-right: 7px
+
+select
+  cursor: pointer
 @import 'header_footer/header.sass'
 @import 'main_page/main_page.sass'
 @import 'account/account.sass'
