@@ -35,7 +35,7 @@ $(function () {
         $('.arrow-down').hide();
         $('.filter-name').not($(this)).attr('data-condition', '1');
         $(this).addClass('filter-name_active');
-        console.log(condition)
+
         switch (condition) {
             case '1':
                 $(this).parent().children('.arrow-up').show();
@@ -98,7 +98,11 @@ $(function () {
             contentType: false,
             processData: false,
             success: function (response) {
-                $('.publications-list > .container').html(response);
+                if(!response.status) {
+                    $('.publications-list > .container').html('<div class="error-search">'+ response.error +'</div>');
+                } else {
+                    $('.publications-list > .container').html(response);
+                }
             }
         });
     });
@@ -123,13 +127,15 @@ $(function () {
 
     $('.select2').select2();
 
-    let quill = new Quill('#editor', {
-        modules: {
-            toolbar: '#toolBar'
-        },
-        placeholder: 'Введите полное описание текста...',
-        theme: 'snow'
-    });
+    if ($('*').is('#editor')) {
+        let quill = new Quill('#editor', {
+            modules: {
+                toolbar: '#toolBar'
+            },
+            placeholder: 'Введите полное описание текста...',
+            theme: 'snow'
+        });
+    }
 
     if ($('*').is('#publication-content__text')) {
         let textPublication = JSON.parse($('#publication-content__text').val());

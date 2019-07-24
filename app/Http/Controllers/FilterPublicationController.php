@@ -38,7 +38,11 @@ class FilterPublicationController extends Controller
     public function search($request) {
         $publicationModel = new Publication();
         $publications = $publicationModel::with($this->field)->where('title','LIKE', '%'.$request.'%')->get();
-        return response()->json($this->formationSnippet($publications), 200);
+        if($publications) {
+            return response()->json(['error' => 'Нет записей подходящих условию поиска', 'status' => false]);
+        } else {
+            return response()->json($this->formationSnippet($publications), 200);
+        }
     }
 
     public function formationSnippet($publications)
