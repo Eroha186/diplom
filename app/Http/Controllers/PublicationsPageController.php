@@ -28,7 +28,7 @@ class PublicationsPageController extends Controller
             'files'
         ];
 
-        $publications = $publicationModel::with($field)->get();
+        $publications = $publicationModel::with($field)->orderBy('date_add', 'DESC')->get();
         $educations = Education::all();
         $types = Type::all();
         $kinds = Kind::all();

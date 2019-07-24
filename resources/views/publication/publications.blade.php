@@ -81,12 +81,13 @@
         <div class="filter">
             Сортировать по:
             <div class="placement-date">
-                <span class="filter-name" data-condition="1" data-column="date_add">по дате размещения </span> <span
-                        class="arrow-down">&darr;</span>
-                <span class="arrow-up">&uarr;</span>
+                <span class="filter-name filter-name_active" data-condition="3" data-column="date_add">дате размещения </span> <span
+                        class="arrow-down" style="display: inline">&darr;</span>
+                <span class="arrow-up" style="display: none">&uarr;</span>
             </div>
             <div class="filters-name">
-                <span class="filter-name" data-condition="1" data-column="title">имени </span> <span class="arrow-down">&darr;</span> <span
+                <span class="filter-name" data-condition="1" data-column="title">имени </span> <span class="arrow-down">&darr;</span>
+                <span
                         class="arrow-up">&uarr;</span>
             </div>
         </div>

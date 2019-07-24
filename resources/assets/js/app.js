@@ -26,24 +26,40 @@ $(function () {
         $(this).children('.arrow').toggleClass('arrow_active');
     });
 
-    $('.radio-button').on('click', function () {
-        $('.radio-button').removeClass('radio-button_active');
-        $(this).addClass('radio-button_active');
-    });
-
-    $('.form-publication').on('submit', function () {
-        let about = $('input[name=text]');
-        about.val(JSON.stringify(quill.getContents()));
-    });
-
     $('.filter-name').on('click', function () {
         let condition = $(this).attr('data-condition') + '';
         let column = $(this).attr('data-column');
+
+        $('.filter-name').removeClass('filter-name_active');
+        $('.arrow-up').hide();
+        $('.arrow-down').hide();
+        $('.filter-name').not($(this)).attr('data-condition', '1');
+        $(this).addClass('filter-name_active');
+        console.log(condition)
+        switch (condition) {
+            case '1':
+                $(this).parent().children('.arrow-up').show();
+                $(this).attr('data-condition', '2');
+                break;
+            case '2':
+                $(this).parent().children('.arrow-up').hide();
+                $(this).parent().children('.arrow-down').show();
+                $(this).attr('data-condition', '3');
+                break;
+            case '3':
+                $(this).parent().children('.arrow-down').hide();
+                $(this).removeClass('filter-name_active');
+                $(this).attr('data-condition', '1');
+                break;
+        }
+
+        condition = $(this).attr('data-condition') + ''
+
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: 'publications/orderBy/' + column + '/' + condition,
+            url: '/publications/orderBy/' + column + '/' + condition,
             dataType: 'json',
             type: 'POST',
             contentType: false,
@@ -52,6 +68,16 @@ $(function () {
                 $('.publications-list > .container').html(response);
             }
         });
+    });
+
+    $('.radio-button').on('click', function () {
+        $('.radio-button').removeClass('radio-button_active');
+        $(this).addClass('radio-button_active');
+    });
+
+    $('.form-publication').on('submit', function () {
+        let about = $('input[name=text]');
+        about.val(JSON.stringify(quill.getContents()));
     });
 
     $('.search-competitions').keypress(function (e) {
