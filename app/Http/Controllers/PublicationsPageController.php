@@ -98,8 +98,6 @@ class PublicationsPageController extends Controller
                 'moderation' => 0,
                 'date_add' => date('Y-m-d H:i:s'),
             ]);
-            dump($data['themes']);
-            dump($newPublication->id);
             foreach ($data['themes'] as $theme) {
                 ThemesAndPubl::create([
                     'publ_id' => $newPublication->id,
@@ -155,7 +153,7 @@ class PublicationsPageController extends Controller
         $publicationModel = new Publication;
         $images = [];
 
-        $newPublications = $this->formationSnippet($publicationModel);
+        $newPublications = $this->formationSnippetForkNewPublication($publicationModel);
         $publication = $publicationModel::with($field)->where('id', $id)->first();
         $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
         foreach ($publication['files'] as $file) {
@@ -170,10 +168,14 @@ class PublicationsPageController extends Controller
             }
         }
 
-        return view('publication.publication', ['publication' => $publication, 'images' => $images, 'newPublications' => $newPublications]);
+        return view('publication/publication', [
+            'publication' => $publication,
+            'images' => $images,
+            'newPublications' => $newPublications
+        ]);
     }
 
-    public function formationSnippet($publicationModel)
+    public function formationSnippetForkNewPublication($publicationModel)
     {
 
         $field = [
@@ -186,8 +188,7 @@ class PublicationsPageController extends Controller
         $date = new \DateTime('-6 hours');
         $date = $date->format('Y-m-d H:i:s');
 
-        $publications = $publicationModel::with($field)->where('date_add', '>', $date)
-            ->orderBy('id', 'desc')->limit(7)->get();
+        $publications = $publicationModel::with($field)->orderBy('date_add', 'desc')->limit(7)->get();
         foreach ($publications as $publication) {
             $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
             $publication['author']['i'] = mb_substr($publication['author']['i'], 0, 1);

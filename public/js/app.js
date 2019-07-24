@@ -10736,28 +10736,6 @@ $(function () {
         $(this).children('.arrow').toggleClass('arrow_active');
     });
 
-    $('.filter-name').on('click', function () {
-        var condition = $(this).data('condition') + '';
-        $(this).addClass('filter-name_active');
-        switch (condition) {
-            case '1':
-                console.log('1');
-                $(this).parent().children('.arrow-up').show();
-                $(this).data('condition', '2');
-                break;
-            case '2':
-                $(this).parent().children('.arrow-up').hide();
-                $(this).parent().children('.arrow-down').show();
-                $(this).data('condition', '3');
-                break;
-            case '3':
-                $(this).parent().children('.arrow-down').hide();
-                $(this).removeClass('filter-name_active');
-                $(this).data('condition', '1');
-                break;
-        }
-    });
-
     $('.radio-button').on('click', function () {
         $('.radio-button').removeClass('radio-button_active');
         $(this).addClass('radio-button_active');
@@ -10766,6 +10744,47 @@ $(function () {
     $('.form-publication').on('submit', function () {
         var about = $('input[name=text]');
         about.val(JSON.stringify(quill.getContents()));
+    });
+
+    $('.filter-name').on('click', function () {
+        var condition = $(this).attr('data-condition') + '';
+        var column = $(this).attr('data-column');
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: 'publications/orderBy/' + column + '/' + condition,
+            dataType: 'json',
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function success(response) {
+                $('.publications-list > .container').html(response);
+            }
+        });
+    });
+
+    $('.search-competitions').keypress(function (e) {
+        if (e.ctrlKey || e.keyCode == 13) {
+            $('#search').trigger("click");
+        }
+    });
+
+    $('#search').on('click', function () {
+        var request = $('.search-competitions').val();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: 'publications/search/' + request,
+            dataType: 'json',
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function success(response) {
+                $('.publications-list > .container').html(response);
+            }
+        });
     });
 
     var inputs = document.querySelectorAll('#upload');

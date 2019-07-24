@@ -16,12 +16,16 @@ Route::get('/', 'MainPageController@show')->name('home');
 Route::get('/competitions', function () {
     return view('competitions/competitions');
 })->name('competitions');
-
 Route::get('/archive-competitions', function () {
     return view('competitions/arch-competitions');
 })->name('arch-competitions');
-//
-Route::get('/publications', ['as' => 'publications', 'uses' => 'PublicationsPageController@show']);
+
+Route::group(['prefix' => 'publications'], function() {
+    Route::get('', ['as' => 'publications', 'uses' => 'PublicationsPageController@show']);
+    Route::post('/orderBy/{column}/{filter}', ['uses' => 'FilterPublicationController@order']);
+    Route::post('/search/{request}', ['uses' => 'FilterPublicationController@search']);
+});
+
 Route::get('/publication/{id}', ['as' => 'publication', 'uses' => 'PublicationsPageController@showPublication']);
 Route::get('/form-publication', ['as' => 'form-publication', 'uses' => 'PublicationsPageController@showForm']);
 Route::post('/form-publication', ['as' => 'form-publication', 'uses' => 'PublicationsPageController@savePublication']);

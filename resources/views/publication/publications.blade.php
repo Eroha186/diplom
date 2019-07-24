@@ -3,6 +3,7 @@
 <head>
     <title>Конкурсы</title>
     @include('styles')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 @include('header_footer/header')
@@ -26,7 +27,7 @@
     </div>
 </section>
 
-<section class="publications-filtres filtres">
+<section class="publications-filters filters">
     <div class="container">
         {!!Breadcrumbs::render('publications')!!}
         <div class="row">
@@ -72,19 +73,20 @@
         <div class="row">
             <div class="col-xl-11">
                 <div class="search-wrap">
-                    <input class="search-competitions" type="text" placeholder="Поиск по конкурсам">
+                    <button id="search"><img src="{{asset('images/magnifier.svg')}}" alt="лупа"></button>
+                    <input class="search-competitions" type="text" placeholder="Поиск по публикациям">
                 </div>
             </div>
         </div>
         <div class="filter">
             Сортировать по:
             <div class="placement-date">
-                <span class="filter-name" data-condition="1">по дате размещения </span> <span
+                <span class="filter-name" data-condition="1" data-column="date_add">по дате размещения </span> <span
                         class="arrow-down">&darr;</span>
                 <span class="arrow-up">&uarr;</span>
             </div>
-            <div class="fiteres-name">
-                <span class="filter-name" data-condition="1">имени </span> <span class="arrow-down">&darr;</span> <span
+            <div class="filters-name">
+                <span class="filter-name" data-condition="1" data-column="title">имени </span> <span class="arrow-down">&darr;</span> <span
                         class="arrow-up">&uarr;</span>
             </div>
         </div>
@@ -93,54 +95,7 @@
 
 <section class="publications-list">
     <div class="container">
-        @foreach($publications as $publication)
-            <div class="row p15">
-                <div class="col-xl-12 publication-card">
-                    <div class="row">
-                        <div class="col-xl-10">
-                            <div class="publication-card__title">
-                                <a href="/publication/{{$publication->id}}">{{$publication->title}}</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="publish-card__date">Опублековано {{$publication->date_add}}</div>
-                    <div class="row">
-                        <div class="col-xl-10">
-                            <div class="publication-card__author">Автор
-                                {{$publication->author->f}} {{$publication->author->i}}. {{$publication->author->i}}.,
-                                {{$publication->author->stuff}},
-                                {{$publication->author->town}},
-                                {{$publication->author->job}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-10">
-                            <div class="publication-card__descr">
-                                {{$publication->annotation}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="publication-card__img">
-                        @if(isset($publication['doc']))
-                            <div class="img file">
-                                <img src="{{asset("/images/doc.svg")}}" alt="">
-                            </div>
-                        @endif
-                        @if(isset($publication['ppt']))
-                            <div class="img file">
-                                <img src="{{asset("/images/ppt.svg")}}" alt="">
-                            </div>
-                        @endif
-                    </div>
-                    <div class="publication-card__tags">
-                        @foreach($publication->theme as $theme)
-                            <div class="tag">{{$theme->name}}</div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        @endforeach
+        @include('publication/publication-snippet')
     </div>
 </section>
 

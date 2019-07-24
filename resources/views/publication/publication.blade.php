@@ -73,11 +73,12 @@
                             $newPublication['file'] == 'ppt' ? asset('images/ppt.svg') : ''}}" alt="Иконка">
                         </div>
                         <div class="new-publication__snippet-descr">
-                            <a href="#" class="title">
+                            <a href="{{route('publication', ['id' => $newPublication->id])}}" class="title">
                                 {{$newPublication->title}}
                             </a>
                             <div class="author">
-                               Автор: {{$newPublication->author->f}} {{$newPublication->author->i}}.{{$newPublication->author->o}}.,
+                                Автор: {{$newPublication->author->f}} {{$newPublication->author->i}}
+                                .{{$newPublication->author->o}}.,
                                 {{$newPublication->author->job}}
                                 <span>г.{{$newPublication->author->town}}, {{$newPublication->author->stuff}}</span>
                             </div>

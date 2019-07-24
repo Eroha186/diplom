@@ -20,7 +20,7 @@ class MainPageController extends Controller
         'files',
     ];
 
-    $publications = $publicationModel::with($field)->get();
+    $publications = $publicationModel::with($field)->limit(12)->get();
     foreach ($publications as $publication) {
       $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
       $publication['author']['i'] = mb_substr($publication['author']['i'],0,1);
