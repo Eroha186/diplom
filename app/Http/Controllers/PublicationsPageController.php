@@ -11,24 +11,35 @@ use App\Theme;
 use App\ThemesAndPubl;
 use App\Type;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 
 class PublicationsPageController extends Controller
 {
 
+    protected  $field = [
+        'author',
+        'type',
+        'education',
+        'theme',
+        'kind',
+        'files'
+    ];
+
     public function show(Publication $publicationModel)
     {
 
-        $field = [
-            'author',
-            'type',
-            'education',
-            'theme',
-            'kind',
-            'files'
-        ];
-
-        $publications = $publicationModel::with($field)->orderBy('date_add', 'DESC')->get();
+        $filter = Cookie::get('filter');
+        $column = Cookie::get('column');
+        if($filter == 1 || is_null($filter)) {
+            $publications = $publicationModel::with($this->field)->orderBy('date_add', 'DESC')->get();
+        } else {
+            $publications = $this->publicationOrderAtBoot($filter,$column,  $publicationModel);
+        }
+        $filtersInfo['filter'] = $filter;
+        $filtersInfo['column'] = $column;
+        dump($filtersInfo);
         $educations = Education::all();
         $types = Type::all();
         $kinds = Kind::all();
@@ -53,6 +64,7 @@ class PublicationsPageController extends Controller
             'kinds' => $kinds,
             'types' => $types,
             'themes' => $themes,
+            'filtersInfo' => $filtersInfo
         ]);
     }
 
@@ -142,19 +154,12 @@ class PublicationsPageController extends Controller
 
     public function showPublication($id)
     {
-        $field = [
-            'author',
-            'type',
-            'education',
-            'theme',
-            'kind',
-            'files'
-        ];
+
         $publicationModel = new Publication;
         $images = [];
 
         $newPublications = $this->formationSnippetForkNewPublication($publicationModel);
-        $publication = $publicationModel::with($field)->where('id', $id)->first();
+        $publication = $publicationModel::with($this->field)->where('id', $id)->first();
         $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
         foreach ($publication['files'] as $file) {
             if ($file['type'] == 'doc' || $file['type'] == 'pdf') {
@@ -178,17 +183,7 @@ class PublicationsPageController extends Controller
     public function formationSnippetForkNewPublication($publicationModel)
     {
 
-        $field = [
-            'author',
-            'type',
-            'education',
-            'kind',
-            'files',
-        ];
-        $date = new \DateTime('-6 hours');
-        $date = $date->format('Y-m-d H:i:s');
-
-        $publications = $publicationModel::with($field)->orderBy('date_add', 'desc')->limit(7)->get();
+        $publications = $publicationModel::with($this->field)->orderBy('date_add', 'desc')->limit(7)->get();
         foreach ($publications as $publication) {
             $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
             $publication['author']['i'] = mb_substr($publication['author']['i'], 0, 1);
@@ -196,6 +191,22 @@ class PublicationsPageController extends Controller
             $publication['file'] = $publication['files'][0]['type'];
         }
 
+        return $publications;
+    }
+
+    protected function publicationOrderAtBoot($filter,$column, Publication $publicationModel) {
+        $publications = [];
+        switch ($filter) {
+            case 1:
+                $publications = $publicationModel::with($this->field)->get();
+                break;
+            case 2:
+                $publications = $publicationModel::with($this->field)->orderBy($column, 'DESC')->get();
+                break;
+            case 3:
+                $publications = $publicationModel::with($this->field)->orderBy($column, 'ASC')->get();
+                break;
+        }
         return $publications;
     }
 }

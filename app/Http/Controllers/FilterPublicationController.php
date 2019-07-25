@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Publication;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Http\Response;
 
 class FilterPublicationController extends Controller
 {
@@ -15,9 +17,12 @@ class FilterPublicationController extends Controller
         'files'
     ];
 
-    public function order($column,$filter)
+    public function order($column, $filter, $repeatSearch = 0)
     {
-
+        if($repeatSearch) {
+            $response = new Response();
+            return dump($response->withCookie('filter', $filter, 999)->withCookie('column', $column, 999));
+        }
         $publicationModel = new Publication();
         $publications = [];
         switch ($filter) {
@@ -31,14 +36,42 @@ class FilterPublicationController extends Controller
                 $publications = $publicationModel::with($this->field)->orderBy($column, 'ASC')->get();
                 break;
         }
+        Cookie::queue(Cookie::make('filter', $filter));
+        Cookie::queue(Cookie::make('column', $column));
 
         return response()->json($this->formationSnippet($publications), 200);
     }
 
-    public function search($request) {
+    public function search($searchQuery)
+    {
         $publicationModel = new Publication();
-        $publications = $publicationModel::with($this->field)->where('title','LIKE', '%'.$request.'%')->get();
-        if($publications) {
+        $filter = Cookie::get('filter');
+        $column = Cookie::get('column');
+//       $request = new Request();
+//       $filter = $request->cookie('filter');
+//       $column = $request->cookie('column');
+        dump($filter);
+        dump($column);
+        $publications = [];
+        if ($filter == 1) {
+            $publications = $publicationModel::with($this->field)->where('title', 'LIKE', '%' . $searchQuery . '%')->get();
+        } else {
+            switch ($filter) {
+                case 2:
+                    $publications = $publicationModel::with($this->field)
+                        ->where('title', 'LIKE', '%' . $searchQuery . '%')
+                        ->orderBy($column, 'DESC')
+                        ->get();
+                    break;
+                case 3:
+                    $publications = $publicationModel::with($this->field)
+                        ->where('title', 'LIKE', '%' . $searchQuery . '%')
+                        ->orderBy($column, 'ASC')
+                        ->get();
+                    break;
+            }
+        }
+        if (!$publications) {
             return response()->json(['error' => 'Нет записей подходящих условию поиска', 'status' => false]);
         } else {
             return response()->json($this->formationSnippet($publications), 200);
@@ -63,4 +96,5 @@ class FilterPublicationController extends Controller
         $html = view('publication.publication-snippet', ['publications' => $publications])->render();
         return $html;
     }
+
 }

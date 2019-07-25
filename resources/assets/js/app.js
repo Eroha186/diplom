@@ -1,8 +1,9 @@
-// import('vendor.js');
 global.$ = require('jquery');
 global.select2 = require('select2');
 global.Quill = require('quill');
 $(function () {
+    setOrder($('.filter-name[data-condition != 1]'), 1);
+
     /*
      *  Для элементов, которые являются вкладками табов класс прописывается следующим образом
      * class=" name_class tab".
@@ -27,33 +28,25 @@ $(function () {
     });
 
     $('.filter-name').on('click', function () {
-        let condition = $(this).attr('data-condition') + '';
         let column = $(this).attr('data-column');
+        let condition = setOrder($(this));
+        console.log(condition);
 
-        $('.filter-name').removeClass('filter-name_active');
-        $('.arrow-up').hide();
-        $('.arrow-down').hide();
-        $('.filter-name').not($(this)).attr('data-condition', '1');
-        $(this).addClass('filter-name_active');
-
-        switch (condition) {
-            case '1':
-                $(this).parent().children('.arrow-up').show();
-                $(this).attr('data-condition', '2');
-                break;
-            case '2':
-                $(this).parent().children('.arrow-up').hide();
-                $(this).parent().children('.arrow-down').show();
-                $(this).attr('data-condition', '3');
-                break;
-            case '3':
-                $(this).parent().children('.arrow-down').hide();
-                $(this).removeClass('filter-name_active');
-                $(this).attr('data-condition', '1');
-                break;
+        if($('.search-competitions').val() !== '') {
+            let repeatSearch = 1;
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: '/publications/orderBy/' + column + '/' + condition + '/' + repeatSearch,
+                dataType: 'json',
+                type: 'POST',
+                contentType: false,
+                processData: false,
+            });
+            $('#search').trigger('click')
+            return;
         }
-
-        condition = $(this).attr('data-condition') + ''
 
         $.ajax({
             headers: {
@@ -69,6 +62,45 @@ $(function () {
             }
         });
     });
+
+    function setOrder(condition, flag = 0) {
+        let a = 0;
+        if (flag) {
+            a = condition.attr('data-condition');
+            a -= 1;
+            a += '';
+        } else {
+            a = condition.attr('data-condition') + '';
+        }
+
+        $('.filter-name').removeClass('filter-name_active');
+        $('.arrow-up').hide();
+        $('.arrow-down').hide();
+        $('.filter-name').not(condition).attr('data-condition', '1');
+        condition.addClass('filter-name_active');
+
+        if (a === NaN) {
+            return
+        }
+
+        switch (a) {
+            case '1':
+                condition.parent().children('.arrow-up').show();
+                condition.attr('data-condition', '2');
+                break;
+            case '2':
+                condition.parent().children('.arrow-up').hide();
+                condition.parent().children('.arrow-down').show();
+                condition.attr('data-condition', '3');
+                break;
+            case '3':
+                condition.parent().children('.arrow-down').hide();
+                condition.removeClass('filter-name_active');
+                condition.attr('data-condition', '1');
+                break;
+        }
+        return condition.attr('data-condition');
+    }
 
     $('.radio-button').on('click', function () {
         $('.radio-button').removeClass('radio-button_active');
@@ -98,10 +130,10 @@ $(function () {
             contentType: false,
             processData: false,
             success: function (response) {
-                if(!response.status) {
-                    $('.publications-list > .container').html('<div class="error-search">'+ response.error +'</div>');
-                } else {
+                if (!response.status) {
                     $('.publications-list > .container').html(response);
+                } else {
+                    $('.publications-list > .container').html('<div class="error-search">' + response.error + '</div>');
                 }
             }
         });
