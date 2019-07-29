@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Publication;
-use Illuminate\Support\Facades\Cookie;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cookie;
 
 class FilterPublicationController extends Controller
 {
@@ -17,11 +18,14 @@ class FilterPublicationController extends Controller
         'files'
     ];
 
-    public function order($column, $filter, $repeatSearch = 0)
+    public function order(Response $response, $column, $filter, $repeatSearch = 0)
     {
-        if($repeatSearch) {
-            $response = new Response();
-            return dump($response->withCookie('filter', $filter, 999)->withCookie('column', $column, 999));
+        if ($repeatSearch) {
+           Cookie::queue(Cookie::make('filter', $filter));
+       Cookie::queue(Cookie::make('column', $column));
+            // ->withCookie('filter', $filter, 999)->withCookie('column', $column, 999)
+            return $response->status();
+
         }
         $publicationModel = new Publication();
         $publications = [];
@@ -30,10 +34,10 @@ class FilterPublicationController extends Controller
                 $publications = $publicationModel::with($this->field)->get();
                 break;
             case 2:
-                $publications = $publicationModel::with($this->field)->orderBy($column, 'DESC')->get();
+                $publications = $publicationModel::with($this->field)->orderBy($column, 'ASC')->get();
                 break;
             case 3:
-                $publications = $publicationModel::with($this->field)->orderBy($column, 'ASC')->get();
+                $publications = $publicationModel::with($this->field)->orderBy($column, 'DESC')->get();
                 break;
         }
         Cookie::queue(Cookie::make('filter', $filter));
@@ -42,16 +46,13 @@ class FilterPublicationController extends Controller
         return response()->json($this->formationSnippet($publications), 200);
     }
 
-    public function search($searchQuery)
+    public function search(Request $request, $searchQuery)
     {
         $publicationModel = new Publication();
-        $filter = Cookie::get('filter');
-        $column = Cookie::get('column');
-//       $request = new Request();
-//       $filter = $request->cookie('filter');
-//       $column = $request->cookie('column');
-        dump($filter);
-        dump($column);
+        $filter = $request->cookie('filter');
+        $column = $request->cookie('column');
+//        dump($filter);
+//        dump($column);
         $publications = [];
         if ($filter == 1) {
             $publications = $publicationModel::with($this->field)->where('title', 'LIKE', '%' . $searchQuery . '%')->get();
@@ -60,13 +61,13 @@ class FilterPublicationController extends Controller
                 case 2:
                     $publications = $publicationModel::with($this->field)
                         ->where('title', 'LIKE', '%' . $searchQuery . '%')
-                        ->orderBy($column, 'DESC')
+                        ->orderBy($column, 'ASC')
                         ->get();
                     break;
                 case 3:
                     $publications = $publicationModel::with($this->field)
                         ->where('title', 'LIKE', '%' . $searchQuery . '%')
-                        ->orderBy($column, 'ASC')
+                        ->orderBy($column, 'DESC')
                         ->get();
                     break;
             }

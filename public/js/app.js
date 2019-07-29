@@ -10740,10 +10740,12 @@ $(function () {
     $('.filter-name').on('click', function () {
         var column = $(this).attr('data-column');
         var condition = setOrder($(this));
-        console.log(condition);
+        // console.log(condition);
 
         if ($('.search-competitions').val() !== '') {
             var repeatSearch = 1;
+            console.log(repeatSearch);
+            console.log(condition);
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -10752,9 +10754,13 @@ $(function () {
                 dataType: 'json',
                 type: 'POST',
                 contentType: false,
-                processData: false
+                processData: false,
+                success: function success(e) {
+                    console.log(e);
+                    $('#search').trigger('click');
+                }
             });
-            $('#search').trigger('click');
+
             return;
         }
 

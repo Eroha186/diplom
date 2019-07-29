@@ -30,10 +30,12 @@ $(function () {
     $('.filter-name').on('click', function () {
         let column = $(this).attr('data-column');
         let condition = setOrder($(this));
-        console.log(condition);
+        // console.log(condition);
 
         if($('.search-competitions').val() !== '') {
             let repeatSearch = 1;
+            console.log(repeatSearch);
+            console.log(condition)
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -43,8 +45,12 @@ $(function () {
                 type: 'POST',
                 contentType: false,
                 processData: false,
+                success:  (e) => {
+                    console.log(e);
+                    $('#search').trigger('click')
+                }
             });
-            $('#search').trigger('click')
+
             return;
         }
 
