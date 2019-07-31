@@ -11,4 +11,5 @@ class ThemesAndPubl extends Model
     protected $fillable = ['publ_id', 'theme_id'];
 
     public $timestamps = false;
+
 }

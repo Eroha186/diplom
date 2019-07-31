@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,6 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+//DB::listen(function($query) {
+//    echo '<pre>';
+//    print_r($query->sql);
+//    echo '</pre>';
+//});
 
 Route::get('/', 'MainPageController@show')->name('home');
 
@@ -23,7 +29,7 @@ Route::get('/archive-competitions', function () {
 Route::group(['prefix' => 'publications'], function() {
     Route::get('', ['as' => 'publications', 'uses' => 'PublicationsPageController@show']);
     Route::post('/orderBy/{column}/{filter}/{repeatSearch?}', ['uses' => 'FilterPublicationController@order']);
-    Route::post('/search/{request}', ['uses' => 'FilterPublicationController@search']);
+    Route::post('/search/{request?}', ['uses' => 'FilterPublicationController@search']);
 });
 
 Route::get('/publication/{id}', ['as' => 'publication', 'uses' => 'PublicationsPageController@showPublication']);

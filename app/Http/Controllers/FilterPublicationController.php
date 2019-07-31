@@ -15,17 +15,15 @@ class FilterPublicationController extends Controller
         'education',
         'theme',
         'kind',
-        'files'
+        'files',
     ];
 
     public function order(Response $response, $column, $filter, $repeatSearch = 0)
     {
         if ($repeatSearch) {
-           Cookie::queue(Cookie::make('filter', $filter));
-       Cookie::queue(Cookie::make('column', $column));
-            // ->withCookie('filter', $filter, 999)->withCookie('column', $column, 999)
+            Cookie::queue(Cookie::make('filter', $filter));
+            Cookie::queue(Cookie::make('column', $column));
             return $response->status();
-
         }
         $publicationModel = new Publication();
         $publications = [];
@@ -46,37 +44,64 @@ class FilterPublicationController extends Controller
         return response()->json($this->formationSnippet($publications), 200);
     }
 
-    public function search(Request $request, $searchQuery)
+    public function search(Request $request, $searchQuery = '')
     {
         $publicationModel = new Publication();
         $filter = $request->cookie('filter');
         $column = $request->cookie('column');
-//        dump($filter);
-//        dump($column);
+        $whereArray = [
+            ['title', 'LIKE', '%' . $searchQuery . '%']
+        ];
+        $filters = [
+            'education' => $request->get('education'),
+            'type' => $request->get('type'),
+            'kind' => $request->get('kind'),
+            'theme' => $request->get('theme'),
+        ];
+        foreach ($filters as $filterName => $filterValue) {
+            if ($filterValue != 0) {
+                $whereArray[] = [$filterName . '_id', $filterValue];
+            } else {
+                continue;
+            }
+        }
         $publications = [];
         if ($filter == 1) {
-            $publications = $publicationModel::with($this->field)->where('title', 'LIKE', '%' . $searchQuery . '%')->get();
+            $publications = $publicationModel::with($this->field)
+                ->leftJoin('themes_and_publ as tap', 'publications.id', '=', 'tap.publ_id')
+                ->where($whereArray)
+                ->groupBy('id')
+                ->get();
         } else {
             switch ($filter) {
                 case 2:
                     $publications = $publicationModel::with($this->field)
-                        ->where('title', 'LIKE', '%' . $searchQuery . '%')
+                        ->leftJoin('themes_and_publ as tap', 'publications.id', '=', 'tap.publ_id')
+                        ->where($whereArray)
                         ->orderBy($column, 'ASC')
+                        ->groupBy('id')
                         ->get();
                     break;
                 case 3:
                     $publications = $publicationModel::with($this->field)
-                        ->where('title', 'LIKE', '%' . $searchQuery . '%')
+                        ->leftJoin('themes_and_publ as tap', 'publications.id', '=', 'tap.publ_id')
+                        ->where($whereArray)
                         ->orderBy($column, 'DESC')
+                        ->groupBy('id')
                         ->get();
                     break;
             }
         }
-        if (!$publications) {
-            return response()->json(['error' => 'Нет записей подходящих условию поиска', 'status' => false]);
+        if ($publications->isEmpty()) {
+            return response()->json(['error' => 'Нет записей подходящих условию поиска'], 200);
         } else {
             return response()->json($this->formationSnippet($publications), 200);
         }
+    }
+
+    public function filter(Request $request)
+    {
+
     }
 
     public function formationSnippet($publications)

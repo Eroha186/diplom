@@ -11,7 +11,6 @@ use App\Theme;
 use App\ThemesAndPubl;
 use App\Type;
 use App\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 
@@ -24,7 +23,7 @@ class PublicationsPageController extends Controller
         'education',
         'theme',
         'kind',
-        'files'
+        'files',
     ];
 
     public function show(Publication $publicationModel)
@@ -39,12 +38,16 @@ class PublicationsPageController extends Controller
         }
         $filtersInfo['filter'] = $filter;
         $filtersInfo['column'] = $column;
-        dump($filtersInfo);
         $educations = Education::all();
         $types = Type::all();
         $kinds = Kind::all();
         $themes = Theme::all();
 
+//        $publ = $publicationModel::with($this->field)->where('id','8')->first();
+//        dump($themes);
+//        foreach($publ->theme as $a) {
+//            dump($a->name);
+//        };
         foreach ($publications as $publication) {
             $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
             $publication['author']['i'] = mb_substr($publication['author']['i'], 0, 1);

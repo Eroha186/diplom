@@ -36,9 +36,9 @@
             </div>
         </div>
         <h2 class="section-title">Творческие и учебные материалы</h2>
-        <div class="row select-filter">
+        <div class="row select-filters">
             <div class="col-xl-3">
-                <select name="education" id="education">
+                <select name="education" id="education" class="select-filter">
                     <option value="0">Все уровни образования</option>
                     @foreach($educations as $education)
                         <option value="{{$education->id}}">{{$education->name}}</option>
@@ -46,7 +46,7 @@
                 </select>
             </div>
             <div class="col-xl-3">
-                <select name="kind" id="kind">
+                <select name="kind" id="kind"  class="select-filter">
                     <option value="0">Все виды</option>
                     @foreach($kinds as $kind)
                         <option value="{{$kind->id}}">{{$kind->name}}</option>
@@ -54,7 +54,7 @@
                 </select>
             </div>
             <div class="col-xl-3">
-                <select name="theme" id="theme">
+                <select name="theme" id="theme"  class="select-filter">
                     <option value="0">Все темы</option>
                     @foreach($themes as $theme)
                         <option value="{{$theme->id}}">{{$theme->name}}</option>
@@ -62,7 +62,7 @@
                 </select>
             </div>
             <div class="col-xl-2">
-                <select name="type" id="type">
+                <select name="type" id="type"  class="select-filter">
                     <option value="0">Все типы</option>
                     @foreach($types as $type)
                         <option value="{{$type->id}}">{{$type->name}}</option>

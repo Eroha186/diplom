@@ -10779,6 +10779,54 @@ $(function () {
         });
     });
 
+    $('.radio-button').on('click', function () {
+        $('.radio-button').removeClass('radio-button_active');
+        $(this).addClass('radio-button_active');
+    });
+
+    $('.form-publication').on('submit', function () {
+        var about = $('input[name=text]');
+        about.val(JSON.stringify(quill.getContents()));
+    });
+
+    $('.search-competitions').keypress(function (e) {
+        if (e.ctrlKey || e.keyCode == 13) {
+            $('#search').trigger("click");
+        }
+    });
+
+    $('#search').on('click', function () {
+        var request = $('.search-competitions').val();
+        var url = void 0;
+        request ? url = '/publications/search/' + request + '?' : url = '/publications/search?';
+        var filters = $('.select-filter');
+        var paramsFilter = [];
+        filters.each(function (index, element) {
+            paramsFilter['' + element.getAttribute('name') + ''] = element.value;
+            url += element.getAttribute('name') + '=' + element.value + '&';
+        });
+        console.log(url.slice(0, -1));
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: url,
+            dataType: 'json',
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function success(response) {
+                if (!response.error) {
+                    $('.publications-list > .container').html(response);
+                } else {
+                    $('.publications-list > .container').html('<div class="error-search">' + response.error + '</div>');
+                }
+            }
+        });
+    });
+
+    $('.select2').select2();
+
     function setOrder(condition) {
         var flag = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
@@ -10820,56 +10868,6 @@ $(function () {
         return condition.attr('data-condition');
     }
 
-    $('.radio-button').on('click', function () {
-        $('.radio-button').removeClass('radio-button_active');
-        $(this).addClass('radio-button_active');
-    });
-
-    $('.form-publication').on('submit', function () {
-        var about = $('input[name=text]');
-        about.val(JSON.stringify(quill.getContents()));
-    });
-
-    $('.search-competitions').keypress(function (e) {
-        if (e.ctrlKey || e.keyCode == 13) {
-            $('#search').trigger("click");
-        }
-    });
-
-    $('#search').on('click', function () {
-        var request = $('.search-competitions').val();
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: 'publications/search/' + request,
-            dataType: 'json',
-            type: 'POST',
-            contentType: false,
-            processData: false,
-            success: function success(response) {
-                if (!response.status) {
-                    $('.publications-list > .container').html(response);
-                } else {
-                    $('.publications-list > .container').html('<div class="error-search">' + response.error + '</div>');
-                }
-            }
-        });
-    });
-
-    var inputs = document.querySelectorAll('#upload');
-    Array.prototype.forEach.call(inputs, function (input) {
-        var label = document.querySelector('.file-display'),
-            labelVal = label.innerHTML;
-        input.addEventListener('change', function (e) {
-            var fileName = '';
-            if (this.files && this.files.length > 1) fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);else fileName = e.target.value.split('\\').pop();
-            if (fileName) document.querySelector('.file-display').innerHTML = fileName;else label.innerHTML = labelVal;
-        });
-    });
-
-    $('.select2').select2();
-
     if ($('*').is('#editor')) {
         var _quill = new Quill('#editor', {
             modules: {
@@ -10886,6 +10884,17 @@ $(function () {
         readable.disable();
         readable.setContents(textPublication);
     }
+
+    var inputs = document.querySelectorAll('#upload');
+    Array.prototype.forEach.call(inputs, function (input) {
+        var label = document.querySelector('.file-display'),
+            labelVal = label.innerHTML;
+        input.addEventListener('change', function (e) {
+            var fileName = '';
+            if (this.files && this.files.length > 1) fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);else fileName = e.target.value.split('\\').pop();
+            if (fileName) document.querySelector('.file-display').innerHTML = fileName;else label.innerHTML = labelVal;
+        });
+    });
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 

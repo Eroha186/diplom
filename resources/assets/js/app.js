@@ -32,7 +32,7 @@ $(function () {
         let condition = setOrder($(this));
         // console.log(condition);
 
-        if($('.search-competitions').val() !== '') {
+        if ($('.search-competitions').val() !== '') {
             let repeatSearch = 1;
             console.log(repeatSearch);
             console.log(condition)
@@ -45,7 +45,7 @@ $(function () {
                 type: 'POST',
                 contentType: false,
                 processData: false,
-                success:  (e) => {
+                success: (e) => {
                     console.log(e);
                     $('#search').trigger('click')
                 }
@@ -68,6 +68,54 @@ $(function () {
             }
         });
     });
+
+    $('.radio-button').on('click', function () {
+        $('.radio-button').removeClass('radio-button_active');
+        $(this).addClass('radio-button_active');
+    });
+
+    $('.form-publication').on('submit', function () {
+        let about = $('input[name=text]');
+        about.val(JSON.stringify(quill.getContents()));
+    });
+
+    $('.search-competitions').keypress(function (e) {
+        if (e.ctrlKey || e.keyCode == 13) {
+            $('#search').trigger("click");
+        }
+    });
+
+    $('#search').on('click', function () {
+        let request = $('.search-competitions').val();
+        let url;
+        request ? url = '/publications/search/' + request + '?': url = '/publications/search?';
+        let filters = $('.select-filter');
+        let paramsFilter = []
+        filters.each((index, element) => {
+            paramsFilter['' + element.getAttribute('name') + ''] = element.value;
+            url +=  element.getAttribute('name') + '=' + element.value + '&';
+        })
+        console.log(url.slice(0, -1));
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: url,
+            dataType: 'json',
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if (!response.error) {
+                    $('.publications-list > .container').html(response);
+                } else {
+                    $('.publications-list > .container').html('<div class="error-search">' + response.error + '</div>');
+                }
+            }
+        });
+    });
+
+    $('.select2').select2();
 
     function setOrder(condition, flag = 0) {
         let a = 0;
@@ -108,63 +156,6 @@ $(function () {
         return condition.attr('data-condition');
     }
 
-    $('.radio-button').on('click', function () {
-        $('.radio-button').removeClass('radio-button_active');
-        $(this).addClass('radio-button_active');
-    });
-
-    $('.form-publication').on('submit', function () {
-        let about = $('input[name=text]');
-        about.val(JSON.stringify(quill.getContents()));
-    });
-
-    $('.search-competitions').keypress(function (e) {
-        if (e.ctrlKey || e.keyCode == 13) {
-            $('#search').trigger("click");
-        }
-    });
-
-    $('#search').on('click', function () {
-        let request = $('.search-competitions').val();
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: 'publications/search/' + request,
-            dataType: 'json',
-            type: 'POST',
-            contentType: false,
-            processData: false,
-            success: function (response) {
-                if (!response.status) {
-                    $('.publications-list > .container').html(response);
-                } else {
-                    $('.publications-list > .container').html('<div class="error-search">' + response.error + '</div>');
-                }
-            }
-        });
-    });
-
-    let inputs = document.querySelectorAll('#upload');
-    Array.prototype.forEach.call(inputs, function (input) {
-        let label = document.querySelector('.file-display'),
-            labelVal = label.innerHTML;
-        input.addEventListener('change', function (e) {
-            let fileName = '';
-            if (this.files && this.files.length > 1)
-                fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
-            else
-                fileName = e.target.value.split('\\').pop();
-            if (fileName)
-                document.querySelector('.file-display').innerHTML = fileName;
-            else
-                label.innerHTML = labelVal;
-        });
-    });
-
-
-    $('.select2').select2();
-
     if ($('*').is('#editor')) {
         let quill = new Quill('#editor', {
             modules: {
@@ -182,4 +173,20 @@ $(function () {
         readable.setContents(textPublication);
     }
 
+    let inputs = document.querySelectorAll('#upload');
+    Array.prototype.forEach.call(inputs, function (input) {
+        let label = document.querySelector('.file-display'),
+            labelVal = label.innerHTML;
+        input.addEventListener('change', function (e) {
+            let fileName = '';
+            if (this.files && this.files.length > 1)
+                fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
+            else
+                fileName = e.target.value.split('\\').pop();
+            if (fileName)
+                document.querySelector('.file-display').innerHTML = fileName;
+            else
+                label.innerHTML = labelVal;
+        });
+    });
 });
