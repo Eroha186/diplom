@@ -74,7 +74,7 @@
             <div class="col-xl-11">
                 <div class="search-wrap">
                     <button id="search"><img src="{{asset('images/magnifier.svg')}}" alt="лупа"></button>
-                    <input class="search-competitions" type="text" placeholder="Поиск по публикациям">
+                    <input class="search-competitions" type="text" placeholder="Поиск по публикациям" value="{{session('searchQuery')}}">
                 </div>
             </div>
         </div>

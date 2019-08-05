@@ -28,7 +28,7 @@ Route::get('/archive-competitions', function () {
 
 Route::group(['prefix' => 'publications'], function() {
     Route::get('', ['as' => 'publications', 'uses' => 'PublicationsPageController@show']);
-    Route::post('/orderBy/{column}/{filter}/{repeatSearch?}', ['uses' => 'FilterPublicationController@order']);
+    Route::post('/orderBy/{column}/{filter}', ['uses' => 'FilterPublicationController@setCookieOrder']);
     Route::post('/search/{request?}', ['uses' => 'FilterPublicationController@search']);
 });
 

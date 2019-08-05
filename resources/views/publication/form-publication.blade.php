@@ -116,9 +116,9 @@
                     <textarea name="annotation" id="annotation" cols="30" rows="5" class="input-style"
                               placeholder="Описание работы...."></textarea>
                     <div style="font-weight: bold; margin-top: 30px;">
-                        <label for="annotation" class="red-star">Полный текст работы</label> (не менее 200 символов)
+                        <label for="text" class="red-star">Полный текст работы</label> (не менее 200 символов)
                     </div>
-                    <div id="standalone-container" name="text">
+                    <div id="standalone-container">
                         <div id="toolBar">
                             <span class="ql-formats">
 {{--                              <select class="ql-font"></select>--}}

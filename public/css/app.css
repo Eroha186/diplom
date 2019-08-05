@@ -248,6 +248,23 @@ select {
   cursor: pointer;
 }
 
+.pagination .link-paginate {
+  font-weight: bold;
+}
+
+.pagination .link-paginate:hover {
+  color: #ff2001;
+}
+
+.pagination .active {
+  font-weight: bold;
+  color: #ff2001;
+}
+
+.pagination li {
+  margin-left: 5px;
+}
+
 .header-top {
   -webkit-box-shadow: 0 1px 3px #d1cece;
           box-shadow: 0 1px 3px #d1cece;

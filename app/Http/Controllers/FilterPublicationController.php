@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Education;
+use App\Kind;
 use App\Publication;
+use App\Theme;
+use App\Type;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cookie;
@@ -18,39 +22,21 @@ class FilterPublicationController extends Controller
         'files',
     ];
 
-    public function order(Response $response, $column, $filter, $repeatSearch = 0)
+    public function setCookieOrder(Response $response, $column, $filter)
     {
-        if ($repeatSearch) {
-            Cookie::queue(Cookie::make('filter', $filter));
-            Cookie::queue(Cookie::make('column', $column));
-            return $response->status();
-        }
-        $publicationModel = new Publication();
-        $publications = [];
-        switch ($filter) {
-            case 1:
-                $publications = $publicationModel::with($this->field)->get();
-                break;
-            case 2:
-                $publications = $publicationModel::with($this->field)->orderBy($column, 'ASC')->get();
-                break;
-            case 3:
-                $publications = $publicationModel::with($this->field)->orderBy($column, 'DESC')->get();
-                break;
-        }
         Cookie::queue(Cookie::make('filter', $filter));
         Cookie::queue(Cookie::make('column', $column));
-
-        return response()->json($this->formationSnippet($publications), 200);
+        return $response->status();
     }
 
     public function search(Request $request, $searchQuery = '')
     {
+        session(['searchQuery' => $searchQuery]);
         $publicationModel = new Publication();
         $filter = $request->cookie('filter');
         $column = $request->cookie('column');
         $whereArray = [
-            ['title', 'LIKE', '%' . $searchQuery . '%']
+            ['title', 'LIKE', '%' . trim($searchQuery) . '%']
         ];
         $filters = [
             'education' => $request->get('education'),
@@ -71,7 +57,7 @@ class FilterPublicationController extends Controller
                 ->leftJoin('themes_and_publ as tap', 'publications.id', '=', 'tap.publ_id')
                 ->where($whereArray)
                 ->groupBy('id')
-                ->get();
+                ->paginate(10);
         } else {
             switch ($filter) {
                 case 2:
@@ -80,7 +66,7 @@ class FilterPublicationController extends Controller
                         ->where($whereArray)
                         ->orderBy($column, 'ASC')
                         ->groupBy('id')
-                        ->get();
+                        ->paginate(10);
                     break;
                 case 3:
                     $publications = $publicationModel::with($this->field)
@@ -88,23 +74,20 @@ class FilterPublicationController extends Controller
                         ->where($whereArray)
                         ->orderBy($column, 'DESC')
                         ->groupBy('id')
-                        ->get();
+                        ->paginate(10);
                     break;
             }
         }
-        if ($publications->isEmpty()) {
+        $publications->withPath('publications/');
+
+        if (!count($publications)) {
             return response()->json(['error' => 'Нет записей подходящих условию поиска'], 200);
         } else {
             return response()->json($this->formationSnippet($publications), 200);
         }
     }
 
-    public function filter(Request $request)
-    {
-
-    }
-
-    public function formationSnippet($publications)
+    public function formationSnippet($publications, $flag = 1)
     {
         foreach ($publications as $publication) {
             $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
@@ -119,8 +102,12 @@ class FilterPublicationController extends Controller
                 }
             }
         }
-        $html = view('publication.publication-snippet', ['publications' => $publications])->render();
-        return $html;
+        if ($flag) {
+            $html = view('publication.publication-snippet', ['publications' => $publications])->render();
+            return $html;
+        } else {
+            return $publications;
+        }
     }
 
 }

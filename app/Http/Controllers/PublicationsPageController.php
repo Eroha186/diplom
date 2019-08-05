@@ -32,7 +32,7 @@ class PublicationsPageController extends Controller
         $filter = Cookie::get('filter');
         $column = Cookie::get('column');
         if($filter == 1 || is_null($filter)) {
-            $publications = $publicationModel::with($this->field)->orderBy('date_add', 'DESC')->get();
+            $publications = $publicationModel::with($this->field)->orderBy('date_add', 'DESC')->paginate(10);
         } else {
             $publications = $this->publicationOrderAtBoot($filter,$column,  $publicationModel);
         }
@@ -43,11 +43,6 @@ class PublicationsPageController extends Controller
         $kinds = Kind::all();
         $themes = Theme::all();
 
-//        $publ = $publicationModel::with($this->field)->where('id','8')->first();
-//        dump($themes);
-//        foreach($publ->theme as $a) {
-//            dump($a->name);
-//        };
         foreach ($publications as $publication) {
             $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
             $publication['author']['i'] = mb_substr($publication['author']['i'], 0, 1);
@@ -201,13 +196,13 @@ class PublicationsPageController extends Controller
         $publications = [];
         switch ($filter) {
             case 1:
-                $publications = $publicationModel::with($this->field)->get();
+                $publications = $publicationModel::with($this->field)->paginate(10);
                 break;
             case 2:
-                $publications = $publicationModel::with($this->field)->orderBy($column, 'DESC')->get();
+                $publications = $publicationModel::with($this->field)->orderBy($column, 'DESC')->paginate(10);
                 break;
             case 3:
-                $publications = $publicationModel::with($this->field)->orderBy($column, 'ASC')->get();
+                $publications = $publicationModel::with($this->field)->orderBy($column, 'ASC')->paginate(10);
                 break;
         }
         return $publications;

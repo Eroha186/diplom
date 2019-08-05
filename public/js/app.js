@@ -10740,29 +10740,6 @@ $(function () {
     $('.filter-name').on('click', function () {
         var column = $(this).attr('data-column');
         var condition = setOrder($(this));
-        // console.log(condition);
-
-        if ($('.search-competitions').val() !== '') {
-            var repeatSearch = 1;
-            console.log(repeatSearch);
-            console.log(condition);
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url: '/publications/orderBy/' + column + '/' + condition + '/' + repeatSearch,
-                dataType: 'json',
-                type: 'POST',
-                contentType: false,
-                processData: false,
-                success: function success(e) {
-                    console.log(e);
-                    $('#search').trigger('click');
-                }
-            });
-
-            return;
-        }
 
         $.ajax({
             headers: {
@@ -10774,7 +10751,7 @@ $(function () {
             contentType: false,
             processData: false,
             success: function success(response) {
-                $('.publications-list > .container').html(response);
+                $('#search').trigger('click');
             }
         });
     });
@@ -10782,11 +10759,6 @@ $(function () {
     $('.radio-button').on('click', function () {
         $('.radio-button').removeClass('radio-button_active');
         $(this).addClass('radio-button_active');
-    });
-
-    $('.form-publication').on('submit', function () {
-        var about = $('input[name=text]');
-        about.val(JSON.stringify(quill.getContents()));
     });
 
     $('.search-competitions').keypress(function (e) {
@@ -10805,7 +10777,7 @@ $(function () {
             paramsFilter['' + element.getAttribute('name') + ''] = element.value;
             url += element.getAttribute('name') + '=' + element.value + '&';
         });
-        console.log(url.slice(0, -1));
+        url.slice(0, -1);
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -10869,12 +10841,16 @@ $(function () {
     }
 
     if ($('*').is('#editor')) {
-        var _quill = new Quill('#editor', {
+        var quill = new Quill('#editor', {
             modules: {
                 toolbar: '#toolBar'
             },
             placeholder: 'Введите полное описание текста...',
             theme: 'snow'
+        });
+        $('.form-publication').on('submit', function () {
+            var about = $('input[name=text]');
+            about.val(JSON.stringify(quill.getContents()));
         });
     }
 

@@ -31,7 +31,7 @@ class FormPublicationRequest extends FormRequest
                 'title' => 'required|string',
                 'type' => 'required|min:0',
                 'annotation' => 'required|string|max:200',
-//                'text' => 'required|string|min:700',
+                'text' => 'required|min:700',
                 'files' => 'required',
                 'files.*' => ['file', 'mimes:jpg,png,doc,docx,pdf,ppt,pptx'],
                 'offer' => 'accepted',
