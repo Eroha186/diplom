@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ru">
 <head>
-    <title>Конкурсы</title>
+    <title>Публикации</title>
     @include('styles')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
@@ -36,48 +36,50 @@
             </div>
         </div>
         <h2 class="section-title">Творческие и учебные материалы</h2>
-        <div class="row select-filters">
-            <div class="col-xl-3">
-                <select name="education" id="education" class="select-filter">
-                    <option value="0">Все уровни образования</option>
-                    @foreach($educations as $education)
-                        <option value="{{$education->id}}">{{$education->name}}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="col-xl-3">
-                <select name="kind" id="kind"  class="select-filter">
-                    <option value="0">Все виды</option>
-                    @foreach($kinds as $kind)
-                        <option value="{{$kind->id}}">{{$kind->name}}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="col-xl-3">
-                <select name="theme" id="theme"  class="select-filter">
-                    <option value="0">Все темы</option>
-                    @foreach($themes as $theme)
-                        <option value="{{$theme->id}}">{{$theme->name}}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="col-xl-2">
-                <select name="type" id="type"  class="select-filter">
-                    <option value="0">Все типы</option>
-                    @foreach($types as $type)
-                        <option value="{{$type->id}}">{{$type->name}}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-11">
-                <div class="search-wrap">
-                    <button id="search"><img src="{{asset('images/magnifier.svg')}}" alt="лупа"></button>
-                    <input class="search-competitions" type="text" placeholder="Поиск по публикациям" value="{{session('searchQuery')}}">
+        <form action="{{route('search')}}" method="GET">
+            <div class="row select-filters">
+                <div class="col-xl-3">
+                    <select name="education" id="education" class="select-filter">
+                        <option value="0">Все уровни образования</option>
+                        @foreach($educations as $education)
+                            <option value="{{$education->id}}">{{$education->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-xl-3">
+                    <select name="kind" id="kind"  class="select-filter">
+                        <option value="0">Все виды</option>
+                        @foreach($kinds as $kind)
+                            <option value="{{$kind->id}}">{{$kind->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-xl-3">
+                    <select name="theme" id="theme"  class="select-filter">
+                        <option value="0">Все темы</option>
+                        @foreach($themes as $theme)
+                            <option value="{{$theme->id}}">{{$theme->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-xl-2">
+                    <select name="type" id="type"  class="select-filter">
+                        <option value="0">Все типы</option>
+                        @foreach($types as $type)
+                            <option value="{{$type->id}}">{{$type->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
-        </div>
+            <div class="row">
+                <div class="col-xl-11">
+                    <div class="search-wrap">
+                        <button type="submit" id="search"><img src="{{asset('images/magnifier.svg')}}" alt="лупа"></button>
+                        <input name="searchQuery" class="search-competitions" type="text" placeholder="Поиск по публикациям" value="{{session('searchQuery')}}">
+                    </div>
+                </div>
+            </div>
+        </form>
         <div class="filter">
             Сортировать по:
             <div class="placement-date">
@@ -100,7 +102,11 @@
 
 <section class="publications-list">
     <div class="container">
-        @include('publication/publication-snippet')
+        @if(isset($publications->error))
+            {{$publications->error}}
+        @else
+            @include('publication/publication-snippet')
+        @endif
     </div>
 </section>
 

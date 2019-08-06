@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Publication;
-use App\User;
-use Illuminate\Support\Facades\DB;
+
 
 class MainPageController extends Controller
 {

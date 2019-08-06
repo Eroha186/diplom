@@ -5,8 +5,6 @@
 @endsection
 
 @section('account-content')
-
-	@foreach($dat as $data)
 		<div class="personal-data">
 			<h2 class="section-title">
 				Личные данные
@@ -47,5 +45,4 @@
 				<button class="button filled-btn">Сохранить</button>
 			</form>
 		</div>
-	@endforeach
 @endsection

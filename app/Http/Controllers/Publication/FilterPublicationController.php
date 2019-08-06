@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Publication;
 
 use App\Education;
 use App\Kind;
 use App\Publication;
 use App\Theme;
 use App\Type;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cookie;
@@ -29,28 +30,34 @@ class FilterPublicationController extends Controller
         return $response->status();
     }
 
-    public function search(Request $request, $searchQuery = '')
+    public function search(Request $request, Publication $publicationModel)
     {
-        session(['searchQuery' => $searchQuery]);
-        $publicationModel = new Publication();
+        $searchQuery = $request->get('searchQuery');
+
         $filter = $request->cookie('filter');
         $column = $request->cookie('column');
+
         $whereArray = [
             ['title', 'LIKE', '%' . trim($searchQuery) . '%']
         ];
+
         $filters = [
             'education' => $request->get('education'),
             'type' => $request->get('type'),
             'kind' => $request->get('kind'),
             'theme' => $request->get('theme'),
         ];
+
+        session(['searchQuery' => $searchQuery]);
         foreach ($filters as $filterName => $filterValue) {
+
             if ($filterValue != 0) {
                 $whereArray[] = [$filterName . '_id', $filterValue];
             } else {
                 continue;
             }
         }
+
         $publications = [];
         if ($filter == 1) {
             $publications = $publicationModel::with($this->field)
@@ -78,16 +85,44 @@ class FilterPublicationController extends Controller
                     break;
             }
         }
-        $publications->withPath('publications/');
 
-        if (!count($publications)) {
-            return response()->json(['error' => 'Нет записей подходящих условию поиска'], 200);
+        $publications->withPath(route('search') . '?education=' . $filters['education']
+            . '&kind=' . $filters['kind']
+            . '&theme=' . $filters['theme']
+            . '&type=' . $filters['type']
+            . '&searchQuery=' . $searchQuery);
+
+        $educations = Education::all();
+        $types = Type::all();
+        $kinds = Kind::all();
+        $themes = Theme::all();
+        $filtersInfo['filter'] = $filter;
+        $filtersInfo['column'] = $column;
+        $publications = $this->formationSnippetList($publications);
+
+        if (count($publications)) {
+            return view('publication/publications', [
+                'publications' => $publications,
+                'educations' => $educations,
+                'kinds' => $kinds,
+                'types' => $types,
+                'themes' => $themes,
+                'filtersInfo' => $filtersInfo
+            ]);
         } else {
-            return response()->json($this->formationSnippet($publications), 200);
+            $publications->error = 'Нет публикаций удовлетворяющих критериям поиска';
+            return view('publication/publications', [
+                'publications' => $publications,
+                'educations' => $educations,
+                'kinds' => $kinds,
+                'types' => $types,
+                'themes' => $themes,
+                'filtersInfo' => $filtersInfo
+            ]);
         }
     }
 
-    public function formationSnippet($publications, $flag = 1)
+    public function formationSnippetList($publications)
     {
         foreach ($publications as $publication) {
             $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
@@ -102,12 +137,8 @@ class FilterPublicationController extends Controller
                 }
             }
         }
-        if ($flag) {
-            $html = view('publication.publication-snippet', ['publications' => $publications])->render();
-            return $html;
-        } else {
-            return $publications;
-        }
+
+        return $publications;
     }
 
 }

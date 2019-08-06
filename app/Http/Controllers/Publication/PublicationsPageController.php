@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Publication;
 
 use App\Education;
 use App\File;
@@ -13,6 +13,8 @@ use App\Type;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use App\Http\Controllers\Controller;
+
 
 class PublicationsPageController extends Controller
 {

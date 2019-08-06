@@ -1745,6 +1745,14 @@ input[type="radio"]:checked + .radio-button__title > span::after {
   font-weight: 500;
 }
 
+.payment-block {
+  display: none;
+}
+
+.payment-block_active {
+  display: block;
+}
+
 .result-payment {
   margin-bottom: 15px;
   font-size: 24px;

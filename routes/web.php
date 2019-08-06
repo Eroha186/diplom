@@ -27,22 +27,20 @@ Route::get('/archive-competitions', function () {
 })->name('arch-competitions');
 
 Route::group(['prefix' => 'publications'], function() {
-    Route::get('', ['as' => 'publications', 'uses' => 'PublicationsPageController@show']);
-    Route::post('/orderBy/{column}/{filter}', ['uses' => 'FilterPublicationController@setCookieOrder']);
-    Route::post('/search/{request?}', ['uses' => 'FilterPublicationController@search']);
+    Route::get('', ['as' => 'publications', 'uses' => 'Publication\PublicationsPageController@show']);
+    Route::post('/orderBy/{column}/{filter}', ['uses' => 'Publication\FilterPublicationController@setCookieOrder']);
+    Route::get('/search/', ['as' => 'search' ,'uses' => 'Publication\FilterPublicationController@search']);
 });
 
-Route::get('/publication/{id}', ['as' => 'publication', 'uses' => 'PublicationsPageController@showPublication']);
-Route::get('/form-publication', ['as' => 'form-publication', 'uses' => 'PublicationsPageController@showForm']);
-Route::post('/form-publication', ['as' => 'form-publication', 'uses' => 'PublicationsPageController@savePublication']);
+Route::get('/publication/{id}', ['as' => 'publication', 'uses' => 'Publication\PublicationsPageController@showPublication']);
+Route::get('/form-publication', ['as' => 'form-publication', 'uses' => 'Publication\PublicationsPageController@showForm']);
+Route::post('/form-publication', ['as' => 'form-publication', 'uses' => 'Publication\PublicationsPageController@savePublication']);
 
 Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
-    Route::get('personal-data', 'AccountController@showPersonalData');
-    Route::post('personal-data', ['middleware' => 'web', 'as' => 'personal-data', 'uses' => 'AccountController@saveChangePersonalData']);
+    Route::get('personal-data', 'Account\AccountController@showPersonalData');
+    Route::post('personal-data', ['middleware' => 'web', 'as' => 'personal-data', 'uses' => 'Account\AccountController@saveChangePersonalData']);
 
-    Route::get('/my-publication', function () {
-        return view('account/my-publication');
-    });
+    Route::get('/my-publication', ['uses' => 'Account\AccountController@showMyPublication']);
     Route::get('/part-in-contests', function () {
         return view('account/part-contests');
     });

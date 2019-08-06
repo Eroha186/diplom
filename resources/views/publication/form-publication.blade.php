@@ -188,7 +188,7 @@
                         <label for="" class="red-star">Выберите способ размещения</label>
                     </div>
                     <div class="placement-method">
-                        <label for="by-diplom" class="radio-button radio-button_active">
+                        <label for="by-diplom" class="by-diplom radio-button radio-button_active">
                             <input type="radio" name="placement-method" id="by-diplom" class="hide" checked="checked">
                             <div class="radio-button__title">
                                 <img src="{{asset('images/credit-card.svg')}}" alt="кредитная карта">
@@ -199,7 +199,7 @@
                                 Оплатить можно онлайн любым удобным способом.
                             </div>
                         </label>
-                        <label for="without-diplom" class="radio-button">
+                        <label for="without-diplom" class="without-diplom radio-button">
                             <input type="radio" name="placement-method" id="without-diplom" class="hide">
                             <div class="radio-button__title">
                                 <img src="{{asset('images/list.svg')}}" alt="кредитная карта">
@@ -210,20 +210,22 @@
                             </div>
                         </label>
                     </div>
-                    <strong>Итого:</strong>
-                    <ul class="payment">
-                        <li>Диплом за публикацию материала......100&#8381;</li>
-                        <li>Диплом за участие в конкурсе..............100&#8381;</li>
-                    </ul>
+                    <div class="payment-block payment-block_active">
+                        <strong>Итого:</strong>
+                        <ul class="payment">
+                            <li>Диплом за публикацию материала......100&#8381;</li>
+                            {{--                        <li>Диплом за участие в конкурсе..............100&#8381;</li>--}}
+                        </ul>
 
-                    <strong>На вашем счету 10 бонусов</strong>
-                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                        <input type="checkbox">
-                        <span class="margin-right-7">Использовать бонусы</span>
-                        <input type="number" min="0" max="10" value="0">
-                    </div>
-                    <div class="result-payment">
-                        К оплате 190&#8381;
+                        <strong>На вашем счету {{$user->coins}} бонусов</strong>
+                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                            <input type="checkbox" style="margin-right: 3px;">
+                            <span class="margin-right-7">Использовать бонусы</span>
+                            <input type="number" min="0" max="{{$user->coins}}" value="0">
+                        </div>
+                        <div class="result-payment">
+                            К оплате 100&#8381;
+                        </div>
                     </div>
 
                     <ul class="agreements">

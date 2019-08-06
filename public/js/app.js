@@ -10759,42 +10759,19 @@ $(function () {
     $('.radio-button').on('click', function () {
         $('.radio-button').removeClass('radio-button_active');
         $(this).addClass('radio-button_active');
+        if ($(this).hasClass('by-diplom')) {
+            console.log('ok');
+            $('.payment-block').addClass('payment-block_active');
+        } else {
+            console.log('no');
+            $('.payment-block').removeClass('payment-block_active');
+        }
     });
 
     $('.search-competitions').keypress(function (e) {
         if (e.ctrlKey || e.keyCode == 13) {
             $('#search').trigger("click");
         }
-    });
-
-    $('#search').on('click', function () {
-        var request = $('.search-competitions').val();
-        var url = void 0;
-        request ? url = '/publications/search/' + request + '?' : url = '/publications/search?';
-        var filters = $('.select-filter');
-        var paramsFilter = [];
-        filters.each(function (index, element) {
-            paramsFilter['' + element.getAttribute('name') + ''] = element.value;
-            url += element.getAttribute('name') + '=' + element.value + '&';
-        });
-        url.slice(0, -1);
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: url,
-            dataType: 'json',
-            type: 'POST',
-            contentType: false,
-            processData: false,
-            success: function success(response) {
-                if (!response.error) {
-                    $('.publications-list > .container').html(response);
-                } else {
-                    $('.publications-list > .container').html('<div class="error-search">' + response.error + '</div>');
-                }
-            }
-        });
     });
 
     $('.select2').select2();
