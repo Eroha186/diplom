@@ -127,7 +127,7 @@ $(function () {
               if(response) {
                   $('.form-publication').submit();
               } else {
-                  
+
               }
             }
         });
