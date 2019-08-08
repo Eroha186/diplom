@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="ru">
 <head>
-    <title>Главная страница</title>
+    <title>Добавить публикацию</title>
     @include('styles')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 @include('header_footer.header')
@@ -130,20 +131,20 @@
                               <button class="ql-underline"></button>
                               <button class="ql-strike"></button>
                             </span>
-{{--                            <span class="ql-formats">--}}
-{{--                              <select class="ql-color"></select>--}}
-{{--                              <select class="ql-background"></select>--}}
-{{--                            </span>--}}
-{{--                            <span class="ql-formats">--}}
-{{--                              <button class="ql-script" value="sub"></button>--}}
-{{--                              <button class="ql-script" value="super"></button>--}}
-{{--                            </span>--}}
-{{--                            <span class="ql-formats">--}}
-{{--                              <button class="ql-header" value="1"></button>--}}
-{{--                              <button class="ql-header" value="2"></button>--}}
-{{--                              <button class="ql-blockquote"></button>--}}
-{{--                              <button class="ql-code-block"></button>--}}
-{{--                            </span>--}}
+                            {{--                            <span class="ql-formats">--}}
+                            {{--                              <select class="ql-color"></select>--}}
+                            {{--                              <select class="ql-background"></select>--}}
+                            {{--                            </span>--}}
+                            {{--                            <span class="ql-formats">--}}
+                            {{--                              <button class="ql-script" value="sub"></button>--}}
+                            {{--                              <button class="ql-script" value="super"></button>--}}
+                            {{--                            </span>--}}
+                            {{--                            <span class="ql-formats">--}}
+                            {{--                              <button class="ql-header" value="1"></button>--}}
+                            {{--                              <button class="ql-header" value="2"></button>--}}
+                            {{--                              <button class="ql-blockquote"></button>--}}
+                            {{--                              <button class="ql-code-block"></button>--}}
+                            {{--                            </span>--}}
                             <span class="ql-formats">
                               <button class="ql-list" value="ordered"></button>
                               <button class="ql-list" value="bullet"></button>
@@ -154,11 +155,11 @@
 {{--                              <button class="ql-direction" value="rtl"></button>--}}
                               <select class="ql-align"></select>
                             </span>
-                           <span class="ql-formats">
+                            <span class="ql-formats">
 {{--                              <button class="ql-link"></button>--}}
                               <button class="ql-image"></button>
 {{--                              <button class="ql-video"></button>--}}
-{{--                              <button class="ql-formula"></button>--}}
+                                {{--                              <button class="ql-formula"></button>--}}
                             </span>
                             <span class="ql-formats">
                               <button class="ql-clean"></button>
@@ -189,7 +190,7 @@
                     </div>
                     <div class="placement-method">
                         <label for="by-diplom" class="by-diplom radio-button radio-button_active">
-                            <input type="radio" name="placement-method" id="by-diplom" class="hide" checked="checked">
+                            <input type="radio" name="placement-method" id="by-diplom" class="hide" checked="checked" value="1">
                             <div class="radio-button__title">
                                 <img src="{{asset('images/credit-card.svg')}}" alt="кредитная карта">
                                 <span>Разместить работу и заказатьдиплом сейчас</span>
@@ -200,7 +201,7 @@
                             </div>
                         </label>
                         <label for="without-diplom" class="without-diplom radio-button">
-                            <input type="radio" name="placement-method" id="without-diplom" class="hide">
+                            <input type="radio" name="placement-method" id="without-diplom" class="hide" value="0">
                             <div class="radio-button__title">
                                 <img src="{{asset('images/list.svg')}}" alt="кредитная карта">
                                 <span>Разместить работу и заказать диплом позже</span>
@@ -213,18 +214,20 @@
                     <div class="payment-block payment-block_active">
                         <strong>Итого:</strong>
                         <ul class="payment">
-                            <li>Диплом за публикацию материала......100&#8381;</li>
-                            {{--                        <li>Диплом за участие в конкурсе..............100&#8381;</li>--}}
+                            <li>Диплом за публикацию материала......<span class="payment-cash">100</span>&#8381;</li>
+                            <li>Диплом за участие в конкурсе..............<span class="payment-cash">100</span>&#8381;
+                            </li>
                         </ul>
 
-                        <strong>На вашем счету {{$user->coins}} бонусов</strong>
+                        <strong>На вашем счету {{isset($user->coins) ? $user->coins : '0'}} бонусов</strong>
                         <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                            <input type="checkbox" style="margin-right: 3px;">
+                            <input id="uses-coins" type="checkbox" style="margin-right: 3px;" name="uses-coins">
                             <span class="margin-right-7">Использовать бонусы</span>
-                            <input type="number" min="0" max="{{$user->coins}}" value="0">
+                            <input type="number" min="0" max="{{isset($user->coins) ? $user->coins : '0'}}" value="0"
+                                   id="coins-number" name="coins" readonly="readonly">
                         </div>
                         <div class="result-payment">
-                            К оплате 100&#8381;
+                            К оплате <span id="cash"></span>&#8381;
                         </div>
                     </div>
 
@@ -249,7 +252,7 @@
                 </div>
 
                 <div class="form-publication__button-wrap">
-                    <button class="form-publication__btn transparent-btn">отправить заявку</button>
+                    <button class="form-publication__btn transparent-btn" id="submit-form-publication">отправить заявку</button>
                     <a href="{{route('publications')}}" class="form-publication__btn filled-btn ">отменить</a>
                 </div>
             </form>

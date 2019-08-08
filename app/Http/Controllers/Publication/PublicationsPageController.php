@@ -4,22 +4,25 @@ namespace App\Http\Controllers\Publication;
 
 use App\Education;
 use App\File;
+use App\Http\Controllers\Auth\RandomPassword;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\TransactionController;
 use App\Http\Requests\FormPublicationRequest;
 use App\Kind;
 use App\Publication;
 use App\Theme;
-use App\ThemesAndPubl;
 use App\Type;
 use App\User;
+use App\ThemesAndPubl;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Auth\RegisterController;
 
 
 class PublicationsPageController extends Controller
 {
 
-    protected  $field = [
+    protected $field = [
         'author',
         'type',
         'education',
@@ -33,10 +36,10 @@ class PublicationsPageController extends Controller
 
         $filter = Cookie::get('filter');
         $column = Cookie::get('column');
-        if($filter == 1 || is_null($filter)) {
+        if ($filter == 1 || is_null($filter)) {
             $publications = $publicationModel::with($this->field)->orderBy('date_add', 'DESC')->paginate(10);
         } else {
-            $publications = $this->publicationOrderAtBoot($filter,$column,  $publicationModel);
+            $publications = $this->publicationOrderAtBoot($filter, $column, $publicationModel);
         }
         $filtersInfo['filter'] = $filter;
         $filtersInfo['column'] = $column;
@@ -116,7 +119,51 @@ class PublicationsPageController extends Controller
                     'theme_id' => $theme,
                 ]);
             }
+            if ($newPublication && $formRequest['placement-method'] && $formRequest['uses-coins']) {
+                $transaction = new TransactionController();
+                $data = [
+                    'coins' => $formRequest['coins'],
+                    'user_id' => Auth::user()->id,
+                    'type' => 0,
+                ];
+                $transaction->transferCoins($data);
+            }
 
+        } else {
+            $register = new RegisterController();
+            $data = $formRequest->all();
+            $pass = RandomPassword::randomPassword();
+//            $infoUser = [
+//                'f' => $data['f'],
+//                'i' => $data['i'],
+//                'o' => $data['o'],
+//                'email' => $data['email'],
+//                'stuff' => $data['stuff'],
+//                'town' => $data['town'],
+//                'job' => $data['job'],
+//                'date_reg' => date('Y-m-d H:i:s'),
+//                'password' => $pass,
+//            ];
+            $formRequest['password'] = $pass;
+            $formRequest['password_confirmation'] = $pass;
+            $newUser = $register->registerFromPublicationForm($formRequest);
+            $newPublication = Publication::create([
+                'user_id' => $newUser->id,
+                'title' => $data['title'],
+                'annotation' => $data['annotation'],
+                'type_id' => $data['type'],
+                'kind_id' => $data['kind'],
+                'education_id' => $data['education'],
+                'text' => $data['text'],
+                'moderation' => 0,
+                'date_add' => date('Y-m-d H:i:s'),
+            ]);
+            foreach ($data['themes'] as $theme) {
+                ThemesAndPubl::create([
+                    'publ_id' => $newPublication->id,
+                    'theme_id' => $theme,
+                ]);
+            }
         }
         $this->uploadFile($formRequest->file('files'), $newPublication->id);
         return redirect('/');
@@ -194,7 +241,8 @@ class PublicationsPageController extends Controller
         return $publications;
     }
 
-    protected function publicationOrderAtBoot($filter,$column, Publication $publicationModel) {
+    protected function publicationOrderAtBoot($filter, $column, Publication $publicationModel)
+    {
         $publications = [];
         switch ($filter) {
             case 1:

@@ -4,11 +4,35 @@ global.Quill = require('quill');
 $(function () {
     setOrder($('.filter-name[data-condition != 1]'), 1);
 
+    function countCash() {
+        let elementWithMoney = $('.payment-cash');
+        let priceForService = [];
+        let countCash = 0;
+        elementWithMoney.each(function () {
+            priceForService.push($(this).text());
+        });
+        priceForService.forEach((i) => {
+            countCash += +i;
+        });
+        return countCash;
+    }
+
+    let maxValue = 0;
+    let cashElement = '';
+    let cash = 0;
+    if ($('*').is('.payment')) {
+        cash = countCash();
+        cashElement = $('#cash');
+        maxValue = $('#coins-number').attr('max');
+        cashElement.text(cash);
+    }
+
     /*
      *  Для элементов, которые являются вкладками табов класс прописывается следующим образом
      * class=" name_class tab".
      * И никак иначе
     */
+
     $('.tab').on('click', function () {
         let tab = $(this).data('tab');
         let className = $(this).attr('class');
@@ -49,11 +73,9 @@ $(function () {
     $('.radio-button').on('click', function () {
         $('.radio-button').removeClass('radio-button_active');
         $(this).addClass('radio-button_active');
-        if($(this).hasClass('by-diplom')) {
-            console.log('ok');
+        if ($(this).hasClass('by-diplom')) {
             $('.payment-block').addClass('payment-block_active')
         } else {
-            console.log('no')
             $('.payment-block').removeClass('payment-block_active')
         }
     });
@@ -64,7 +86,52 @@ $(function () {
         }
     });
 
+    $('#coins-number').bind('keyup mouseup', function () {
+        if($('#uses-coins').is(':checked')) {
+            let numberCoins = $(this).val();
+            console.log(numberCoins);
+            console.log(maxValue);
+            if (numberCoins > +maxValue) {
+                console.log('ok')
+                cashElement.text(+cash - maxValue);
+            } else {
+                cashElement.text(+cash - numberCoins);
+            }
+        }
+    });
 
+    $('#uses-coins').on('click', function (){
+        if($(this).hasClass('click')) {
+            $(this).attr('value', 0);
+            $('#coins-number').prop('readonly', true);
+        } else {
+            $(this).attr('value', 1);
+            $('#coins-number').prop('readonly', false);
+        }
+
+        $(this).toggleClass('click')
+    });
+
+    $('#submit-form-publication').on('click', function () {
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '/authCheck',
+            dataType: 'json',
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function (response) {
+              response = JSON.parse(response);
+              if(response) {
+                  $('.form-publication').submit();
+              } else {
+                  
+              }
+            }
+        });
+    });
 
     $('.select2').select2();
 
@@ -105,7 +172,7 @@ $(function () {
                 break;
         }
         return condition.attr('data-condition');
-    }
+    };
 
     if ($('*').is('#editor')) {
         let quill = new Quill('#editor', {
@@ -119,14 +186,14 @@ $(function () {
             let about = $('input[name=text]');
             about.val(JSON.stringify(quill.getContents()));
         });
-    }
+    };
 
     if ($('*').is('#publication-content__text')) {
         let textPublication = JSON.parse($('#publication-content__text').val());
         let readable = new Quill('#readable');
         readable.disable();
         readable.setContents(textPublication);
-    }
+    };
 
     let inputs = document.querySelectorAll('#upload');
     Array.prototype.forEach.call(inputs, function (input) {

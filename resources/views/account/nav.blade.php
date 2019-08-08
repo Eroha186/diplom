@@ -19,7 +19,7 @@
 		<div class="nav-block">
 			<ul>
 				<li class="nav-item {{request()->is('account/my-publication') ? 'nav-item_active': ''}}"><a href="/account/my-publication">Мои публикации</a></li>
-				<li class="nav-item"><span>Экспресс конкурсы</span></li>
+				<li class="nav-item"><a href="#">История транзакций</a></li>
 				<li class="nav-item {{request()->is('account/part-in-contests') ? 'nav-item_active': ''}}"><a href="/account/part-in-contests">Участие в конкурсах</a></li>
 			</ul>
 		</div>

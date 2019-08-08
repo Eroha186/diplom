@@ -5,11 +5,15 @@
   @include('styles')
 </head>
 <body>
-<h2>Добро пожаловать, {{$user['i']}}</h2>
+<h2>Добро пожаловать, {{$user->user->i}}</h2>
 <br/>
-Your registered email-id is {{$user['email']}} , Please click on the below link to verify your email account
+Вы зарегестрировали ваш e-mail {{$user->user->email}} , перейдите по ссылки ниже чтоб активировать аккаунт.
 <br/>
-<a href="{{url('/verify/'.$user['verifyUser']['token'])}}">Verify Email</a>
+Ваш логин: {{$user->user->email}}
+<br/>
+Ваша пароль: {{$user->password}}
+<br/>
+<a href="{{url('/verify/'.$user->user->verifyUser->token)}}">Verify Email</a>
 </body>
 
 </html>

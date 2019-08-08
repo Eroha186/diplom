@@ -10714,11 +10714,35 @@ global.Quill = __webpack_require__(5);
 $(function () {
     setOrder($('.filter-name[data-condition != 1]'), 1);
 
+    function countCash() {
+        var elementWithMoney = $('.payment-cash');
+        var priceForService = [];
+        var countCash = 0;
+        elementWithMoney.each(function () {
+            priceForService.push($(this).text());
+        });
+        priceForService.forEach(function (i) {
+            countCash += +i;
+        });
+        return countCash;
+    }
+
+    var maxValue = 0;
+    var cashElement = '';
+    var cash = 0;
+    if ($('*').is('.payment')) {
+        cash = countCash();
+        cashElement = $('#cash');
+        maxValue = $('#coins-number').attr('max');
+        cashElement.text(cash);
+    }
+
     /*
      *  Для элементов, которые являются вкладками табов класс прописывается следующим образом
      * class=" name_class tab".
      * И никак иначе
     */
+
     $('.tab').on('click', function () {
         var tab = $(this).data('tab');
         var className = $(this).attr('class');
@@ -10760,10 +10784,8 @@ $(function () {
         $('.radio-button').removeClass('radio-button_active');
         $(this).addClass('radio-button_active');
         if ($(this).hasClass('by-diplom')) {
-            console.log('ok');
             $('.payment-block').addClass('payment-block_active');
         } else {
-            console.log('no');
             $('.payment-block').removeClass('payment-block_active');
         }
     });
@@ -10772,6 +10794,51 @@ $(function () {
         if (e.ctrlKey || e.keyCode == 13) {
             $('#search').trigger("click");
         }
+    });
+
+    $('#coins-number').bind('keyup mouseup', function () {
+        if ($('#uses-coins').is(':checked')) {
+            var numberCoins = $(this).val();
+            console.log(numberCoins);
+            console.log(maxValue);
+            if (numberCoins > +maxValue) {
+                console.log('ok');
+                cashElement.text(+cash - maxValue);
+            } else {
+                cashElement.text(+cash - numberCoins);
+            }
+        }
+    });
+
+    $('#uses-coins').on('click', function () {
+        if ($(this).hasClass('click')) {
+            $(this).attr('value', 0);
+            $('#coins-number').prop('readonly', true);
+        } else {
+            $(this).attr('value', 1);
+            $('#coins-number').prop('readonly', false);
+        }
+
+        $(this).toggleClass('click');
+    });
+
+    $('#submit-form-publication').on('click', function () {
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '/authCheck',
+            dataType: 'json',
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function success(response) {
+                response = JSON.parse(response);
+                if (response) {
+                    $('.form-publication').submit();
+                } else {}
+            }
+        });
     });
 
     $('.select2').select2();
@@ -10815,7 +10882,7 @@ $(function () {
                 break;
         }
         return condition.attr('data-condition');
-    }
+    };
 
     if ($('*').is('#editor')) {
         var quill = new Quill('#editor', {
@@ -10829,14 +10896,14 @@ $(function () {
             var about = $('input[name=text]');
             about.val(JSON.stringify(quill.getContents()));
         });
-    }
+    };
 
     if ($('*').is('#publication-content__text')) {
         var textPublication = JSON.parse($('#publication-content__text').val());
         var readable = new Quill('#readable');
         readable.disable();
         readable.setContents(textPublication);
-    }
+    };
 
     var inputs = document.querySelectorAll('#upload');
     Array.prototype.forEach.call(inputs, function (input) {

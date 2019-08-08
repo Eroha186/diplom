@@ -1,5 +1,7 @@
 <?php
-use Illuminate\Support\Facades\DB;
+
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
+//use Illuminate\Support\Facades\DB;
 //DB::listen(function($query) {
 //    echo '<pre>';
 //    print_r($query->sql);
@@ -51,7 +54,14 @@ Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
         return view('account/order-publication');
     });
 });
+Route::get('verify/{token}', ['uses' => 'Auth\RegisterController@verifyUser', 'as' => 'verify']);
+Route::post('/authCheck', function () {
+    if(Auth::check()) {
+        return response()->json(['auth' => true], 200);
+    } else {
+        return response()->json(['auth' => false], 200);
+    }
+});
 
 Route::auth();
 
-Route::get('/verify/{token}', 'Auth\RegisterController@verifyUser');

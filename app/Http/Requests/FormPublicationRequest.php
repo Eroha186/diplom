@@ -44,7 +44,6 @@ class FormPublicationRequest extends FormRequest
                 'o' => 'required|string|max:30',
                 'job' => 'required|string',
                 'stuff' => 'required|string',
-                'email' => 'required|email|max:60|unique:users',
                 'town' => 'required|string',
                 'education' => 'required|min:0',
                 'kind' => 'required|min:0',

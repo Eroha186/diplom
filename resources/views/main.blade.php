@@ -157,7 +157,7 @@
                             $publication['file'] == 'ppt' ? asset('images/ppt.svg') : ''}}" alt="Иконка">
               </div>
               <div class="publication__descr">
-                <a href="#" class="title">
+                <a href="/publication/{{$publication->id}}" class="title">
                   {{$publication->title}}
                 </a>
                 <div class="date-time">
