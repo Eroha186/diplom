@@ -27,6 +27,51 @@ $(function () {
         cashElement.text(cash);
     }
 
+    if ($('*').is('#editor')) {
+        let quill = new Quill('#editor', {
+            modules: {
+                toolbar: '#toolBar'
+            },
+            placeholder: 'Введите полное описание текста...',
+            theme: 'snow'
+        });
+
+        $('.form-publication').on('submit', function () {
+            let about = $('input[name=text]');
+            about.val(JSON.stringify(quill.getContents()));
+        });
+
+        $('.btn-primary').on('click', function (e) {
+            e.preventDefault();
+            let about = $('input[name=text]');
+            about.val(JSON.stringify(quill.getContents()));
+            let data = $('.form-publication').serialize();
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: '/publicationSaveSession',
+                dataType: 'json',
+                data: data,
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+        })
+
+    }
+
+
+    if ($('*').is('#publication-content__text')) {
+        let textPublication = JSON.parse($('#publication-content__text').val());
+        let readable = new Quill('#readable');
+        readable.disable();
+        readable.setContents(textPublication);
+    }
+
     /*
      *  Для элементов, которые являются вкладками табов класс прописывается следующим образом
      * class=" name_class tab".
@@ -138,6 +183,7 @@ $(function () {
         });
     });
 
+
     $('.close').on('click', function () {
         $('.modal').hide();
     });
@@ -161,7 +207,7 @@ $(function () {
         condition.addClass('filter-name_active');
 
         if (a === NaN) {
-            return
+            return false;
         }
 
         switch (a) {
@@ -183,28 +229,6 @@ $(function () {
         return condition.attr('data-condition');
     };
 
-    if ($('*').is('#editor')) {
-        let quill = new Quill('#editor', {
-            modules: {
-                toolbar: '#toolBar'
-            },
-            placeholder: 'Введите полное описание текста...',
-            theme: 'snow'
-        });
-        $('.form-publication').on('submit', function () {
-            let about = $('input[name=text]');
-            about.val(JSON.stringify(quill.getContents()));
-        });
-    }
-    ;
-
-    if ($('*').is('#publication-content__text')) {
-        let textPublication = JSON.parse($('#publication-content__text').val());
-        let readable = new Quill('#readable');
-        readable.disable();
-        readable.setContents(textPublication);
-    }
-    ;
 
     let inputs = document.querySelectorAll('#upload');
     Array.prototype.forEach.call(inputs, function (input) {

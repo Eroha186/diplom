@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use App\User;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -27,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'account/personal-data';
+//    protected $redirectTo = 'account/personal-data';
 
     /**
      * Create a new controller instance.
@@ -39,14 +38,36 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function authenticated(Request $request,$user)
+    public function authenticated(Request $request, $user)
     {
         if ($user->confirm !== 1) {
             $this->guard()->logout();
             return back()->with('error', 'Вам необходимо подтвердить свой аккаунт. Пожалуйста, проверьте свою электронную почту.');
         }
-        return redirect()->intended(back());
+        if ($request->path() == 'login') {
+            return redirect()->to('account/personal-data');
+        }
+        if ($request->path() == 'loginFormPublication') ;
+        {
+            return redirect()->to('form-publication');
+        }
     }
 
+    protected function sendLoginResponse(Request $request)
+    {
+        $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+
+        if ($request->path() == 'login') {
+            return $this->authenticated($request, $this->guard()->user())
+                ?: redirect()->to('account/personal-data');
+        }
+        if ($request->path() == 'loginFormPublication') ;
+        {
+            return $this->authenticated($request, $this->guard()->user())
+                ?: back(200);
+        }
+    }
 
 }

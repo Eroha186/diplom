@@ -19,7 +19,7 @@
                 </div>
                 <div class="modal-body">
                     <form method="POST"
-                          action="{{route('loginFormPublication')}}">
+                          action="{{route('loginFormPublication')}}" id="login-form-publication">
                         {{ csrf_field() }}
                         @if (count($errors) > 0)
                             <div class="alert alert-danger">
@@ -119,7 +119,7 @@
                     <input name="town" id="town" class="input-style" type="text" placeholder="г. Москва"
                            value="{{isset($user) ? $user->town : ''}}" {{isset($user) ? 'readonly' : ''}}>
                     <label for="education" class="red-star">Уровень образования</label>
-                    <select name="education" id="education" class="input-style">
+                    <select name="education" id="education" class="input-style"  value="{{old('education')}}">
                         <option value="0">Выбирите уровень образования</option>
                         @foreach($educations as $education)
                             <option value="{{$education->id}}">{{$education->name}}</option>
@@ -141,7 +141,7 @@
                     <div style="display: flex; justify-content: space-between ">
                         <div class="col-xl-7" style="padding: 0;">
                             <label for="title" class="red-star">Название работы</label>
-                            <input name="title" id="title" class="input-style" type="text" placeholder="С 8 марта!">
+                            <input name="title" id="title" class="input-style" type="text" placeholder="С 8 марта!" value="{{old('title')}}">
                         </div>
                         <div class="col-xl-4" style="padding: 0;">
                             <label for="type" class="red-star">Тип работы</label>

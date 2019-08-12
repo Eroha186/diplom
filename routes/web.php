@@ -67,5 +67,6 @@ Route::post('/authCheck/{email}', function ($email) {
     }
 });
 
+Route::post('loginFormPublication', 'Auth\LoginController@login')->name('loginFormPublication');
 Route::auth();
-
+Route::post('publicationSaveSession', 'Publication\publicationSaveSession@publicationSaveSession');
