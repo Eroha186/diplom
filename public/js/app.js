@@ -10822,23 +10822,34 @@ $(function () {
         $(this).toggleClass('click');
     });
 
-    $('#submit-form-publication').on('click', function () {
+    $('#submit-form-publication').on('click', function (e) {
+        e.preventDefault();
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: '/authCheck',
+            url: '/authCheck/' + $('#email').val(),
             dataType: 'json',
             type: 'POST',
             contentType: false,
             processData: false,
             success: function success(response) {
-                response = JSON.parse(response);
-                if (response) {
-                    $('.form-publication').submit();
-                } else {}
+                response = response['auth'];
+                switch (response) {
+                    case 0:
+                    case 1:
+                        $('.form-publication').submit();
+                        break;
+                    case 2:
+                        $('.modal').show();
+                        break;
+                }
             }
         });
+    });
+
+    $('.close').on('click', function () {
+        $('.modal').hide();
     });
 
     $('.select2').select2();
@@ -10896,14 +10907,16 @@ $(function () {
             var about = $('input[name=text]');
             about.val(JSON.stringify(quill.getContents()));
         });
-    };
+    }
+    ;
 
     if ($('*').is('#publication-content__text')) {
         var textPublication = JSON.parse($('#publication-content__text').val());
         var readable = new Quill('#readable');
         readable.disable();
         readable.setContents(textPublication);
-    };
+    }
+    ;
 
     var inputs = document.querySelectorAll('#upload');
     Array.prototype.forEach.call(inputs, function (input) {

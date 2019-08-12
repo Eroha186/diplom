@@ -136,16 +136,16 @@ class RegisterController extends Controller
     public function registerFromPublicationForm(Request $request)
     {
         $data = $request->all();
-        $user = User::where('email', $data['email'])->first();
-        if (!(count($user) > 0)) {
-            $this->validator($request->all())->validate();
-            event(new Registered($user = $this->create($request->all())));
+        $user =  User::where('email', $data['email'])->first();
+        $userStatus = $this->existenceUser($user);
+        switch ($userStatus) {
+            case 0:
+                $this->validator($request->all())->validate();
+                event(new Registered($user = $this->create($request->all())));
 
-            return $user;
-        } else {
-            if ($user->confirm) {
-
-            } else {
+                return $user;
+                break;
+            case 1:
                 $userInfoForMail = array(
                     'user' => $user,
                     'password' => $data['password'],
@@ -153,7 +153,31 @@ class RegisterController extends Controller
                 $this->verifyCreate($userInfoForMail);
                 User::where('email', $data['email'])->update(['password' => password_hash($data['password'], PASSWORD_DEFAULT)]);
                 return $user;
+                break;
+            case 2:
+                return $user;
+                break;
+        }
+        if (!(count($user) > 0)) {
+
+        } else {
+            if ($user->confirm) {
+
+            } else {
+
             }
+        }
+    }
+
+    public function existenceUser($user) {
+        if(count($user) > 0) {
+            if($user->confirm) {
+                return 2; // confirm
+            } else {
+                return 1; // not confirm
+            }
+        } else {
+            return 0; //not exist
         }
     }
 }

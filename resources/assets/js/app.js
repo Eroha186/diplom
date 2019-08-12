@@ -87,7 +87,7 @@ $(function () {
     });
 
     $('#coins-number').bind('keyup mouseup', function () {
-        if($('#uses-coins').is(':checked')) {
+        if ($('#uses-coins').is(':checked')) {
             let numberCoins = $(this).val();
             console.log(numberCoins);
             console.log(maxValue);
@@ -100,8 +100,8 @@ $(function () {
         }
     });
 
-    $('#uses-coins').on('click', function (){
-        if($(this).hasClass('click')) {
+    $('#uses-coins').on('click', function () {
+        if ($(this).hasClass('click')) {
             $(this).attr('value', 0);
             $('#coins-number').prop('readonly', true);
         } else {
@@ -112,25 +112,34 @@ $(function () {
         $(this).toggleClass('click')
     });
 
-    $('#submit-form-publication').on('click', function () {
+    $('#submit-form-publication').on('click', function (e) {
+        e.preventDefault();
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: '/authCheck',
+            url: '/authCheck/' + $('#email').val(),
             dataType: 'json',
             type: 'POST',
             contentType: false,
             processData: false,
             success: function (response) {
-              response = JSON.parse(response);
-              if(response) {
-                  $('.form-publication').submit();
-              } else {
-
-              }
+                response = response['auth']
+                switch (response) {
+                    case 0:
+                    case 1:
+                        $('.form-publication').submit();
+                        break;
+                    case 2:
+                        $('.modal').show();
+                        break;
+                }
             }
         });
+    });
+
+    $('.close').on('click', function () {
+        $('.modal').hide();
     });
 
     $('.select2').select2();
@@ -186,14 +195,16 @@ $(function () {
             let about = $('input[name=text]');
             about.val(JSON.stringify(quill.getContents()));
         });
-    };
+    }
+    ;
 
     if ($('*').is('#publication-content__text')) {
         let textPublication = JSON.parse($('#publication-content__text').val());
         let readable = new Quill('#readable');
         readable.disable();
         readable.setContents(textPublication);
-    };
+    }
+    ;
 
     let inputs = document.querySelectorAll('#upload');
     Array.prototype.forEach.call(inputs, function (input) {

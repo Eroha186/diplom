@@ -8,6 +8,58 @@
 <body>
 @include('header_footer.header')
 <div class="container">
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Авторизация</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST"
+                          action="{{route('loginFormPublication')}}">
+                        {{ csrf_field() }}
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">E-mail</label>
+                            <input name="email" type="email" class="form-control" id="exampleInputEmail1"
+                                   aria-describedby="emailHelp"
+                                   placeholder="Введите ваш e-mail" value="{{old('email')}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Пароль</label>
+                            <input name="password" type="password" class="form-control" id="exampleInputPassword1"
+                                   placeholder="Введите пароль">
+                        </div>
+                        <div class="form-check" style="margin-bottom: 10px;">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Запомнить меня</label>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Войти</button>
+                            <a class="btn btn-link" href="{{ route('password.request') }}">
+                                Забыл пароль
+                            </a>
+                        </div>
+                    </form>
+                </div>
+{{--                <div class="modal-footer">--}}
+{{--                    <button type="button" class="btn btn-primary">Save changes</button>--}}
+{{--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
+{{--                </div>--}}
+            </div>
+        </div>
+    </div>
     {!!Breadcrumbs::render('form-publication')!!}
     <h2 class="section-title" style="margin-bottom: 20px;">
         Заполните все поля формы

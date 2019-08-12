@@ -39,12 +39,14 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function authenticated(Request $request, $user)
+    public function authenticated(Request $request,$user)
     {
         if ($user->confirm !== 1) {
             $this->guard()->logout();
             return back()->with('error', 'Вам необходимо подтвердить свой аккаунт. Пожалуйста, проверьте свою электронную почту.');
         }
-        return redirect()->intended($this->redirectPath());
+        return redirect()->intended(back());
     }
+
+
 }
