@@ -41,27 +41,27 @@ $(function () {
             about.val(JSON.stringify(quill.getContents()));
         });
 
-        $('.btn-primary').on('click', function (e) {
-            e.preventDefault();
+        $('#login-form-publication').on('submit', function (e) {
             let about = $('input[name=text]');
             about.val(JSON.stringify(quill.getContents()));
-            let data = $('.form-publication').serialize();
+            console.log($('.form-publication').serialize());
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 url: '/publicationSaveSession',
-                dataType: 'json',
-                data: data,
                 type: 'POST',
-                contentType: false,
-                processData: false,
+                data: $('.form-publication').serialize(),
                 success: function (response) {
                     console.log(response);
                 }
             });
         })
 
+        let value = $('input[name=text]').attr('data-value');
+        if(value != '') {
+            quill.setContents(value)
+        }
     }
 
 
@@ -246,4 +246,6 @@ $(function () {
                 label.innerHTML = labelVal;
         });
     });
+
+
 });

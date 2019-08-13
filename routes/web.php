@@ -41,8 +41,8 @@ Route::get('/form-publication', ['as' => 'form-publication', 'uses' => 'Publicat
 Route::post('/form-publication', ['as' => 'form-publication', 'uses' => 'Publication\PublicationsPageController@savePublication']);
 
 Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
-    Route::get('personal-data', 'Account\AccountController@showPersonalData');
-    Route::post('personal-data', ['middleware' => 'web', 'as' => 'personal-data', 'uses' => 'Account\AccountController@saveChangePersonalData']);
+    Route::get('/personal-data', 'Account\AccountController@showPersonalData');
+    Route::post('/personal-data', ['middleware' => 'web', 'as' => 'personal-data', 'uses' => 'Account\AccountController@saveChangePersonalData']);
 
     Route::get('/my-publication', ['uses' => 'Account\AccountController@showMyPublication']);
     Route::get('/part-in-contests', function () {
@@ -55,7 +55,7 @@ Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
         return view('account/order-publication');
     });
 });
-Route::get('verify/{token}', ['uses' => 'Auth\RegisterController@verifyUser', 'as' => 'verify']);
+Route::get('/verify/{token}', ['uses' => 'Auth\RegisterController@verifyUser', 'as' => 'verify']);
 Route::post('/authCheck/{email}', function ($email) {
     if (Auth::check()) {
         return response()->json(['auth' => true], 200);
@@ -67,6 +67,6 @@ Route::post('/authCheck/{email}', function ($email) {
     }
 });
 
-Route::post('loginFormPublication', 'Auth\LoginController@login')->name('loginFormPublication');
+Route::post('/loginFormPublication', 'Auth\LoginController@login')->name('loginFormPublication');
+Route::post('/publicationSaveSession', ['uses' => 'Publication\PublicationSaveSession@publicationSaveSession']);
 Route::auth();
-Route::post('publicationSaveSession', 'Publication\publicationSaveSession@publicationSaveSession');

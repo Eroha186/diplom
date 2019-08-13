@@ -53,10 +53,10 @@
                         </div>
                     </form>
                 </div>
-{{--                <div class="modal-footer">--}}
-{{--                    <button type="button" class="btn btn-primary">Save changes</button>--}}
-{{--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
-{{--                </div>--}}
+                {{--                <div class="modal-footer">--}}
+                {{--                    <button type="button" class="btn btn-primary">Save changes</button>--}}
+                {{--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
+                {{--                </div>--}}
             </div>
         </div>
     </div>
@@ -119,10 +119,14 @@
                     <input name="town" id="town" class="input-style" type="text" placeholder="г. Москва"
                            value="{{isset($user) ? $user->town : ''}}" {{isset($user) ? 'readonly' : ''}}>
                     <label for="education" class="red-star">Уровень образования</label>
-                    <select name="education" id="education" class="input-style"  value="{{old('education')}}">
+                    <select name="education" id="education" class="input-style">
                         <option value="0">Выбирите уровень образования</option>
                         @foreach($educations as $education)
-                            <option value="{{$education->id}}">{{$education->name}}</option>
+                            <option value="{{$education->id}}"
+                                @if($education->id == Session::get('education'))
+                                    selected
+                                @endif
+                            >{{$education->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -133,22 +137,34 @@
                     </h3>
                     <label for="kind" class="red-star">Вид публикации</label>
                     <select name="kind" id="kind" class="input-style">
-                        <option value="0" disabled selected style="color: #757575">Выберите вид публикации</option>
+                        <option value="0" disabled selected style="color: #757575">Выберите вид
+                            публикации
+                        </option>
                         @foreach($kinds as $kind)
-                            <option value="{{$kind->id}}">{{$kind->name}}</option>
+                            <option value="{{$kind->id}}"
+                                @if($kind->id == Session::get('kind'))
+                                    selected
+                                @endif
+                            >{{$kind->name}}</option>
                         @endforeach
                     </select>
                     <div style="display: flex; justify-content: space-between ">
                         <div class="col-xl-7" style="padding: 0;">
                             <label for="title" class="red-star">Название работы</label>
-                            <input name="title" id="title" class="input-style" type="text" placeholder="С 8 марта!" value="{{old('title')}}">
+                            <input name="title" id="title" class="input-style" type="text" placeholder="С 8 марта!"
+                                   value="{{Session::has('title') ? Session::get('title') : ''}}">
                         </div>
                         <div class="col-xl-4" style="padding: 0;">
                             <label for="type" class="red-star">Тип работы</label>
-                            <select name="type" id="type" class="input-style">
+                            <select name="type" id="type" class="input-style"
+                                    data-option="{{Session::has('type') ? Session::get('type') : '0'}}">
                                 <option value="0" disabled selected>Выберите тип работы</option>
                                 @foreach($types as $type)
-                                    <option value="{{$type->id}}">{{$type->name}}</option>
+                                    <option value="{{$type->id}}"
+                                        @if($type->id == Session::get('type'))
+                                            selected
+                                        @endif
+                                    >{{$type->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -160,14 +176,20 @@
                     </div>
                     <select name="themes[]" id="themes" multiple class="input-style select2">
                         @foreach($themes as $theme)
-                            <option value="{{$theme->id}}">{{$theme->name}}</option>
+                            <option value="{{$theme->id}}"
+                                @foreach(Session::get('themes') as $one)
+                                    @if($theme->id == $one)
+                                        selected
+                                    @endif
+                                @endforeach
+                            >{{$theme->name}}</option>
                         @endforeach
                     </select>
                     <div style="font-weight: bold; margin-top: 30px;">
                         <label for="annotation" class="red-star">Описание работы</label> (не более 200 символов)
                     </div>
                     <textarea name="annotation" id="annotation" cols="30" rows="5" class="input-style"
-                              placeholder="Описание работы...."></textarea>
+                              placeholder="Описание работы....">{{Session::has('annotation') ? Session::get('annotation') : ''}}</textarea>
                     <div style="font-weight: bold; margin-top: 30px;">
                         <label for="text" class="red-star">Полный текст работы</label> (не менее 200 символов)
                     </div>
@@ -217,7 +239,7 @@
                               <button class="ql-clean"></button>
                             </span>
                         </div>
-                        <input type="text" class="hide" name="text">
+                        <input type="text" class="hide" name="text" data-value="{{Session::get('text')}}">
                         <div id="editor"></div>
                     </div>
 
@@ -241,8 +263,9 @@
                         <label for="" class="red-star">Выберите способ размещения</label>
                     </div>
                     <div class="placement-method">
-                        <label for="by-diplom" class="by-diplom radio-button radio-button_active">
-                            <input type="radio" name="placement-method" id="by-diplom" class="hide" checked="checked" value="1">
+                        <label for="by-diplom" class="by-diplom radio-button {{Session::get('placement-method') == "1" ? 'radio-button_active' : ''}}">
+                            <input type="radio" name="placement-method" id="by-diplom" class="hide" checked="checked"
+                                   value="1">
                             <div class="radio-button__title">
                                 <img src="{{asset('images/credit-card.svg')}}" alt="кредитная карта">
                                 <span>Разместить работу и заказатьдиплом сейчас</span>
@@ -252,7 +275,7 @@
                                 Оплатить можно онлайн любым удобным способом.
                             </div>
                         </label>
-                        <label for="without-diplom" class="without-diplom radio-button">
+                        <label for="without-diplom" class="without-diplom radio-button {{Session::get('placement-method') == "0" ? 'radio-button_active' : ''}}">
                             <input type="radio" name="placement-method" id="without-diplom" class="hide" value="0">
                             <div class="radio-button__title">
                                 <img src="{{asset('images/list.svg')}}" alt="кредитная карта">
@@ -273,9 +296,9 @@
 
                         <strong>На вашем счету {{isset($user->coins) ? $user->coins : '0'}} бонусов</strong>
                         <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                            <input id="uses-coins" type="checkbox" style="margin-right: 3px;" name="uses-coins">
+                            <input id="uses-coins" type="checkbox" style="margin-right: 3px;" name="uses-coins" {{Session::has('uses-coins') ?  'checked="checked"' : '' }}>
                             <span class="margin-right-7">Использовать бонусы</span>
-                            <input type="number" min="0" max="{{isset($user->coins) ? $user->coins : '0'}}" value="0"
+                            <input type="number" min="0" max="{{isset($user->coins) ? $user->coins : '0'}}" value="{{Session::has('coins') ?  Session::get('coins') : '0' }}"
                                    id="coins-number" name="coins" readonly="readonly">
                         </div>
                         <div class="result-payment">
@@ -285,12 +308,12 @@
 
                     <ul class="agreements">
                         <li class="agreements-item">
-                            <input type="checkbox" id="offer" name="offer">
+                            <input type="checkbox" id="offer" name="offer" {{Session::has('offer') ?  'checked="checked"' : '' }}>
                             <label for="offer">Согласен с условием <a href="" class="standart-link">оферты</a></label>
                         </li>
 
                         <li class="agreements-item">
-                            <input type="checkbox" id="processing-pd" name="processing-pd">
+                            <input type="checkbox" id="processing-pd" name="processing-pd" {{Session::has('processing-pd') ?  'checked="checked"' : '' }}>
                             <label for="processing-pd">Я подтверждаю свое согласие на обработку персональных
                                 данных</label>
                         </li>
@@ -304,7 +327,9 @@
                 </div>
 
                 <div class="form-publication__button-wrap">
-                    <button class="form-publication__btn transparent-btn" id="submit-form-publication">отправить заявку</button>
+                    <button class="form-publication__btn transparent-btn" id="submit-form-publication">отправить
+                        заявку
+                    </button>
                     <a href="{{route('publications')}}" class="form-publication__btn filled-btn ">отменить</a>
                 </div>
             </form>
