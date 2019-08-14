@@ -58,7 +58,7 @@ Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
 Route::get('/verify/{token}', ['uses' => 'Auth\RegisterController@verifyUser', 'as' => 'verify']);
 Route::post('/authCheck/{email}', function ($email) {
     if (Auth::check()) {
-        return response()->json(['auth' => true], 200);
+        return response()->json(['auth' => 0], 200);
     } else {
         $checking = new RegisterController();
         $user = \App\User::where('email', $email)->first();

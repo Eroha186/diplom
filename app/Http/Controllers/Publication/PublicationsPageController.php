@@ -17,6 +17,7 @@ use App\ThemesAndPubl;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use App\Http\Controllers\Auth\RegisterController;
+use Illuminate\Support\Facades\Session;
 
 
 class PublicationsPageController extends Controller
@@ -128,7 +129,9 @@ class PublicationsPageController extends Controller
                 ];
                 $transaction->transferCoins($data);
             }
-
+            foreach ($formRequest->all() as $key => $value) {
+                Session::forget($key);
+            }
         } else {
             $register = new RegisterController();
             $data = $formRequest->all();

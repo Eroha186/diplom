@@ -177,11 +177,13 @@
                     <select name="themes[]" id="themes" multiple class="input-style select2">
                         @foreach($themes as $theme)
                             <option value="{{$theme->id}}"
-                                @foreach(Session::get('themes') as $one)
-                                    @if($theme->id == $one)
-                                        selected
-                                    @endif
-                                @endforeach
+                                @if(Session::has('themes'))
+                                    @foreach(Session::get('themes') as $one)
+                                        @if($theme->id == $one)
+                                            selected
+                                        @endif
+                                    @endforeach
+                                @endif
                             >{{$theme->name}}</option>
                         @endforeach
                     </select>
@@ -239,7 +241,7 @@
                               <button class="ql-clean"></button>
                             </span>
                         </div>
-                        <input type="text" class="hide" name="text" data-value="{{Session::get('text')}}">
+                        <input type="text" class="hide" id="text" name="text" data-value="{{Session::get('text')}}">
                         <div id="editor"></div>
                     </div>
 
@@ -263,9 +265,9 @@
                         <label for="" class="red-star">Выберите способ размещения</label>
                     </div>
                     <div class="placement-method">
-                        <label for="by-diplom" class="by-diplom radio-button {{Session::get('placement-method') == "1" ? 'radio-button_active' : ''}}">
-                            <input type="radio" name="placement-method" id="by-diplom" class="hide" checked="checked"
-                                   value="1">
+                        <label for="by-diplom" class="by-diplom radio-button radio-button_active">
+                            <input type="radio" name="placement-method" id="by-diplom" class="hide" {{Session::get('placement-method') == "1" ? 'data-check="true"' : ''}}
+                                   value="1" checked="checked">
                             <div class="radio-button__title">
                                 <img src="{{asset('images/credit-card.svg')}}" alt="кредитная карта">
                                 <span>Разместить работу и заказатьдиплом сейчас</span>
@@ -275,8 +277,9 @@
                                 Оплатить можно онлайн любым удобным способом.
                             </div>
                         </label>
-                        <label for="without-diplom" class="without-diplom radio-button {{Session::get('placement-method') == "0" ? 'radio-button_active' : ''}}">
-                            <input type="radio" name="placement-method" id="without-diplom" class="hide" value="0">
+                        <label for="without-diplom" class="without-diplom radio-button ">
+                            <input type="radio" name="placement-method" id="without-diplom" class="hide" value="0"
+                                {{Session::get('placement-method') == "0" ? 'data-check="true"' : ''}} >
                             <div class="radio-button__title">
                                 <img src="{{asset('images/list.svg')}}" alt="кредитная карта">
                                 <span>Разместить работу и заказать диплом позже</span>

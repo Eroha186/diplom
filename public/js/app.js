@@ -10745,6 +10745,20 @@ $(function () {
             placeholder: 'Введите полное описание текста...',
             theme: 'snow'
         });
+        var value = $('input[name=text]').attr('data-value');
+        if (value) {
+            quill.setContents(JSON.parse(value));
+        }
+        var radioButton = $('input[type=radio]');
+        radioButton.each(function () {
+            this.parentNode.classList.toggle('radio-button_active');
+            if (this.getAttribute('data-check')) {
+                this.setAttribute('checked', 'checked');
+            }
+            if (this.value != 1) {
+                $('.payment-block').removeClass('payment-block_active');
+            }
+        });
 
         $('.form-publication').on('submit', function () {
             var about = $('input[name=text]');
@@ -10767,11 +10781,6 @@ $(function () {
                 }
             });
         });
-
-        var value = $('input[name=text]').attr('data-value');
-        if (value != '') {
-            quill.setContents(value);
-        }
     }
 
     if ($('*').is('#publication-content__text')) {
@@ -10879,6 +10888,7 @@ $(function () {
             processData: false,
             success: function success(response) {
                 response = response['auth'];
+                console.log(response);
                 switch (response) {
                     case 0:
                     case 1:
