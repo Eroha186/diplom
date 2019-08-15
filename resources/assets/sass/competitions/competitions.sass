@@ -39,6 +39,13 @@
 
 .filters
   padding-top: 70px
+  padding-bottom: 90px
+
+  .filter-nominations
+    display: flex
+    margin-top: 35px
+    margin-bottom: 30px
+    font-size: 14px
 
   .search-competitions
     position: relative
@@ -63,19 +70,44 @@
         color: $red
         border-bottom: 1px dotted $red
 
-    .placement-date,
-    .duration-event,
-    .completion_date,
-    .filters-name
-      margin-left: 10px
-      color: $space
-      cursor: pointer
+  .placement-date,
+  .duration-event,
+  .date-end,
+  .filters-name
+    margin-left: 10px
+    color: $space
+    cursor: pointer
 
-      .arrow-up,
-      .arrow-down
-        border: none
-        color: $red
-        display: none
+    .arrow-up,
+    .arrow-down
+      border: none
+      color: $red
+      display: none
+
+  .nomination
+    margin-left: 25px
+    color: $space
+    cursor: pointer
+
+    &:first-child
+      margin-left: 0
+  .filter-nomination
+    border-bottom: 1px dotted $space
+    &_active
+      color: $red
+      border-bottom: 1px dotted $red
+
+.participate-competition
+  width: 100%
+  padding: 7px 20px
+  background: $green
+  border-radius: 4px
+  font-size: 18px
+  text-transform: uppercase
+  color: $white
+
+  &:hover
+    color: $white
 
 .competitions-list
   padding-top: 30px
@@ -91,6 +123,10 @@
     border: none
     cursor: pointer
     z-index: 999
+
     img
       height: 25px
       width: 25px
+
+.search-competition
+  margin-bottom: 30px

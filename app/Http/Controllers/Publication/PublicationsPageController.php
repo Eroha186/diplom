@@ -136,17 +136,6 @@ class PublicationsPageController extends Controller
             $register = new RegisterController();
             $data = $formRequest->all();
             $pass = RandomPassword::randomPassword();
-//            $infoUser = [
-//                'f' => $data['f'],
-//                'i' => $data['i'],
-//                'o' => $data['o'],
-//                'email' => $data['email'],
-//                'stuff' => $data['stuff'],
-//                'town' => $data['town'],
-//                'job' => $data['job'],
-//                'date_reg' => date('Y-m-d H:i:s'),
-//                'password' => $pass,
-//            ];
             $formRequest['password'] = $pass;
             $formRequest['password_confirmation'] = $pass;
             $newUser = $register->registerFromPublicationForm($formRequest);

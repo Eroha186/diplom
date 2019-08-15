@@ -26,9 +26,15 @@ Route::get('/', 'MainPageController@show')->name('home');
 Route::get('/competitions', function () {
     return view('competitions/competitions');
 })->name('competitions');
+Route::get('/competition', function () {
+    return view('competitions/competition');
+})->name('competition');
 Route::get('/archive-competitions', function () {
     return view('competitions/arch-competitions');
 })->name('arch-competitions');
+Route::get('/form-competition', function () {
+    return view('competitions/form-competition');
+})->name('form-competition');
 
 Route::group(['prefix' => 'publications'], function () {
     Route::get('', ['as' => 'publications', 'uses' => 'Publication\PublicationsPageController@show']);

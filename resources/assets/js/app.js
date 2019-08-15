@@ -41,12 +41,14 @@ $(function () {
         }
         let radioButton = $('input[type=radio]');
         radioButton.each(function() {
-            this.parentNode.classList.toggle('radio-button_active');
             if(this.getAttribute('data-check')) {
-                this.setAttribute('checked', 'checked');
-            }
-            if(this.value != 1){
-                $('.payment-block').removeClass('payment-block_active')
+                this.parentNode.classList.toggle('radio-button_active');
+                if(this.getAttribute('data-check')) {
+                    this.setAttribute('checked', 'checked');
+                }
+                if(this.value != 1){
+                    $('.payment-block').removeClass('payment-block_active')
+                }
             }
         })
 
@@ -66,9 +68,6 @@ $(function () {
                 url: '/publicationSaveSession',
                 type: 'POST',
                 data: $('.form-publication').serialize(),
-                success: function (response) {
-                    console.log(response);
-                }
             });
         })
     }
@@ -199,6 +198,11 @@ $(function () {
     });
 
     $('.select2').select2();
+
+    $('.filter-nomination').on('click', function () {
+        $('.filter-nomination').removeClass('filter-nomination_active');
+        $(this).addClass('filter-nomination_active');
+    })
 
     function setOrder(condition, flag = 0) {
         let a = 0;

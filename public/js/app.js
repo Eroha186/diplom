@@ -10751,12 +10751,14 @@ $(function () {
         }
         var radioButton = $('input[type=radio]');
         radioButton.each(function () {
-            this.parentNode.classList.toggle('radio-button_active');
             if (this.getAttribute('data-check')) {
-                this.setAttribute('checked', 'checked');
-            }
-            if (this.value != 1) {
-                $('.payment-block').removeClass('payment-block_active');
+                this.parentNode.classList.toggle('radio-button_active');
+                if (this.getAttribute('data-check')) {
+                    this.setAttribute('checked', 'checked');
+                }
+                if (this.value != 1) {
+                    $('.payment-block').removeClass('payment-block_active');
+                }
             }
         });
 
@@ -10775,10 +10777,7 @@ $(function () {
                 },
                 url: '/publicationSaveSession',
                 type: 'POST',
-                data: $('.form-publication').serialize(),
-                success: function success(response) {
-                    console.log(response);
-                }
+                data: $('.form-publication').serialize()
             });
         });
     }
@@ -10907,6 +10906,11 @@ $(function () {
     });
 
     $('.select2').select2();
+
+    $('.filter-nomination').on('click', function () {
+        $('.filter-nomination').removeClass('filter-nomination_active');
+        $(this).addClass('filter-nomination_active');
+    });
 
     function setOrder(condition) {
         var flag = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
