@@ -19,6 +19,7 @@ class CreateWorkTable extends Migration
             $table->integer('competition_id');
             $table->string('title');
             $table->text('annotation');
+            $table->timestamp('date_add');
             $table->string('fc');
             $table->string('ic');
             $table->string('oc');

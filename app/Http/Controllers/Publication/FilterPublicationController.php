@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Publication;
 
 use App\Education;
+use App\Http\Controllers\Controller;
 use App\Kind;
 use App\Publication;
 use App\Theme;
 use App\Type;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cookie;
@@ -59,33 +59,32 @@ class FilterPublicationController extends Controller
         }
 
         $publications = [];
-        if ($filter == 1) {
-            $publications = $publicationModel::with($this->field)
-                ->leftJoin('themes_and_publ as tap', 'publications.id', '=', 'tap.publ_id')
-                ->where($whereArray)
-                ->groupBy('id')
-                ->paginate(10);
-        } else {
-            switch ($filter) {
-                case 2:
-                    $publications = $publicationModel::with($this->field)
-                        ->leftJoin('themes_and_publ as tap', 'publications.id', '=', 'tap.publ_id')
-                        ->where($whereArray)
-                        ->orderBy($column, 'ASC')
-                        ->groupBy('id')
-                        ->paginate(10);
-                    break;
-                case 3:
-                    $publications = $publicationModel::with($this->field)
-                        ->leftJoin('themes_and_publ as tap', 'publications.id', '=', 'tap.publ_id')
-                        ->where($whereArray)
-                        ->orderBy($column, 'DESC')
-                        ->groupBy('id')
-                        ->paginate(10);
-                    break;
-            }
+        switch ($filter) {
+            case 1:
+            case null:
+                $publications = $publicationModel::with($this->field)
+                    ->leftJoin('themes_and_publ as tap', 'publications.id', '=', 'tap.publ_id')
+                    ->where($whereArray)
+                    ->groupBy('id')
+                    ->paginate(10);
+                break;
+            case 2:
+                $publications = $publicationModel::with($this->field)
+                    ->leftJoin('themes_and_publ as tap', 'publications.id', '=', 'tap.publ_id')
+                    ->where($whereArray)
+                    ->orderBy($column, 'ASC')
+                    ->groupBy('id')
+                    ->paginate(10);
+                break;
+            case 3:
+                $publications = $publicationModel::with($this->field)
+                    ->leftJoin('themes_and_publ as tap', 'publications.id', '=', 'tap.publ_id')
+                    ->where($whereArray)
+                    ->orderBy($column, 'DESC')
+                    ->groupBy('id')
+                    ->paginate(10);
+                break;
         }
-
         $publications->withPath(route('search') . '?education=' . $filters['education']
             . '&kind=' . $filters['kind']
             . '&theme=' . $filters['theme']

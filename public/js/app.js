@@ -10832,21 +10832,21 @@ $(function () {
         });
     });
 
-    $('.filter-name-с').on('click', function () {
+    $('.filter-name-c').on('click', function () {
         var column = $(this).attr('data-column');
         var condition = setOrder($(this));
-
+        console.log('ok');
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: '/publications/orderBy/' + column + '/' + condition,
+            url: '/competitions/orderBy/' + column + '/' + condition,
             dataType: 'json',
             type: 'POST',
             contentType: false,
             processData: false,
             success: function success(response) {
-                // $('#search').trigger('click');
+                $('#search').trigger('click');
             }
         });
     });

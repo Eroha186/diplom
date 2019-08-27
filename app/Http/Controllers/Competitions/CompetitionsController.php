@@ -10,7 +10,6 @@ class CompetitionsController extends Controller
 {
     public function show() {
         $competitions = Competition::all();
-        dump($competitions);
         foreach ($competitions as $competition) {
             $competition['date_begin'] =  date("d.m.Y", strtotime($competition['date_begin']));
             $competition['date_end'] =  date("d.m.Y", strtotime($competition['date_end']));

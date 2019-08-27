@@ -1,6 +1,5 @@
 <div class="row p15">
     @foreach($publications as $publication)
-
         <div class="col-xl-12 publication-card">
             <div class="row">
                 <div class="col-xl-10">
