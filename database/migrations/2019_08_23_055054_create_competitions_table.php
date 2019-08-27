@@ -15,10 +15,11 @@ class CreateCompetitionsTable extends Migration
     {
         Schema::create('competitions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('title');
             $table->text('annotation');
+            $table->integer('type_id');
             $table->string('cover');
-            $table->timestamp('date-begin')->nullable();
+            $table->timestamp('date_begin')->nullable();
             $table->timestamp('date_end')->nullable();
         });
     }

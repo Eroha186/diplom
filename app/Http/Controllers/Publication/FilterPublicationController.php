@@ -25,8 +25,8 @@ class FilterPublicationController extends Controller
 
     public function setCookieOrder(Response $response, $column, $filter)
     {
-        Cookie::queue(Cookie::make('filter', $filter));
-        Cookie::queue(Cookie::make('column', $column));
+        Cookie::queue(Cookie::make('filter-p', $filter));
+        Cookie::queue(Cookie::make('column-p', $column));
         return $response->status();
     }
 
@@ -34,8 +34,8 @@ class FilterPublicationController extends Controller
     {
         $searchQuery = $request->get('searchQuery');
 
-        $filter = $request->cookie('filter');
-        $column = $request->cookie('column');
+        $filter = $request->cookie('filter-p');
+        $column = $request->cookie('column-p');
 
         $whereArray = [
             ['title', 'LIKE', '%' . trim($searchQuery) . '%']
@@ -96,8 +96,8 @@ class FilterPublicationController extends Controller
         $types = Type::all();
         $kinds = Kind::all();
         $themes = Theme::all();
-        $filtersInfo['filter'] = $filter;
-        $filtersInfo['column'] = $column;
+        $filtersInfo['filter-p'] = $filter;
+        $filtersInfo['column-p'] = $column;
         $publications = $this->formationSnippetList($publications);
 
         if (count($publications)) {

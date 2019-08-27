@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateParticipantTable extends Migration
+class CreateTypeCompetitionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateParticipantTable extends Migration
      */
     public function up()
     {
-        Schema::create('participant', function (Blueprint $table) {
+        Schema::create('type_competition', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('competition_id');
-            $table->integer('work_id');
-            $table->timestamp('date_add')->nullable();
+            $table->string('name');
         });
     }
 
@@ -28,6 +26,6 @@ class CreateParticipantTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('participant');
+        Schema::dropIfExists('type_competition');
     }
 }

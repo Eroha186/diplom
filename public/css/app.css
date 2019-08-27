@@ -557,7 +557,8 @@ select {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin: 25px;
+  margin: 0 auto;
+  margin-top: 25px;
   color: #fff;
 }
 
@@ -1305,7 +1306,7 @@ select {
 
 .filters {
   padding-top: 70px;
-  padding-bottom: 90px;
+  padding-bottom: 50px;
 }
 
 .filters .filter-nominations {
@@ -1421,6 +1422,19 @@ select {
 .search-wrap button img {
   height: 25px;
   width: 25px;
+}
+
+.competition-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.competition-wrap .competition {
+  width: 47%;
+  margin-right: 30px;
 }
 
 .search-competition {

@@ -19,7 +19,7 @@ class Work extends Model
         return $this->hasOne('App\File', 'work_id');
     }
 
-    public function participant() {
-        return $this->belongsTo('App\Participant', 'work_id');
+    public function competition() {
+        return $this->belongsTo('App\Competition', 'work_id');
     }
 }

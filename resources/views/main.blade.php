@@ -107,7 +107,7 @@
             <p class="ta-center">Победители определяются в течение 48 часов</p>
           </div>
         </div>
-        @section('competition')
+        @section('SeedCompetition')
           <div class="competition">
             <div class="competition__img">
               <img src="{{asset('images/skier.png')}}" alt="Обложка">
@@ -131,7 +131,7 @@
           <div class="row">
             @for ($j=0; $j<2; $j++)
               <div class="col-xl-6">
-                @yield('competition')
+                @yield('SeedCompetition')
               </div>
             @endfor
           </div>

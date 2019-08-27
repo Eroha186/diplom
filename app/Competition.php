@@ -14,7 +14,11 @@ class Competition extends Model
         return $this->belongsToMany('App\Nomination', 'competition_nomination','competition_id', 'nomination_id');
     }
 
-    public function participant() {
-        return $this->hasMany('App\Participant', 'competition_id');
+    public function work() {
+        return $this->hasMany('App\Work', 'competition_id');
+    }
+
+    public function type() {
+        return $this->belongsTo('App\Type_competition', 'type_id');
     }
 }

@@ -23,12 +23,14 @@ use App\Http\Controllers\Auth\RegisterController;
 
 Route::get('/', 'MainPageController@show')->name('home');
 
-Route::get('/competitions', function () {
-    return view('competitions/competitions');
-})->name('competitions');
-Route::get('/competition', function () {
+Route::group(['prefix' => 'competitions'], function () {
+    Route::get('', ['as' => 'competitions', 'uses' => 'Competitions\CompetitionsController@show']);
+    Route::post('/orderBy/{column}/{filter}', ['uses' => 'Competitions\FilterCompetitionController@setCookieOrder']);
+    Route::get('/search/', ['as' => 'search-с', 'uses' => 'Competitions\FilterCompetitionController@search']);
+});
+Route::get('/competition/{id}', function () {
     return view('competitions/competition');
-})->name('competition');
+});
 Route::get('/archive-competitions', function () {
     return view('competitions/arch-competitions');
 })->name('arch-competitions');

@@ -10813,7 +10813,7 @@ $(function () {
         $(this).children('.arrow').toggleClass('arrow_active');
     });
 
-    $('.filter-name').on('click', function () {
+    $('.filter-name-p').on('click', function () {
         var column = $(this).attr('data-column');
         var condition = setOrder($(this));
 
@@ -10828,6 +10828,25 @@ $(function () {
             processData: false,
             success: function success(response) {
                 $('#search').trigger('click');
+            }
+        });
+    });
+
+    $('.filter-name-с').on('click', function () {
+        var column = $(this).attr('data-column');
+        var condition = setOrder($(this));
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '/publications/orderBy/' + column + '/' + condition,
+            dataType: 'json',
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function success(response) {
+                // $('#search').trigger('click');
             }
         });
     });

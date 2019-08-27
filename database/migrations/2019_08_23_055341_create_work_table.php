@@ -13,11 +13,15 @@ class CreateWorkTable extends Migration
      */
     public function up()
     {
-        Schema::create('work', function (Blueprint $table) {
+        Schema::create('works', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
+            $table->integer('competition_id');
             $table->string('title');
             $table->text('annotation');
+            $table->string('fc');
+            $table->string('ic');
+            $table->string('oc');
         });
     }
 
@@ -28,6 +32,6 @@ class CreateWorkTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('work');
+        Schema::dropIfExists('works');
     }
 }
