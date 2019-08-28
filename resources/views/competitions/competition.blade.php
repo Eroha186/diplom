@@ -31,7 +31,7 @@
         <h4 style="margin-bottom: 35px;">Всего подано заявок: 534</h4>
         <div class="row">
             <div class="col-xl-4">
-                <a href="{{route('form-competition')}}" class="participate-competition">Участвовать в конкурсе</a>
+                <a href="{{route('form-competition').'?id='.$id}}" class="participate-competition">Участвовать в конкурсе</a>
             </div>
         </div>
         <div class="filter-nominations">

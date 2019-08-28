@@ -158,15 +158,6 @@ class RegisterController extends Controller
                 return $user;
                 break;
         }
-        if (!(count($user) > 0)) {
-
-        } else {
-            if ($user->confirm) {
-
-            } else {
-
-            }
-        }
     }
 
     public function existenceUser($user) {

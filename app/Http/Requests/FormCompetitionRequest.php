@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class FormPublicationRequest extends FormRequest
+class FormCompetitionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,16 +26,17 @@ class FormPublicationRequest extends FormRequest
     {
         if (Auth::check()) {
             return [
+                'competition' => 'required|min:0',
+                'nomination' => 'required|min:0',
                 'education' => 'required|min:0',
-                'kind' => 'required|min:0',
                 'title' => 'required|string',
-                'type' => 'required|min:0',
                 'annotation' => 'required|string|max:200',
-                'text' => 'required|min:700',
-                'files' => 'required',
-                'files.*' => ['file', 'mimes:jpg,png,doc,docx,pdf,ppt,pptx'],
+                'file' => 'required',
                 'offer' => 'accepted',
                 'processing-pd' => 'accepted',
+                'fc' => 'required|string|max:30',
+                'ic' => 'required|string|max:30',
+                'oc' => 'required|string|max:30',
             ];
         } else {
             return [
@@ -45,15 +46,17 @@ class FormPublicationRequest extends FormRequest
                 'job' => 'required|string',
                 'stuff' => 'required|string',
                 'town' => 'required|string',
+                'competition' => 'required|min:0',
+                'nomination' => 'required|min:0',
                 'education' => 'required|min:0',
-                'kind' => 'required|min:0',
                 'title' => 'required|string',
-                'type' => 'required|min:0',
-                'annotation' => 'required|string|max:100',
-                'files' => 'required',
-                'files.*' => ['file', 'mimes:jpg,png,doc,docx,pdf,ppt,pptx'],
+                'annotation' => 'required|string|max:200',
+                'file' => 'required|mimes:jpg,png,doc,docx,pdf,ppt,pptx',
                 'offer' => 'accepted',
                 'processing-pd' => 'accepted',
+                'fc' => 'required|string|max:30',
+                'ic' => 'required|string|max:30',
+                'oc' => 'required|string|max:30',
             ];
         }
     }
@@ -74,14 +77,13 @@ class FormPublicationRequest extends FormRequest
             'stuff.required' => 'Укажите наименования вашего образовательного учреждения',
             'town.required' => 'Укажите ваш город',
             'education.required' => 'Укажите уровень образования',
-            'kind.required' => 'Укажите вид публикации',
+            'fc.required' => 'Укажите вашу Фамилию ребенка',
+            'ic.required' => 'Укажите ваше Имя ребенка',
+            'oc.required' => 'Укажите ваше Отчество ребенка',
             'title.required' => 'Укажите название работы',
-            'type.required' => 'Укажите тип работы',
-            'themes.required' => 'Укажите тематику работы',
             'annotation.required' => 'Укажите описание работы',
-            'files.required' => 'Не забудьте приложить файлы',
-            'files.*.file' => 'Должен быть файл',
-            'files.*.mime' => 'Не поддерживаемый формат',
+            'file.required' => 'Не забудьте приложить файлы',
+            'file.mime' => 'Не поддерживаемый формат',
             'offer.accepted' => 'Согласие с условиями оферты должно быть принято',
             'processing-pd' => 'Согласие на обработку персональных данных должно быть принято',
         ];

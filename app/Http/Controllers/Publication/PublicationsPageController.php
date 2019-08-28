@@ -187,6 +187,7 @@ class PublicationsPageController extends Controller
                 'publ_id' => $publ_id,
                 'url' => $path,
                 'type' => $type,
+                'work_id' => 0,
             ]);
         }
     }

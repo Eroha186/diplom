@@ -28,15 +28,11 @@ Route::group(['prefix' => 'competitions'], function () {
     Route::post('/orderBy/{column}/{filter}', ['uses' => 'Competitions\FilterCompetitionController@setCookieOrder']);
     Route::get('/search/', ['as' => 'search-с', 'uses' => 'Competitions\FilterCompetitionController@search']);
 });
-Route::get('/competition/{id}', function () {
-    return view('competitions/competition');
-});
+Route::get('/competition/{id}', ['uses' => 'Competitions\CompetitionsController@showCompetition']);
 Route::get('/archive-competitions', function () {
     return view('competitions/arch-competitions');
 })->name('arch-competitions');
-Route::get('/form-competition', function () {
-    return view('competitions/form-competition');
-})->name('form-competition');
+Route::get('/form-competition', ['as' => 'form-competition', 'uses' => 'Competitions\FormCompetitionController@show']);
 
 Route::group(['prefix' => 'publications'], function () {
     Route::get('', ['as' => 'publications', 'uses' => 'Publication\PublicationsPageController@show']);

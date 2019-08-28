@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Comtition_Nomination extends Model
+class Competition_Nomination extends Model
 {
     protected $table = 'competition_nomination';
 

@@ -16,4 +16,9 @@ class CompetitionsController extends Controller
         }
         return view('competitions/competitions', ['competitions' => $competitions]);
     }
+
+    public function showCompetition($id) {
+        return view('competitions/competition', ['id' => $id]);
+    }
+
 }

@@ -86,30 +86,33 @@
                 {{ csrf_field() }}
                 <div class="form-competition__competition border-form-competition">
                     <h3 class="form-title" style="margin-bottom: 20px;">
-                        2) Конкурс
+                        1) Конкурс
                     </h3>
                     <label for="competition" class="red-star">Конкурс</label>
                     <select name="competition" id="competition" class="input-style">
                         <option value="0">Конкурс</option>
-                        {{--                        @foreach($educations as $education)--}}
-                        {{--                            <option value="{{$education->id}}"--}}
-                        {{--                                    @if($education->id == Session::get('education'))--}}
-                        {{--                                    selected--}}
-                        {{--                                @endif--}}
-                        {{--                            >{{$education->name}}</option>--}}
-                        {{--                        @endforeach--}}
+                        @foreach($competitions as $competition)
+                            <option value="{{$competition->id}}"
+                                    @if($competition->id == Session::get('education'))
+                                    selected
+                                    @endif
+                                    @if($competition->id == $competitionSelected)
+                                    selected
+                                @endif
+                            >{{$competition->title}}</option>
+                        @endforeach
                     </select>
 
                     <label for="nomination" class="red-star">Номинация</label>
                     <select name="nomination" id="nomination" class="input-style">
                         <option value="0">Номинация</option>
-                        {{--                        @foreach($educations as $education)--}}
-                        {{--                            <option value="{{$education->id}}"--}}
-                        {{--                                    @if($education->id == Session::get('education'))--}}
-                        {{--                                    selected--}}
-                        {{--                                @endif--}}
-                        {{--                            >{{$education->name}}</option>--}}
-                        {{--                        @endforeach--}}
+                        @foreach($nominations as $nomination)
+                            <option value="{{$nomination->id}}"
+                                {{--                                                            @if($education->id == Session::get('education'))--}}
+                                {{--                                                            selected--}}
+                                {{--                                                        @endif--}}
+                            >{{$nomination->name}}</option>
+                        @endforeach
                     </select>
                 </div>
 
@@ -117,10 +120,10 @@
                     <h3 class="form-title" style="margin-bottom: 20px;">
                         2) Работа
                     </h3>
-                    <div class="past-work">
-                        <input type="checkbox" id="past-work" name="past-work">
-                        <label for="past-work"> Выбрать работу из ранее опубликованных</label>
-                    </div>
+                    {{--                    <div class="past-work">--}}
+                    {{--                        <input type="checkbox" id="past-work" name="past-work">--}}
+                    {{--                        <label for="past-work"> Выбрать работу из ранее опубликованных</label>--}}
+                    {{--                    </div>--}}
                     <div style="display: flex; justify-content: space-between ">
                         <div class="col-xl-7" style="padding: 0;">
                             <label for="title" class="red-star">Название работы</label>
@@ -139,8 +142,7 @@
                         .pdf, .ppt, .pptx)
                     </div>
                     <div>
-                        <input type="file" id="upload" multiple data-multiple-caption="Загружено {count} файлов "
-                               name="files[]"
+                        <input type="file" id="upload" name="file"
                                class="hide">
                         <label for="upload" class="upload filled-btn">Загрузить файл</label> <span class="file-display">Файл не выбран</span>
                     </div>
@@ -153,13 +155,13 @@
                     <label for="education" class="red-star">Уровень образования</label>
                     <select name="education" id="education" class="input-style">
                         <option value="0">Выбирите уровень образования</option>
-                        {{--                        @foreach($educations as $education)--}}
-                        {{--                            <option value="{{$education->id}}"--}}
-                        {{--                                    @if($education->id == Session::get('education'))--}}
-                        {{--                                    selected--}}
-                        {{--                                @endif--}}
-                        {{--                            >{{$education->name}}</option>--}}
-                        {{--                        @endforeach--}}
+                        @foreach($educations as $education)
+                            <option value="{{$education->id}}"
+{{--                                @if($education->id == Session::get('education'))--}}
+{{--                                    selected--}}
+{{--                                @endif--}}
+                            >{{$education->name}}</option>
+                        @endforeach
                     </select>
                     <div class="fio-children">
                         <div class="fio-children-block">
@@ -179,32 +181,32 @@
                         <div class="fio-block">
                             <label for="f" class="red-star">Фамилия педагога</label>
                             <input name="f" id="f" class="input-style" type="text" placeholder="Иванов"
-                                   value="{{isset($user) ? $user->f : ''}}" {{isset($user) ? 'readonly' : ''}}>
+                                   value="{{(count($user) > 0) ? $user->f : ''}}" {{(count($user) > 0) ? 'readonly' : ''}}>
                         </div>
                         <div class="fio-block">
                             <label for="i" class="red-star">Имя педагога</label>
                             <input name="i" id="i" class="input-style" type="text" placeholder="Иван"
-                                   value="{{isset($user) ? $user->i : ''}}" {{isset($user) ? 'readonly' : ''}}>
+                                   value="{{(count($user) > 0) ? $user->i : ''}}" {{(count($user) > 0) ? 'readonly' : ''}}>
                         </div>
                         <div class="fio-block">
                             <label for="o" class="red-star">Отчество педагога</label>
                             <input name="o" id="o" class="input-style" type="text" placeholder="Иванович"
-                                   value="{{isset($user) ? $user->o : ''}}" {{isset($user) ? 'readonly' : ''}}>
+                                   value="{{(count($user) > 0) ? $user->o : ''}}" {{(count($user) > 0) ? 'readonly' : ''}}>
                         </div>
                     </div>
                     <label for="stuff" class="red-star">Должность</label>
                     <input name="job" id="job" class="input-style" type="text"
                            placeholder="Учитель начальных классов"
-                           value="{{isset($user) ? $user->job : ''}}" {{isset($user) ? 'readonly' : ''}}>
+                           value="{{(count($user) > 0) ? $user->job : ''}}" {{(count($user) > 0) ? 'readonly' : ''}}>
                     <label for="email" class="red-star">E-mail</label>
                     <input name="email" id="email" class="input-style" type="text" placeholder="teacher@mail.ru"
-                           value="{{isset($user) ? $user->email : ''}}" {{isset($user) ? 'readonly' : ''}}>
+                           value="{{(count($user) > 0) ? $user->email : ''}}" {{(count($user) > 0) ? 'readonly' : ''}}>
                     <label for="job" class="red-star">Наименования образовательного учреждения</label>
                     <input name="stuff" id="stuff" class="input-style" type="text" placeholder="МБОУ СОШ №11"
-                           value="{{isset($user) ? $user->stuff : ''}}" {{isset($user) ? 'readonly' : ''}}>
+                           value="{{(count($user) > 0) ? $user->stuff : ''}}" {{(count($user) > 0) ? 'readonly' : ''}}>
                     <label for="town" class="red-star">Населенный пункт</label>
                     <input name="town" id="town" class="input-style" type="text" placeholder="г. Москва"
-                           value="{{isset($user) ? $user->town : ''}}" {{isset($user) ? 'readonly' : ''}}>
+                           value="{{(count($user) > 0) ? $user->town : ''}}" {{(count($user) > 0) ? 'readonly' : ''}}>
                 </div>
 
                 <div class="form-competition__placement-method border-form-competition">

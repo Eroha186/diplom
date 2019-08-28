@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
 
 class FilterCompetitionController extends Controller
 {
@@ -48,12 +49,12 @@ class FilterCompetitionController extends Controller
                     break;
                 case 2:
                     $competitions = $competitionModel->where('title', 'LIKE', '%' . trim($searchQuery) . '%')
-                        ->orderBy('date_end', '-', 'date_begin', 'ASC')
+                        ->orderBy(DB::raw('date_end - date_begin'), 'ASC')
                         ->get();
                     break;
                 case 3:
                     $competitions = $competitionModel->where('title', 'LIKE', '%' . trim($searchQuery) . '%')
-                        ->orderBy('date_end', '-', 'date_begin', 'DESC' )
+                        ->orderBy(DB::raw('date_end - date_begin'), 'DESC' )
                         ->get();
                     break;
             }

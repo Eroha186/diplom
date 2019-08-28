@@ -21,4 +21,5 @@ class Competition extends Model
     public function type() {
         return $this->belongsTo('App\Type_competition', 'type_id');
     }
+
 }
