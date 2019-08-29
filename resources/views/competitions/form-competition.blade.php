@@ -19,7 +19,7 @@
                 </div>
                 <div class="modal-body">
                     <form method="POST"
-                          action="{{route('loginFormPublication')}}" id="login-form-publication">
+                          action="{{route('loginFormCompetition')}}" id="login-form-publication">
                         {{ csrf_field() }}
                         @if (count($errors) > 0)
                             <div class="alert alert-danger">
@@ -81,7 +81,7 @@
     </div>
     <div class="row">
         <div class="col-xl-7">
-            <form class="form-publication" enctype="multipart/form-data" action="{{route('form-publication')}}"
+            <form class="form-publication" enctype="multipart/form-data" action="{{route('form-competition')}}"
                   method="POST">
                 {{ csrf_field() }}
                 <div class="form-competition__competition border-form-competition">
@@ -152,17 +152,6 @@
                     <h3 class="form-title" style="margin-bottom: 20px;">
                         3) Личные данные
                     </h3>
-                    <label for="education" class="red-star">Уровень образования</label>
-                    <select name="education" id="education" class="input-style">
-                        <option value="0">Выбирите уровень образования</option>
-                        @foreach($educations as $education)
-                            <option value="{{$education->id}}"
-{{--                                @if($education->id == Session::get('education'))--}}
-{{--                                    selected--}}
-{{--                                @endif--}}
-                            >{{$education->name}}</option>
-                        @endforeach
-                    </select>
                     <div class="fio-children">
                         <div class="fio-children-block">
                             <label for="fc" class="red-star">Фамилия ребенка</label>
@@ -290,7 +279,7 @@
                     <button class="form-publication__btn transparent-btn" id="submit-form-publication">отправить
                         заявку
                     </button>
-                    <a href="{{route('publications')}}" class="form-publication__btn filled-btn ">отменить</a>
+                    <a href="{{route('competitions')}}" class="form-publication__btn filled-btn ">отменить</a>
                 </div>
             </form>
         </div>

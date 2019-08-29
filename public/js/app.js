@@ -10910,7 +10910,7 @@ $(function () {
                 switch (response) {
                     case 0:
                     case 1:
-                        $('.form-publication').submit();
+                        $('.form-competition').submit();
                         break;
                     case 2:
                         $('.modal').show();

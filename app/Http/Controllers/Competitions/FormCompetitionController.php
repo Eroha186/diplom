@@ -4,13 +4,15 @@ namespace App\Http\Controllers\Competitions;
 
 use App\Competition_Nomination;
 use App\File;
+use App\Http\Controllers\Auth\RandomPassword;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Requests\FormCompetitionRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Competition;
-use App\Education;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Work;
 
 class FormCompetitionController extends Controller
 {
@@ -18,21 +20,18 @@ class FormCompetitionController extends Controller
     {
         $competitionSelected = $request->get('id');
         $competitions = Competition::all();
-        $educations = Education::all();
-        $nominations = Competition_Nomination::where('competition_id', $competitionSelected->id)
+        $nominations = Competition_Nomination::where('competition_id', $competitionSelected)
             ->leftJoin('nominations as n', 'nomination_id', '=', 'n.id')
             ->get();
         $user = [];
         if (Auth::check()) {
-            $user = User::where('id', Auth::user()->id)->get();
-
+            $user = User::where('id', Auth::user()->id)->first();
         }
         return view('competitions/form-competition', [
             'competitionSelected' => $competitionSelected,
             'competitions' => $competitions,
             'nominations' => $nominations,
-            'educations' => $educations,
-            'user' => $user[0],
+            'user' => $user,
         ]);
     }
 
@@ -42,13 +41,30 @@ class FormCompetitionController extends Controller
         if (Auth::check()) {
             $newWork = Work::create([
                 'user_id' => Auth::user()->id,
-                'competition_id' => $work['competition'],
+                'competition_id' => (int) $work['competition'],
                 'title' => $work['title'],
                 'annotation' => $work['annotation'],
                 'fc' => $work['fc'],
                 'ic' => $work['ic'],
                 'oc' => $work['oc'],
-                'nomination_id' => $work['nomination'],
+                'nomination_id' => (int) $work['nomination'],
+                'date_add' => date('Y-m-d H:i:s'),
+            ]);
+        } else {
+            $register = new RegisterController();
+            $work = $formRequest->all();
+            $pass = RandomPassword::randomPassword();
+            $formRequest['password'] = $pass;
+            $formRequest['password_confirmation'] = $pass;
+            $newUser = $register->registerFromPublicationForm($formRequest);
+            $newWork = Work::create([
+                'user_id' => $newUser->id,
+                'title' => $work['title'],
+                'annotation' => $work['annotation'],
+                'fc' => $work['fc'],
+                'ic' => $work['ic'],
+                'oc' => $work['oc'],
+                'nomination_id' => (int) $work['nomination'],
                 'date_add' => date('Y-m-d H:i:s'),
             ]);
         }

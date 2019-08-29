@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Work extends Model
 {
     public $timestamps = false;
-    protected $fillable = ['title', 'user_id', 'annotation'];
+    protected $fillable = ['title', 'user_id', 'annotation', 'nomination_id', 'fc', 'ic', 'oc', 'competition_id', 'date_add'];
 
     public function user()
     {

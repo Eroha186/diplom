@@ -72,7 +72,7 @@
             @foreach ($competitions as $competition)
                 <div class="competition">
                     <div class="competition__img">
-                        <img src="{{asset('images/skier.png')}}" alt="Обложка">
+
                     </div>
                     <div class="competition__descr ta-center">
                         <div class="title">

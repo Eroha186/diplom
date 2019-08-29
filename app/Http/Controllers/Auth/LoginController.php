@@ -47,9 +47,11 @@ class LoginController extends Controller
         if ($request->path() == 'login') {
             return redirect()->to('account/personal-data');
         }
-        if ($request->path() == 'loginFormPublication') ;
-        {
+        if ($request->path() == 'loginFormPublication') {
             return redirect()->to('form-publication');
+        }
+        if ($request->path() == 'loginFormCompetition') {
+            return redirect()->to('form-competition');
         }
     }
 

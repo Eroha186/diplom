@@ -33,6 +33,7 @@ Route::get('/archive-competitions', function () {
     return view('competitions/arch-competitions');
 })->name('arch-competitions');
 Route::get('/form-competition', ['as' => 'form-competition', 'uses' => 'Competitions\FormCompetitionController@show']);
+Route::post('/form-competition', ['as' => 'form-competition', 'uses' => 'Competitions\FormCompetitionController@saveWorkCompetition']);
 
 Route::group(['prefix' => 'publications'], function () {
     Route::get('', ['as' => 'publications', 'uses' => 'Publication\PublicationsPageController@show']);
@@ -72,5 +73,6 @@ Route::post('/authCheck/{email}', function ($email) {
 });
 
 Route::post('/loginFormPublication', 'Auth\LoginController@login')->name('loginFormPublication');
+Route::post('/loginFormCompetition', 'Auth\LoginController@login')->name('loginFormCompetition');
 Route::post('/publicationSaveSession', ['uses' => 'Publication\PublicationSaveSession@publicationSaveSession']);
 Route::auth();

@@ -17,7 +17,9 @@
         </h2>
         <div class="row">
             <div class="col-xl-6 competitions__descr">
-                В настоящем разделе представлены актуальные конкурсы, на которые осуществляется прием заявок на участие. Участвуйте вместе с детьми и в конкурсах для педагогов на участие. Участвуйте вмместе с детьми и в конкурсах для педагогов!
+                В настоящем разделе представлены актуальные конкурсы, на которые осуществляется прием заявок на участие.
+                Участвуйте вместе с детьми и в конкурсах для педагогов на участие. Участвуйте вмместе с детьми и в
+                конкурсах для педагогов!
             </div>
             <div class="cake">
                 <img src="{{asset('/images/cake.png')}}" alt="Пироженое">
@@ -31,7 +33,8 @@
         <h4 style="margin-bottom: 35px;">Всего подано заявок: 534</h4>
         <div class="row">
             <div class="col-xl-4">
-                <a href="{{route('form-competition').'?id='.$id}}" class="participate-competition">Участвовать в конкурсе</a>
+                <a href="{{route('form-competition').'?id='.$id}}" class="participate-competition">Участвовать в
+                    конкурсе</a>
             </div>
         </div>
         <div class="filter-nominations">
@@ -58,8 +61,10 @@
             <div class="row">
                 <div class="col-xl-11">
                     <div class="search-wrap">
-                        <button type="submit" id="search"><img src="{{asset('images/magnifier.svg')}}" alt="лупа"></button>
-                        <input name="searchQuery" class="search-competitions" type="text" placeholder="Поиск по участникам" value="{{session('searchQuery')}}">
+                        <button type="submit" id="search"><img src="{{asset('images/magnifier.svg')}}" alt="лупа">
+                        </button>
+                        <input name="searchQuery" class="search-competitions" type="text"
+                               placeholder="Поиск по участникам" value="{{session('searchQuery')}}">
                     </div>
                 </div>
             </div>
@@ -77,6 +82,39 @@
                 <span class="arrow-down">&darr;</span>
                 <span class="arrow-up">&uarr;</span>
             </div>
+        </div>
+    </div>
+</section>
+<section class="works-list">
+    <div class="container">
+        <div class="works-wrap">
+            @foreach($works as $work)
+                <div class="work">
+                    <div class="work__img">
+                        @if($work->file->type == 'img')
+                            <img src="{{$work->file->url}}" alt="картника">
+                        @endif
+                        @if($work->file->type == 'doc')
+                            <img src="{{asset("/images/doc.svg")}}" alt="иконка документа">
+                        @endif
+                        @if($work->file->type == 'ppt')
+                            <img src="{{asset("/images/ppt.svg")}}" alt="иконка презинтации">
+                        @endif
+                    </div>
+                    <div class="work__title">
+                        {{$work->title}}
+                    </div>
+                    <div class="work__name">
+                        {{$work->ic}} {{$work->fc}}
+                    </div>
+                    <div class="work__teacher">
+                        Куратор: {{$work->user->f}} {{$work->user->i}} {{$work->user->o}}
+                    </div>
+                    <div class="work__location">
+                        {{$work->user->stuff}}, г.{{$work->user->town}}
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
 </section>
