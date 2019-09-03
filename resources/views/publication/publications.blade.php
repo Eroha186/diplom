@@ -83,14 +83,14 @@
         <div class="filter">
             Сортировать по:
             <div class="placement-date">
-                <span class="filter-name filter-name-p {{(isset($filtersInfo['column-p']) && $filtersInfo['column-p'] == 'date_add') ? "filter-name_active" : "" }}"
+                <span class="filter-name filter-name-publications {{(isset($filtersInfo['column-p']) && $filtersInfo['column-p'] == 'date_add') ? "filter-name_active" : "" }}"
                       data-condition="{{(isset($filtersInfo['column-p']) && $filtersInfo['column-p'] == 'date_add') ? $filtersInfo['filter-p'] : '1'}}"
                       data-column="date_add">дате размещения </span>
                 <span class="arrow-down">&darr;</span>
                 <span class="arrow-up">&uarr;</span>
             </div>
             <div class="filters-name">
-                <span class="filter-name filter-name-p {{(isset($filtersInfo['column-p']) && $filtersInfo['column-p'] == 'title') ? "filter-name_active" : "" }}"
+                <span class="filter-name filter-name-publications {{(isset($filtersInfo['column-p']) && $filtersInfo['column-p'] == 'title') ? "filter-name_active" : "" }}"
                       data-condition="{{(isset($filtersInfo['column-p']) && $filtersInfo['column-p'] == 'title') ? $filtersInfo['filter-p'] : '1'}}"
                       data-column="title">имени </span>
                 <span class="arrow-down">&darr;</span>

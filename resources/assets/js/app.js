@@ -104,7 +104,7 @@ $(function () {
         $(this).children('.arrow').toggleClass('arrow_active');
     });
 
-    $('.filter-name-p').on('click', function () {
+    $('.filter-name-publications').on('click', function () {
         let column = $(this).attr('data-column');
         let condition = setOrder($(this));
 
@@ -123,7 +123,7 @@ $(function () {
         });
     });
 
-    $('.filter-name-c').on('click', function () {
+    $('.filter-name-competitions').on('click', function () {
         let column = $(this).attr('data-column');
         let condition = setOrder($(this));
         console.log('ok');
@@ -141,6 +141,26 @@ $(function () {
             }
         });
     });
+
+    $('.filter-name-competition').on('click', function () {
+        let column = $(this).attr('data-column');
+        let condition = setOrder($(this));
+        console.log('ok');
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '/competition/orderBy/' + column + '/' + condition,
+            dataType: 'json',
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $('#search').trigger('click');
+            }
+        });
+    });
+
 
     $('.radio-button').on('click', function () {
         $('.radio-button').removeClass('radio-button_active');
@@ -201,7 +221,7 @@ $(function () {
                 switch (response) {
                     case 0:
                     case 1:
-                        $('.form-competition').submit();
+                        $('.form-publication').submit();
                         break;
                     case 2:
                         $('.modal').show();
@@ -221,6 +241,18 @@ $(function () {
     $('.filter-nomination').on('click', function () {
         $('.filter-nomination').removeClass('filter-nomination_active');
         $(this).addClass('filter-nomination_active');
+        let value = $(this).attr('data-value');
+        console.log(value);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '/competition-filter/' + value,
+            type: 'POST',
+            success: function (response) {
+                $('#search').trigger("click");
+            }
+        })
     })
 
     function setOrder(condition, flag = 0) {

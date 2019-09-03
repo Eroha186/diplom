@@ -165,6 +165,10 @@
                             <label for="oc" class="red-star">Отчество ребенка</label>
                             <input name="oc" id="oc" class="input-style" type="text" placeholder="Иванович">
                         </div>
+                        <div class="fio-children-block">
+                            <label for="age" class="red-star">Отчество ребенка</label>
+                            <input name="age" id="age" class="input-style" type="text" placeholder="14">
+                        </div>
                     </div>
                     <div class="fio">
                         <div class="fio-block">

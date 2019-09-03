@@ -25,7 +25,7 @@ Route::get('/', 'MainPageController@show')->name('home');
 
 Route::group(['prefix' => 'competitions'], function () {
     Route::get('', ['as' => 'competitions', 'uses' => 'Competitions\CompetitionsController@show']);
-    Route::post('/orderBy/{column}/{filter}', ['uses' => 'Competitions\FilterCompetitionController@setCookieOrder']);
+    Route::post('/orderBy/{column}/{filter}', ['uses' => 'Competitions\FilterCompetitionController@setCookieOrderCompetitions']);
     Route::get('/search/', ['as' => 'search-с', 'uses' => 'Competitions\FilterCompetitionController@search']);
 });
 Route::get('/competition/{id}', ['uses' => 'Competitions\CompetitionsController@showCompetition']);
@@ -34,6 +34,9 @@ Route::get('/archive-competitions', function () {
 })->name('arch-competitions');
 Route::get('/form-competition', ['as' => 'form-competition', 'uses' => 'Competitions\FormCompetitionController@show']);
 Route::post('/form-competition', ['as' => 'form-competition', 'uses' => 'Competitions\FormCompetitionController@saveWorkCompetition']);
+Route::post('/competition-filter/{valueFilter}', ['uses' => 'Competitions\FilterCompetitionController@setCookieFilterNomination']);
+Route::get('/competition/{id}/search-work/', ['as' => 'search-work' ,'uses' => 'Competitions\FilterCompetitionController@searchWork']);
+Route::post('competition/orderBy/{column}/{filter}', ['uses' => 'Competitions\FilterCompetitionController@setCookieOrderCompetition']);
 
 Route::group(['prefix' => 'publications'], function () {
     Route::get('', ['as' => 'publications', 'uses' => 'Publication\PublicationsPageController@show']);
@@ -44,6 +47,7 @@ Route::group(['prefix' => 'publications'], function () {
 Route::get('/publication/{id}', ['as' => 'publication', 'uses' => 'Publication\PublicationsPageController@showPublication']);
 Route::get('/form-publication', ['as' => 'form-publication', 'uses' => 'Publication\PublicationsPageController@showForm']);
 Route::post('/form-publication', ['as' => 'form-publication', 'uses' => 'Publication\PublicationsPageController@savePublication']);
+
 
 Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
     Route::get('/personal-data', 'Account\AccountController@showPersonalData');
@@ -60,6 +64,8 @@ Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
         return view('account/order-publication');
     });
 });
+
+
 Route::get('/verify/{token}', ['uses' => 'Auth\RegisterController@verifyUser', 'as' => 'verify']);
 Route::post('/authCheck/{email}', function ($email) {
     if (Auth::check()) {

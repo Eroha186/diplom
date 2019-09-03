@@ -3,7 +3,7 @@
 <head>
     <title>Конкурсы</title>
     @include('styles')
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 @include('header_footer/header')
@@ -43,21 +43,21 @@
         <div class="filter">
             Сортировать по:
             <div class="placement-date">
-               <span class="filter-name filter-name-c   {{(isset($filterInfo['column-c']) && $filterInfo['column-c'] == 'date_begin') ? "filter-name_active" : "" }} "
+               <span class="filter-name filter-name-competitions   {{(isset($filterInfo['column-c']) && $filterInfo['column-c'] == 'date_begin') ? "filter-name_active" : "" }} "
                      data-condition="{{(isset($filterInfo['column-c']) && $filterInfo['column-c'] == 'date_begin') ? $filterInfo['filter-c'] : '1'}}"
                      data-column="date_begin">дате размещения </span>
                 <span class="arrow-down">&darr;</span>
                 <span class="arrow-up">&uarr;</span>
             </div>
             <div class="duration-event">
-                <span class="filter-name filter-name-c {{(isset($filterInfo['column-c']) && $filterInfo['column-c'] == 'difference-date') ? "filter-name_active" : "" }}"
+                <span class="filter-name filter-name-competitions {{(isset($filterInfo['column-c']) && $filterInfo['column-c'] == 'difference-date') ? "filter-name_active" : "" }}"
                       data-condition="{{(isset($filterInfo['column-c']) && $filterInfo['column-c'] == 'difference-date') ? $filterInfo['filter-c'] : '1'}}"
                       data-column="difference-date">длительность проведения </span>
                 <span class="arrow-down">&darr;</span>
                 <span class="arrow-up">&uarr;</span>
             </div>
             <div class="date-end">
-                <span class="filter-name filter-name-c {{(isset($filterInfo['column-c']) && $filterInfo['column-c'] == 'date_end') ? "filter-name_active" : "" }}"
+                <span class="filter-name filter-name-competitions {{(isset($filterInfo['column-c']) && $filterInfo['column-c'] == 'date_end') ? "filter-name_active" : "" }}"
                       data-condition="{{(isset($filterInfo['column-c']) && $filterInfo['column-c'] == 'date_end')  ? $filterInfo['filter-c'] : '1'}}"
                       data-column="date_end">дате завершения </span>
                 <span class="arrow-down">&darr;</span>
@@ -72,7 +72,7 @@
             @foreach ($competitions as $competition)
                 <div class="competition">
                     <div class="competition__img">
-
+                        <img src="{{asset('images/skier.png')}}" alt="">
                     </div>
                     <div class="competition__descr ta-center">
                         <div class="title">

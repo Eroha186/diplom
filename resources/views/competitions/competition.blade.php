@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Конкурс</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @include('styles')
 </head>
 <body>
@@ -13,13 +14,11 @@
 <section class="competitions__main bg-arch">
     <div class="container">
         <h2 class="section-title">
-            Новогодний конкрус
+            {{$competition->title}}
         </h2>
         <div class="row">
             <div class="col-xl-6 competitions__descr">
-                В настоящем разделе представлены актуальные конкурсы, на которые осуществляется прием заявок на участие.
-                Участвуйте вместе с детьми и в конкурсах для педагогов на участие. Участвуйте вмместе с детьми и в
-                конкурсах для педагогов!
+                {{$competition->annotation}}
             </div>
             <div class="cake">
                 <img src="{{asset('/images/cake.png')}}" alt="Пироженое">
@@ -30,7 +29,7 @@
 <section class="filters">
     <div class="container">
         {!!Breadcrumbs::render('competitions')!!}
-        <h4 style="margin-bottom: 35px;">Всего подано заявок: 534</h4>
+        <h4 style="margin-bottom: 35px;">Всего подано заявок: {{$works->count}}</h4>
         <div class="row">
             <div class="col-xl-4">
                 <a href="{{route('form-competition').'?id='.$id}}" class="participate-competition">Участвовать в
@@ -38,26 +37,16 @@
             </div>
         </div>
         <div class="filter-nominations">
-            <div class="all-nоminations nomination">
-                <span class="filter-nomination">Все номинации</span>
+            <div class="all-nomination nomination">
+                <span class="filter-nomination" data-value="0">Все номинации</span>
             </div>
-            <div class="teacher-nomination nomination">
-                <span class="filter-nomination">Педагоги</span>
-            </div>
-            <div class="preschoole-nomination nomination">
-                <span class="filter-nomination">Дошкольное образование</span>
-            </div>
-            <div class="1-4-class-nomination nomination">
-                <span class="filter-nomination">1-4 класс</span>
-            </div>
-            <div class="5-8-class-nomination nomination">
-                <span class="filter-nomination">5-8 класс</span>
-            </div>
-            <div class="9-11-class-nomination nomination">
-                <span class="filter-nomination">9-11 класс</span>
-            </div>
+            @foreach($nominations as $nomination)
+                <div class="nomination">
+                    <span class="filter-nomination" data-value="{{$nomination->id}}">{{$nomination->name}}</span>
+                </div>
+            @endforeach
         </div>
-        <form action="{{route('search')}}" method="GET" class="search-competition">
+        <form action="{{route('search-work', ['id' => $id])}}" method="GET" class="search-competition">
             <div class="row">
                 <div class="col-xl-11">
                     <div class="search-wrap">
@@ -70,18 +59,27 @@
             </div>
         </form>
         <h4 style="margin-bottom: 15px;">Работы участников</h4>
-        <div class="filter">
+        <div class="filter" style="margin-bottom: 15px;">
             Сортировать по:
             <div class="placement-date">
-                <span class="filter-name" data-condition="1">дате размещения </span>
+                <span
+                    class="filter-name filter-name-competition {{(isset($filterInfo['column-competition']) && $filterInfo['column-competition'] == 'date_add') ? "filter-name_active" : "" }}"
+                    data-condition="{{(isset($filterInfo['column-competition']) && $filterInfo['column-competition'] == 'date_add') ? $filterInfo['filter-competition'] : '1' }}"
+                    data-column="date_add">дате размещения </span>
                 <span class="arrow-down">&darr;</span>
                 <span class="arrow-up">&uarr;</span>
             </div>
             <div class="filters-name">
-                <span class="filter-name" data-condition="1">имени </span>
+                <span
+                    class="filter-name filter-name-competition {{(isset($filterInfo['column-competition']) && $filterInfo['column-competition'] == 'title') ? "filter-name_active" : "" }}"
+                    data-condition="{{(isset($filterInfo['column-competition']) && $filterInfo['column-competition'] == 'title') ? $filterInfo['filter-competition'] : '1' }}"
+                    data-column="title">имени </span>
                 <span class="arrow-down">&darr;</span>
                 <span class="arrow-up">&uarr;</span>
             </div>
+        </div>
+        <div class="pagination">
+            {{ $works->links('paginate') }}
         </div>
     </div>
 </section>
@@ -91,8 +89,8 @@
             @foreach($works as $work)
                 <div class="work">
                     <div class="work__img">
-                        @if($work->file->type == 'img')
-                            <img src="{{$work->file->url}}" alt="картника">
+                        @if($work->file->type == 'image')
+                            <img src="{{Storage::url($work->file->url)}}" alt="картника">
                         @endif
                         @if($work->file->type == 'doc')
                             <img src="{{asset("/images/doc.svg")}}" alt="иконка документа">
@@ -115,6 +113,9 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+        <div class="pagination">
+            {{ $works->links('paginate') }}
         </div>
     </div>
 </section>

@@ -10813,7 +10813,7 @@ $(function () {
         $(this).children('.arrow').toggleClass('arrow_active');
     });
 
-    $('.filter-name-p').on('click', function () {
+    $('.filter-name-publications').on('click', function () {
         var column = $(this).attr('data-column');
         var condition = setOrder($(this));
 
@@ -10832,7 +10832,7 @@ $(function () {
         });
     });
 
-    $('.filter-name-c').on('click', function () {
+    $('.filter-name-competitions').on('click', function () {
         var column = $(this).attr('data-column');
         var condition = setOrder($(this));
         console.log('ok');
@@ -10841,6 +10841,25 @@ $(function () {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             url: '/competitions/orderBy/' + column + '/' + condition,
+            dataType: 'json',
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function success(response) {
+                $('#search').trigger('click');
+            }
+        });
+    });
+
+    $('.filter-name-competition').on('click', function () {
+        var column = $(this).attr('data-column');
+        var condition = setOrder($(this));
+        console.log('ok');
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '/competition/orderBy/' + column + '/' + condition,
             dataType: 'json',
             type: 'POST',
             contentType: false,
@@ -10910,7 +10929,7 @@ $(function () {
                 switch (response) {
                     case 0:
                     case 1:
-                        $('.form-competition').submit();
+                        $('.form-publication').submit();
                         break;
                     case 2:
                         $('.modal').show();
@@ -10929,6 +10948,18 @@ $(function () {
     $('.filter-nomination').on('click', function () {
         $('.filter-nomination').removeClass('filter-nomination_active');
         $(this).addClass('filter-nomination_active');
+        var value = $(this).attr('data-value');
+        console.log(value);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '/competition-filter/' + value,
+            type: 'POST',
+            success: function success(response) {
+                $('#search').trigger("click");
+            }
+        });
     });
 
     function setOrder(condition) {

@@ -28,7 +28,6 @@ class FormCompetitionRequest extends FormRequest
             return [
                 'competition' => 'required|min:0',
                 'nomination' => 'required|min:0',
-                'education' => 'required|min:0',
                 'title' => 'required|string',
                 'annotation' => 'required|string|max:200',
                 'file' => 'required',
@@ -48,7 +47,6 @@ class FormCompetitionRequest extends FormRequest
                 'town' => 'required|string',
                 'competition' => 'required|min:0',
                 'nomination' => 'required|min:0',
-                'education' => 'required|min:0',
                 'title' => 'required|string',
                 'annotation' => 'required|string|max:200',
                 'file' => 'required|mimes:jpg,png,doc,docx,pdf,ppt,pptx',
@@ -76,7 +74,6 @@ class FormCompetitionRequest extends FormRequest
             ],
             'stuff.required' => 'Укажите наименования вашего образовательного учреждения',
             'town.required' => 'Укажите ваш город',
-            'education.required' => 'Укажите уровень образования',
             'fc.required' => 'Укажите вашу Фамилию ребенка',
             'ic.required' => 'Укажите ваше Имя ребенка',
             'oc.required' => 'Укажите ваше Отчество ребенка',

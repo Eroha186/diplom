@@ -1452,12 +1452,52 @@ select {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-bottom: 30px;
+  width: 24%;
+}
+
+.work__img {
+  padding: 7px;
+  margin-bottom: 15px;
+  border: 1px solid #d1cece;
+  border-radius: 4px;
+}
+
+.work__img img {
+  width: 250px;
+  height: 252px;
+}
+
+.work__title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #313131;
+}
+
+.work__name {
+  font-size: 14px;
+  color: #434343;
+}
+
+.work__teacher {
+  font-size: 14px;
+  color: #d1cece;
+}
+
+.work__location {
+  font-size: 14px;
+  color: #313131;
 }
 
 .works-wrap {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .notice {
