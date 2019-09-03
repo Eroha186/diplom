@@ -10,18 +10,6 @@
 		<h2 class="section-title">
 			Участие в конкурсах
 		</h2>
-		@section('contests')
-			<tr>
-				<td class="number ta-center">1</td>
-				<td class="date-time ta-center">21.02.2018</td>
-				<td class="name-work"><a href="#" class="standart-link">Катись колобок!</a></td>
-				<td class="name-contest"><a href="#" class="standart-link">Новогодняя мастерская - 2019</a></td>
-				<td class="author ta-center">Иванова М.А.</td>
-				<td class="head ta-center">Гусев М.А.</td>
-				<td class="status ta-center">Модерация</td>
-				<td class="ta-center"><a href="#" class="button download-button">Скачать</a></td>
-			</tr>
-		@endsection
 		<div class="table-publication">
 			<table class="publication">
 				<tr class="table-title">
@@ -34,9 +22,18 @@
 					<th class="status">Статус</th>
 					<th class="certificate-contest">Диплом</th>
 				</tr>
-				@for($i=0; $i<5; $i++)
-					@yield('contests')
-				@endfor
+				@foreach ($works as $work)
+					<tr>
+						<td class="number ta-center">{{$loop->iteration}}</td>
+						<td class="date-time ta-center">{{$work->date_add}}</td>
+						<td class="name-work"><a href="#" class="standart-link">{{$work->title}}</a></td>
+						<td class="name-contest"><a href="#" class="standart-link">{{$work->competition->title}}</a></td>
+						<td class="author ta-center">{{$work->fc}} {{$work->ic}}.{{$work->oc}}.</td>
+						<td class="head ta-center">{{$work->user->f}} {{$work->user->i}}.{{$work->user->o}}.</td>
+						<td class="status ta-center">Модерация</td>
+						<td class="ta-center"><a href="#" class="button download-button">Скачать</a></td>
+					</tr>
+				@endforeach
 			</table>
 		</div>
 	</div>

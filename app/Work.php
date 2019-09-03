@@ -20,6 +20,6 @@ class Work extends Model
     }
 
     public function competition() {
-        return $this->belongsTo('App\Competition', 'work_id');
+        return $this->belongsTo('App\Competition', 'competition_id');
     }
 }

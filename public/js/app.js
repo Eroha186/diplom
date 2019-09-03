@@ -10865,7 +10865,7 @@ $(function () {
             contentType: false,
             processData: false,
             success: function success(response) {
-                $('#search').trigger('click');
+                $('.search-competition').submit();
             }
         });
     });
@@ -10957,7 +10957,7 @@ $(function () {
             url: '/competition-filter/' + value,
             type: 'POST',
             success: function success(response) {
-                $('#search').trigger("click");
+                $('.search-competition').submit();
             }
         });
     });

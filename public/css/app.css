@@ -1453,6 +1453,7 @@ select {
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 30px;
+  margin-right: 50px;
   width: 24%;
 }
 
@@ -1495,9 +1496,6 @@ select {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
 }
 
 .notice {

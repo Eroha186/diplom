@@ -3,7 +3,7 @@
 <head>
     <title>Конкурсы</title>
     @include('styles')
-     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 @include('header_footer/header')
@@ -85,7 +85,7 @@
                             С {{$competition->date_begin}}
                             <span>по {{$competition->date_end}}</span>
                         </div>
-                        <a href="/competition/{{$competition->id}}" class="button transparent-btn">подробнее</a>
+                        <a href="/competition/{{$competition->id}}" class="button transparent-btn">участвовать</a>
                     </div>
                 </div>
             @endforeach
@@ -95,3 +95,4 @@
 @include('script')
 </body>
 </html>
+

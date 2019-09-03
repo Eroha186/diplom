@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Account;
 
+use App\Competition;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Controller;
 use App\Publication;
 use App\User;
+use App\Work;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -94,4 +96,19 @@ class AccountController extends Controller
         return view('account.my-publication', ['publications' => $publications, 'data' => $user]);
     }
 
+    public function showPartInContests(Work $workModel) {
+        $works = $workModel->with(['competition', 'user'])->where('user_id', Auth::user()->id)->get();
+        $user = User::where('id', Auth::user()->id)->first();
+        foreach ($works as $work) {
+            $work['date_add'] =  date("d.m.Y", strtotime($work['date_add']));
+            $work['user']['i'] = mb_substr($work['user']['i'], 0, 1);
+            $work['user']['o'] = mb_substr($work['user']['o'], 0, 1);
+            $work['ic'] = mb_substr($work['ic'], 0, 1);
+            $work['oc'] = mb_substr($work['oc'], 0, 1);
+        }
+        return view('account.part-contests', [
+            'works' => (object) $works,
+            'data' => (object) $user,
+        ]);
+    }
 }

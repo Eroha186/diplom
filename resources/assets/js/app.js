@@ -156,7 +156,7 @@ $(function () {
             contentType: false,
             processData: false,
             success: function (response) {
-                $('#search').trigger('click');
+                $('.search-competition').submit();
             }
         });
     });
@@ -250,7 +250,7 @@ $(function () {
             url: '/competition-filter/' + value,
             type: 'POST',
             success: function (response) {
-                $('#search').trigger("click");
+                $('.search-competition').submit();
             }
         })
     })

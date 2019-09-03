@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Competition;
 use App\Publication;
 
 
 class MainPageController extends Controller
 {
-    public function show(Publication $publicationModel)
+    public function show(Publication $publicationModel, Competition $competitionModel)
     {
 
         $field = [
@@ -27,6 +28,16 @@ class MainPageController extends Controller
             $publication['file'] = $publication['files'][0]['type'];
         }
 
-        return view('main', ['publications' => $publications]);
+        $competitions = $competitionModel->where('date_end', '>',  date('Y-m-d H:i:s'))->limit(8)->get();
+        foreach ($competitions as $competition) {
+            $competition['date_begin'] = date("d.m.Y", strtotime($competition['date_begin']));
+            $competition['date_end'] = date("d.m.Y", strtotime($competition['date_end']));
+        }
+        return view('main', [
+            'publications' => $publications,
+            'competitions' => $competitions,
+        ]);
     }
+
+
 }

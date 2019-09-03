@@ -35,7 +35,7 @@ Route::get('/archive-competitions', function () {
 Route::get('/form-competition', ['as' => 'form-competition', 'uses' => 'Competitions\FormCompetitionController@show']);
 Route::post('/form-competition', ['as' => 'form-competition', 'uses' => 'Competitions\FormCompetitionController@saveWorkCompetition']);
 Route::post('/competition-filter/{valueFilter}', ['uses' => 'Competitions\FilterCompetitionController@setCookieFilterNomination']);
-Route::get('/competition/{id}/search-work/', ['as' => 'search-work' ,'uses' => 'Competitions\FilterCompetitionController@searchWork']);
+Route::get('/competition/{id}/nomination/', ['as' => 'search-work' ,'uses' => 'Competitions\FilterCompetitionController@searchWork']);
 Route::post('competition/orderBy/{column}/{filter}', ['uses' => 'Competitions\FilterCompetitionController@setCookieOrderCompetition']);
 
 Route::group(['prefix' => 'publications'], function () {
@@ -54,9 +54,7 @@ Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
     Route::post('/personal-data', ['middleware' => 'web', 'as' => 'personal-data', 'uses' => 'Account\AccountController@saveChangePersonalData']);
 
     Route::get('/my-publication', ['uses' => 'Account\AccountController@showMyPublication']);
-    Route::get('/part-in-contests', function () {
-        return view('account/part-contests');
-    });
+    Route::get('/part-in-contests', ['uses' => 'Account\AccountController@showPartInContests']);
     Route::get('/order', function () {
         return view('account/order');
     });

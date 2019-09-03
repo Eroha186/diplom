@@ -7,6 +7,7 @@
 					<li class="header-top__nav-item {{request()->is('competitions') ? 'header-top__nav-item_active' : ''}}"><a href="/competitions">Конкурсы</a></li>
 					<li class="header-top__nav-item  {{request()->is('archive-competitions') ? 'header-top__nav-item_active' : ''}} "><a href="/archive-competitions">Архив конкурсов</a></li>
 					<li class="header-top__nav-item {{request()->is('publications') ? 'header-top__nav-item_active' : ''}} "><a href="/publications">Публикации</a></li>
+					<li class="header-top__nav-item {{request()->is('express-competitions') ? 'header-top__nav-item_active' : ''}} "><a href="/express-competitions">Экспресс конкурсы</a></li>
 				</ul>
 				@if(\Illuminate\Support\Facades\Auth::check())
 					<a class="header-top__nav-button col-xl-2 transparent-btn" href="/account/personal-data">Личный кабинет</a>

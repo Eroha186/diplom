@@ -17,8 +17,6 @@ class CompetitionsController extends Controller
     {
         $filter = $request->cookie('filter-c');
         $column = $request->cookie('column-c');
-        $valueFilterNomination = $request->cookie('filter-nomination');
-        dump($valueFilterNomination);
         $competitions = [];
 
         if ($column != 'difference-date') {
@@ -74,10 +72,12 @@ class CompetitionsController extends Controller
 
         $filter = $request->cookie('filter-competition');
         $column = $request->cookie('column-competition');
-
+        $valueFilterNomination = $request->cookie('filter-nomination');
+        dump($valueFilterNomination);
         $filterInfo = [
             'column-competition' => $column,
             'filter-competition' => $filter,
+            'nomination' => $valueFilterNomination,
         ];
 
         $competition = Competition::where('id', $id)->first();

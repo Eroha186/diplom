@@ -42,21 +42,11 @@
             </div>
             @foreach($nominations as $nomination)
                 <div class="nomination">
-                    <span class="filter-nomination" data-value="{{$nomination->id}}">{{$nomination->name}}</span>
+                    <span class="filter-nomination {{($nomination->id == $filterInfo['nomination'])? "filter-nomination_active" : ""}}" data-value="{{$nomination->id}}">{{$nomination->name}}</span>
                 </div>
             @endforeach
         </div>
-        <form action="{{route('search-work', ['id' => $id])}}" method="GET" class="search-competition">
-            <div class="row">
-                <div class="col-xl-11">
-                    <div class="search-wrap">
-                        <button type="submit" id="search"><img src="{{asset('images/magnifier.svg')}}" alt="лупа">
-                        </button>
-                        <input name="searchQuery" class="search-competitions" type="text"
-                               placeholder="Поиск по участникам" value="{{session('searchQuery')}}">
-                    </div>
-                </div>
-            </div>
+        <form action="{{route('search-work', ['id' => $id])}}" method="get" class="search-competition">
         </form>
         <h4 style="margin-bottom: 15px;">Работы участников</h4>
         <div class="filter" style="margin-bottom: 15px;">

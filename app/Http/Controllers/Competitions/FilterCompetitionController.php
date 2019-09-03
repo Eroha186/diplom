@@ -102,10 +102,10 @@ class FilterCompetitionController extends Controller
         $filter = $request->cookie('filter-competition');
         $column = $request->cookie('column-competition');
         $nominationFilter = $request->cookie('filter-nomination');
-        $searchQuery = $request->get('searchQuery');
         $filterInfo = [
             'column-competition' => $column,
             'filter-competition' => $filter,
+            'nomination' => $nominationFilter,
         ];
         $works = [];
         $where = [];
