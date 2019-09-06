@@ -23,6 +23,7 @@ use App\Http\Controllers\Auth\RegisterController;
 
 Route::get('/', 'MainPageController@show')->name('home');
 
+
 Route::group(['prefix' => 'competitions'], function () {
     Route::get('', ['as' => 'competitions', 'uses' => 'Competitions\CompetitionsController@show']);
     Route::post('/orderBy/{column}/{filter}', ['uses' => 'Competitions\FilterCompetitionController@setCookieOrderCompetitions']);
@@ -38,12 +39,16 @@ Route::post('/competition-filter/{valueFilter}', ['uses' => 'Competitions\Filter
 Route::get('/competition/{id}/nomination/', ['as' => 'search-work' ,'uses' => 'Competitions\FilterCompetitionController@searchWork']);
 Route::post('competition/orderBy/{column}/{filter}', ['uses' => 'Competitions\FilterCompetitionController@setCookieOrderCompetition']);
 
+
+Route::get('/express-competitions', ['uses' => 'Competitions\ExpressCompetitionsController@show']);
+Route::post('/express-competitions/{column}/{filter}', ['uses' => 'Competitions\ExpressCompetitionsController@setCookieFilter']);
+
+
 Route::group(['prefix' => 'publications'], function () {
     Route::get('', ['as' => 'publications', 'uses' => 'Publication\PublicationsPageController@show']);
     Route::post('/orderBy/{column}/{filter}', ['uses' => 'Publication\FilterPublicationController@setCookieOrder']);
     Route::get('/search/', ['as' => 'search', 'uses' => 'Publication\FilterPublicationController@search']);
 });
-
 Route::get('/publication/{id}', ['as' => 'publication', 'uses' => 'Publication\PublicationsPageController@showPublication']);
 Route::get('/form-publication', ['as' => 'form-publication', 'uses' => 'Publication\PublicationsPageController@showForm']);
 Route::post('/form-publication', ['as' => 'form-publication', 'uses' => 'Publication\PublicationsPageController@savePublication']);

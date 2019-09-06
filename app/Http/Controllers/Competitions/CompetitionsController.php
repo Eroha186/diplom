@@ -23,13 +23,13 @@ class CompetitionsController extends Controller
             switch ($filter) {
                 case 1:
                 case null:
-                    $competitions = $competitionModel->all();
+                    $competitions = $competitionModel->orderBy('id', 'ASC')->paginate(16);
                     break;
                 case 2:
-                    $competitions = $competitionModel->orderBy($column, 'ASC')->get();
+                    $competitions = $competitionModel->orderBy($column, 'ASC')->paginate(16);
                     break;
                 case 3:
-                    $competitions = $competitionModel->orderBy($column, 'DESC')->get();
+                    $competitions = $competitionModel->orderBy($column, 'DESC')->paginate(16);
                     break;
             }
         } else {
@@ -39,10 +39,10 @@ class CompetitionsController extends Controller
                     $competitions = $competitionModel->all();
                     break;
                 case 2:
-                    $competitions = $competitionModel->orderBy(DB::raw('date_end - date_begin'), 'ASC')->get();
+                    $competitions = $competitionModel->orderBy(DB::raw('date_end - date_begin'), 'ASC')->paginate(16);
                     break;
                 case 3:
-                    $competitions = $competitionModel->orderBy(DB::raw('date_end - date_begin'), 'DESC')->get();
+                    $competitions = $competitionModel->orderBy(DB::raw('date_end - date_begin'), 'DESC')->paginate(16);
                     break;
             }
         }
