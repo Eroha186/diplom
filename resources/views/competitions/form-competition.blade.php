@@ -283,7 +283,7 @@
                     <button class="form-publication__btn transparent-btn" id="submit-form-publication">отправить
                         заявку
                     </button>
-                    <a href="{{route('express-competitions')}}" class="form-publication__btn filled-btn ">отменить</a>
+                    <a href="{{route('competitions')}}" class="form-publication__btn filled-btn ">отменить</a>
                 </div>
             </form>
         </div>

@@ -28,7 +28,7 @@
     <div class="container">
         {!!Breadcrumbs::render('competitions')!!}
         <h2 class="section-title">Перечень актуальных конкурсов</h2>
-        <form action="{{route('search-с')}}" method="GET">
+        <form action="{{route('express-competitions-search')}}" method="GET">
             <div class="row">
                 <div class="col-xl-11">
                     <div class="search-wrap">
@@ -45,7 +45,7 @@
             <div class="duration-event">
                 <span class="filter-name filter-name-express {{(isset($filterInfo['column-express']) && $filterInfo['column-express'] == 'title') ? "filter-name_active" : "" }}"
                       data-condition="{{(isset($filterInfo['column-express']) && $filterInfo['column-express'] == 'title') ? $filterInfo['filter-express'] : '1'}}"
-                      data-column="difference-date">имени</span>
+                      data-column="title">имени</span>
                 <span class="arrow-down">&darr;</span>
                 <span class="arrow-up">&uarr;</span>
             </div>
@@ -68,7 +68,7 @@
                             <div class="name">
                                 {{$competition->type->name}}
                             </div>
-                            <a href="/competition/{{$competition->id}}" class="button transparent-btn">учатствовать</a>
+                            <a href="/express-competition-form?id={{$competition->id}}" class="button transparent-btn">учатствовать</a>
                         </div>
                     </div>
                 @endforeach

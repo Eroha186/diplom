@@ -13,6 +13,6 @@ class Type_competition extends Model
     }
 
     public function expressCompetition() {
-        return $this->hasMany('App\Competition', 'type_id');
+        return $this->hasMany('App\ExpressCompetition', 'type_id');
     }
 }

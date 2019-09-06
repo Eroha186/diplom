@@ -42,7 +42,8 @@ Route::post('competition/orderBy/{column}/{filter}', ['uses' => 'Competitions\Fi
 
 Route::get('/express-competitions', ['uses' => 'Competitions\ExpressCompetitionsController@show']);
 Route::post('/express-competitions/{column}/{filter}', ['uses' => 'Competitions\ExpressCompetitionsController@setCookieFilter']);
-
+Route::get('/express-competitions/search', ['uses' => 'Competitions\ExpressCompetitionsController@show', 'as' => 'express-competitions-search']);
+Route::get('/express-competition-form', ['uses' => 'Competitions\ExpressCompetitionFormController@show']);
 
 Route::group(['prefix' => 'publications'], function () {
     Route::get('', ['as' => 'publications', 'uses' => 'Publication\PublicationsPageController@show']);

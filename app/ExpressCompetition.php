@@ -11,6 +11,6 @@ class ExpressCompetition extends Model
 
     public function type()
     {
-        return $this->hasOne('App\Type_competition', 'type_id');
+        return $this->belongsTo('App\Type_competition', 'type_id');
     }
 }

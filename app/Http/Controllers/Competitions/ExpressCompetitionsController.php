@@ -18,19 +18,20 @@ class ExpressCompetitionsController extends Controller
     }
 
     public function show( Request $request) {
-        $filter = $request->cookie('filter-competition');
-        $column = $request->cookie('column-competition');
+        $filter = $request->cookie('filter-express');
+        $column = $request->cookie('column-express');
+        $searchQuery = $request->get('search');
         $competitions = [];
         switch ($filter) {
             case 1:
             case null:
-                $competitions = ExpressCompetition::with('type')->paginate(16);
+                $competitions = ExpressCompetition::where('title', 'LIKE', '%'.$searchQuery.'%')->paginate(16);
                 break;
             case 2:
-                $competitions = ExpressCompetition::orderBy($column, 'ASC')->paginate(16);
+                $competitions = ExpressCompetition::where('title', 'LIKE', '%'.$searchQuery.'%')->orderBy($column, 'ASC')->paginate(16);
                 break;
             case 3:
-                $competitions = ExpressCompetition::orderBy($column, 'DESC')->paginate(16);
+                $competitions = ExpressCompetition::where('title', 'LIKE', '%'.$searchQuery.'%')->orderBy($column, 'DESC')->paginate(16);
                 break;
         }
         $filterInfo = [
@@ -42,4 +43,5 @@ class ExpressCompetitionsController extends Controller
             'filterInfo' => $filterInfo
         ]);
     }
+
 }
