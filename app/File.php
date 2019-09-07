@@ -10,11 +10,18 @@ class File extends Model
 
     public $timestamps = false;
 
-    public function publication() {
+    public function publication()
+    {
         return $this->belongsTo('App\Publication', 'publ_id');
     }
 
-    public function work() {
+    public function work()
+    {
         return $this->belongsTo('App\Work', 'work_id');
+    }
+
+    public function expressWork()
+    {
+        return $this->belongsTo('App\ExpressWork', 'work_id');
     }
 }

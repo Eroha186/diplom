@@ -4,11 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Work extends Model
+class ExpressWork extends Model
 {
-    public $timestamps = false;
-    protected $fillable = ['title', 'user_id', 'annotation', 'nomination_id', 'fc', 'ic', 'oc','age', 'competition_id', 'date_add'];
-
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id');
@@ -21,6 +18,6 @@ class Work extends Model
 
     public function competition()
     {
-        return $this->belongsTo('App\Competition', 'competition_id');
+        return $this->belongsTo('App\ExpressCompetition', 'competition_id');
     }
 }

@@ -49,10 +49,10 @@ class FormCompetitionController extends Controller
                 'oc' => $work['oc'],
                 'nomination_id' => (int) $work['nomination'],
                 'date_add' => date('Y-m-d H:i:s'),
+                'age' => $work['age'],
             ]);
         } else {
             $register = new RegisterController();
-            $work = $formRequest->all();
             $pass = RandomPassword::randomPassword();
             $formRequest['password'] = $pass;
             $formRequest['password_confirmation'] = $pass;
@@ -66,6 +66,7 @@ class FormCompetitionController extends Controller
                 'oc' => $work['oc'],
                 'nomination_id' => (int) $work['nomination'],
                 'date_add' => date('Y-m-d H:i:s'),
+                'age' => $work['age'],
             ]);
         }
         $this->uploadFile($formRequest->file('file'), $newWork->id);

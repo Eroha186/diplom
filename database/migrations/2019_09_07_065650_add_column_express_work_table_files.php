@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnDateAddTableWorks extends Migration
+class AddColumnExpressWorkTableFiles extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddColumnDateAddTableWorks extends Migration
      */
     public function up()
     {
-        Schema::table('works', function (Blueprint $table) {
-            $table->timestamp('date_add')->nullable();
+        Schema::table('files', function (Blueprint $table) {
+            $table->integer('express_work_id')->default(0);
         });
     }
 
@@ -25,8 +25,8 @@ class AddColumnDateAddTableWorks extends Migration
      */
     public function down()
     {
-        Schema::table('works', function (Blueprint $table) {
-            $table->dropColumn('date_add');
+        Schema::table('files', function (Blueprint $table) {
+            $table->dropColumn('express_work_id');
         });
     }
 }
