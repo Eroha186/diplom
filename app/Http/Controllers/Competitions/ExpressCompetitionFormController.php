@@ -37,6 +37,7 @@ class ExpressCompetitionFormController extends Controller
 
     public function saveExpressWork(FormExpressCompetitionRequest $request) {
         $work = $request->all();
+        $placeArray = [1,2,2,3,3,3,4,4,4,4];
         if (Auth::check()) {
             $newWork = ExpressWork::create([
                 'user_id' => Auth::user()->id,
@@ -49,6 +50,7 @@ class ExpressCompetitionFormController extends Controller
                 'nomination_id' => (int) $work['nomination'],
                 'date_add' => date('Y-m-d H:i:s'),
                 'age' => $work['age'],
+                'place' => array_rand($placeArray, 1),
             ]);
         } else {
             $register = new RegisterController();
@@ -66,9 +68,10 @@ class ExpressCompetitionFormController extends Controller
                 'nomination_id' => (int) $work['nomination'],
                 'date_add' => date('Y-m-d H:i:s'),
                 'age' => $work['age'],
+                'place' => array_rand($placeArray, 1),
             ]);
         }
-        $this->uploadFile($formRequest->file('file'), $newWork->id);
+        $this->uploadFile($request->file('file'), $newWork->id);
 
     }
 
