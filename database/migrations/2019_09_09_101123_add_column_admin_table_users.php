@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnExpressWorkTableFiles extends Migration
+class AddColumnAdminTableUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddColumnExpressWorkTableFiles extends Migration
      */
     public function up()
     {
-        Schema::table('files', function (Blueprint $table) {
-            $table->integer('express_work_id')->default(0);
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('admin')->default(0);
         });
     }
 
@@ -25,8 +25,8 @@ class AddColumnExpressWorkTableFiles extends Migration
      */
     public function down()
     {
-        Schema::table('files', function (Blueprint $table) {
-            $table->dropColumn('express_work_id');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('admin');
         });
     }
 }

@@ -44,6 +44,9 @@ class LoginController extends Controller
             $this->guard()->logout();
             return back()->with('error', 'Вам необходимо подтвердить свой аккаунт. Пожалуйста, проверьте свою электронную почту.');
         }
+        if ($user->role == 1) {
+            return redirect()->to('/admin');
+        }
         if ($request->path() == 'login') {
             return redirect()->to('account/personal-data');
         }

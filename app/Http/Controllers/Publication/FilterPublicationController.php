@@ -63,6 +63,7 @@ class FilterPublicationController extends Controller
             case 1:
             case null:
                 $publications = $publicationModel::with($this->field)
+                    ->where('moderation', 1)
                     ->leftJoin('themes_and_publ as tap', 'publications.id', '=', 'tap.publ_id')
                     ->where($whereArray)
                     ->groupBy('id')
@@ -70,6 +71,7 @@ class FilterPublicationController extends Controller
                 break;
             case 2:
                 $publications = $publicationModel::with($this->field)
+                    ->where('moderation', 1)
                     ->leftJoin('themes_and_publ as tap', 'publications.id', '=', 'tap.publ_id')
                     ->where($whereArray)
                     ->orderBy($column, 'ASC')
@@ -78,6 +80,7 @@ class FilterPublicationController extends Controller
                 break;
             case 3:
                 $publications = $publicationModel::with($this->field)
+                    ->where('moderation', 1)
                     ->leftJoin('themes_and_publ as tap', 'publications.id', '=', 'tap.publ_id')
                     ->where($whereArray)
                     ->orderBy($column, 'DESC')

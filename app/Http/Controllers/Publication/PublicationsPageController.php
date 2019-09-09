@@ -38,7 +38,7 @@ class PublicationsPageController extends Controller
         $filter = Cookie::get('filter');
         $column = Cookie::get('column');
         if ($filter == 1 || is_null($filter)) {
-            $publications = $publicationModel::with($this->field)->orderBy('date_add', 'DESC')->paginate(10);
+            $publications = $publicationModel::with($this->field)->where('moderation', 1)->orderBy('date_add', 'DESC')->paginate(10);
         } else {
             $publications = $this->publicationOrderAtBoot($filter, $column, $publicationModel);
         }
@@ -223,7 +223,7 @@ class PublicationsPageController extends Controller
     public function formationSnippetForkNewPublication($publicationModel)
     {
 
-        $publications = $publicationModel::with($this->field)->orderBy('date_add', 'desc')->limit(7)->get();
+        $publications = $publicationModel::with($this->field)->where('moderation', 1)->orderBy('date_add', 'desc')->limit(7)->get();
         foreach ($publications as $publication) {
             $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
             $publication['author']['i'] = mb_substr($publication['author']['i'], 0, 1);
@@ -239,13 +239,13 @@ class PublicationsPageController extends Controller
         $publications = [];
         switch ($filter) {
             case 1:
-                $publications = $publicationModel::with($this->field)->paginate(10);
+                $publications = $publicationModel::with($this->field)->where('moderation', 1)->paginate(10);
                 break;
             case 2:
-                $publications = $publicationModel::with($this->field)->orderBy($column, 'DESC')->paginate(10);
+                $publications = $publicationModel::with($this->field)->where('moderation', 1)->orderBy($column, 'DESC')->paginate(10);
                 break;
             case 3:
-                $publications = $publicationModel::with($this->field)->orderBy($column, 'ASC')->paginate(10);
+                $publications = $publicationModel::with($this->field)->where('moderation', 1)->orderBy($column, 'ASC')->paginate(10);
                 break;
         }
         return $publications;

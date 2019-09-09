@@ -71,37 +71,6 @@ class ExpressCompetitionFormController extends Controller
                 'place' => array_rand($placeArray, 1),
             ]);
         }
-        $this->uploadFile($request->file('file'), $newWork->id);
-
     }
 
-    public function uploadFile($file, $work_id)
-    {
-        $type = $file->getMimeType();
-        switch ($type) {
-            case ('application/pdf'):
-                $type = 'pdf';
-                break;
-            case ('image/jpeg'):
-            case ('image/png'):
-                $type = 'image';
-                break;
-            case ('application/vnd.openxmlformats-officedocument.wordprocessingml.document'):
-            case ('application/msword'):
-                $type = 'doc';
-                break;
-            case ('application/vnd.openxmlformats-officedocument.presentationml.presentation'):
-            case ('application/vnd.ms-powerpoint'):
-                $type = 'ppt';
-                break;
-        }
-        $path = $file->store('upload', 'public');
-        File::create([
-            'publ_id' => 0,
-            'url' => $path,
-            'type' => $type,
-            'work_id' => 0,
-            'express_work_id' => $work_id
-        ]);
-    }
 }
