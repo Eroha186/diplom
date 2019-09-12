@@ -9,9 +9,19 @@
     @include('styles')
 </head>
 <body>
-<a href="{{route('a-publication')}}">Публикации</a>
-<a href="">Конкурсы</a>
-<a href="">Экспресс-конкурсы</a>
+<nav class="admin-nav">
+    <div class="admin-profile">
+        <img src="{{asset('images/avatar.svg')}}" alt="Аватор">
+        <div class="page-name">
+            <span>{{$user->f}}</span>
+            <span>{{$user->i}}</span>
+        </div>
+    </div>
+    <a href="{{route('home')}}">Вернуться на сайт</a>
+    <a class="{{request()->is('admin/publication') ? "active" : ""}}" href="{{route('a-publication')}}">Публикации</a>
+    <a href="">Конкурсы</a>
+    <a href="">Экспресс-конкурсы</a>
+</nav>
 
 @include('script')
 </body>

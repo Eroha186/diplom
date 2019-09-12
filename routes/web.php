@@ -71,7 +71,6 @@ Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function () {
-    Route::get('/', ['uses' => 'Admin\PublicationController@showAdmin']);
     Route::get('publication', ['as' => 'a-publication', 'uses' => 'Admin\PublicationController@show']);
 });
 

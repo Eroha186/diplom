@@ -2,7 +2,7 @@
 	<div class="account__nav">
 		<div class="nav-block">
 			<div class="profile">
-				<img src="{{asset('images/avatar.svg')}}" alt="Аватар">
+				<img src="{{asset('images/avatar.svg')}}" alt="Аватор">
 				<div class="page-name">
 					<span>{{$data['i']}}</span>
 					<span>{{$data['o']}}</span>
