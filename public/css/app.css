@@ -2424,3 +2424,14 @@ input[type="radio"]:checked + .radio-button__title > span::after {
   text-decoration: underline;
 }
 
+.wrap-admin {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+main {
+  width: 100%;
+  padding: 0px 20px 0px 20px;
+}
+

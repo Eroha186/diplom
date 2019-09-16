@@ -97,6 +97,13 @@
         </div>
     </div>
 </section>
+@if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->admin == 1)
+<div class="container">
+    <form class="moderation" action="">
+
+    </form>
+</div>
+@endif
 @include('script')
 </body>
 </html>

@@ -1,27 +1,31 @@
 <!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Панель администратора</title>
     @include('styles')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
-<nav class="admin-nav">
-    <div class="admin-profile">
-        <img src="{{asset('images/avatar.svg')}}" alt="Аватор">
-        <div class="page-name">
-            <span>{{$user->f}}</span>
-            <span>{{$user->i}}</span>
+<div class="wrap-admin">
+    <nav class="admin-nav">
+        <div class="admin-profile">
+            <img src="{{asset('images/avatar.svg')}}" alt="Аватор">
+            <div class="page-name">
+                <span>{{$user->f}}</span>
+                <span>{{$user->i}}</span>
+            </div>
         </div>
-    </div>
-    <a href="{{route('home')}}">Вернуться на сайт</a>
-    <a class="{{request()->is('admin/publication') ? "active" : ""}}" href="{{route('a-publication')}}">Публикации</a>
-    <a href="">Конкурсы</a>
-    <a href="">Экспресс-конкурсы</a>
-</nav>
+        <a href="{{route('home')}}">Вернуться на сайт</a>
+        <a class="{{request()->is('admin/publication') ? "active" : ""}}"
+           href="{{route('a-publication')}}">Публикации</a>
+        <a href="">Конкурсы</a>
+        <a href="">Экспресс-конкурсы</a>
+    </nav>
+
+    <main style="width: 100%;">
+        @yield('content')
+    </main>
+</div>
 
 @include('script')
 </body>
