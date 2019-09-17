@@ -73,7 +73,6 @@ class CompetitionsController extends Controller
         $filter = $request->cookie('filter-competition');
         $column = $request->cookie('column-competition');
         $valueFilterNomination = $request->cookie('filter-nomination');
-        dump($valueFilterNomination);
         $filterInfo = [
             'column-competition' => $column,
             'filter-competition' => $filter,

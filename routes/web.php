@@ -38,7 +38,9 @@ Route::post('/form-competition', ['as' => 'form-competition', 'uses' => 'Competi
 Route::post('/competition-filter/{valueFilter}', ['uses' => 'Competitions\FilterCompetitionController@setCookieFilterNomination']);
 Route::get('/competition/{id}/nomination/', ['as' => 'search-work' ,'uses' => 'Competitions\FilterCompetitionController@searchWork']);
 Route::post('competition/orderBy/{column}/{filter}', ['uses' => 'Competitions\FilterCompetitionController@setCookieOrderCompetition']);
-//Route::get('/competition/{id}/work/{work-id}', ['as' => 'competition-work', 'uses' => '']);
+Route::get('/competition/{id}/work/{work-id}', function() {
+    return view('competitions.work');
+})->name('competition-work');
 
 Route::get('/express-competitions', ['uses' => 'Competitions\ExpressCompetitionsController@show']);
 Route::post('/express-competitions/{column}/{filter}', ['uses' => 'Competitions\ExpressCompetitionsController@setCookieFilter']);

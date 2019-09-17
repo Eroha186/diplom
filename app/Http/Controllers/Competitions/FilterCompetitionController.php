@@ -142,7 +142,6 @@ class FilterCompetitionController extends Controller
         $nominations = Competition_Nomination::where('competition_id', $id)
             ->leftJoin('nominations', 'nominations.id', '=', 'nomination_id')
             ->get();
-        dump($nominations);
         $works->count = count(Work::where('competition_id', $id)->get());
         return view('competitions/competition', [
             'id' => $id,

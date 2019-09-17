@@ -96,7 +96,7 @@
             @endforeach
         </div>
     </div>
-    @if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->admin == 1 && \Illuminate\Support\Facades\Input::get('admin') == 'ok')
+    @if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->admin == 1 && $publication->moderation == 0)
         <div class="container">
             <div style="margin-top: 25px;" class="confirmation row">
                 <div class="col-md-4">

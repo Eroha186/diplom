@@ -11,9 +11,9 @@ class SeedWork extends Seeder
      */
     public function run()
     {
-        for ($i = 30; $i < 130; $i++) {
+        for ($i = 0; $i < 30; $i++) {
             DB::table('works')->insert([
-                'user_id' => 3,
+                'user_id' => 1,
                 'competition_id' => 1,
                 'title' => 'С 8 марта',
                 'annotation' => 'описание',

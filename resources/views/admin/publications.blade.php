@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-xl-10">
                         <div class="publication-card__title">
-                            <a href="/publication/{{$publication->id}}?admin=ok">{{$publication->title}}</a>
+                            <a href="/publication/{{$publication->id}}">{{$publication->title}}</a>
                         </div>
                     </div>
                 </div>

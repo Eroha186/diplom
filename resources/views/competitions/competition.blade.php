@@ -89,7 +89,7 @@
                             <img src="{{asset("/images/ppt.svg")}}" alt="иконка презинтации">
                         @endif
                     </div>
-                    <a href="" class="work__title">
+                    <a href="{{route('competition-work', ['id' => $competition->id, 'work-id' => $work->id])}}" class="work__title">
                         {{$work->title}}
                     </a>
                     <div class="work__name">
