@@ -96,14 +96,22 @@
             @endforeach
         </div>
     </div>
+    @if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->admin == 1 && \Illuminate\Support\Facades\Input::get('admin') == 'ok')
+        <div class="container">
+            <div style="margin-top: 25px;" class="confirmation row">
+                <div class="col-md-4">
+                    <a href="{{route('a-confirmation', ['id' => $publication->id, 'result' => '1', 'publication'])}}"
+                       class="btn green filled-btn">Подтвержить</a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{route('a-confirmation', ['id' => $publication->id, 'result' => '0', 'publication'])}}"
+                       class="btn orange filled-btn">Отклонить</a>
+                </div>
+            </div>
+        </div>
+    @endif
 </section>
-@if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->admin == 1)
-<div class="container">
-    <form class="moderation" action="">
 
-    </form>
-</div>
-@endif
 @include('script')
 </body>
 </html>

@@ -89,9 +89,9 @@
                             <img src="{{asset("/images/ppt.svg")}}" alt="иконка презинтации">
                         @endif
                     </div>
-                    <div class="work__title">
+                    <a href="" class="work__title">
                         {{$work->title}}
-                    </div>
+                    </a>
                     <div class="work__name">
                         {{$work->ic}} {{$work->fc}}
                     </div>

@@ -10873,7 +10873,6 @@ $(function () {
     $('.filter-name-competition').on('click', function () {
         var column = $(this).attr('data-column');
         var condition = setOrder($(this));
-        console.log('ok');
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -33,7 +33,13 @@
                             {{$publication->author->f}} {{$publication->author->i}}. {{$publication->author->i}}.
                         </td>
                         <td class="status ta-center">
-                            {{$publication->moderation ? "Опубликовано" : "Модерация"}}
+                            @if($publication->moderation == 0)
+                                Модерация
+                            @elseif($publication->moderation == 2)
+                                Опубликовано
+                            @else
+                                Отклонено
+                            @endif
                         </td>
                         <td class="certificate ta-center"><a href="#" class="button download-button">Скачать</a></td>
                         <td class="participation ta-center"><a href="#"

@@ -164,7 +164,6 @@ $(function () {
     $('.filter-name-competition').on('click', function () {
         let column = $(this).attr('data-column');
         let condition = setOrder($(this));
-        console.log('ok');
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

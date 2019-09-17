@@ -38,7 +38,7 @@ Route::post('/form-competition', ['as' => 'form-competition', 'uses' => 'Competi
 Route::post('/competition-filter/{valueFilter}', ['uses' => 'Competitions\FilterCompetitionController@setCookieFilterNomination']);
 Route::get('/competition/{id}/nomination/', ['as' => 'search-work' ,'uses' => 'Competitions\FilterCompetitionController@searchWork']);
 Route::post('competition/orderBy/{column}/{filter}', ['uses' => 'Competitions\FilterCompetitionController@setCookieOrderCompetition']);
-
+//Route::get('/competition/{id}/work/{work-id}', ['as' => 'competition-work', 'uses' => '']);
 
 Route::get('/express-competitions', ['uses' => 'Competitions\ExpressCompetitionsController@show']);
 Route::post('/express-competitions/{column}/{filter}', ['uses' => 'Competitions\ExpressCompetitionsController@setCookieFilter']);
@@ -72,6 +72,8 @@ Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function () {
     Route::get('publication', ['as' => 'a-publication', 'uses' => 'Admin\PublicationController@show']);
+
+    Route::get('confirmation/{id}/{result}/{page}', ['as' => 'a-confirmation', 'uses' => 'Admin\ConfirmationController@confirmation']);
 });
 
 

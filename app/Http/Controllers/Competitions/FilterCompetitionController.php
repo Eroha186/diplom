@@ -109,17 +109,22 @@ class FilterCompetitionController extends Controller
         ];
         $works = [];
         $where = [];
+
         $field = [
             'user',
             'file'
         ];
         if ($nominationFilter == 0) {
-            $where = ['competition_id', $id];
+            $where = [
+                ['competition_id', $id],
+            ];
+
         } else {
             $where = [
                 ['competition_id', $id],
                 ['nomination_id', $nominationFilter]
             ];
+
         }
         switch ($filter) {
             case null:
@@ -135,8 +140,9 @@ class FilterCompetitionController extends Controller
         }
         $competition = Competition::where('id', $id)->first();
         $nominations = Competition_Nomination::where('competition_id', $id)
-            ->leftJoin('nominations as n', 'n.id', '=', 'nomination_id')
+            ->leftJoin('nominations', 'nominations.id', '=', 'nomination_id')
             ->get();
+        dump($nominations);
         $works->count = count(Work::where('competition_id', $id)->get());
         return view('competitions/competition', [
             'id' => $id,

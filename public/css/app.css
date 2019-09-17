@@ -1453,8 +1453,7 @@ select {
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 30px;
-  margin-right: 50px;
-  width: 24%;
+  width: 25%;
 }
 
 .work__img {
@@ -2366,6 +2365,25 @@ input[type="radio"]:checked + .radio-button__title > span::after {
 .new-publication .new-publication__snippet-descr .author span {
   display: block;
   font-size: 12px;
+}
+
+.confirmation .btn {
+  width: 100%;
+  padding: 15px 0px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.confirmation .green {
+  border: 1px solid #86cd5b;
+  background: #86cd5b;
+}
+
+.confirmation .orange {
+  border: 1px solid #ff8a11;
+  background: #ff8a11;
 }
 
 .admin-nav {
