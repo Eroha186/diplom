@@ -37,4 +37,49 @@
 
 main
   width: 100%
-  padding: 0px 20px 0px 20px
+
+.publ-tab
+  position: relation
+  border: 1px solid $border_color
+  border-top: none
+  padding: 10px 15px
+  margin-right: 7px
+  background: $white
+  cursor: pointer
+  z-index: 1
+  &-content
+    position: relation
+    padding: 0px 20px 0px 20px
+    border-top: 1px solid $border_color
+    margin-top: -1px
+    z-index: 0
+  &_active
+    border-bottom: none  
+.wrapper-list
+  margin-right: 25px
+  width: 300px
+  margin-top: 15px
+  .list-header 
+    text-align: center
+    border: 1px solid black 
+    padding: 10px 15px    
+    font-size: 18px 
+    font-weight: bold
+  .list-body
+    max-height: 300px
+    border: 1px solid black 
+    border-top: none
+    overflow-y: auto
+    &__item
+      border-bottom: 1px solid black
+      padding: 5px 10px
+      cursor: pointer
+      &:last-child
+        border: none
+      &:hover 
+        background: #c2dfff  
+.wrapper-form 
+  margin-top: 15px
+  .add-form 
+    display:flex
+    flex-direction: column

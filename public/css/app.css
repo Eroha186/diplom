@@ -2450,6 +2450,74 @@ input[type="radio"]:checked + .radio-button__title > span::after {
 
 main {
   width: 100%;
+}
+
+.publ-tab {
+  position: relation;
+  border: 1px solid #d1cece;
+  border-top: none;
+  padding: 10px 15px;
+  margin-right: 7px;
+  background: #fff;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.publ-tab-content {
+  position: relation;
   padding: 0px 20px 0px 20px;
+  border-top: 1px solid #d1cece;
+  margin-top: -1px;
+  z-index: 0;
+}
+
+.publ-tab_active {
+  border-bottom: none;
+}
+
+.wrapper-list {
+  margin-right: 25px;
+  width: 300px;
+  margin-top: 15px;
+}
+
+.wrapper-list .list-header {
+  text-align: center;
+  border: 1px solid black;
+  padding: 10px 15px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.wrapper-list .list-body {
+  max-height: 300px;
+  border: 1px solid black;
+  border-top: none;
+  overflow-y: auto;
+}
+
+.wrapper-list .list-body__item {
+  border-bottom: 1px solid black;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.wrapper-list .list-body__item:last-child {
+  border: none;
+}
+
+.wrapper-list .list-body__item:hover {
+  background: #c2dfff;
+}
+
+.wrapper-form {
+  margin-top: 15px;
+}
+
+.wrapper-form .add-form {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 

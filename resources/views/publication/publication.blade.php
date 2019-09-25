@@ -101,7 +101,7 @@
             <div style="margin-top: 25px;" class="confirmation row">
                 <div class="col-md-4">
                     <a href="{{route('a-confirmation', ['id' => $publication->id, 'result' => '1', 'publication'])}}"
-                       class="btn green filled-btn">Подтвержить</a>
+                       class="btn green filled-btn">Подтвердить</a>
                 </div>
                 <div class="col-md-4">
                     <a href="{{route('a-confirmation', ['id' => $publication->id, 'result' => '0', 'publication'])}}"

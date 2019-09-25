@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Publication;
 use App\User;
+use App\Theme;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,7 @@ class PublicationController extends Controller
     public function show(Request $request)
     {
         $user = User::where('id', Auth::user()->id)->first();
+        $themes = Theme::all();
         $publications = Publication::with('author')->where('moderation', 0)->paginate(5);
         foreach ($publications as $publication) {
             $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
@@ -29,7 +31,8 @@ class PublicationController extends Controller
         }
         return view('admin.publications', [
             'user' => $user,
-            'publications' => $publications
+            'publications' => $publications,
+            'themes' => $themes,
         ]);
     }
 
