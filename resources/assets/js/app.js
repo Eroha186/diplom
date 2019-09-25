@@ -36,17 +36,17 @@ $(function () {
             theme: 'snow'
         });
         let value = $('input[name=text]').attr('data-value');
-        if(value) {
+        if (value) {
             quill.setContents(JSON.parse(value));
         }
         let radioButton = $('input[type=radio]');
-        radioButton.each(function() {
-            if(this.getAttribute('data-check')) {
+        radioButton.each(function () {
+            if (this.getAttribute('data-check')) {
                 this.parentNode.classList.toggle('radio-button_active');
-                if(this.getAttribute('data-check')) {
+                if (this.getAttribute('data-check')) {
                     this.setAttribute('checked', 'checked');
                 }
-                if(this.value != 1){
+                if (this.value != 1) {
                     $('.payment-block').removeClass('payment-block_active')
                 }
             }
@@ -330,5 +330,89 @@ $(function () {
         });
     });
 
+    $('.adding').on('click', function () {
+        $('.list-body__item').removeClass('list-body__item_active');
+        $('.edition-form').removeClass('form_active');
+        $('.add-form').addClass('form_active');
+    })
+    /*
+        РЕАЛИЗОВАТЬ
+        Удаление некольких объектов
+        Если выделенно больше одного объекта, то их можно удалить куче
+    */
+    $('.list-body').on('click', '.list-body__item', function () {
+        $('.list-body__item').not(this).removeClass('list-body__item_active');
+        $(this).addClass('list-body__item_active');
+        $('.add-form').removeClass('form_active');
+        $('.edition-form').addClass('form_active');
+        let value = $(this).text();
+        let data_id = $(this).attr('data-id');
+        $('#theme').val(value);
+        $('#theme').attr('data-id', data_id);
+    })
 
+    $('button.add').on('click', function (e) {
+        e.preventDefault();
+        let val = $('#themes').val();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {data: val},
+            url: 'publication/change-themes/add',
+            type: 'POST',
+            success: function (e) {
+                resetList(e);
+            }
+        })
+    })
+    $('button.del').on('click', function (e) {
+        e.preventDefault();
+        let data_id = $('#theme').attr('data-id');
+        let val = $('#theme').val();
+        if (confirm('Вы желаете удалить запись?')) {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    id: data_id,
+                },
+                url: 'publication/change-themes/del',
+                type: 'POST',
+                success: function (e) {
+                    resetList(e);
+                }
+            })
+        }
+    })
+    $('button.editing').on('click', function (e) {
+        e.preventDefault();
+        let data_id = $('#theme').attr('data-id');
+        let val = $('#theme').val();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+                id: data_id,
+                val: val
+            },
+            url: 'publication/change-themes/change',
+            type: 'POST',
+            success: function (e) {
+                resetList(e);
+            }
+        })
+    })
+
+
+    function resetList(e) {
+        let layout = '';
+        e.forEach((res) => {
+            layout += '<li class="list-body__item" data-id="' + res.id + '">' + res.name + '</li>'
+        });
+        $('.list-body').html('');
+        $('.list-body').html(layout);
+    }
 });

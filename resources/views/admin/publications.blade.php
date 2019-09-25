@@ -21,7 +21,8 @@
                         <div class="row">
                             <div class="col-xl-10">
                                 <div class="publication-card__author">Автор
-                                    {{$publication->author->f}} {{$publication->author->i}}. {{$publication->author->i}}.,
+                                    {{$publication->author->f}} {{$publication->author->i}}. {{$publication->author->i}}
+                                    .,
                                     {{$publication->author->stuff}},
                                     {{$publication->author->town}},
                                     {{$publication->author->job}}
@@ -55,9 +56,9 @@
                     </div>
 
                 @endforeach
-                    <div class="pagination">
-                        {{ $publications->links('paginate') }}
-                    </div>
+                <div class="pagination">
+                    {{ $publications->links('paginate') }}
+                </div>
             </div>
         </div>
         <div class="tab-content publ-tab-content" data-tab="2">
@@ -68,19 +69,26 @@
                     </div>
                     <ul class="list-body">
                         @foreach($themes as $theme)
-                            <li class="list-body__item">{{$theme->name}}</li>
-                        @endforeach  
-                        <li class="list-body__item ta-center">+</li>
+                            <li class="list-body__item" data-id="{{$theme->id}}">{{$theme->name}}</li>
+                        @endforeach
                     </ul>
+                    <div class="ta-center adding">+</div>
                 </div>
                 <div class="wrapper-form">
                     <form action="" class="add-form">
-                        <textarea name="add" cols="30" rows="7">Введите темы разделяя их переносом строки
-                        </textarea>
+                        <textarea name="theme" cols="30" rows="7" id="themes"
+                                  placeholder="Введите темы разделяя их переносом строки..."></textarea>
                         <button class="add">Добавить</button>
+                    </form>
+                    <form action="" class="edition-form">
+                        <input type="text" name="theme" id="theme">
+                        <div class="wrap-button">
+                            <button class="del">Удалить</button>
+                            <button class="editing">Редактировать</button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
 @endsection

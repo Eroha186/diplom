@@ -70,6 +70,7 @@ main
     border: 1px solid black 
     border-top: none
     overflow-y: auto
+    margin-bottom: 0
     &__item
       border-bottom: 1px solid black
       padding: 5px 10px
@@ -77,9 +78,33 @@ main
       &:last-child
         border: none
       &:hover 
-        background: #c2dfff  
+        background: #c2dfff
+      &_active
+        background: #c2dfff
+.adding
+  cursor: pointer
+  max-height: 300px
+  border: 1px solid black
+  border-top: none
+  &:hover
+    background: #c2dfff
 .wrapper-form 
   margin-top: 15px
   .add-form 
-    display:flex
+    display: none
     flex-direction: column
+    textarea
+      margin-bottom: 5px
+  .edition-form
+    display: none
+    width: 259px
+    flex-direction: column
+    input
+      margin-bottom: 5px
+      width: 100%
+    .wrap-button
+      width: 100%
+      button
+        width: 49%
+  .form_active
+    display: flex

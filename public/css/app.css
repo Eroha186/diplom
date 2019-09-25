@@ -2494,6 +2494,7 @@ main {
   border: 1px solid black;
   border-top: none;
   overflow-y: auto;
+  margin-bottom: 0;
 }
 
 .wrapper-list .list-body__item {
@@ -2510,14 +2511,62 @@ main {
   background: #c2dfff;
 }
 
+.wrapper-list .list-body__item_active {
+  background: #c2dfff;
+}
+
+.adding {
+  cursor: pointer;
+  max-height: 300px;
+  border: 1px solid black;
+  border-top: none;
+}
+
+.adding:hover {
+  background: #c2dfff;
+}
+
 .wrapper-form {
   margin-top: 15px;
 }
 
 .wrapper-form .add-form {
+  display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.wrapper-form .add-form textarea {
+  margin-bottom: 5px;
+}
+
+.wrapper-form .edition-form {
+  display: none;
+  width: 259px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.wrapper-form .edition-form input {
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.wrapper-form .edition-form .wrap-button {
+  width: 100%;
+}
+
+.wrapper-form .edition-form .wrap-button button {
+  width: 49%;
+}
+
+.wrapper-form .form_active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
