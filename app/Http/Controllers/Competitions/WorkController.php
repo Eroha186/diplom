@@ -7,7 +7,8 @@ use App\Http\Controllers\Controller;
 
 class WorkController extends Controller
 {
-    public function show() {
+    public function show($id, $workId) {
+        
         return view('competitions.work');
     }
 }

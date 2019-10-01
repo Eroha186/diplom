@@ -11,7 +11,24 @@
 </head>
 <body>
 @include('header_footer/header')
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="work__name">
+                {{$work->ic}} {{$work->fc}}
+            </div>
+            <div class="work__teacher">
+                Куратор: {{$work->user->f}} {{$work->user->i}} {{$work->user->o}}
+            </div>
+            <div class="work__location">
+                {{$work->user->stuff}}, г.{{$work->user->town}}
+            </div>
+        </div>
+        <div class="col-md-7">
 
+        </div>
+    </div>
+</div>
 @include('script')
 </body>
 </html>

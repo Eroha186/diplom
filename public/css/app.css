@@ -1472,6 +1472,11 @@ select {
   font-size: 18px;
   font-weight: bold;
   color: #313131;
+  cursor: pointer;
+}
+
+.work__title:hover {
+  color: #313131;
 }
 
 .work__name {
