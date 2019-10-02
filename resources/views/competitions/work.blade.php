@@ -25,9 +25,33 @@
             </div>
         </div>
         <div class="col-md-7">
-
+            <div class="work__img">
+                @if($work->file->type == 'image')
+                    <img src="{{Storage::url($work->file->url)}}" alt="картника">
+                @endif
+                @if($work->file->type == 'doc')
+                    <img src="{{asset("/images/doc.svg")}}" alt="иконка документа">
+                @endif
+                @if($work->file->type == 'ppt')
+                    <img src="{{asset("/images/ppt.svg")}}" alt="иконка презинтации">
+                @endif
+            </div>
         </div>
     </div>
+    @if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->admin == 1 && $publication->moderation == 0)
+        <div class="container">
+            <div style="margin-top: 25px;" class="confirmation row">
+                <div class="col-md-4">
+                    <a href="{{route('a-confirmation', ['id' => $publication->id, 'result' => '1', 'publication'])}}"
+                       class="btn green filled-btn">Подтвердить</a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{route('a-confirmation', ['id' => $publication->id, 'result' => '0', 'publication'])}}"
+                       class="btn orange filled-btn">Отклонить</a>
+                </div>
+            </div>
+        </div>
+    @endif
 </div>
 @include('script')
 </body>
