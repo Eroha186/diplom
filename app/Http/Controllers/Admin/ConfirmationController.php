@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Publication;
+use App\Work;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -20,15 +21,23 @@ class ConfirmationController extends Controller
             Publication::where('id', $id)->update([
                'moderation' => 2,
             ]);
+            return redirect(route('a-publication'));
         } elseif ($result == 0 && $page == 'publication') {
             Publication::where('id', $id)->update([
                 'moderation' => 1,
             ]);
-        }
-        if($page == 'publication') {
             return redirect(route('a-publication'));
-        } elseif($page == 'competition') {
-            return redirect(route('a-competition'));
+        }
+        if($result == 1 && $page == 'competition') {
+            Work::where('id', $id)->update([
+                'moderation' => 2,
+            ]);
+            return redirect(route('a-publication'));
+        } elseif ($result == 0 && $page == 'competition') {
+            Work::where('id', $id)->update([
+                'moderation' => 1,
+            ]);
+            return redirect(route('a-publication'));
         }
     }
 }

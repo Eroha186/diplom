@@ -74,6 +74,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
     Route::get('publication', ['as' => 'a-publication', 'uses' => 'Admin\PublicationController@show']);
     Route::post('publication/change-themes/{mode}', ['as' => 'change-themes', 'uses'=>'Admin\PublicationController@changeThemes']);
     Route::get('confirmation/{id}/{result}/{page}', ['as' => 'a-confirmation', 'uses' => 'Admin\ConfirmationController@confirmation']);
+    Route::get('competition', ['as' => 'a-competition', 'uses' => 'Admin\CompetitionController@show']);
 });
 
 

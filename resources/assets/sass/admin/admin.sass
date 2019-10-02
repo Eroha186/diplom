@@ -39,7 +39,7 @@ main
   width: 100%
 
 .publ-tab
-  position: relation
+  position: relative
   border: 1px solid $border_color
   border-top: none
   padding: 10px 15px
@@ -48,7 +48,7 @@ main
   cursor: pointer
   z-index: 1
   &-content
-    position: relation
+    position: relative
     padding: 0px 20px 0px 20px
     border-top: 1px solid $border_color
     margin-top: -1px
@@ -108,3 +108,34 @@ main
         width: 49%
   .form_active
     display: flex
+
+.competition-tab
+  position: relative
+  border: 1px solid $border_color
+  border-top: none
+  padding: 10px 15px
+  margin-right: 7px
+  background: $white
+  cursor: pointer
+  z-index: 1
+  &-content
+    position: relative
+    padding: 0px 20px 0px 20px
+    border-top: 1px solid $border_color
+    margin-top: -1px
+    z-index: 0
+  &_active
+    border-bottom: none
+.create-competition
+  width: 25%
+#createCover
+  border: none
+#createCover
+  padding-left: 0
+#createTypeCompetition
+  min-height: 36px
+  width: 100%
+  padding: 5px 10px
+  background: #fcfcfc
+  border: 1px solid $border_color
+  border-radius: 4px

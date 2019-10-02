@@ -38,15 +38,15 @@
             </div>
         </div>
     </div>
-    @if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->admin == 1 && $publication->moderation == 0)
+    @if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->admin == 1 && $work->moderation == 0)
         <div class="container">
             <div style="margin-top: 25px;" class="confirmation row">
                 <div class="col-md-4">
-                    <a href="{{route('a-confirmation', ['id' => $publication->id, 'result' => '1', 'publication'])}}"
+                    <a href="{{route('a-confirmation', ['id' => $work->id, 'result' => '1', 'competition'])}}"
                        class="btn green filled-btn">Подтвердить</a>
                 </div>
                 <div class="col-md-4">
-                    <a href="{{route('a-confirmation', ['id' => $publication->id, 'result' => '0', 'publication'])}}"
+                    <a href="{{route('a-confirmation', ['id' => $work->id, 'result' => '0', 'competition'])}}"
                        class="btn orange filled-btn">Отклонить</a>
                 </div>
             </div>

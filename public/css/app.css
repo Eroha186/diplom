@@ -2458,7 +2458,7 @@ main {
 }
 
 .publ-tab {
-  position: relation;
+  position: relative;
   border: 1px solid #d1cece;
   border-top: none;
   padding: 10px 15px;
@@ -2469,7 +2469,7 @@ main {
 }
 
 .publ-tab-content {
-  position: relation;
+  position: relative;
   padding: 0px 20px 0px 20px;
   border-top: 1px solid #d1cece;
   margin-top: -1px;
@@ -2573,5 +2573,49 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.competition-tab {
+  position: relative;
+  border: 1px solid #d1cece;
+  border-top: none;
+  padding: 10px 15px;
+  margin-right: 7px;
+  background: #fff;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.competition-tab-content {
+  position: relative;
+  padding: 0px 20px 0px 20px;
+  border-top: 1px solid #d1cece;
+  margin-top: -1px;
+  z-index: 0;
+}
+
+.competition-tab_active {
+  border-bottom: none;
+}
+
+.create-competition {
+  width: 25%;
+}
+
+#createCover {
+  border: none;
+}
+
+#createCover {
+  padding-left: 0;
+}
+
+#createTypeCompetition {
+  min-height: 36px;
+  width: 100%;
+  padding: 5px 10px;
+  background: #fcfcfc;
+  border: 1px solid #d1cece;
+  border-radius: 4px;
 }
 
