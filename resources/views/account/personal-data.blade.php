@@ -22,7 +22,7 @@
             </div>
         @endif
 
-        <form action="{{route('personal-data')}}" method="POST" class="personal-data__form">
+        <form action="{{route('personal-data')}}"  method="POST" class="personal-data__form">
             {{ csrf_field() }}
             <div class="fio">
                 <div class="fio-block">

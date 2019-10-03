@@ -1282,6 +1282,11 @@ select {
   color: #fff;
 }
 
+.competition__img img {
+  width: 288px;
+  height: 249px;
+}
+
 .cake {
   display: -webkit-box;
   display: -ms-flexbox;

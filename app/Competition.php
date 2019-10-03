@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Competition extends Model
 {
     public $timestamps = false;
-    protected $fillable = ['name', 'annotation', 'cover'];
+    protected $fillable = ['title', 'annotation', 'cover', 'type_id', 'date_begin', 'date_end'];
 
     public function nomination()
     {
