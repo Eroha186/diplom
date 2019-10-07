@@ -73,8 +73,10 @@ Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function () {
     Route::get('publication', ['as' => 'a-publication', 'uses' => 'Admin\PublicationController@show']);
     Route::post('publication/change-themes/{mode}', ['as' => 'change-themes', 'uses'=>'Admin\PublicationController@changeThemes']);
-    Route::get('confirmation/{id}/{result}/{page}', ['as' => 'a-confirmation', 'uses' => 'Admin\ConfirmationController@confirmation']);
-    Route::get('competition', ['as' => 'a-competition', 'uses' => 'Admin\CompetitionController@show']);
+    Route::get('confirmation/{id}/{result}/{page}/{?idCompetition}', ['as' => 'a-confirmation', 'uses' => 'Admin\ConfirmationController@confirmation']);
+    Route::get('competition', ['as' => 'a-competitions', 'uses' => 'Admin\CompetitionController@show']);
+    Route::get('competition/{id}', ['as' => 'a-competition', 'uses' => 'Admin\CompetitionController@showCompetition']);
+    Route::get('competition/{id}/work/{workId}', ['as' => 'a-work', 'uses' => 'Admin\CompetitionController@show']);
     Route::post('create-competition', ['as' => 'create-competition', 'uses' => 'Admin\CompetitionController@createCompetition']);
 });
 

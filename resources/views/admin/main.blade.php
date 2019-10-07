@@ -19,7 +19,7 @@
         <a class="{{request()->is('admin/publication') ? "active" : ""}}"
            href="{{route('a-publication')}}">Публикации</a>
         <a class="{{request()->is('admin/competition') ? "active" : ""}}"
-            href="{{route('a-competition')}}">Конкурсы</a>
+            href="{{route('a-competitions')}}">Конкурсы</a>
         <a href="">Экспресс-конкурсы</a>
     </nav>
 

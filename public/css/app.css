@@ -2624,3 +2624,20 @@ main {
   border-radius: 4px;
 }
 
+.a-work {
+  padding: 25px;
+}
+
+.wrap-a-com-work {
+  padding: 25px;
+}
+
+.wrap-a-com-work a {
+  cursor: pointer;
+}
+
+.wrap-a-com-work a:hover {
+  color: #313131;
+  text-decoration: underline;
+}
+

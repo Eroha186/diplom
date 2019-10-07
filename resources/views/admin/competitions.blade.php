@@ -9,25 +9,27 @@
         </ul>
         <div class="tab-content content_active competition-tab-content" data-tab="1">
             <div class="a-work">
-                <div class="a-work__img">
-
-                </div>
-                <div class="a-work-info">
-                    <div class="a-work__name">
-
-                    </div>
-                    <div class="a-work__participant">
-
-                    </div>
-                    <div class="a-work__teacher">
-
-                    </div>
-                    <div class="a-work__location">
-
-                    </div>
-                    <div class="a-work__descr">
-
-                    </div>
+                <div class="competition-wrap">
+                    @foreach ($competitions as $competition)
+                        <div class="competition">
+                            <div class="competition__img">
+                                <img src="{{Storage::url($competition->cover)}}" alt="">
+                            </div>
+                            <div class="competition__descr ta-center">
+                                <div class="title">
+                                    {{$competition->title}}
+                                </div>
+                                <div class="name">
+                                    {{$competition->type->name}}
+                                </div>
+                                <div class="date-time">
+                                    С {{date("d.m.Y", strtotime($competition->date_begin))}}
+                                    <span>по {{date("d.m.Y", strtotime($competition->date_end))}}</span>
+                                </div>
+                                <a href="{{route('a-competition', ['id' => $competition->id])}}" class="button transparent-btn">Модерировать</a>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -82,4 +84,5 @@
                 </div>
             </form>
         </div>
+    </div>
 @endsection

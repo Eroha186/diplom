@@ -7,17 +7,36 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\FormCreareCompetitionRequest;
 use App\Type_competition;
 use App\User;
+use App\Work;
 use Illuminate\Support\Facades\Auth;
 
 class CompetitionController extends Controller
 {
+    protected function user() {
+        return User::where('id', Auth::user()->id)->first();
+    }
+
     public function show()
     {
-        $user = User::where('id', Auth::user()->id)->first();
+        $competitions = Competition::all();
         $typeCompetition = Type_competition::all();
         return view('admin/competitions', [
+            'competitions' => $competitions,
             'types' => $typeCompetition,
-            'user' => $user,
+            'user' => $this->user(),
+        ]);
+    }
+
+    public function showCompetition($id) {
+        $works = Work::select(['id', 'title'])->where([
+            ['competition_id', $id],
+            ['moderation', 0],
+        ])->get();
+//        dump($works);
+        return view('admin/competition', [
+            'idCompetition' => $id,
+            'works' => $works,
+            'user' => $this->user(),
         ]);
     }
 
