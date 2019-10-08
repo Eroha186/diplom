@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Competition;
+use App\ExpressCompetition;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\FormCreareCompetitionRequest;
+use App\Http\Requests\FormCreatCompetitionRequest;
 use App\Type_competition;
 use App\User;
 use App\Work;
@@ -12,7 +13,8 @@ use Illuminate\Support\Facades\Auth;
 
 class CompetitionController extends Controller
 {
-    protected function user() {
+    protected function user()
+    {
         return User::where('id', Auth::user()->id)->first();
     }
 
@@ -27,12 +29,12 @@ class CompetitionController extends Controller
         ]);
     }
 
-    public function showCompetition($id) {
+    public function showCompetition($id)
+    {
         $works = Work::select(['id', 'title'])->where([
             ['competition_id', $id],
             ['moderation', 0],
         ])->get();
-//        dump($works);
         return view('admin/competition', [
             'idCompetition' => $id,
             'works' => $works,
@@ -40,18 +42,27 @@ class CompetitionController extends Controller
         ]);
     }
 
-    public function createCompetition(FormCreareCompetitionRequest $formRequest)
+    public function createCompetition(FormCreatCompetitionRequest $formRequest, $flag)
     {
         $data = $formRequest->all();
         $path = $formRequest->file('cover')->store('upload', 'public');
-        Competition::create([
-            'title' => $data['title'],
-            'annotation' => $data['annotation'],
-            'type_id' => (int)$data['type-competition'],
-            'cover' => $path,
-            'date_begin' => date('Y-m-d H:i:s', strtotime($data['date-begin'])),
-            'date_end' => date('Y-m-d H:i:s', strtotime($data['date-end'])),
-        ]);
+        if ($flag) {
+            ExpressCompetition::create([
+                'title' => $data['title'],
+                'annotation' => $data['annotation'],
+                'type_id' => (int)$data['type-competition'],
+                'cover' => $path,
+            ]);
+        } else {
+            Competition::create([
+                'title' => $data['title'],
+                'annotation' => $data['annotation'],
+                'type_id' => (int)$data['type-competition'],
+                'cover' => $path,
+                'date_begin' => date('Y-m-d H:i:s', strtotime($data['date-begin'])),
+                'date_end' => date('Y-m-d H:i:s', strtotime($data['date-end'])),
+            ]);
+        }
         return redirect(route('a-competition'));
     }
 }

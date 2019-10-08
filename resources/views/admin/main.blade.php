@@ -19,8 +19,9 @@
         <a class="{{request()->is('admin/publication') ? "active" : ""}}"
            href="{{route('a-publication')}}">Публикации</a>
         <a class="{{request()->is('admin/competition') ? "active" : ""}}"
-            href="{{route('a-competitions')}}">Конкурсы</a>
-        <a href="">Экспресс-конкурсы</a>
+           href="{{route('a-competitions')}}">Конкурсы</a>
+        <a class="{{request()->is('admin/express-competition') ? "active" : ""}}"
+           href="{{route('a-express-competition')}}">Экспресс-конкурсы</a>
     </nav>
 
     <main style="width: 100%;">

@@ -42,11 +42,11 @@
         <div class="container">
             <div style="margin-top: 25px;" class="confirmation row">
                 <div class="col-md-4">
-                    <a href="{{route('a-confirmation', ['id' => $work->id, 'result' => '1', 'competition'])}}"
+                    <a href="{{route('a-confirmation', ['id' => $work->id, 'result' => '1', 'competition', 'competitionId' => $competitionId])}}"
                        class="btn green filled-btn">Подтвердить</a>
                 </div>
                 <div class="col-md-4">
-                    <a href="{{route('a-confirmation', ['id' => $work->id, 'result' => '0', 'competition'])}}"
+                    <a href="{{route('a-confirmation', ['id' => $work->id, 'result' => '0', 'competition', 'competitionId' => $competitionId])}}"
                        class="btn orange filled-btn">Отклонить</a>
                 </div>
             </div>

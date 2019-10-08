@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FormCreareCompetitionRequest extends FormRequest
+class FormCreatCompetitionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,10 +26,8 @@ class FormCreareCompetitionRequest extends FormRequest
         return [
             'title' => 'required|string|max:30',
             'annotation' => 'required|string|max:350',
-            'cover' => 'required',//'required|mimes:jpg,png,jpeg',
+            'cover' => 'required|mimes:jpg,png,jpeg',
             'type-competition' => 'required|min:0',
-            'date-begin' => 'required',
-            'date-end' => 'required',
         ];
     }
 }

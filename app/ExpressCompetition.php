@@ -8,6 +8,7 @@ class ExpressCompetition extends Model
 
 {
     protected $table = 'express_competitions';
+    protected $fillable = ['title', 'annotation', 'cover', 'type_id'];
 
     public function type()
     {

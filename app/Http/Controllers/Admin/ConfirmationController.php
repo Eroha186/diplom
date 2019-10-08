@@ -16,7 +16,7 @@ class ConfirmationController extends Controller
     id - это id записи которую подтверждает
     page - страница с которой идет запрос
 */
-    public function confirmation($id, $result, $page) {
+    public function confirmation($id, $result, $page, $competitionId = 0) {
         if($result == 1 && $page == 'publication') {
             Publication::where('id', $id)->update([
                'moderation' => 2,
@@ -32,12 +32,12 @@ class ConfirmationController extends Controller
             Work::where('id', $id)->update([
                 'moderation' => 2,
             ]);
-            return redirect(route('a-publication'));
+            return redirect(route('a-competition', ['id' => $competitionId]));
         } elseif ($result == 0 && $page == 'competition') {
             Work::where('id', $id)->update([
                 'moderation' => 1,
             ]);
-            return redirect(route('a-publication'));
+            return redirect(route('a-competition', ['id' => $competitionId]));
         }
     }
 }

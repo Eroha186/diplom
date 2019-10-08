@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="tab-content competition-tab-content" data-tab="2">
-            <form action="{{route('create-competition')}}" class="create-competition" enctype="multipart/form-data" method="POST">
+            <form action="{{route('create-competition', ['flag' => 0])}}" class="create-competition" enctype="multipart/form-data" method="POST">
                 {{ csrf_field() }}
                 @if (count($errors) > 0 || Session::has('error'))
                     <div class="alert alert-danger">
@@ -72,12 +72,11 @@
                 </div>
                 <div class="form-group">
                     <label for="createDateBegin">Дата начала</label>
-                    <input name="date-begin" type="date" class="form-control" id="createDateBegin"
-                           placeholder="Название конкурса">
+                    <input name="date-begin" type="date" class="form-control" id="createDateBegin" required>
                 </div>
                 <div class="form-group">
                     <label for="createDataEnd">Дата завершения</label>
-                    <input name="date-end" type="date" class="form-control" id="createDataEnd">
+                    <input name="date-end" type="date" class="form-control" id="createDataEnd" required>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Создать">

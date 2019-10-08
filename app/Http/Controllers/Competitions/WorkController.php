@@ -12,7 +12,7 @@ class WorkController extends Controller
         $work = Work::with(['user', 'file'])->where('id', $workId)->first();
         return view('competitions.work', [
             'work' => $work,
-            
+            'competitionId' => $id,
         ]);
     }
 }
