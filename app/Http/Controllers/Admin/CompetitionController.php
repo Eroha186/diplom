@@ -31,10 +31,15 @@ class CompetitionController extends Controller
 
     public function showCompetition($id)
     {
-        $works = Work::select(['id', 'title'])->where([
-            ['competition_id', $id],
-            ['moderation', 0],
-        ])->get();
+        $works = Work::with(['file', 'user'])
+                ->where([
+                            ['competition_id', $id],
+                            ['moderation', 0],
+                        ])
+                ->orWhere(function ($query) {
+                            $query->where('moderation', 2);
+                        })
+                ->get();
         return view('admin/competition', [
             'idCompetition' => $id,
             'works' => $works,

@@ -5,7 +5,6 @@
         <ul class="tabs">
             <li class="competition-tab tab competition-tab_active" data-tab="1">Модерирование</li>
             <li class="competition-tab tab" data-tab="2">Создание конкурса</li>
-            {{--            <li class="competition-tab tab" data-tab="2">Создание конкурса</li>--}}
         </ul>
         <div class="tab-content content_active competition-tab-content" data-tab="1">
             <div class="a-work">

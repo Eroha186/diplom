@@ -18,10 +18,12 @@
         <a href="{{route('home')}}">Вернуться на сайт</a>
         <a class="{{request()->is('admin/publication') ? "active" : ""}}"
            href="{{route('a-publication')}}">Публикации</a>
-        <a class="{{(request()->is(route('a-competitions')) || request()->is(route('a-competition', ['id' => $competition->id])))? "active" : ""}}"
+        <a class="{{request()->is(route('a-competitions')) ? "active" : ""}}"
            href="{{route('a-competitions')}}">Конкурсы</a>
         <a class="{{request()->is('admin/express-competition') ? "active" : ""}}"
            href="{{route('a-express-competition')}}">Экспресс-конкурсы</a>
+        <a class="{{request()->is(route('a-create-diplom'))}}" 
+            href="{{route('a-create-diplom')}}">Создание дипломов</a>   
     </nav>
 
     <main style="width: 100%;">

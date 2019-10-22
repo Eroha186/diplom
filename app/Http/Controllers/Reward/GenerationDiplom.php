@@ -9,6 +9,10 @@ use Intervention\Image\Facades\Image;
 
 class GenerationDiplom extends Controller
 {
+    public function show() {
+        return view('admin.create-diplom');
+    }
+
     public function generate()
     {
         $path = asset(Storage::url('upload/diplom.jpg'));

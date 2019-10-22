@@ -144,9 +144,43 @@ main
 .a-work
   padding: 25px
 .wrap-a-com-work
-  padding: 25px
   a
     cursor: pointer
     &:hover
       color: $space
       text-decoration: underline
+
+.work-tab
+  position: relative
+  border: 1px solid $border_color
+  border-top: none
+  padding: 10px 15px
+  margin-right: 7px
+  background: $white
+  cursor: pointer
+  z-index: 1
+  &-content
+    position: relative
+    padding: 0px 20px 0px 20px
+    border-top: 1px solid $border_color
+    margin-top: -1px
+    z-index: 0
+  &_active
+    border-bottom: none
+
+.wrap-a-work 
+  margin-top: 8px
+  margin-bottom: 10px
+  display: flex
+  .author 
+    display: flex
+    flex-direction: column
+    .work
+      &__name
+
+      &__tacher
+
+      &__location        
+  .place 
+    display: flex
+    flex-direction: column      

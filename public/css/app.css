@@ -2629,10 +2629,6 @@ main {
   padding: 25px;
 }
 
-.wrap-a-com-work {
-  padding: 25px;
-}
-
 .wrap-a-com-work a {
   cursor: pointer;
 }
@@ -2640,5 +2636,56 @@ main {
 .wrap-a-com-work a:hover {
   color: #313131;
   text-decoration: underline;
+}
+
+.work-tab {
+  position: relative;
+  border: 1px solid #d1cece;
+  border-top: none;
+  padding: 10px 15px;
+  margin-right: 7px;
+  background: #fff;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.work-tab-content {
+  position: relative;
+  padding: 0px 20px 0px 20px;
+  border-top: 1px solid #d1cece;
+  margin-top: -1px;
+  z-index: 0;
+}
+
+.work-tab_active {
+  border-bottom: none;
+}
+
+.wrap-a-work {
+  margin-top: 8px;
+  margin-bottom: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.wrap-a-work .author {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.wrap-a-work .place {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
