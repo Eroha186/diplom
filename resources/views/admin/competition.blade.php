@@ -34,15 +34,23 @@
                                 {{$work->user->stuff}}, г.{{$work->user->town}}
                             </div>  
                         </div>
-                        <div class="palace">
-                                    <label for = "first">Первое место</label>
-                                    <input id = "first" name = "place" type="radio">
-                                    <label for = "second">Второе место</label>
-                                    <input id = "second" name = "place" type="radio">
-                                    <label for = "third">Третье место</label>
-                                    <input id = "third" name = "place" type="radio">
-                                    <label for = "laurat">Лаурят</label>
-                                    <input id = "laurat" name = "place" type="radio">
+                        <div class="place">
+                                    <div class="place-wrap">
+                                        <label for = "first">Первое место</label>
+                                        <input id = "first" name = "place" type="radio">                                   
+                                    </div>
+                                    <div class="place-wrap">
+                                        <label for = "second">Второе место</label>
+                                        <input id = "second" name = "place" type="radio">
+                                    </div>
+                                    <div class="place-wrap">
+                                        <label for = "third">Третье место</label>
+                                        <input id = "third" name = "place" type="radio">
+                                    </div>
+                                    <div class="place-wrap">
+                                        <label for = "laurat">Лаурят</label>
+                                        <input id = "laurat" name = "place" type="radio">
+                                    </div>
                         </div>
                     </div>
                 @endif
