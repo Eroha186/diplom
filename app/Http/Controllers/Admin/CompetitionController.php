@@ -70,4 +70,11 @@ class CompetitionController extends Controller
         }
         return redirect(route('a-competition'));
     }
+
+    public function changePlace($place, $id) {
+        $work = Work::where('id', $id)->update([
+            'place' => $place
+        ]);
+        return response()->json(['id' => $id]);
+    }
 }

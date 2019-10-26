@@ -11040,7 +11040,7 @@ $(function () {
     /*
         РЕАЛИЗОВАТЬ
         Удаление некольких объектов
-        Если выделенно больше одного объекта, то их можно удалить куче
+        Если выделенно больше одного объекта, то их можно удалить кучей
     */
     $('.list-body').on('click', '.list-body__item', function () {
         $('.list-body__item').not(this).removeClass('list-body__item_active');
@@ -11116,6 +11116,28 @@ $(function () {
         $('.list-body').html('');
         $('.list-body').html(layout);
     }
+
+    $('.place').on('change', function () {
+        var place = $(this).val();
+        var id = $(this).attr('data-id');
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: 'place/' + place + '/' + id,
+            type: 'GET',
+            success: function success(e) {
+                console.log(e);
+                var id = e.id;
+                console.log(id);
+
+                $('.wrap-a-work[data-id=' + id + ']').html('<span>Место успешно добавлено</span>');
+                setTimeout(function () {
+                    $('.wrap-a-work[data-id=' + id + ']').remove();
+                }, 1000);
+            }
+        });
+    });
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 

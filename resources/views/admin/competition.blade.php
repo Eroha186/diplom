@@ -16,7 +16,7 @@
         <div class="tab-content work-tab-content" data-tab="2">
             @foreach ($works as $work)
                 @if($work->moderation == 2)
-                    <div class="wrap-a-work">
+                    <form class="wrap-a-work" data-id={{$work->id}}>
                         <div class="img" >
                             <img style="width: 250px; height: 250px" src="{{Storage::url($work['file']['url'])}}">
                         </div>
@@ -34,25 +34,16 @@
                                 {{$work->user->stuff}}, г.{{$work->user->town}}
                             </div>  
                         </div>
-                        <div class="place">
-                                    <div class="place-wrap">
-                                        <label for = "first">Первое место</label>
-                                        <input id = "first" name = "place" type="radio">                                   
-                                    </div>
-                                    <div class="place-wrap">
-                                        <label for = "second">Второе место</label>
-                                        <input id = "second" name = "place" type="radio">
-                                    </div>
-                                    <div class="place-wrap">
-                                        <label for = "third">Третье место</label>
-                                        <input id = "third" name = "place" type="radio">
-                                    </div>
-                                    <div class="place-wrap">
-                                        <label for = "laurat">Лаурят</label>
-                                        <input id = "laurat" name = "place" type="radio">
-                                    </div>
-                        </div>
-                    </div>
+                        <div class="place-wrap">
+                            <select class="place" data-id="{{$work->id}}">
+                                <option value="0">Выбирете место</option>
+                                <option value="1">Первое</option>
+                                <option value="2">Второе</option>
+                                <option value="3">Третье</option>
+                                <option value="4">Лаурят</option>
+                            </select>
+                        </div> 
+                    </form>
                 @endif
             @endforeach
         </div>

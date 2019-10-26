@@ -83,6 +83,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
     Route::post('create-competition/{flag}', ['as' => 'create-competition', 'uses' => 'Admin\CompetitionController@createCompetition']);
     Route::get('express-competition', ['as' => 'a-express-competition', 'uses' => 'Admin\ExpressCompetitionController@show']);
     Route::get('create-diplom', ['as' => 'a-create-diplom', 'uses' => 'Reward\GenerationDilom@show']);
+    Route::get('competition/place/{place}/{id}', ['as' => 'a-place', 'uses' => 'Admin\CompetitionController@changePlace']);
 });
 
 
