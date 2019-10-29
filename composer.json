@@ -9,7 +9,9 @@
         "davejamesmiller/laravel-breadcrumbs": "3.x",
         "intervention/image": "^2.5",
         "laravel/framework": "5.5.*",
-        "laravel/tinker": "~1.0"
+        "laravel/socialite": "^3.2.0",
+        "laravel/tinker": "~1.0",
+        "socialiteproviders/odnoklassniki": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -35,4 +35,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'odnoklassniki' => [
+        'client_id' => env('ODNOKLASSNIKI_KEY'),
+        'client_secret' => env('ODNOKLASSNIKI_SECRET'),
+        'redirect' => env('ODNOKLASSNIKI_REDIRECT_URI')
+    ],
+
 ];
