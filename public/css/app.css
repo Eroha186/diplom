@@ -1253,6 +1253,16 @@ select {
   margin-left: -35px;
 }
 
+.no-mailing {
+  border-bottom: 1px solid #434343;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.no-mailing:hover {
+  color: #313131;
+}
+
 .bg-arch {
   position: relative;
   padding: 120px 0px;

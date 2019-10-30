@@ -147,27 +147,33 @@
                 </div>
                 <div class="publication-snippet">
                     @foreach ($publications as $publication)
-                        <div class="publication">
-                            <div class="publication__img">
-                                <img src="{{$publication['file'] == 'doc' ? asset('images/doc.svg') :
+                        @if($publication->moderation == 0)
+                            @continue
+                        @endif
+                        @if(count($publication['file']) == 0)
+                            @continue
+                        @endif
+                            <div class="publication">
+                                <div class="publication__img">
+                                    <img src="{{$publication['file'] == 'doc' ? asset('images/doc.svg') :
                             $publication['file'] == 'pdf' ? asset('images/pdf.svg') :
                             $publication['file'] == 'ppt' ? asset('images/ppt.svg') : ''}}" alt="Иконка">
-                            </div>
-                            <div class="publication__descr">
-                                <a href="/publication/{{$publication->id}}" class="title">
-                                    {{$publication->title}}
-                                </a>
-                                <div class="date-time">
-                                    {{$publication->date_add}}
                                 </div>
-                                <div class="author">
-                                    {{$publication->author->f}} {{$publication->author->i}}. {{$publication->author->i}}
-                                    .,
-                                    {{$publication->author->stuff}}
+                                <div class="publication__descr">
+                                    <a href="/publication/{{$publication->id}}" class="title">
+                                        {{$publication->title}}
+                                    </a>
+                                    <div class="date-time">
+                                        {{$publication->date_add}}
+                                    </div>
+                                    <div class="author">
+                                        {{$publication->author->f}} {{$publication->author->i}}. {{$publication->author->i}}
+                                        .,
+                                        {{$publication->author->stuff}}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
                 </div>
                 <div class="more"><a href="{{route('publications')}}">Больше публикаций > ></a></div>
             </div>

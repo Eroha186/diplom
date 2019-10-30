@@ -103,6 +103,7 @@ class PublicationsPageController extends Controller
         $newPublication = [];
         if (Auth::check()) {
             $data = $formRequest->all();
+            //dump($data);
             $newPublication = Publication::create([
                 'user_id' => Auth::user()->id,
                 'title' => $data['title'],
@@ -114,6 +115,11 @@ class PublicationsPageController extends Controller
                 'moderation' => 0,
                 'date_add' => date('Y-m-d H:i:s'),
             ]);
+            if($data['distribution'] == 'on') {
+               User::where('id',Auth::user()->id)->update([
+                   'mailing' => 1,
+               ]);
+            }
             foreach ($data['themes'] as $theme) {
                 ThemesAndPubl::create([
                     'publ_id' => $newPublication->id,

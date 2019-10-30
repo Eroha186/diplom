@@ -25,7 +25,8 @@ class MainPageController extends Controller
             $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
             $publication['author']['i'] = mb_substr($publication['author']['i'], 0, 1);
             $publication['author']['o'] = mb_substr($publication['author']['o'], 0, 1);
-            $publication['file'] = $publication['files'][0]['type'];
+            if(isset($publication['files'][0]['type']))
+                $publication['file'] = $publication['files'][0]['type'];
         }
 
         $competitions = $competitionModel->where('date_end', '>',  date('Y-m-d H:i:s'))->limit(8)->get();

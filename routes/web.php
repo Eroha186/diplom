@@ -68,6 +68,12 @@ Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
     Route::get('/order-publication', function () {
         return view('account/order-publication');
     });
+    Route::get('/no-mailing', function() {
+        App\User::where('id', Auth::user()->id)->update([
+            'mailing' => 0,
+        ]);
+        return redirect(route('personal-data'));
+    })->name('no-mailing');
 });
 Route::get('/test', ['uses' => 'Reward\GenerationDiplom@generate']);
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function () {
