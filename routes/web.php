@@ -90,6 +90,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
     Route::get('express-competition', ['as' => 'a-express-competition', 'uses' => 'Admin\ExpressCompetitionController@show']);
     Route::get('create-diplom', ['as' => 'a-create-diplom', 'uses' => 'Reward\GenerationDilom@show']);
     Route::get('competition/place/{place}/{id}', ['as' => 'a-place', 'uses' => 'Admin\CompetitionController@changePlace']);
+    Route::post('add-substrates', ['as' => 'a-add-substrate', 'uses' => 'Reward\SubstrateController@addSubstrate']);
+    Route::post('view-substrate', ['as' => 'view-substrate', 'uses' => 'Reward\SubstrateController@viewSubstrate']);
 });
 
 
@@ -104,7 +106,9 @@ Route::post('/authCheck/{email}', function ($email) {
         return response()->json(['auth' => $check], 200);
     }
 });
-
+Route::get('/test', function() {
+   return view('test');
+});
 Route::post('/loginFormPublication', 'Auth\LoginController@login')->name('loginFormPublication');
 Route::post('/loginFormCompetition', 'Auth\LoginController@login')->name('loginFormCompetition');
 Route::post('/publicationSaveSession', ['uses' => 'Publication\PublicationSaveSession@publicationSaveSession']);

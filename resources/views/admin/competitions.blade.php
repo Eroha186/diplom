@@ -5,6 +5,7 @@
         <ul class="tabs">
             <li class="competition-tab tab competition-tab_active" data-tab="1">Модерирование</li>
             <li class="competition-tab tab" data-tab="2">Создание конкурса</li>
+            <li class="competition-tab tab" data-tab="3">Добавление подложек</li>
         </ul>
         <div class="tab-content content_active competition-tab-content" data-tab="1">
             <div class="a-work">
@@ -25,7 +26,8 @@
                                     С {{date("d.m.Y", strtotime($competition->date_begin))}}
                                     <span>по {{date("d.m.Y", strtotime($competition->date_end))}}</span>
                                 </div>
-                                <a href="{{route('a-competition', ['id' => $competition->id])}}" class="button transparent-btn">Модерировать</a>
+                                <a href="{{route('a-competition', ['id' => $competition->id])}}"
+                                   class="button transparent-btn">Модерировать</a>
                             </div>
                         </div>
                     @endforeach
@@ -33,7 +35,8 @@
             </div>
         </div>
         <div class="tab-content competition-tab-content" data-tab="2">
-            <form action="{{route('create-competition', ['flag' => 0])}}" class="create-competition" enctype="multipart/form-data" method="POST">
+            <form action="{{route('create-competition', ['flag' => 0])}}" class="create-competition"
+                  enctype="multipart/form-data" method="POST">
                 {{ csrf_field() }}
                 @if (count($errors) > 0 || Session::has('error'))
                     <div class="alert alert-danger">
@@ -78,8 +81,42 @@
                     <input name="date-end" type="date" class="form-control" id="createDataEnd" required>
                 </div>
                 <div class="form-group">
+                    <label for="substrate">Подложка для награды</label>
+                    <select name="substrate" id="substrate" class="form-control">
+                        <option value="0">Выбирете подложку</option>
+                        @foreach($substrates as $substrate)
+                            <option value="{{$substrate->id}}">{{$substrate->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
                     <input type="submit" value="Создать">
                 </div>
+            </form>
+            <div class="img-example">
+
+            </div>
+        </div>
+        <div class="tab-content competition-tab-content" data-tab="3">
+            <form action="{{route('a-add-substrate')}}" class="substrate-form" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                @if (count($errors) > 0 || Session::has('error'))
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                            @if (Session::has('error'))
+                                <li>{{ Session::get('error') }}</li>
+                            @endif
+                        </ul>
+                    </div>
+                @endif
+                <label for="substrate-name">Название подложки</label>
+                <input type="text" name="name" id="substrate-name" style="max-width: 260px;">
+                <label for="substrate-file">Добавьте файл</label>
+                <input type="file" id="substrate-file" name="substrate-file">
+                <input type="submit" style="max-width: 120px">
             </form>
         </div>
     </div>

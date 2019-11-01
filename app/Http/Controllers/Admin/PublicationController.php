@@ -55,7 +55,6 @@ class PublicationController extends Controller
     */
     public function changeThemes(Request $request, $mode) {
         $themes = $request->all();
-//        dump($themes);
         switch ($mode) {
             case 'add':
                 $themes1 = Theme::all();

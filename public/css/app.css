@@ -2614,6 +2614,7 @@ main {
 }
 
 .create-competition {
+  margin-right: 35px;
   padding: 15px;
   width: 25%;
 }
@@ -2697,5 +2698,35 @@ main {
 
 .wrap-a-work .btn-form {
   display: none;
+}
+
+.substrate-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.substrate-form input {
+  margin-bottom: 20px;
+}
+
+.substrate-form label {
+  margin-bottom: 5px;
+}
+
+#example-substrate {
+  margin-top: 20px;
+  width: 300px;
+  height: 450px;
+}
+
+.content_active.competition-tab-content[data-tab='2'] {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 

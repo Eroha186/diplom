@@ -6,6 +6,7 @@ use App\Competition;
 use App\ExpressCompetition;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FormCreatCompetitionRequest;
+use App\Substrate;
 use App\Type_competition;
 use App\User;
 use App\Work;
@@ -20,12 +21,11 @@ class CompetitionController extends Controller
 
     public function show()
     {
-        $competitions = Competition::all();
-        $typeCompetition = Type_competition::all();
         return view('admin/competitions', [
-            'competitions' => $competitions,
-            'types' => $typeCompetition,
+            'competitions' => Competition::all(),
+            'types' => Type_competition::all(),
             'user' => $this->user(),
+            'substrates' => Substrate::all(),
         ]);
     }
 
@@ -35,9 +35,12 @@ class CompetitionController extends Controller
                 ->where([
                             ['competition_id', $id],
                             ['moderation', 0],
+                            ['place', 0 ]
                         ])
                 ->orWhere(function ($query) {
-                            $query->where('moderation', 2);
+                            $query->where([
+                                ['moderation', 2], ['place', 0 ]
+                            ]);
                         })
                 ->get();
         return view('admin/competition', [
@@ -51,24 +54,31 @@ class CompetitionController extends Controller
     {
         $data = $formRequest->all();
         $path = $formRequest->file('cover')->store('upload', 'public');
+        $competition = 0;
         if ($flag) {
             ExpressCompetition::create([
                 'title' => $data['title'],
                 'annotation' => $data['annotation'],
                 'type_id' => (int)$data['type-competition'],
                 'cover' => $path,
+                'substrate_id' => 0 + $data['substrate'],
             ]);
         } else {
-            Competition::create([
+            dump($data['substrate'] + 0);
+            $competition = Competition::create([
                 'title' => $data['title'],
                 'annotation' => $data['annotation'],
                 'type_id' => (int)$data['type-competition'],
                 'cover' => $path,
                 'date_begin' => date('Y-m-d H:i:s', strtotime($data['date-begin'])),
                 'date_end' => date('Y-m-d H:i:s', strtotime($data['date-end'])),
+                'substrate_id' => 0 + $data['substrate'],
             ]);
         }
-        return redirect(route('a-competition'));
+        if($competition)
+            return redirect(route('a-competition', ['id' => $competition]));
+        else
+            return redirect(route('a-competitions'));
     }
 
     public function changePlace($place, $id) {

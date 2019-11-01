@@ -10708,7 +10708,9 @@ module.exports = __webpack_require__(11);
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {global.$ = __webpack_require__(1);
+/* WEBPACK VAR INJECTION */(function(global) {var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+global.$ = __webpack_require__(1);
 global.select2 = __webpack_require__(4);
 global.Quill = __webpack_require__(5);
 $(function () {
@@ -11127,14 +11129,38 @@ $(function () {
             url: 'place/' + place + '/' + id,
             type: 'GET',
             success: function success(e) {
-                console.log(e);
                 var id = e.id;
-                console.log(id);
-
                 $('.wrap-a-work[data-id=' + id + ']').html('<span>Место успешно добавлено</span>');
                 setTimeout(function () {
                     $('.wrap-a-work[data-id=' + id + ']').remove();
                 }, 1000);
+            }
+        });
+    });
+
+    // Показ подложки в админк
+    $('#substrate').on('change', function () {
+        var val = $(this).val();
+        console.log(val);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: 'view-substrate',
+            data: { val: val },
+            type: 'POST',
+            success: function success(e) {
+                console.log(e);
+
+                var _e$url = _slicedToArray(e.url, 1),
+                    path = _e$url[0];
+
+                console.log(path);
+                if (!(path === undefined)) {
+                    $('.img-example').html('<img src="/storage/' + path.url + '" alt="" id="example-substrate">');
+                } else {
+                    $('#example-substrate').remove();
+                }
             }
         });
     });

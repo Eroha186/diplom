@@ -426,15 +426,36 @@ $(function () {
             url: 'place/' + place + '/' + id,
             type: 'GET',
             success: function (e) {
-                console.log(e);
                 let id = e.id;
-                console.log(id);
-                
                 $('.wrap-a-work[data-id=' + id + ']').html('<span>Место успешно добавлено</span>');
                 setTimeout(() => {
                     $('.wrap-a-work[data-id=' + id + ']').remove();                  
                 }, 1000)
             }
         });
-    })
+    });
+
+    // Показ подложки в админк
+    $('#substrate').on('change', function () {
+       let val = $(this).val();
+       console.log(val);
+       $.ajax({
+           headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           },
+           url: 'view-substrate',
+           data: {val: val},
+           type: 'POST',
+           success: function (e) {
+               console.log(e);
+               const [path,] = e.url;
+               console.log(path);
+              if(!(path === undefined)) {
+                  $('.img-example').html(`<img src="/storage/${path.url}" alt="" id="example-substrate">`);
+              } else {
+                  $('#example-substrate').remove();
+              }
+           }
+       })
+    });
 });

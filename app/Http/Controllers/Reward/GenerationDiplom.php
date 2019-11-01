@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Reward;
 
+use App\Http\Requests\SubstratesForm;
+use App\Substrate;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -28,4 +30,5 @@ class GenerationDiplom extends Controller
         $fileName = str_random(14).'.jpg';
         $img->save('images/diplom/'. $fileName);
     }
+
 }

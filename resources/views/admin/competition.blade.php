@@ -15,7 +15,7 @@
         </div>
         <div class="tab-content work-tab-content" data-tab="2">
             @foreach ($works as $work)
-                @if($work->moderation == 2)
+                @if($work->moderation == 2 && $work->place == 0)
                     <form class="wrap-a-work" data-id={{$work->id}}>
                         <div class="img" >
                             <img style="width: 250px; height: 250px" src="{{Storage::url($work['file']['url'])}}">
