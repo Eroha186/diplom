@@ -19,8 +19,9 @@ class EventServiceProvider extends ServiceProvider
         'BeyondCode\EmailConfirmation\Events\Confirmed' => [
             'App\Listeners\YourOnConfirmedListener'
         ],
-        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
-            'SocialiteProviders\\Odnoklassniki\\OdnoklassnikiExtendSocialite@handle',
+        'SocialiteProviders\Manager\SocialiteWasCalled' => [
+            'SocialiteProviders\Odnoklassniki\OdnoklassnikiExtendSocialite@handle',
+            'SocialiteProviders\VKontakte\VKontakteExtendSocialite@handle'
         ],
     ];
 

@@ -75,6 +75,10 @@ Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
         return redirect(route('personal-data'));
     })->name('no-mailing');
 });
+
+Route::get('/social-auth/{provider}', ['uses' => 'Auth\SocialController@redirectToProvider', 'as' => 'auth.social']);
+Route::get('/social-auth/{provider}/callback', ['uses' => 'Auth\SocialController@handleProviderCallback', 'as' => 'auth.social.callback']);
+
 Route::get('/test', ['uses' => 'Reward\GenerationDiplom@generate']);
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function () {
     Route::get('publication', ['as' => 'a-publication', 'uses' => 'Admin\PublicationController@show']);
@@ -106,10 +110,16 @@ Route::post('/authCheck/{email}', function ($email) {
         return response()->json(['auth' => $check], 200);
     }
 });
-Route::get('/test', function() {
-   return view('test');
-});
 Route::post('/loginFormPublication', 'Auth\LoginController@login')->name('loginFormPublication');
 Route::post('/loginFormCompetition', 'Auth\LoginController@login')->name('loginFormCompetition');
 Route::post('/publicationSaveSession', ['uses' => 'Publication\PublicationSaveSession@publicationSaveSession']);
 Route::auth();
+
+
+
+
+
+
+Route::get('/test', function() {
+    return view('test');
+});

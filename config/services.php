@@ -41,4 +41,10 @@ return [
         'redirect' => env('ODNOKLASSNIKI_REDIRECT_URI')
     ],
 
+    'vkontakte' => [
+        'client_id' => env('VKONTAKTE_KEY'),
+        'client_secret' => env('VKONTAKTE_SECRET'),
+        'redirect' => env('VKONTAKTE_REDIRECT_URI')
+    ],
+
 ];
