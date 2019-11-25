@@ -171,4 +171,5 @@ class RegisterController extends Controller
             return 0; //not exist
         }
     }
+
 }

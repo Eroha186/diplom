@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\SocialAccount;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
@@ -18,11 +20,12 @@ class SocialController extends Controller
         $socialiteUser = Socialite::driver($provider)->user();
         $user = $this->findOrCreateUser($provider, $socialiteUser);
         auth()->login($user, true);
-        return redirect('/');
+        return redirect(route('two-step-registration'));
     }
 
     public function findOrCreateUser($provider, $socialiteUser)
     {
+
         if ($user = $this->findUserBySocialId($provider, $socialiteUser->getId())) {
             return $user;
         }
@@ -32,11 +35,13 @@ class SocialController extends Controller
 
             return $user;
         }
-
+        $password = RandomPassword::randomPassword();
+        $name = explode(' ', $socialiteUser->getName());
         $user = User::create([
-            'name' => $socialiteUser->getName(),
+            'i' => $name[0],
+            'f' => $name[1],
             'email' => $socialiteUser->getEmail(),
-            'password' => bcrypt(str_random(25)),
+            'password' => password_hash($password, PASSWORD_DEFAULT),
         ]);
 
         $this->addSocialAccount($provider, $user, $socialiteUser);
@@ -55,7 +60,7 @@ class SocialController extends Controller
 
     public function findUserByEmail($provider, $email)
     {
-        return User::where('email', $email)->first();
+        return !$email ? null : User::where('email', $email)->first();
     }
 
     public function addSocialAccount($provider, $user, $socialiteUser)
