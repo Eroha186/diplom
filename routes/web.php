@@ -89,7 +89,7 @@ Route::group(['middleware' => 'emailCheck'], function () {
 });
 
 Route::get('two-step-registration', function () {
-    return view('test');
+    return view('auth.two-step-registration');
 })->name('two-step-registration');
 
 Route::get('/social-auth/{provider}', ['uses' => 'Auth\SocialController@redirectToProvider', 'as' => 'auth.social']);

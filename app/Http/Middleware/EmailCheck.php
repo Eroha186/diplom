@@ -17,7 +17,7 @@ class EmailCheck
      */
     public function handle($request, Closure $next)
     {
-        $userEmail = User::select('email')->where('id', Auth::user()->id)->first();
+        Auth::check() ? $userEmail = User::select('email')->where('id', Auth::user()->id)->first() : '';
         if(Auth::check() && $userEmail->email !== null) {
             return $next($request);
         }
@@ -27,7 +27,7 @@ class EmailCheck
             }
             return redirect(route('two-step-registration'));
         }
-        return $next($request);
+
 
     }
 }
