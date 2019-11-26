@@ -11,8 +11,7 @@
 <br/>
 Ваш логин: {{$user->user->email}}
 <br/>
-Ваша пароль: {{$user->password}}
-<br/>
+{{isset($user->password) ? "Ваша пароль: " . $user->password . '<br/>' : ''}}
 <a href="{{url('/verify/'.$user->user->verifyUser->token)}}">Verify Email</a>
 </body>
 

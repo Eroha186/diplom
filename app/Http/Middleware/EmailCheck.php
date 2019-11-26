@@ -27,7 +27,6 @@ class EmailCheck
             }
             return redirect(route('two-step-registration'));
         }
-
-
+        return $next($request);
     }
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Transaction;
 use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
@@ -35,5 +37,17 @@ class TransactionController extends Controller
         } else {
             return false;
         }
+    }
+
+    public function addEmailSocialUser(Request $request) {
+        return redirect(route('personal-data'));
+        dump($request);
+//        Validator::make($request->all(), ['email' => 'required|email'])->validate();
+        $user = User::where('id', Auth::user()->id)->update([
+            'email' => $request->get('email')
+        ]);
+        dd($user);
+//        $this->verifyCreate(['user' => $user]);
+        return redirect(route('personal-data'));
     }
 }

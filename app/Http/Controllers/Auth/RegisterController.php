@@ -9,6 +9,7 @@ use App\VerifyUser;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -171,5 +172,4 @@ class RegisterController extends Controller
             return 0; //not exist
         }
     }
-
 }

@@ -64,8 +64,6 @@ Route::group(['middleware' => 'emailCheck'], function () {
 
     Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix' => 'account'], function () {
-            Route::get('/personal-data', 'Account\AccountController@showPersonalData');
-            Route::post('/personal-data', ['middleware' => 'web', 'as' => 'personal-data', 'uses' => 'Account\AccountController@saveChangePersonalData']);
 
             Route::get('/my-publication', ['uses' => 'Account\AccountController@showMyPublication']);
             Route::get('/part-in-contests', ['uses' => 'Account\AccountController@showPartInContests']);
@@ -88,9 +86,16 @@ Route::group(['middleware' => 'emailCheck'], function () {
 
 });
 
+Route::group(['middleware' => 'auth'],function () {
+    Route::get('account/personal-data', 'Account\AccountController@showPersonalData');
+    Route::post('account/personal-data', ['middleware' => 'web', 'as' => 'personal-data', 'uses' => 'Account\AccountController@saveChangePersonalData']);
+});
+
 Route::get('two-step-registration', function () {
     return view('auth.two-step-registration');
 })->name('two-step-registration');
+
+Route::post('/two-step-registration', 'Auth\SocialController@addEmailSocialUser')->name('add-email');
 
 Route::get('/social-auth/{provider}', ['uses' => 'Auth\SocialController@redirectToProvider', 'as' => 'auth.social']);
 Route::get('/social-auth/{provider}/callback', ['uses' => 'Auth\SocialController@handleProviderCallback', 'as' => 'auth.social.callback']);

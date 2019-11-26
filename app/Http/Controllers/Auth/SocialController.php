@@ -6,6 +6,8 @@ use App\SocialAccount;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialController extends Controller
@@ -71,5 +73,17 @@ class SocialController extends Controller
             'provider_id' => $socialiteUser->getId(),
             'token' => $socialiteUser->token,
         ]);
+    }
+
+    public function addEmailSocialUser(Request $request) {
+        $verifyCreate = new RegisterController();
+        Validator::make($request->all(), ['email' => 'required|email|unique:users'])->validate();
+        User::where('id', Auth::user()->id)->update([
+            'email' => $request->get('email')
+        ]);
+        $user = User::where('id', Auth::user()->id)->first();
+//        dd($user);
+        $verifyCreate->verifyCreate(['user' => $user]);
+        return redirect(route('personal-data'));
     }
 }
