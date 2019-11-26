@@ -60,11 +60,8 @@
         <input name="job" type="text" class="form-control" id="ощи" placeholder="Должность" value="{{old('job')}}"
                required>
       </div>
-      <!--  <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div> -->
       <button type="submit" class="btn btn-primary">Зарегестрироваться</button>
+      @include('auth.social')
     </form>
   </div>
 </div>

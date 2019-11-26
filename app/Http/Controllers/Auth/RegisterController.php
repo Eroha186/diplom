@@ -130,6 +130,9 @@ class RegisterController extends Controller
         } else {
             return redirect('/login')->with('error', "Извините, ваш адрес электронной почты не может быть идентифицирован.");
         }
+        if(Auth::check()) {
+            return redirect('/');
+        }
         return redirect('/login')->with('status', $status);
     }
 

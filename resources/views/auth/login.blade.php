@@ -57,6 +57,7 @@
                     Забыл пароль
                 </a>
             </div>
+            @include('auth.social')
         </form>
     </div>
 </div>

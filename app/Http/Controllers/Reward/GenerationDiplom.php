@@ -27,8 +27,7 @@ class GenerationDiplom extends Controller
             $font->align('center');
             $font->valign('bottom');
         });
-        $fileName = str_random(14).'.jpg';
-        $img->save('images/diplom/'. $fileName);
+
     }
 
 }
