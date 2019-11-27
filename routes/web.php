@@ -16,12 +16,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//use Illuminate\Support\Facades\DB;
-//DB::listen(function($query) {
-//    echo '<pre>';
-//    print_r($query->sql);
-//    echo '</pre>';
-//});
+use Illuminate\Support\Facades\DB;
+
+
+
+Route::get('/testDB', function () {
+    $search = new \App\Http\Controllers\SearchController();
+    $publication = new \App\Publication();
+    $search = $search->search('asdafsdasf dsafsdfasdf adsfasdf', $publication);
+    dd($search);
+});
+
+DB::listen(function ($query) {
+    echo '<pre>';
+    print_r($query->sql);
+    echo '</pre>';
+});
 
 Route::group(['middleware' => 'emailCheck'], function () {
     Route::get('/', 'MainPageController@show')->name('home');
@@ -86,7 +96,7 @@ Route::group(['middleware' => 'emailCheck'], function () {
 
 });
 
-Route::group(['middleware' => 'auth'],function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::get('account/personal-data', 'Account\AccountController@showPersonalData');
     Route::post('account/personal-data', ['middleware' => 'web', 'as' => 'personal-data', 'uses' => 'Account\AccountController@saveChangePersonalData']);
 });
