@@ -120,7 +120,7 @@
                            value="{{isset($user) ? $user->town : ''}}" {{isset($user) ? 'readonly' : ''}}>
                     <label for="education" class="red-star">Уровень образования</label>
                     <select name="education" id="education" class="input-style">
-                        <option value="0">Выбирите уровень образования</option>
+                        <option value="0">Выберите уровень образования</option>
                         @foreach($educations as $education)
                             <option value="{{$education->id}}"
                                 @if($education->id == Session::get('education'))

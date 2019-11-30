@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Competitions;
 
 use App\Competition;
 use App\Competition_Nomination;
+use App\Http\Controllers\SearchController;
 use App\Work;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -35,41 +36,43 @@ class FilterCompetitionController extends Controller
 
         $searchQuery = $request->get('searchQuery');
         $competitions = [];
+        $competitionQueryModel = new SearchController();
+        $competitionQueryModel = $competitionQueryModel->search($searchQuery, [
+            'competition' => $competitionModel,
+        ]);
+
         if ($column != 'difference-date') {
             switch ($filter) {
                 case 1:
                 case null:
-                    $competitions = $competitionModel->where('title', 'LIKE', '%' . trim($searchQuery) . '%')->get();
+                    $competitions = $competitionQueryModel;
                     break;
                 case 2:
-                    $competitions = $competitionModel->where('title', 'LIKE', '%' . trim($searchQuery) . '%')
-                        ->orderBy($column, 'ASC')
-                        ->get();
+                    $competitions = $competitionQueryModel
+                        ->orderBy($column, 'ASC');
                     break;
                 case 3:
-                    $competitions = $competitionModel->where('title', 'LIKE', '%' . trim($searchQuery) . '%')
-                        ->orderBy($column, 'DESC')
-                        ->get();
+                    $competitions = $competitionQueryModel
+                        ->orderBy($column, 'DESC');
                     break;
             }
         } else {
             switch ($filter) {
                 case 1:
                 case null:
-                    $competitions = $competitionModel->where('title', 'LIKE', '%' . trim($searchQuery) . '%')->get();
+                    $competitions = $competitionQueryModel;
                     break;
                 case 2:
-                    $competitions = $competitionModel->where('title', 'LIKE', '%' . trim($searchQuery) . '%')
-                        ->orderBy(DB::raw('date_end - date_begin'), 'ASC')
-                        ->get();
+                    $competitions = $competitionQueryModel
+                        ->orderBy(DB::raw('date_end - date_begin'), 'ASC');
                     break;
                 case 3:
-                    $competitions = $competitionModel->where('title', 'LIKE', '%' . trim($searchQuery) . '%')
-                        ->orderBy(DB::raw('date_end - date_begin'), 'DESC')
-                        ->get();
+                    $competitions = $competitionQueryModel
+                        ->orderBy(DB::raw('date_end - date_begin'), 'DESC');
                     break;
             }
         }
+        $competitions = $competitions->simplePaginate(10);
         $competitions = $this->formationSnippet($competitions);
         $filterInfo = [
             'filter-c' => $filter,

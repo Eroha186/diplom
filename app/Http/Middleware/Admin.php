@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Auth;
 
+
 class Admin
 {
     /**

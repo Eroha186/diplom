@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Publication;
 
 use App\Education;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\SearchController;
 use App\Kind;
 use App\Publication;
 use App\Theme;
 use App\Type;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Cookie;
 
 class FilterPublicationController extends Controller
@@ -22,6 +24,8 @@ class FilterPublicationController extends Controller
         'kind',
         'files',
     ];
+
+    protected $page = 10;
 
     public function setCookieOrder(Response $response, $column, $filter)
     {
@@ -38,7 +42,7 @@ class FilterPublicationController extends Controller
         $column = $request->cookie('column-p');
 
         $whereArray = [
-            ['title', 'LIKE', '%' . trim($searchQuery) . '%']
+            'moderation' => 2
         ];
 
         $filters = [
@@ -57,37 +61,38 @@ class FilterPublicationController extends Controller
                 continue;
             }
         }
-
+        $publicationQueryModel = new SearchController();
         $publications = [];
+        $publicationQueryModel = $publicationQueryModel->search($searchQuery, [
+            'publication' => $publicationModel,
+        ]);
+        $count = $publicationQueryModel->count();
+        $dimension = round($count / $this->page);
+        $elements = [];
+        for($i = 1; $i <= $dimension; $i++) {
+            $elements[$i] = route('publications') . '?page=' . $i;
+        }
         switch ($filter) {
             case 1:
             case null:
-                $publications = $publicationModel::with($this->field)
-                    ->where('moderation', 2)
-                    ->leftJoin('themes_and_publ as tap', 'publications.id', '=', 'tap.publ_id')
+                $publications = $publicationQueryModel
                     ->where($whereArray)
-                    ->groupBy('id')
-                    ->paginate(10);
+                    ->groupBy('id');
                 break;
             case 2:
-                $publications = $publicationModel::with($this->field)
-                    ->where('moderation', 2)
-                    ->leftJoin('themes_and_publ as tap', 'publications.id', '=', 'tap.publ_id')
+                $publications = $publicationQueryModel
                     ->where($whereArray)
                     ->orderBy($column, 'ASC')
-                    ->groupBy('id')
-                    ->paginate(10);
+                    ->groupBy('id');
                 break;
             case 3:
-                $publications = $publicationModel::with($this->field)
-                    ->where('moderation', 2)
-                    ->leftJoin('themes_and_publ as tap', 'publications.id', '=', 'tap.publ_id')
+                $publications = $publicationQueryModel
                     ->where($whereArray)
                     ->orderBy($column, 'DESC')
-                    ->groupBy('id')
-                    ->paginate(10);
+                    ->groupBy('id');
                 break;
         }
+        $publications = $publications->simplePaginate($this->page);
         $publications->withPath(route('search') . '?education=' . $filters['education']
             . '&kind=' . $filters['kind']
             . '&theme=' . $filters['theme']
@@ -109,7 +114,8 @@ class FilterPublicationController extends Controller
                 'kinds' => $kinds,
                 'types' => $types,
                 'themes' => $themes,
-                'filtersInfo' => $filtersInfo
+                'filtersInfo' => $filtersInfo,
+                'elements' => $elements
             ]);
         } else {
             $publications->error = 'Нет публикаций удовлетворяющих критериям поиска';

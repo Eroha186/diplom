@@ -357,7 +357,7 @@
         </form>
     </div>
 </div>
-
+@include('header_footer/footer')
 @include('script')
 </body>
 </html>

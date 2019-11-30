@@ -11,4 +11,7 @@ npm-debug.log
 yarn-error.log
 .env
 composer.lock
-ClassLoader.php
+no
+satisfiable
+.htaccess
+.idea/

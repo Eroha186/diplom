@@ -27,11 +27,11 @@ Route::get('/testDB', function () {
     dd($search);
 });
 
-DB::listen(function ($query) {
-    echo '<pre>';
-    print_r($query->sql);
-    echo '</pre>';
-});
+//DB::listen(function ($query) {
+//    echo '<pre>';
+//    print_r($query->sql);
+//    echo '</pre>';
+//});
 
 Route::group(['middleware' => 'emailCheck'], function () {
     Route::get('/', 'MainPageController@show')->name('home');

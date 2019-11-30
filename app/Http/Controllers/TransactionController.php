@@ -39,15 +39,5 @@ class TransactionController extends Controller
         }
     }
 
-    public function addEmailSocialUser(Request $request) {
-        return redirect(route('personal-data'));
-        dump($request);
-//        Validator::make($request->all(), ['email' => 'required|email'])->validate();
-        $user = User::where('id', Auth::user()->id)->update([
-            'email' => $request->get('email')
-        ]);
-        dd($user);
-//        $this->verifyCreate(['user' => $user]);
-        return redirect(route('personal-data'));
-    }
+   
 }
