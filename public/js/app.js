@@ -10829,6 +10829,7 @@ $(function () {
             contentType: false,
             processData: false,
             success: function success(response) {
+                console.log('ok');
                 $('#search').trigger('click');
             }
         });
