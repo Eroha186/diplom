@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use JustBetter\PaginationWithHavings\PaginationWithHavings;
 
 class Publication extends Model
 {
+
+    use PaginationWithHavings;
+
     protected $table = 'publications';
 
     public $timestamps = false;

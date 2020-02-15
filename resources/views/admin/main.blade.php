@@ -22,8 +22,6 @@
            href="{{route('a-competitions')}}">Конкурсы</a>
         <a class="{{request()->is('admin/express-competition') ? "active" : ""}}"
            href="{{route('a-express-competition')}}">Экспресс-конкурсы</a>
-        <a class="{{request()->is(route('a-create-diplom'))}}" 
-            href="{{route('a-create-diplom')}}">Создание дипломов</a>   
     </nav>
 
     <main style="width: 100%;">

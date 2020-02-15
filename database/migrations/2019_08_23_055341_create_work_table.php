@@ -20,9 +20,9 @@ class CreateWorkTable extends Migration
             $table->string('title');
             $table->text('annotation');
             $table->timestamp('date_add');
-            $table->string('fc');
-            $table->string('ic');
-            $table->string('oc');
+            $table->string('fc')->nullable();
+            $table->string('ic')->nullable();
+            $table->string('oc')->nullable();
             $table->integer('age');
         });
     }

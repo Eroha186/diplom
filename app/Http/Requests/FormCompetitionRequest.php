@@ -53,9 +53,6 @@ class FormCompetitionRequest extends FormRequest
                 'file' => 'required|mimes:jpg,png,doc,docx,pdf,ppt,pptx',
                 'offer' => 'accepted',
                 'processing-pd' => 'accepted',
-                'fc' => 'required|string|max:30',
-                'ic' => 'required|string|max:30',
-                'oc' => 'required|string|max:30',
                 'age' => 'required|string|max:3'
             ];
         }
@@ -77,9 +74,6 @@ class FormCompetitionRequest extends FormRequest
             ],
             'stuff.required' => 'Укажите наименования вашего образовательного учреждения',
             'town.required' => 'Укажите ваш город',
-            'fc.required' => 'Укажите вашу Фамилию ребенка',
-            'ic.required' => 'Укажите ваше Имя ребенка',
-            'oc.required' => 'Укажите ваше Отчество ребенка',
             'title.required' => 'Укажите название работы',
             'annotation.required' => 'Укажите описание работы',
             'file.required' => 'Не забудьте приложить файлы',

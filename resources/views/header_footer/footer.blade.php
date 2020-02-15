@@ -5,8 +5,8 @@
 				<h2>ПОИСК ДИПЛОМОВ</h2>
 				<p class="description">ПО НОМЕРУ ИЛИ ФАМИЛИИ</p>
 				<div class="search-form">
-					<form  id="search-form-header">
-						<input type="search" name="s" id="search" placeholder="Поиск" value="">
+					<form  action="{{route('search-diplom')}}" id="search-form-header">
+						<input type="search" name="query" id="search" placeholder="Поиск" value="">
 					</form>
 				</div>
 				<p class="questions-text">По всем вопросам пишите на почту</p>
@@ -29,8 +29,8 @@
 					</ul>
 				</div>
 				<div class="footer-widget recent-works-widget col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-					<div class="dib"></div>
-					<div class="dib"><span>Международный педагогический <br> портал <br>(лицензия на осуществление <br> образовательной деятельности №  <br>9757-л, свидетельство о регистрации<br> СМИ № ЭЛ ФС 77-65391)</span></div>
+					<div><img src="http://diploma.fvds.ru/images/main_page/inn.png" alt="inn" width="130"></div>
+					<div><span>Международный педагогический <br> портал <br>(лицензия на осуществление <br> образовательной деятельности №  <br>9757-л, свидетельство о регистрации<br> СМИ № ЭЛ ФС 77-65391)</span></div>
 					
 				</div>
 			</div>

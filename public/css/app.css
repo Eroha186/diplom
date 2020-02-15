@@ -2868,3 +2868,23 @@ border: 1px solid #595555;
   vertical-align: middle;
   margin: 0px 10px;
 }
+
+.footer-modern-bg .search-form form input[type="search"]::placeholder {
+  color: transparent;
+}
+
+.footer-modern-bg .search-form form input[type="search"]:focus::placeholder {
+  color: #a1afaf;
+}
+
+.recent-works-widget {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+}
+
+.recent-works-widget div {
+  margin: 0px 5px;
+}

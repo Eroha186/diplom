@@ -53,5 +53,5 @@
     </div>
 </div>
 <div class="pagination">
-    {{ isset($elements) ? $publications->links('paginate', ['elements' => $elements]) : $publications->links('paginate')}}
+    {{$publications->links('paginate')}}
 </div>

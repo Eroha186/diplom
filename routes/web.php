@@ -18,14 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\DB;
 
-
-
-Route::get('/testDB', function () {
-    $search = new \App\Http\Controllers\SearchController();
-    $publication = new \App\Publication();
-    $search = $search->search('asdafsdasf dsafsdfasdf adsfasdf', $publication);
-    dd($search);
-});
+Route::get('/testDiplom/{typeWork}/{workId}', 'Reward\GenerationDiplom@generate');
 
 //DB::listen(function ($query) {
 //    echo '<pre>';
@@ -41,6 +34,8 @@ Route::group(['middleware' => 'emailCheck'], function () {
         Route::post('/orderBy/{column}/{filter}', ['uses' => 'Competitions\FilterCompetitionController@setCookieOrderCompetitions']);
         Route::get('/search/', ['as' => 'search-с', 'uses' => 'Competitions\FilterCompetitionController@search']);
     });
+
+    Route::get('/search-diplom', ['as' => 'search-diplom', 'uses' => 'SearchController@searchDiplom']);
 
     Route::get('/competition/{id}', ['uses' => 'Competitions\CompetitionsController@showCompetition']);
 
@@ -126,7 +121,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     */
     Route::post('create-competition/{flag}', ['as' => 'create-competition', 'uses' => 'Admin\CompetitionController@createCompetition']);
     Route::get('express-competition', ['as' => 'a-express-competition', 'uses' => 'Admin\ExpressCompetitionController@show']);
-    Route::get('create-diplom', ['as' => 'a-create-diplom', 'uses' => 'Reward\GenerationDilom@show']);
     Route::get('competition/place/{place}/{id}', ['as' => 'a-place', 'uses' => 'Admin\CompetitionController@changePlace']);
     Route::post('add-substrates', ['as' => 'a-add-substrate', 'uses' => 'Reward\SubstrateController@addSubstrate']);
     Route::post('view-substrate', ['as' => 'view-substrate', 'uses' => 'Reward\SubstrateController@viewSubstrate']);

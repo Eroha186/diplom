@@ -61,17 +61,12 @@ class FilterPublicationController extends Controller
                 continue;
             }
         }
-        $publicationQueryModel = new SearchController();
+        $publicationQueryArray = new SearchController();
         $publications = [];
-        $publicationQueryModel = $publicationQueryModel->search($searchQuery, [
+        $publicationQueryArray = $publicationQueryArray->search($searchQuery, [
             'publication' => $publicationModel,
         ]);
-        $count = $publicationQueryModel->count();
-        $dimension = round($count / $this->page);
-        $elements = [];
-        for($i = 1; $i <= $dimension; $i++) {
-            $elements[$i] = route('publications') . '?page=' . $i;
-        }
+        $publicationQueryModel = $publicationQueryArray['model'];
         switch ($filter) {
             case 1:
             case null:
@@ -92,7 +87,7 @@ class FilterPublicationController extends Controller
                     ->groupBy('id');
                 break;
         }
-        $publications = $publications->simplePaginate($this->page);
+        $publications = $publications->paginate(10, array('*', $publicationQueryArray['query']));
         $publications->withPath(route('search') . '?education=' . $filters['education']
             . '&kind=' . $filters['kind']
             . '&theme=' . $filters['theme']
@@ -115,7 +110,6 @@ class FilterPublicationController extends Controller
                 'types' => $types,
                 'themes' => $themes,
                 'filtersInfo' => $filtersInfo,
-                'elements' => $elements
             ]);
         } else {
             $publications->error = 'Нет публикаций удовлетворяющих критериям поиска';

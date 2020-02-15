@@ -36,11 +36,11 @@ class FilterCompetitionController extends Controller
 
         $searchQuery = $request->get('searchQuery');
         $competitions = [];
-        $competitionQueryModel = new SearchController();
-        $competitionQueryModel = $competitionQueryModel->search($searchQuery, [
+        $competitionQueryArray = new SearchController();
+        $competitionQueryArray = $competitionQueryArray->search($searchQuery, [
             'competition' => $competitionModel,
         ]);
-
+        $competitionQueryModel = $competitionQueryArray['model'];
         if ($column != 'difference-date') {
             switch ($filter) {
                 case 1:
@@ -72,7 +72,7 @@ class FilterCompetitionController extends Controller
                     break;
             }
         }
-        $competitions = $competitions->simplePaginate(10);
+        $competitions = $competitions->paginate(10, array('*', $competitionQueryArray['query']));
         $competitions = $this->formationSnippet($competitions);
         $filterInfo = [
             'filter-c' => $filter,
