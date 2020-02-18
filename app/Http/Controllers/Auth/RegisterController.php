@@ -91,7 +91,7 @@ class RegisterController extends Controller
             'stuff' => $data['stuff'],
             'town' => $data['town'],
             'job' => $data['job'],
-            'date_reg' => date('Y-m-d H:i:s'),
+            'date_reg' => date('Y-m-d H:i:s', time()),
             'password' => password_hash($data['password'], PASSWORD_DEFAULT),
         ]);
         $userInfoForMail = array(

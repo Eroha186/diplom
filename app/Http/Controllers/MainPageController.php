@@ -29,7 +29,7 @@ class MainPageController extends Controller
                 $publication['file'] = $publication['files'][0]['type'];
         }
 
-        $competitions = $competitionModel->where('date_end', '>',  date('Y-m-d H:i:s'))->limit(8)->get();
+        $competitions = $competitionModel->where('date_end', '>',  date('Y-m-d H:i:s', time()))->limit(8)->get();
         foreach ($competitions as $competition) {
             $competition['date_begin'] = date("d.m.Y", strtotime($competition['date_begin']));
             $competition['date_end'] = date("d.m.Y", strtotime($competition['date_end']));

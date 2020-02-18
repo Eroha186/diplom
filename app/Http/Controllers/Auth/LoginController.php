@@ -40,7 +40,7 @@ class LoginController extends Controller
 
     public function authenticated(Request $request, $user)
     {
-        if ($user->confirm !== '1') {
+        if ($user->confirm != '1') {
             $this->guard()->logout();
             return back()->with('error', 'Вам необходимо подтвердить свой аккаунт. Пожалуйста, проверьте свою электронную почту.');
         }

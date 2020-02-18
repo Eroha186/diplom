@@ -6,7 +6,6 @@
 </head>
 <body>
 @include('header_footer.header')
-
 <section class="main-page__main">
     <div class="container">
         <div class="row">
@@ -148,9 +147,6 @@
                 <div class="publication-snippet">
                     @foreach ($publications as $publication)
                         @if($publication->moderation == 0)
-                            @continue
-                        @endif
-                        @if(count($publication['file']) == 0)
                             @continue
                         @endif
                             <div class="publication">

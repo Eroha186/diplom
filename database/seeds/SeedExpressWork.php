@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class SeedWork extends Seeder
+class SeedExpressWork extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,7 +12,7 @@ class SeedWork extends Seeder
     public function run()
     {
         for ($i = 0; $i < 30; $i++) {
-            DB::table('works')->insert([
+            DB::table('express_works')->insert([
                 'user_id' => 1,
                 'competition_id' => 1,
                 'title' => 'С 8 марта',
@@ -22,6 +22,7 @@ class SeedWork extends Seeder
                 'oc' => 'Иванович',
                 'nomination_id' => 3,
                 'date_add' => date('Y-m-d H:i:s', time()),
+                'date_send_mail' => date('Y-m-d H:i:s', strtotime(now()->addDays(2))),
             ]);
         }
     }

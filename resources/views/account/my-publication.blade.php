@@ -19,10 +19,10 @@
                     <th class="author">Автор</th>
                     <th class="status">Статус</th>
                     <th class="certificate">Сертификат публикации СМИ</th>
-                    <th class="partcipation">Участие в конкурсах</th>
+{{--                    <th class="partcipation">Участие в конкурсах</th>--}}
                 </tr>
                 @foreach($publications as $publication)
-                    <tr>
+                    <tr class="cell-item">
                         <td class="number ta-center">{{$loop->iteration}}</td>
                         <td class="date-time ta-center">{{$publication->date_add}}</td>
                         <td>
@@ -41,9 +41,13 @@
                                 Отклонено
                             @endif
                         </td>
-                        <td class="certificate ta-center"><a href="#" class="button download-button">Скачать</a></td>
-                        <td class="participation ta-center"><a href="#"
-                                                               class="button participation-button">Участвовать</a></td>
+                        <td class="certificate ta-center">
+                            <a href="#" class="button download-button">Скачать</a>
+                        </td>
+
+{{--                        <td class="participation ta-center">--}}
+{{--                            <a href="#" class="button participation-button">Участвовать</a>--}}
+{{--                        </td>--}}
                     </tr>
                 @endforeach
             </table>
