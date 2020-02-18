@@ -43,7 +43,7 @@ class GenerationDiplom extends Controller
                 $work = Work::with('user')->where('id', $workId)->first();
                 $substrateId = Competition::select('substrate_id')->where('id', $work['competition_id'])->first();
                 $substrateId = $substrateId['substrate_id'];
-                $substrate = Substrate::select('url')->where('id', $substrateId)->first();
+                $substrate = Substrate::select('url')->where('id', $substrateId)->first()->toArray();
                 $diplom = asset(Storage::url('substrates/diplom.png'));
                 $competition = Competition::select('title')->where('id', $work->competition_id)->first();
                 break;
@@ -51,8 +51,7 @@ class GenerationDiplom extends Controller
                 $work = ExpressWork::with('user')->where('id', $workId)->first();
                 $substrateId = ExpressCompetition::select('substrate_id')->where('id', $work->competition_id)->first();
                 $substrateId = $substrateId['substrate_id'];
-                $substrate = Substrate::select('url')->where('id', $substrateId)->first();
-                $substrate['url'] = "substrates/weHnrngpLrHsUUfAFKoj7kUUjCt5woqAbPtmpGad.jpeg";
+                $substrate = Substrate::select('url')->where('id', $substrateId)->first()->toArray();
                 $diplom = asset(Storage::url('substrates/diplom.png'));
                 $competition = ExpressCompetition::select('title')->where('id', $work->competition_id)->first();
                 break;
