@@ -25,7 +25,7 @@ class GenerationDiplom extends Controller
     public function generate($typeWork, $workId)
     {
         $work = [];
-        $substrate = 0;
+        $substrate = [];
         $diplomId = Diplom::where(
             [
                 ['work_id', '=', $workId],
@@ -39,19 +39,19 @@ class GenerationDiplom extends Controller
                 $substrate['url'] = "substrates/weHnrngpLrHsUUfAFKoj7kUUjCt5woqAbPtmpGad.jpeg";
                 $diplom = asset(Storage::url('substrates/certificate.png'));
                 break;
-            case "competition":
+            case "work":
                 $work = Work::with('user')->where('id', $workId)->first();
                 $substrateId = Competition::select('substrate_id')->where('id', $work['competition_id'])->first();
                 $substrateId = $substrateId['substrate_id'];
-                $substrate = Substrate::select('url')->where('id', $substrateId)->first();
+                $substrate = Substrate::select('url')->where('id', $substrateId)->first()->toArray();
                 $diplom = asset(Storage::url('substrates/diplom.png'));
                 $competition = Competition::select('title')->where('id', $work->competition_id)->first();
                 break;
-            case "e-competition":
+            case "expressWork":
                 $work = ExpressWork::with('user')->where('id', $workId)->first();
                 $substrateId = ExpressCompetition::select('substrate_id')->where('id', $work->competition_id)->first();
                 $substrateId = $substrateId['substrate_id'];
-                $substrate = Substrate::select('url')->where('id', $substrateId)->first();
+                $substrate = Substrate::select('url')->where('id', $substrateId)->first()->toArray();
                 $diplom = asset(Storage::url('substrates/diplom.png'));
                 $competition = ExpressCompetition::select('title')->where('id', $work->competition_id)->first();
                 break;
@@ -174,7 +174,7 @@ class GenerationDiplom extends Controller
                 $font->size(32);
                 $font->align('center');
             });
-        } elseif ($typeWork === "competition" || $typeWork === 'e-competition') {
+        } elseif ($typeWork === "work" || $typeWork === 'expressWork') {
             $img->insert($diplom, 'top', $x, $y);
             $y += 200;
             $img->text('Награждается', $x, $y, function ($font) {

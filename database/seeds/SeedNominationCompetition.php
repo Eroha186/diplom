@@ -27,7 +27,7 @@ class SeedNominationCompetition extends Seeder
             foreach ($array2 as $two) {
                 DB::table('competition_nomination')->insert([
                     'competition_id' => $one,
-                    'nomination_id' => $two
+                    'nomination_id' => $two,
                 ]);
             }
         }

@@ -24,7 +24,7 @@ class TransactionController extends Controller
             'user_id' => $infoTransaction['user_id'],
             'type' => $infoTransaction['type'],
             'value' => $infoTransaction['coins'],
-            'date' => date('Y-m-d H:i:s'),
+            'date' => date('Y-m-d H:i:s', time()),
         ]);
         if ($transfer) {
             switch ($infoTransaction['type']) {

@@ -24,7 +24,7 @@ class SeedPublications extends Seeder
                 'education_id' => random_int(1,12),
                 'text' => str_random(200),
                 'moderation' => 2,
-                'date_add' => date('Y-m-d H:i:s')
+                'date_add' => date('Y-m-d H:i:s', time())
 
             ]);
         }

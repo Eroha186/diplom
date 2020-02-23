@@ -14,9 +14,9 @@ class SeedFile extends Seeder
         for ($i = 1; $i <= 50; $i++) {
             DB::table('files')->insert([
                 'publ_id' => $i,
-                'url' => 'upload/text.docx',
+                'url' => 'upload/test.png',
                 'type' => 'doc',
-                'work_id' => 0,
+                'work_id' => $i,
             ]);
         }
     }

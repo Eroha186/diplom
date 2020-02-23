@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Competitions;
 
 use App\Competition_Nomination;
+use App\Diplom;
 use App\ExpressCompetition;
 use App\ExpressWork;
 use App\File;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FormExpressCompetitionRequest;
 use App\User;
+use App\Work;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,9 +27,9 @@ class ExpressCompetitionFormController extends Controller
             ->get();
         $user = [];
         if (Auth::check()) {
-            $user = User::where('id', Auth::user()->id)->first();
+            $user = User::where('id', Auth::user()->id)->first()->toArray();
         }
-        return view('competitions/form-competition', [
+        return view('express-competitions.form-competition', [
             'competitionSelected' => $competitionSelected,
             'competitions' => $competitions,
             'nominations' => $nominations,
@@ -37,6 +39,7 @@ class ExpressCompetitionFormController extends Controller
 
     public function saveExpressWork(FormExpressCompetitionRequest $request) {
         $work = $request->all();
+//        dd($work);
         $placeArray = [1,2,2,3,3,3,4,4,4,4];
         if (Auth::check()) {
             $newWork = ExpressWork::create([
@@ -48,9 +51,9 @@ class ExpressCompetitionFormController extends Controller
                 'ic' => $work['ic'],
                 'oc' => $work['oc'],
                 'nomination_id' => (int) $work['nomination'],
-                'date_add' => date('Y-m-d H:i:s'),
+                'date_add' => date('Y-m-d H:i:s', strtotime(now())),
                 'age' => $work['age'],
-                'place' => array_rand($placeArray, 1),
+                'place' => $placeArray[array_rand($placeArray, 1)],
             ]);
         } else {
             $register = new RegisterController();
@@ -58,7 +61,7 @@ class ExpressCompetitionFormController extends Controller
             $formRequest['password'] = $pass;
             $formRequest['password_confirmation'] = $pass;
             $newUser = $register->registerFromPublicationForm($formRequest);
-            $newWork = Work::create([
+            $newWork = ExpressWork::create([
                 'user_id' => $newUser->id,
                 'title' => $work['title'],
                 'annotation' => $work['annotation'],
@@ -66,11 +69,16 @@ class ExpressCompetitionFormController extends Controller
                 'ic' => $work['ic'],
                 'oc' => $work['oc'],
                 'nomination_id' => (int) $work['nomination'],
-                'date_add' => date('Y-m-d H:i:s'),
+                'date_add' => date('Y-m-d H:i:s', strtotime(now())),
                 'age' => $work['age'],
                 'place' => array_rand($placeArray, 1),
             ]);
         }
+        Diplom::create([
+            'work_id' => $newWork->id,
+            'type' => 'expressWork',
+        ]);
+        return redirect(route('home'));
     }
 
 }

@@ -48,7 +48,7 @@ class FormCompetitionController extends Controller
                 'ic' => $work['ic'],
                 'oc' => $work['oc'],
                 'nomination_id' => (int) $work['nomination'],
-                'date_add' => date('Y-m-d H:i:s'),
+                'date_add' => date('Y-m-d H:i:s', time()),
                 'age' => $work['age'],
             ]);
         } else {
@@ -65,7 +65,7 @@ class FormCompetitionController extends Controller
                 'ic' => $work['ic'],
                 'oc' => $work['oc'],
                 'nomination_id' => (int) $work['nomination'],
-                'date_add' => date('Y-m-d H:i:s'),
+                'date_add' => date('Y-m-d H:i:s', time()),
                 'age' => $work['age'],
             ]);
         }

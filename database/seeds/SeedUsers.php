@@ -21,8 +21,11 @@ class SeedUsers extends Seeder
             'stuff' => 'МБОУ СОШ № 11',
             'town' => 'Абакан',
             'job' => 'Педагог',
+            'admin' => 1,
             'confirm' => 1,
-            'date_reg' => date('Y-m-d H:i:s')]);
+            'mailing' => 1,
+            'date_reg' => date('Y-m-d H:i:s', time())
+        ]);
 
     }
 }

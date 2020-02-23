@@ -113,7 +113,7 @@ class PublicationsPageController extends Controller
                 'education_id' => $data['education'],
                 'text' => $data['text'],
                 'moderation' => 0,
-                'date_add' => date('Y-m-d H:i:s'),
+                'date_add' => date('Y-m-d H:i:s', time()),
             ]);
             if($data['distribution'] == 'on') {
                User::where('id',Auth::user()->id)->update([
@@ -154,7 +154,7 @@ class PublicationsPageController extends Controller
                 'education_id' => $data['education'],
                 'text' => $data['text'],
                 'moderation' => 0,
-                'date_add' => date('Y-m-d H:i:s'),
+                'date_add' => date('Y-m-d H:i:s', time()),
             ]);
             foreach ($data['themes'] as $theme) {
                 ThemesAndPubl::create([

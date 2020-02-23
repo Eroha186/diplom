@@ -16,7 +16,7 @@ class SeedCompetition extends Seeder
             'annotation' => 'В настоящем разделе представлены актуальные конкурсы, на которые осуществляется прием заявок на участие. Участвуйте вместе с детьми и в конкурсах для педагогов на участие. Участвуйте вмместе с детьми и в конкурсах для педагогов',
             'type_id' => 1,
             'cover' => '---',
-            'date_begin' => date('Y-m-d H:i:s'),
+            'date_begin' => date('Y-m-d H:i:s', time()),
             'date_end' => date('Y-m-d H:i:s', time() + 60 * 60 * 24 * 7),
         ]);
         DB::table('competitions')->insert([

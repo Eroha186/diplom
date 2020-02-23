@@ -92,6 +92,5 @@ class SearchController extends Controller
             return "Нет таких дипломов";
         }
         $user = User::where('f', $query)->get();
-        dd($user);
     }
 }

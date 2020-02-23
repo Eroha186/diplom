@@ -72,6 +72,7 @@ Route::group(['middleware' => 'emailCheck'], function () {
 
             Route::get('/my-publication', ['uses' => 'Account\AccountController@showMyPublication']);
             Route::get('/part-in-contests', ['uses' => 'Account\AccountController@showPartInContests']);
+            Route::get('/my-express-competition', ['uses' => 'Account\AccountController@showMyExpressCompetition']);
             Route::get('/order', function () {
                 return view('account/order');
             });
@@ -105,7 +106,8 @@ Route::post('/two-step-registration', 'Auth\SocialController@addEmailSocialUser'
 Route::get('/social-auth/{provider}', ['uses' => 'Auth\SocialController@redirectToProvider', 'as' => 'auth.social']);
 Route::get('/social-auth/{provider}/callback', ['uses' => 'Auth\SocialController@handleProviderCallback', 'as' => 'auth.social.callback']);
 
-Route::get('/test', ['uses' => 'Reward\GenerationDiplom@generate']);
+
+Route::get('/diplom-download/{type_work}/{id_work}', ['uses' => 'Reward\GenerationDiplom@generate', 'as' => 'diplom']);
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
     Route::get('publication', ['as' => 'a-publication', 'uses' => 'Admin\PublicationController@show']);
@@ -145,6 +147,4 @@ Route::post('/publicationSaveSession', ['uses' => 'Publication\PublicationSaveSe
 Route::auth();
 
 
-Route::get('/test', function () {
-    return view('test');
-});
+Route::get('/test', 'Test@test');
