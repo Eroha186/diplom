@@ -22,6 +22,8 @@
            href="{{route('a-competitions')}}">Конкурсы</a>
         <a class="{{request()->is('admin/express-competition') ? "active" : ""}}"
            href="{{route('a-express-competition')}}">Экспресс-конкурсы</a>
+        <a class="{{request()->is('admin/mailing') ? "active" : ""}}"
+           href="{{route('a-mailing')}}">Email рассылка</a>
     </nav>
 
     <main style="width: 100%;">
