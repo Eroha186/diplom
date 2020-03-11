@@ -11142,7 +11142,7 @@ $(function () {
     // Показ подложки в админк
     $('#substrate').on('change', function () {
         var val = $(this).val();
-        console.log(val);
+
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -11162,6 +11162,27 @@ $(function () {
                 } else {
                     $('#example-substrate').remove();
                 }
+            }
+        });
+    });
+
+    // показ письма
+    $('#template').on('change', function () {
+        var val = $(this).val();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: 'load-template',
+            data: { val: val },
+            type: 'POST',
+            success: function success(e) {
+                console.log(e);
+                var layout = '';
+                $.each(e, function (index, value) {
+                    layout += value.content;
+                });
+                $('.mail-demo').html(layout);
             }
         });
     });

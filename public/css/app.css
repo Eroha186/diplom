@@ -1263,10 +1263,6 @@ select {
   color: #313131;
 }
 
-.cell-item:hover {
-  background: #F7F7F9;
-}
-
 .bg-arch {
   position: relative;
   padding: 120px 0px;
@@ -1792,6 +1788,9 @@ input[type="radio"]:checked + .radio-button__title > span::after {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
 }
 
 .fio-children-block {

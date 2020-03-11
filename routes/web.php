@@ -127,6 +127,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::post('add-substrates', ['as' => 'a-add-substrate', 'uses' => 'Reward\SubstrateController@addSubstrate']);
     Route::post('view-substrate', ['as' => 'view-substrate', 'uses' => 'Reward\SubstrateController@viewSubstrate']);
     Route::get('mailing', ['as' => 'a-mailing', 'uses' => 'Admin\MailingController@show']);
+    Route::post('load-template', ['uses' => 'Admin\MailingController@loadTemplate']);
 });
 
 

@@ -11,8 +11,4 @@ use Illuminate\Support\Facades\Hash;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
-    public function a() {
-        Hash::check();
-    }
 }

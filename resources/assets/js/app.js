@@ -439,7 +439,7 @@ $(function () {
     // Показ подложки в админк
     $('#substrate').on('change', function () {
        let val = $(this).val();
-       console.log(val);
+
        $.ajax({
            headers: {
                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -459,4 +459,25 @@ $(function () {
            }
        })
     });
+
+    // показ письма
+    $('#template').on('change', function () {
+        let val = $(this).val();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: 'load-template',
+            data: {val: val},
+            type: 'POST',
+            success: function (e) {
+                console.log(e);
+                let layout = '';
+                $.each(e, function (index, value) {
+                    layout += value.content
+                });
+                $('.mail-demo').html(layout);
+            }
+        })
+    })
 });
