@@ -2733,3 +2733,82 @@ main {
   display: flex;
 }
 
+.wrap-mailing {
+  padding-top: 25px;
+  padding-left: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.mailing-option {
+  width: 49%;
+}
+
+.mailing-option .button {
+  padding: 8px 25px;
+  border: 1px solid #f80;
+  background: #f80;
+  font-weight: bold;
+  color: #fff;
+}
+
+.mailing-option .button:hover {
+  color: #f80;
+}
+
+.mail-demo {
+  width: 49%;
+  margin-left: 20px;
+}
+
+.form-mailing {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 30%;
+}
+
+.form-mailing label {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.form-mailing button {
+  margin-top: 15px;
+}
+
+.progress {
+  width: 100%;
+  height: 50px;
+}
+
+.progress-wrap {
+  background: #f80;
+  margin: 20px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-wrap .progress-bar {
+  background: #ddd;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+.history-mailing__table {
+  margin-top: 25px;
+  border-collapse: collapse;
+}
+
+.history-mailing__table th,
+.history-mailing__table td {
+  border: 1px solid black;
+  padding: 5px;
+}
+

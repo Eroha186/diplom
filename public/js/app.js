@@ -11180,7 +11180,8 @@ $(function () {
                 console.log(e);
                 var layout = '';
                 $.each(e, function (index, value) {
-                    layout += value.content;
+
+                    layout += value.content.split('contenteditable="true"').join('');
                 });
                 $('.mail-demo').html(layout);
             }

@@ -13,11 +13,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\Event' => [
-            'App\Listeners\EventListener',
-        ],
-        'BeyondCode\EmailConfirmation\Events\Confirmed' => [
-            'App\Listeners\YourOnConfirmedListener'
+        'App\Events\SuccessMailSend' => [
+            'App\Listeners\UpdateNumberMailListener',
+            'App\Listeners\ChangeStatusMailingListener'
         ],
         'SocialiteProviders\Manager\SocialiteWasCalled' => [
             'SocialiteProviders\Odnoklassniki\OdnoklassnikiExtendSocialite@handle',

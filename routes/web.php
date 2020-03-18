@@ -80,8 +80,9 @@ Route::group(['middleware' => 'emailCheck'], function () {
                 return view('account/order-publication');
             });
 
-            Route::get('/no-mailing', function () {
-                App\User::where('id', Auth::user()->id)->update([
+            Route::get('/no-mailing/{id?}', function ($id = null) {
+                $id = $id ?? Auth::user()->id;
+                App\User::where('id', $id)->update([
                     'mailing' => 0,
                 ]);
                 return redirect(route('personal-data'));
@@ -128,6 +129,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::post('view-substrate', ['as' => 'view-substrate', 'uses' => 'Reward\SubstrateController@viewSubstrate']);
     Route::get('mailing', ['as' => 'a-mailing', 'uses' => 'Admin\MailingController@show']);
     Route::post('load-template', ['uses' => 'Admin\MailingController@loadTemplate']);
+    Route::post('global-mailing', ['as' => 'a-global-mailing', 'uses' => 'Admin\MailingController@sendMail']);
+    Route::get('end-mailing', ['as' => 'a-end_mailing', 'uses' => 'Admin\MailingController@endMailing']);
+    Route::get('/progress', 'Admin\MailingController@progressMailing');
 });
 
 

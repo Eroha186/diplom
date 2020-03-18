@@ -474,10 +474,12 @@ $(function () {
                 console.log(e);
                 let layout = '';
                 $.each(e, function (index, value) {
-                    layout += value.content
+
+                    layout += value.content.split('contenteditable="true"').join('');
                 });
                 $('.mail-demo').html(layout);
             }
         })
-    })
+    });
+
 });
