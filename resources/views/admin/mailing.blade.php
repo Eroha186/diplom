@@ -83,7 +83,7 @@
                         <th>Дата рассылки</th>
                     </tr>
                     @foreach($items as $item)
-                        <tr class="text-center">
+                        <tr class="text-center {{ $loop->iteration % 2 == 1 ? "bg-blue" : "" }}">
                             <td >{{ $item->id }}</td>
                             <td >{{ $item->template_id }}</td>
                             <td >{{ $item->number_mail }}</td>

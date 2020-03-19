@@ -22,7 +22,8 @@ class MailingController extends Controller
         return User::where('id', Auth::user()->id)->first();
     }
 
-    public function show() {
+    public function show()
+    {
         $newMailing = Queue::size('default') <= 1 ? true : false;
         return view('admin.mailing', [
             'templates' => $this->getAllTemplateMail(),
@@ -32,19 +33,22 @@ class MailingController extends Controller
         ]);
     }
 
-    public function getAllTemplateMail() {
+    public function getAllTemplateMail()
+    {
         $templates = MlTemplate::all();
         return $templates;
     }
 
-    public function getTemplateBlocks($id) {
+    public function getTemplateBlocks($id)
+    {
         $id != 0
             ? $blocks = MlTemplate::find($id)->templateBlocks
             : $blocks = [];
         return $blocks;
     }
 
-    public function loadTemplate() {
+    public function loadTemplate()
+    {
         $id = \request()->get('val');
 
         $template = $this->getTemplateBlocks($id);
@@ -52,7 +56,8 @@ class MailingController extends Controller
         return $template;
     }
 
-    public function sendMail(Request $request) {
+    public function sendMail(Request $request)
+    {
         $users = User::where('mailing', 1)->get();
         $content = $this->renderMail($request->get('template'));
         $idMailing = Mailing::create([
@@ -64,17 +69,19 @@ class MailingController extends Controller
         ])->id;
 
         foreach ($users as $user) {
-           $this->dispatch(new SendEmail($user, $content, $idMailing));
+            $content = $this->insertingVariables($content, $user);
+            $this->dispatch(new SendEmail($user, $content, $idMailing));
         }
 
         return redirect()->back();
     }
 
-    public function renderMail($idTemplate) {
+    public function renderMail($idTemplate)
+    {
         $blocks = $this->getTemplateBlocks($idTemplate);
         $layout = '';
         foreach ($blocks as $block) {
-            $layout .= implode("", explode('contenteditable="true"',$block->content));
+            $layout .= implode("", explode('contenteditable="true"', $block->content));
         }
         return $layout;
     }
@@ -88,9 +95,20 @@ class MailingController extends Controller
         ];
     }
 
-    public function endMailing() {
+    public function endMailing()
+    {
         $mails = Job::select(['*'])->delete();
         Mailing::orderBy('id', 'desc')->first()->update(['status' => 3]);
         return redirect()->back();
+    }
+
+    public function insertingVariables($content, User $user)
+    {
+        $config = config('mail.variable');
+        foreach ($config as $variable => $db_row) {
+            $content = str_replace('{{ ' . $variable . ' }}', $user->$db_row, $content);
+        }
+
+        return  $content;
     }
 }

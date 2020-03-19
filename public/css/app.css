@@ -2812,3 +2812,7 @@ main {
   padding: 5px;
 }
 
+.history-mailing__table .bg-blue {
+  background: #c2dfff;
+}
+
