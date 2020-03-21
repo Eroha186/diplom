@@ -61,12 +61,13 @@ class FilterPublicationController extends Controller
                 continue;
             }
         }
+
         $publicationQueryArray = new SearchController();
         $publications = [];
         $publicationQueryArray = $publicationQueryArray->search($searchQuery, [
             'publication' => $publicationModel,
         ]);
-        $publicationQueryModel = $publicationQueryArray['model'];
+        $publicationQueryModel = $publicationQueryArray['model'] ?? $publicationQueryArray;
         switch ($filter) {
             case 1:
             case null:
@@ -87,7 +88,11 @@ class FilterPublicationController extends Controller
                     ->groupBy('id');
                 break;
         }
-        $publications = $publications->paginate(10, array('*', $publicationQueryArray['query']));
+
+        $publications = is_null($publicationQueryArray['query']) ?
+            $publications->paginate(10, array('*'))                              :
+            $publications->paginate(10, array('*', $publicationQueryArray['query']));
+
         $publications->withPath(route('search') . '?education=' . $filters['education']
             . '&kind=' . $filters['kind']
             . '&theme=' . $filters['theme']

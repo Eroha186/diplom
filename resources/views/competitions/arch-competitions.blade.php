@@ -21,7 +21,7 @@
 		</div>
 	</div>
 </section>
-<section class="filtres">
+<section class="filters">
 	<div class="container">
 		{!!Breadcrumbs::render('competitions')!!}
 		<h2 class="section-title">Завершенные конкурсы</h2>

@@ -216,7 +216,7 @@
                                    value="1" checked="checked">
                             <div class="radio-button__title">
                                 <img src="{{asset('images/credit-card.svg')}}" alt="кредитная карта">
-                                <span>Разместить работу и заказатьдиплом сейчас</span>
+                                <span>Разместить работу и заказать диплом сейчас</span>
                             </div>
                             <div class="radio-button__descr">
                                 Стоимость одного диплома 100 рублей.

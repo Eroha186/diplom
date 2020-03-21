@@ -24,9 +24,6 @@ class SearchController extends Controller
         $model = 0;
         if (isset($modelArray['publication'])) {
             $model = $modelArray['publication'];
-            QuerySearch::insert([
-                'query' => $str,
-            ]);
         }
         if (isset($modelArray['competition'])) {
             $model = $modelArray['competition'];
@@ -34,6 +31,9 @@ class SearchController extends Controller
         if (empty($str)) {
             return $model;
         }
+        QuerySearch::insert([
+            'query' => $str,
+        ]);
         $words = explode(" ", trim(preg_replace("/\s(\S{1,2})\s/", " ", preg_replace("/ +/i", " ", "$str"))));
         $trueWords = Array();
         if (count($words)) {
@@ -75,7 +75,7 @@ class SearchController extends Controller
         $query = $request->get('query');
         if (ctype_digit($query)) {
             $diplom = Diplom::where('id', $query)->first();
-            if(count($diplom) > 0) {
+            if (count($diplom) > 0) {
                 switch ($diplom->type) {
                     case "publication":
                         $diplom->work = Publication::with('author')->where('id', $diplom->work_id)->first();
