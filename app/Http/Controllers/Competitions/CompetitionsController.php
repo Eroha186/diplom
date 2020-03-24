@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 
 class CompetitionsController extends Controller
 {
-    public function show(Request $request, Competition $competitionModel)
+    public function showCompetitions(Request $request, Competition $competitionModel)
     {
         $filter = $request->cookie('filter-c');
         $column = $request->cookie('column-c');
@@ -23,26 +23,26 @@ class CompetitionsController extends Controller
             switch ($filter) {
                 case 1:
                 case null:
-                    $competitions = $competitionModel->orderBy('id', 'ASC')->paginate(16);
+                    $competitions = $competitionModel->where('status', '0')->orderBy('id', 'ASC')->paginate(16);
                     break;
                 case 2:
-                    $competitions = $competitionModel->orderBy($column, 'ASC')->paginate(16);
+                    $competitions = $competitionModel->where('status', '0')->orderBy($column, 'ASC')->paginate(16);
                     break;
                 case 3:
-                    $competitions = $competitionModel->orderBy($column, 'DESC')->paginate(16);
+                    $competitions = $competitionModel->where('status', '0')->orderBy($column, 'DESC')->paginate(16);
                     break;
             }
         } else {
             switch ($filter) {
                 case 1:
                 case null:
-                    $competitions = $competitionModel->all();
+                    $competitions = $competitionModel->where('status', '0')->get();
                     break;
                 case 2:
-                    $competitions = $competitionModel->orderBy(DB::raw('date_end - date_begin'), 'ASC')->paginate(16);
+                    $competitions = $competitionModel->where('status', '0')->orderBy(DB::raw('date_end - date_begin'), 'ASC')->paginate(16);
                     break;
                 case 3:
-                    $competitions = $competitionModel->orderBy(DB::raw('date_end - date_begin'), 'DESC')->paginate(16);
+                    $competitions = $competitionModel->where('status', '0')->orderBy(DB::raw('date_end - date_begin'), 'DESC')->paginate(16);
                     break;
             }
         }
@@ -63,7 +63,57 @@ class CompetitionsController extends Controller
         ]);
     }
 
-    public function showCompetition(Request $request,$id)
+    public function showArchCompetitions(Request $request, Competition $competitionModel)
+    {
+        $filter = $request->cookie('filter-ac');
+        $column = $request->cookie('column-ac');
+        $competitions = [];
+
+        if ($column != 'difference-date') {
+            switch ($filter) {
+                case 1:
+                case null:
+                    $competitions = $competitionModel->where('status', '1')->orWhere('status', '2')->orderBy('id', 'ASC')->paginate(16);
+                    break;
+                case 2:
+                    $competitions = $competitionModel->where('status', '1')->orWhere('status', '2')->orderBy($column, 'ASC')->paginate(16);
+                    break;
+                case 3:
+                    $competitions = $competitionModel->where('status', '1')->orWhere('status', '2')->orderBy($column, 'DESC')->paginate(16);
+                    break;
+            }
+        } else {
+            switch ($filter) {
+                case 1:
+                case null:
+                    $competitions = $competitionModel->where('status', '1')->orWhere('status', '2')->get();
+                    break;
+                case 2:
+                    $competitions = $competitionModel->where('status', '1')->orWhere('status', '2')->orderBy(DB::raw('date_end - date_begin'), 'ASC')->paginate(16);
+                    break;
+                case 3:
+                    $competitions = $competitionModel->where('status', '1')->orWhere('status', '2')->orderBy(DB::raw('date_end - date_begin'), 'DESC')->paginate(16);
+                    break;
+            }
+        }
+
+        $filterInfo = [
+            'column-ac' => $column,
+            'filter-ac' => $filter,
+        ];
+
+        foreach ($competitions as $competition) {
+            $competition['date_begin'] = date("d.m.Y", strtotime($competition['date_begin']));
+            $competition['date_end'] = date("d.m.Y", strtotime($competition['date_end']));
+        }
+
+        return view('competitions/arch-competitions', [
+            'competitions' => $competitions,
+            'filterInfo' => $filterInfo
+        ]);
+    }
+
+    public function showCompetition(Request $request, $id)
     {
         $field = [
             'user',
@@ -73,6 +123,7 @@ class CompetitionsController extends Controller
         $filter = $request->cookie('filter-competition');
         $column = $request->cookie('column-competition');
         $valueFilterNomination = $request->cookie('filter-nomination');
+
         $filterInfo = [
             'column-competition' => $column,
             'filter-competition' => $filter,

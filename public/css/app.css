@@ -248,6 +248,10 @@ select {
   cursor: pointer;
 }
 
+.pagination {
+  margin-top: 20px;
+}
+
 .pagination .link-paginate {
   font-weight: bold;
 }
@@ -327,6 +331,188 @@ select {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+}
+
+footer {
+  background-image: url("/images/happykiddo_footer-modern-bg_img.png") no-repeat;
+  background-color: #2a2424;
+  min-height: 100px;
+  background-position: top center;
+  background-repeat: repeat-y;
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 15px;
+  padding: 50px 0 10px 0;
+}
+
+.footer-modern-bg {
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.footer-modern-bg .footer-widget {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.footer-modern-bg ul li a::before {
+  content: "";
+  background: url("/images/happykiddo_footer-list-style.png") 0 0 no-repeat;
+  width: 10px;
+  height: 15px;
+  position: absolute;
+  display: block;
+  left: 0;
+}
+
+.footer-modern-bg ul li a {
+  color: #ffffff;
+}
+
+.footer-modern-bg .second-row .copyright {
+  padding-top: 10px;
+  font-size: 11px;
+}
+
+.footer-modern-bg .second-row .search-form {
+  border-bottom: 1px solid;
+}
+
+.footer-modern-bg ul {
+  padding: 0;
+}
+
+.footer-modern-bg ul li {
+  list-style: none;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding-left: 15px;
+  position: relative;
+}
+
+.footer-modern-bg .search-form form input[type="search"]:focus {
+  max-width: 260px;
+  width: 100%;
+  padding-left: 42px;
+  color: #ffffff;
+  background-color: #595555;
+  cursor: auto;
+  border: 1px solid #595555;
+  border-bottom-color: #595555;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom: 0;
+}
+
+.footer-modern-bg .search-form form input[type="search"] {
+  -webkit-appearance: textfield;
+  -webkit-box-sizing: content-box;
+  font-family: inherit;
+  font-size: 100%;
+  border: 1px solid #595555;
+  background: transparent url("/images/happykiddo_search-icon.png") no-repeat 11px center;
+  padding: 9px 0;
+  outline: none;
+  width: 130px;
+  color: transparent;
+  cursor: pointer;
+  height: 20px;
+  position: relative;
+  top: 1px;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.footer-modern-bg .contacts {
+  color: #fcc005;
+}
+
+.questions-text {
+  margin-bottom: 0px;
+  margin-top: 50px;
+}
+
+.second-row {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #595555;
+}
+
+.minobr {
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.minobr span {
+  margin-left: 20px;
+}
+
+.dib a {
+  color: #fff !important;
+  text-decoration: none;
+}
+
+.dib a:hover {
+  text-decoration: underline;
+}
+
+.dib {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0px 10px;
+}
+
+.footer-modern-bg .search-form form input[type="search"]::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.footer-modern-bg .search-form form input[type="search"]::-moz-placeholder {
+  color: transparent;
+}
+
+.footer-modern-bg .search-form form input[type="search"]::-ms-input-placeholder {
+  color: transparent;
+}
+
+.footer-modern-bg .search-form form input[type="search"]::placeholder {
+  color: transparent;
+}
+
+.footer-modern-bg .search-form form input[type="search"]:focus::-webkit-input-placeholder {
+  color: #a1afaf;
+}
+
+.footer-modern-bg .search-form form input[type="search"]:focus::-moz-placeholder {
+  color: #a1afaf;
+}
+
+.footer-modern-bg .search-form form input[type="search"]:focus::-ms-input-placeholder {
+  color: #a1afaf;
+}
+
+.footer-modern-bg .search-form form input[type="search"]:focus::placeholder {
+  color: #a1afaf;
+}
+
+.recent-works-widget {
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.recent-works-widget div {
+  margin: 0px 5px;
 }
 
 .main-page__main {
@@ -1515,6 +1701,20 @@ select {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+}
+
+.result-work {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.result-work .dedicated {
+  background: #e8e3de;
+}
+
+.result-work th,
+.result-work td {
+  padding: 7px 7px;
 }
 
 .notice {

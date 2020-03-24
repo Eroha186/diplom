@@ -5,12 +5,13 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Конкурс</title>
+    <title>{{ $competition->title }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @include('styles')
 </head>
 <body>
 @include('header_footer/header')
+
 <section class="competitions__main bg-arch">
     <div class="container">
         <h2 class="section-title">
@@ -26,19 +27,31 @@
         </div>
     </div>
 </section>
+
 <section class="filters">
     <div class="container">
-        {!!Breadcrumbs::render('competitions')!!}
-        <h4 style="margin-bottom: 35px;">Всего подано заявок: {{$works->count}}</h4>
-        <div class="row">
-            <div class="col-xl-4">
-                <a href="{{route('form-competition').'?id='.$id}}" class="participate-competition">Участвовать в
-                    конкурсе</a>
+        {!!
+            ($competition->status == 1 || $competition->status == 2) ?
+                Breadcrumbs::render('arch-competition', $competition) :
+                Breadcrumbs::render('competition', $competition)
+        !!}
+
+        @if(($competition->status == 1 || $competition->status == 2))
+            <h4 style="margin-bottom: 35px;">Результаты конкурса</h4>
+        @else
+            <h4 style="margin-bottom: 35px;">Всего подано заявок: {{$works->count}}</h4>
+
+            <div class="row">
+                <div class="col-xl-4">
+                    <a href="{{route('form-competition').'?id='.$id}}" class="participate-competition">Участвовать в
+                        конкурсе</a>
+                </div>
             </div>
-        </div>
+        @endif
+
         <div class="filter-nominations">
             <div class="all-nomination nomination">
-                <span class="filter-nomination" data-value="0">Все номинации</span>
+                <span class="filter-nomination {{(0 == $filterInfo['nomination'])? "filter-nomination_active" : ""}}" data-value="0">Все номинации</span>
             </div>
             @foreach($nominations as $nomination)
                 <div class="nomination">
@@ -46,8 +59,52 @@
                 </div>
             @endforeach
         </div>
+
+
+
         <form action="{{route('search-work', ['id' => $id])}}" method="get" class="search-competition">
+
         </form>
+
+        @if(($competition->status == 1 || $competition->status == 2))
+            <table class="result-work">
+                <tr class="dedicated">
+                    <th>ФИО участника <br>Куратор</th>
+                    <th>Название работы, наименование ОУ, город</th>
+                    <th>Место</th>
+                </tr>
+                @foreach($works as $work)
+                    @if($work->place > 0)
+                        <tr {{ $loop->iteration % 2 == 1 ? "class='dedicated'": "" }}>
+                            <td>
+                                {{ $work->fc }} {{ $work->ic }} {{ $work->oc }}
+                                <br>
+                                {{ $work->user->f }} {{ $work->user->i }} {{ $work->user->o }}
+                            </td>
+                            <td>
+                                {{ $work->title }}
+                                <br>
+                                 {{ $work->user->stuff }}, г. {{ $work->user->town }}
+                            </td>
+                            <td>
+                                @switch($work->place)
+                                    @case(1)
+                                        I
+                                        @default
+                                    @case(2)
+                                        II
+                                        @default
+                                    @case(3)
+                                        III
+                                        @default
+                                @endswitch
+                            </td>
+                        </tr>
+                    @endif
+                @endforeach
+            </table>
+        @endif
+
         <h4 style="margin-bottom: 15px;">Работы участников</h4>
         <div class="filter" style="margin-bottom: 15px;">
             Сортировать по:
@@ -73,6 +130,11 @@
         </div>
     </div>
 </section>
+
+<section class="result-competition">
+
+</section>
+
 <section class="works-list">
     <div class="container">
         <div class="works-wrap">
@@ -109,6 +171,7 @@
         </div>
     </div>
 </section>
+
 @include('script')
 </body>
 </html>

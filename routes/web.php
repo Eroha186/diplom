@@ -30,24 +30,23 @@ Route::group(['middleware' => 'emailCheck'], function () {
     Route::get('/', 'MainPageController@show')->name('home');
 
     Route::group(['prefix' => 'competitions'], function () {
-        Route::get('', ['as' => 'competitions', 'uses' => 'Competitions\CompetitionsController@show']);
+        Route::get('/', ['as' => 'competitions', 'uses' => 'Competitions\CompetitionsController@showCompetitions']);
         Route::post('/orderBy/{column}/{filter}', ['uses' => 'Competitions\FilterCompetitionController@setCookieOrderCompetitions']);
         Route::get('/search/', ['as' => 'search-с', 'uses' => 'Competitions\FilterCompetitionController@search']);
     });
 
     Route::get('/search-diplom', ['as' => 'search-diplom', 'uses' => 'SearchController@searchDiplom']);
 
-    Route::get('/competition/{id}', ['uses' => 'Competitions\CompetitionsController@showCompetition']);
+    Route::get('/competition/{id}', ['as' => 'competition', 'uses' => 'Competitions\CompetitionsController@showCompetition']);
 
-    Route::get('/archive-competitions', function () {
-        return view('competitions/arch-competitions');
-    })->name('arch-competitions');
+    Route::get('/archive-competitions', ['as' => 'arch-competitions', 'uses' => 'Competitions\CompetitionsController@showArchCompetitions']);
 
     Route::get('/form-competition', ['as' => 'form-competition', 'uses' => 'Competitions\FormCompetitionController@show']);
     Route::post('/form-competition', ['as' => 'form-competition', 'uses' => 'Competitions\FormCompetitionController@saveWorkCompetition']);
     Route::post('/competition-filter/{valueFilter}', ['uses' => 'Competitions\FilterCompetitionController@setCookieFilterNomination']);
     Route::get('/competition/{id}/nomination/', ['as' => 'search-work', 'uses' => 'Competitions\FilterCompetitionController@searchWork']);
     Route::post('competition/orderBy/{column}/{filter}', ['uses' => 'Competitions\FilterCompetitionController@setCookieOrderCompetition']);
+    Route::post('arch-competition/orderBy/{column}/{filter}', ['uses' => 'Competitions\FilterCompetitionController@setCookieOrderArchCompetition']);
     Route::get('/competition/{id}/work/{workId}', ['as' => 'competition-work', 'uses' => 'Competitions\WorkController@show']);
 
     Route::get('/express-competitions', ['uses' => 'Competitions\ExpressCompetitionsController@show']);

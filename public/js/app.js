@@ -10854,6 +10854,25 @@ $(function () {
         });
     });
 
+    $('.filter-name-arch-competitions').on('click', function () {
+        var column = $(this).attr('data-column');
+        var condition = setOrder($(this));
+        console.log('ok');
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '/arch-competition/orderBy/' + column + '/' + condition,
+            dataType: 'json',
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function success(response) {
+                $('#search').trigger('click');
+            }
+        });
+    });
+
     $('.filter-name-express').on('click', function () {
         var column = $(this).attr('data-column');
         var condition = setOrder($(this));

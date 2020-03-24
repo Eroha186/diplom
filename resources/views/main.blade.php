@@ -151,9 +151,19 @@
                         @endif
                             <div class="publication">
                                 <div class="publication__img">
-                                    <img src="{{$publication['file'] == 'doc' ? asset('images/doc.svg') :
-                            $publication['file'] == 'pdf' ? asset('images/pdf.svg') :
-                            $publication['file'] == 'ppt' ? asset('images/ppt.svg') : ''}}" alt="Иконка">
+                                    <img src="
+                                        @switch ($publication['file'])
+                                            @case("doc")
+                                                {{ asset('images/doc.svg') }}
+                                                @break
+                                            @case("pdf")
+                                                {{ asset('images/pdf.svg') }}
+                                                @break
+                                            @case("ppt")
+                                                {{ asset('images/ppt.svg') }}
+                                                @break
+                                        @endswitch
+                                    " alt="Иконка">
                                 </div>
                                 <div class="publication__descr">
                                     <a href="/publication/{{$publication->id}}" class="title">

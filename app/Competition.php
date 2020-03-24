@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use JustBetter\PaginationWithHavings\PaginationWithHavings;
 
 class Competition extends Model
 {
+    use PaginationWithHavings;
+
     public $timestamps = false;
     protected $fillable = ['title', 'annotation', 'cover', 'type_id', 'date_begin', 'date_end', 'substrate_id'];
 
