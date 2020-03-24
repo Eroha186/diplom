@@ -52,7 +52,7 @@ class FilterPublicationController extends Controller
             'theme' => $request->get('theme'),
         ];
 
-        session(['searchQuery' => $searchQuery]);
+        session(['searchQueryP' => $searchQuery]);
         foreach ($filters as $filterName => $filterValue) {
 
             if ($filterValue != 0) {
@@ -72,23 +72,25 @@ class FilterPublicationController extends Controller
             case 1:
             case null:
                 $publications = $publicationQueryModel
+                    ->leftJoin('themes_and_publ', 'publications.id', '=', 'themes_and_publ.publ_id')
                     ->where($whereArray)
                     ->groupBy('id');
                 break;
             case 2:
                 $publications = $publicationQueryModel
+                    ->leftJoin('themes_and_publ', 'publications.id', '=', 'themes_and_publ.publ_id')
                     ->where($whereArray)
                     ->orderBy($column, 'ASC')
                     ->groupBy('id');
                 break;
             case 3:
                 $publications = $publicationQueryModel
+                    ->leftJoin('themes_and_publ', 'publications.id', '=', 'themes_and_publ.publ_id')
                     ->where($whereArray)
                     ->orderBy($column, 'DESC')
                     ->groupBy('id');
                 break;
         }
-
         $publications = is_null($publicationQueryArray['query']) ?
             $publications->paginate(10, array('*'))                              :
             $publications->paginate(10, array('*', $publicationQueryArray['query']));
@@ -115,6 +117,7 @@ class FilterPublicationController extends Controller
                 'types' => $types,
                 'themes' => $themes,
                 'filtersInfo' => $filtersInfo,
+                'settingFilter' => $filters
             ]);
         } else {
             $publications->error = 'Нет публикаций удовлетворяющих критериям поиска';
@@ -124,7 +127,8 @@ class FilterPublicationController extends Controller
                 'kinds' => $kinds,
                 'types' => $types,
                 'themes' => $themes,
-                'filtersInfo' => $filtersInfo
+                'filtersInfo' => $filtersInfo,
+                'settingFilter' => $filters
             ]);
         }
     }

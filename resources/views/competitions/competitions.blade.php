@@ -35,7 +35,7 @@
                         <button type="submit" id="search"><img src="{{asset('images/magnifier.svg')}}" alt="лупа">
                         </button>
                         <input name="searchQuery" class="search-competitions" type="text"
-                               placeholder="Поиск по конкурсам" value="{{session('searchQuery')}}">
+                               placeholder="Поиск по конкурсам" value="{{session('searchQueryC')}}">
                     </div>
                 </div>
             </div>
@@ -89,6 +89,9 @@
                     </div>
                 </div>
             @endforeach
+            <div class="pagination">
+                {{$competitions->links('paginate')}}
+            </div>
         </div>
     </div>
 </section>

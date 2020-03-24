@@ -3,6 +3,7 @@
 <head>
 	<title>Конкурсы</title>
 	@include('styles')
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 @include('header_footer/header')
@@ -25,53 +26,71 @@
 	<div class="container">
 		{!!Breadcrumbs::render('competitions')!!}
 		<h2 class="section-title">Завершенные конкурсы</h2>
-		<div class="row">
-			<div class="col-xl-11">
-				<div class="search-wrap">
-					<input class="search-competitions" type="text" placeholder="Поиск по конкурсам">
+		<form action="{{route('search-с')}}" method="GET">
+			<div class="row">
+				<div class="col-xl-11">
+					<div class="search-wrap">
+						<button type="submit" id="search"><img src="{{asset('images/magnifier.svg')}}" alt="лупа">
+						</button>
+						<input name="searchQuery" class="search-competitions" type="text"
+							   placeholder="Поиск по конкурсам" value="{{session('searchQuery')}}">
+					</div>
 				</div>
 			</div>
-		</div>
+		</form>
 		<div class="filter">
 			Сортировать по:
 			<div class="placement-date">
-				<span class="filter-name"  data-condition="1">по дате размещения </span> <span class="arrow-down">&darr;</span> <span class="arrow-up">&uarr;</span>
+               <span class="filter-name filter-name-arch-competitions   {{(isset($filterInfo['column-ac']) && $filterInfo['column-ac'] == 'date_begin') ? "filter-name_active" : "" }} "
+					 data-condition="{{(isset($filterInfo['column-c']) && $filterInfo['column-ac'] == 'date_begin') ? $filterInfo['filter-ac'] : '1'}}"
+					 data-column="date_begin">дате размещения </span>
+				<span class="arrow-down">&darr;</span>
+				<span class="arrow-up">&uarr;</span>
 			</div>
 			<div class="duration-event">
-				<span class="filter-name"  data-condition="1">длительность проведения</span> <span class="arrow-down">&darr;</span> <span class="arrow-up">&uarr;</span>
+                <span class="filter-name filter-name-arch-competitions {{(isset($filterInfo['column-ac']) && $filterInfo['column-ac'] == 'difference-date') ? "filter-name_active" : "" }}"
+					  data-condition="{{(isset($filterInfo['column-ac']) && $filterInfo['column-ac'] == 'difference-date') ? $filterInfo['filter-ac'] : '1'}}"
+					  data-column="difference-date">длительность проведения </span>
+				<span class="arrow-down">&darr;</span>
+				<span class="arrow-up">&uarr;</span>
 			</div>
-			<div class="completion_date"> <span class="filter-name" data-condition="1">дата завершения</span> <span class="arrow-down">&darr;</span> <span class="arrow-up">&uarr;</span></div>
+			<div class="date-end">
+                <span class="filter-name filter-name-arch-competitions {{(isset($filterInfo['column-ac']) && $filterInfo['column-ac'] == 'date_end') ? "filter-name_active" : "" }}"
+					  data-condition="{{(isset($filterInfo['column-ac']) && $filterInfo['column-ac'] == 'date_end')  ? $filterInfo['filter-ac'] : '1'}}"
+					  data-column="date_end">дате завершения </span>
+				<span class="arrow-down">&darr;</span>
+				<span class="arrow-up">&uarr;</span>
+			</div>
 		</div>
 	</div>
 </section>
 <section class="competitions-list">
 	<div class="container">
-		@for ( $i=0; $i < 4; $i++)
-			<div class="row">
-				@for ($j=0; $j<2; $j++)
-					<div class="col-xl-6">
-						<div class="competition">
-							<div class="competition__img">
-								<img src="{{asset('images/skier.png')}}" alt="Обложка">
-							</div>
-							<div class="competition__descr ta-center">
-								<div class="title">
-									Новогодняя мастерская - 2019
-								</div>
-								<div class="name">
-									Конкурс поделок
-								</div>
-								<div class="date-time">
-									С 11.11.2011
-									<span>по 12.11.2011</span>
-								</div>
-								<a href="/competitions/{{$j + $i}}" class="button transparent-btn">подробнее</a>
-							</div>
-						</div>
+		<div class="competition-wrap">
+			@foreach ($competitions as $competition)
+				<div class="competition">
+					<div class="competition__img">
+						<img src="{{Storage::url($competition->cover)}}" alt="">
 					</div>
-				@endfor
+					<div class="competition__descr ta-center">
+						<div class="title">
+							{{$competition->title}}
+						</div>
+						<div class="name">
+							{{$competition->type->name}}
+						</div>
+						<div class="date-time">
+							С {{$competition->date_begin}}
+							<span>по {{$competition->date_end}}</span>
+						</div>
+						<a href="/competition/{{$competition->id}}" class="button transparent-btn">участвовать</a>
+					</div>
+				</div>
+			@endforeach
+			<div class="pagination">
+				{{$competitions->links('paginate')}}
 			</div>
-		@endfor
+		</div>
 	</div>
 </section>
 @include('script')

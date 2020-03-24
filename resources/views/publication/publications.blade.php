@@ -42,31 +42,47 @@
                     <select name="education" id="education" class="select-filter">
                         <option value="0">Все уровни образования</option>
                         @foreach($educations as $education)
-                            <option value="{{$education->id}}">{{$education->name}}</option>
+                            <option value="{{$education->id}}"
+                                @if(isset($settingFilter['education']) && $education->id == $settingFilter['education'])
+                                    selected="selected"
+                                @endif
+                            >{{$education->name}}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="col-xl-3">
-                    <select name="kind" id="kind"  class="select-filter">
+                    <select name="kind" id="kind" class="select-filter">
                         <option value="0">Все виды</option>
                         @foreach($kinds as $kind)
-                            <option value="{{$kind->id}}">{{$kind->name}}</option>
+                            <option value="{{$kind->id}}"
+                                @if(isset($settingFilter['kind']) && $kind->id == $settingFilter['kind'])
+                                    selected="selected"
+                                @endif
+                            >{{$kind->name}}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="col-xl-3">
-                    <select name="theme" id="theme"  class="select-filter">
+                    <select name="theme" id="theme" class="select-filter">
                         <option value="0">Все темы</option>
                         @foreach($themes as $theme)
-                            <option value="{{$theme->id}}">{{$theme->name}}</option>
+                            <option value="{{$theme->id}}"
+                                @if(isset($settingFilter['theme']) && $theme->id == $settingFilter['theme'])
+                                    selected="selected"
+                                @endif
+                            >{{$theme->name}}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="col-xl-2">
-                    <select name="type" id="type"  class="select-filter">
+                    <select name="type" id="type" class="select-filter">
                         <option value="0">Все типы</option>
                         @foreach($types as $type)
-                            <option value="{{$type->id}}">{{$type->name}}</option>
+                            <option value="{{$type->id}}"
+                                @if(isset($settingFilter['type']) && $type->id == $settingFilter['type'])
+                                    selected="selected"
+                                @endif
+                            >{{$type->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -74,8 +90,10 @@
             <div class="row">
                 <div class="col-xl-11">
                     <div class="search-wrap">
-                        <button type="submit" id="search"><img src="{{asset('images/magnifier.svg')}}" alt="лупа"></button>
-                        <input name="searchQuery" class="search-competitions" type="text" placeholder="Поиск по публикациям" value="{{session('searchQuery')}}">
+                        <button type="submit" id="search"><img src="{{asset('images/magnifier.svg')}}" alt="лупа">
+                        </button>
+                        <input name="searchQuery" class="search-competitions" type="text"
+                               placeholder="Поиск по публикациям" value="{{session('searchQueryP')}}">
                     </div>
                 </div>
             </div>

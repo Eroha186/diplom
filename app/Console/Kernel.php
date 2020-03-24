@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\CronProcess\SendingMailExpressCompetitionDiplom;
 use App\Diplom;
 use App\Mail\ExpressCompetitionDiplom;
 use Carbon\Carbon;
@@ -29,18 +30,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function () {
-            $diploms = Diplom::where([
-                ['created_at', '<=', Carbon::now()->subDay()->subHours(12)],
-                ['mailing', 0]
-            ])->get();
-            foreach ($diploms as $diplom) {
-                $type = $diplom->type;
-                $item = Diplom::with($type, $type . '.user')->where('id', $diplom->id)->first();
-                Mail::to($item->$type->user->email)->send(new ExpressCompetitionDiplom($item));
-                Diplom::where('id', $diplom->id)->update([
-                   'mailing' => 1,
-                ]);
-            }
+            SendingMailExpressCompetitionDiplom::sendingMailExpressCompetitionDiplom();
         })->daily();
     }
 

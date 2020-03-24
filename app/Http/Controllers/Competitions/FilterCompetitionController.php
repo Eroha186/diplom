@@ -20,6 +20,12 @@ class FilterCompetitionController extends Controller
         Cookie::queue(Cookie::make('column-c', $column));
         return $response->status();
     }
+    public function setCookieOrderArchCompetition(Response $response, $column, $filter)
+    {
+        Cookie::queue(Cookie::make('filter-ac', $filter)); //arch - competitions
+        Cookie::queue(Cookie::make('column-ac', $column));
+        return $response->status();
+    }
 
     public function setCookieOrderCompetition(Response $response, $column, $filter)
     {
@@ -40,8 +46,10 @@ class FilterCompetitionController extends Controller
         $competitionQueryArray = $competitionQueryArray->search($searchQuery, [
             'competition' => $competitionModel,
         ]);
+
+        session(['searchQueryC' => $searchQuery]);
+
         $competitionQueryModel = $competitionQueryArray['model'] ?? $competitionQueryArray;
-//        dd($competitionQueryArray);
         if ($column != 'difference-date') {
             switch ($filter) {
                 case 1:
@@ -114,7 +122,6 @@ class FilterCompetitionController extends Controller
             'nomination' => $nominationFilter,
         ];
         $works = [];
-        $where = [];
 
         $field = [
             'user',
