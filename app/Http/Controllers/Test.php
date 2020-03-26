@@ -14,8 +14,7 @@ use Intervention\Image\Facades\Image;
 class Test extends Controller
 {
     public function test() {
-        $mial = Mail::to("admin@mail.ru")->send(new \App\Mail\Test());
-        dd($mial);
+        return view('test');
     }
 
 }

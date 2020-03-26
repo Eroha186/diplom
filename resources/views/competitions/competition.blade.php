@@ -90,13 +90,13 @@
                                 @switch($work->place)
                                     @case(1)
                                         I
-                                        @default
+                                        @break
                                     @case(2)
                                         II
-                                        @default
+                                        @break
                                     @case(3)
                                         III
-                                        @default
+                                        @break
                                 @endswitch
                             </td>
                         </tr>

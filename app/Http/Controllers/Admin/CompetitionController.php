@@ -32,17 +32,15 @@ class CompetitionController extends Controller
     public function showCompetition($id)
     {
         $works = Work::with(['file', 'user'])
-                ->where([
-                            ['competition_id', $id],
-                            ['moderation', 0],
-                            ['place', 0 ]
-                        ])
-                ->orWhere(function ($query) {
-                            $query->where([
-                                ['moderation', 2], ['place', 0 ]
-                            ]);
-                        })
-                ->get();
+            ->where([
+                ['competition_id', $id],
+                ['moderation', 0],
+                ['place', 0]
+            ])
+            ->orWhere([
+                ['moderation', 2], ['place', 0]
+            ])
+            ->get();
         return view('admin/competition', [
             'idCompetition' => $id,
             'works' => $works,
@@ -64,7 +62,6 @@ class CompetitionController extends Controller
                 'substrate_id' => 0 + $data['substrate'],
             ]);
         } else {
-            dump($data['substrate'] + 0);
             $competition = Competition::create([
                 'title' => $data['title'],
                 'annotation' => $data['annotation'],
@@ -75,13 +72,14 @@ class CompetitionController extends Controller
                 'substrate_id' => 0 + $data['substrate'],
             ]);
         }
-        if($competition)
+        if ($competition)
             return redirect(route('a-competition', ['id' => $competition]));
         else
             return redirect(route('a-competitions'));
     }
 
-    public function changePlace($place, $id) {
+    public function changePlace($place, $id)
+    {
         $work = Work::where('id', $id)->update([
             'place' => $place
         ]);

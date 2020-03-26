@@ -64,6 +64,7 @@
     <h2 class="section-title" style="margin-bottom: 20px;">
         Заполните все поля формы
     </h2>
+
     @if (count($errors) > 0)
         <div class="alert alert-danger">
             <ul>
@@ -174,32 +175,32 @@
                         <div class="fio-block">
                             <label for="f" class="red-star">Фамилия педагога</label>
                             <input name="f" id="f" class="input-style" type="text" placeholder="Иванов"
-                                   value="{{(count($user) > 0) ? $user->f : ''}}" {{(count($user) > 0) ? 'readonly' : ''}}>
+                                   value="{{(count($user) > 0) ? $user['f'] : ''}}" {{(count($user) > 0) ? 'readonly' : ''}}>
                         </div>
                         <div class="fio-block">
                             <label for="i" class="red-star">Имя педагога</label>
                             <input name="i" id="i" class="input-style" type="text" placeholder="Иван"
-                                   value="{{(count($user) > 0) ? $user->i : ''}}" {{(count($user) > 0) ? 'readonly' : ''}}>
+                                   value="{{(count($user) > 0) ? $user['i'] : ''}}" {{(count($user) > 0) ? 'readonly' : ''}}>
                         </div>
                         <div class="fio-block">
                             <label for="o" class="red-star">Отчество педагога</label>
                             <input name="o" id="o" class="input-style" type="text" placeholder="Иванович"
-                                   value="{{(count($user) > 0) ? $user->o : ''}}" {{(count($user) > 0) ? 'readonly' : ''}}>
+                                   value="{{(count($user) > 0) ? $user['o'] : ''}}" {{(count($user) > 0) ? 'readonly' : ''}}>
                         </div>
                     </div>
                     <label for="stuff" class="red-star">Должность</label>
                     <input name="job" id="job" class="input-style" type="text"
                            placeholder="Учитель начальных классов"
-                           value="{{(count($user) > 0) ? $user->job : ''}}" {{(count($user) > 0) ? 'readonly' : ''}}>
+                           value="{{(count($user) > 0) ? $user['job'] : ''}}" {{(count($user) > 0) ? 'readonly' : ''}}>
                     <label for="email" class="red-star">E-mail</label>
                     <input name="email" id="email" class="input-style" type="text" placeholder="teacher@mail.ru"
-                           value="{{(count($user) > 0) ? $user->email : ''}}" {{(count($user) > 0) ? 'readonly' : ''}}>
+                           value="{{(count($user) > 0) ? $user['email'] : ''}}" {{(count($user) > 0) ? 'readonly' : ''}}>
                     <label for="job" class="red-star">Наименования образовательного учреждения</label>
                     <input name="stuff" id="stuff" class="input-style" type="text" placeholder="МБОУ СОШ №11"
-                           value="{{(count($user) > 0) ? $user->stuff : ''}}" {{(count($user) > 0) ? 'readonly' : ''}}>
+                           value="{{(count($user) > 0) ? $user['stuff'] : ''}}" {{(count($user) > 0) ? 'readonly' : ''}}>
                     <label for="town" class="red-star">Населенный пункт</label>
                     <input name="town" id="town" class="input-style" type="text" placeholder="г. Москва"
-                           value="{{(count($user) > 0) ? $user->town : ''}}" {{(count($user) > 0) ? 'readonly' : ''}}>
+                           value="{{(count($user) > 0) ? $user['town'] : ''}}" {{(count($user) > 0) ? 'readonly' : ''}}>
                 </div>
 
                 <div class="form-competition__placement-method border-form-competition">
@@ -238,22 +239,22 @@
                     <div class="payment-block payment-block_active">
                         <strong>Итого:</strong>
                         <ul class="payment">
-                            <li>Диплом за публикацию материала......<span class="payment-cash">100</span>&#8381;</li>
                             <li>Диплом за участие в конкурсе..............<span class="payment-cash">100</span>&#8381;
                             </li>
                         </ul>
 
-                        <strong>На вашем счету {{isset($user->coins) ? $user->coins : '0'}} бонусов</strong>
+                        <strong>На вашем счету {{isset($user['coins']) ? $user['coins'] : '0'}} бонусов</strong>
                         <div style="display: flex; align-items: center; margin-bottom: 15px;">
                             <input id="uses-coins" type="checkbox" style="margin-right: 3px;"
                                    name="uses-coins" {{Session::has('uses-coins') ?  'checked="checked"' : '' }}>
                             <span class="margin-right-7">Использовать бонусы</span>
-                            <input type="number" min="0" max="{{isset($user->coins) ? $user->coins : '0'}}"
+                            <input type="number" min="0" max="{{isset($user['coins']) ? $user['coins'] : '0'}}"
                                    value="{{Session::has('coins') ?  Session::get('coins') : '0' }}"
                                    id="coins-number" name="coins" readonly="readonly">
                         </div>
                         <div class="result-payment">
                             К оплате <span id="cash"></span>&#8381;
+                            <input type="hidden" name="cash" id="cash_input" value="100">
                         </div>
                     </div>
 

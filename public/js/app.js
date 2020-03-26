@@ -10731,12 +10731,15 @@ $(function () {
 
     var maxValue = 0;
     var cashElement = '';
+    var cashInput = '';
     var cash = 0;
     if ($('*').is('.payment')) {
         cash = countCash();
         cashElement = $('#cash');
+        cashInput = $('#cash_input');
         maxValue = $('#coins-number').attr('max');
         cashElement.text(cash);
+        cashInput.val(cash);
     }
 
     if ($('*').is('#editor')) {
@@ -10772,7 +10775,6 @@ $(function () {
         $('#login-form-publication').on('submit', function (e) {
             var about = $('input[name=text]');
             about.val(JSON.stringify(quill.getContents()));
-            console.log($('.form-publication').serialize());
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -10829,7 +10831,6 @@ $(function () {
             contentType: false,
             processData: false,
             success: function success(response) {
-                console.log('ok');
                 $('#search').trigger('click');
             }
         });
@@ -10838,7 +10839,6 @@ $(function () {
     $('.filter-name-competitions').on('click', function () {
         var column = $(this).attr('data-column');
         var condition = setOrder($(this));
-        console.log('ok');
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -10857,7 +10857,6 @@ $(function () {
     $('.filter-name-arch-competitions').on('click', function () {
         var column = $(this).attr('data-column');
         var condition = setOrder($(this));
-        console.log('ok');
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -10929,13 +10928,12 @@ $(function () {
     $('#coins-number').bind('keyup mouseup', function () {
         if ($('#uses-coins').is(':checked')) {
             var numberCoins = $(this).val();
-            console.log(numberCoins);
-            console.log(maxValue);
             if (numberCoins > +maxValue) {
-                console.log('ok');
                 cashElement.text(+cash - maxValue);
+                cashInput.val(+cash - maxValue);
             } else {
                 cashElement.text(+cash - numberCoins);
+                cashInput.val(+cash - numberCoins);
             }
         }
     });

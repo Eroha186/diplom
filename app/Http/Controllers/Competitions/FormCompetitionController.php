@@ -31,7 +31,7 @@ class FormCompetitionController extends Controller
             'competitionSelected' => $competitionSelected,
             'competitions' => $competitions,
             'nominations' => $nominations,
-            'user' => $user,
+            'user' => $user->toArray(),
         ]);
     }
 

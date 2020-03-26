@@ -242,17 +242,17 @@
                     </div>
                 </div>
             @endsection
-            <div class="winners">
-                @for ($i = 0; $i < 4; $i++)
-                    <div class="row">
-                        @for ($j = 0; $j < 2; $j++)
-                            <div class="col-xl-6">
-                                @yield('winers')
-                            </div>
-                        @endfor
-                    </div>
-                @endfor
-            </div>
+{{--            <div class="winners">--}}
+{{--                @for ($i = 0; $i < 4; $i++)--}}
+{{--                    <div class="row">--}}
+{{--                        @for ($j = 0; $j < 2; $j++)--}}
+{{--                            <div class="col-xl-6">--}}
+{{--                                @yield('winers')--}}
+{{--                            </div>--}}
+{{--                        @endfor--}}
+{{--                    </div>--}}
+{{--                @endfor--}}
+{{--            </div>--}}
         </div>
         <div class="more"><a href="#">Перейти в архив конкурсов > ></a></div>
     </div>
