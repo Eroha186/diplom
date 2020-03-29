@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Competitions;
 
 use App\Competition_Nomination;
+use App\Diplom;
 use App\File;
 use App\Http\Controllers\Auth\RandomPassword;
 use App\Http\Controllers\Auth\RegisterController;
@@ -25,13 +26,13 @@ class FormCompetitionController extends Controller
             ->get();
         $user = [];
         if (Auth::check()) {
-            $user = User::where('id', Auth::user()->id)->first();
+            $user = User::where('id', Auth::user()->id)->first()->toArray();
         }
         return view('competitions/form-competition', [
             'competitionSelected' => $competitionSelected,
             'competitions' => $competitions,
             'nominations' => $nominations,
-            'user' => $user->toArray(),
+            'user' => $user,
         ]);
     }
 
@@ -69,8 +70,24 @@ class FormCompetitionController extends Controller
                 'age' => $work['age'],
             ]);
         }
+
         $this->uploadFile($formRequest->file('file'), $newWork->id);
-        return redirect('/');
+
+        if ($work['placement-method']) {
+            $diplom = Diplom::create([
+                'work_id' => $newWork->id,
+                'type' => 'work',
+            ]);
+            $post_data = [
+                'userName' => $work['f'] . " " . $work['i'] . " " . $work['o'],
+                'user_email' => $work['email'],
+                'recipientAmount' => $work['cash'],
+                'orderId' => $diplom->id,
+            ];
+            return view('payment', ['post_data' => $post_data]);
+        } else {
+            return redirect('/');
+        }
     }
 
     public function uploadFile($file, $work_id)
