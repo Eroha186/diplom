@@ -15,26 +15,6 @@ class Test extends Controller
 {
     public function test()
     {
-        // твоя коллекция
-        $collect = collect([
-            ['amount' => '1000', 'user' => 'alex'],
-            ['amount' => '2000', 'user' => 'alex2'],
-            ['amount' => '3000', 'user' => 'alex3'],
-        ]);
-
-        // массив в котором прописаны условия для where
-        $condition = [
-            [
-                'key' => 'amount',
-                'operator' => '=',
-                'value' => '1000'
-            ]
-        ];
-
-        // делаем отбор из нашей коллекции
-        foreach ($condition as $item) {
-            $collect = $collect->where($item['key'], $item['operator'], $item['value']);
-        }
     }
 
 }

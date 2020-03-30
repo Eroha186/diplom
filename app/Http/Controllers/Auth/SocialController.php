@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -43,7 +44,7 @@ class SocialController extends Controller
             'i' => $name[0],
             'f' => $name[1],
             'email' => $socialiteUser->getEmail(),
-            'password' => password_hash($password, PASSWORD_DEFAULT),
+            'password' => Hash::make($password),
         ]);
 
         $this->addSocialAccount($provider, $user, $socialiteUser);
@@ -82,7 +83,6 @@ class SocialController extends Controller
             'email' => $request->get('email')
         ]);
         $user = User::where('id', Auth::user()->id)->first();
-//        dd($user);
         $verifyCreate->verifyCreate(['user' => $user]);
         return redirect(route('personal-data'));
     }
