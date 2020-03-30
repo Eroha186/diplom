@@ -10,6 +10,7 @@ use App\Substrate;
 use App\Type_competition;
 use App\User;
 use App\Work;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CompetitionController extends Controller
@@ -85,4 +86,37 @@ class CompetitionController extends Controller
         ]);
         return response()->json(['id' => $id]);
     }
+
+    public function changeTypes(Request $request, $mode) {
+        $types = $request->all();
+        $types_old = [];
+        switch ($mode) {
+            case 'add':
+                $types1 = Type_competition::all();
+                foreach ($types1 as $type) {
+                    $types_old[] = $type->name;
+                }
+                $types = preg_split('/\\r\\n?|\\n/', $types['data']);
+                $types = array_unique($types);
+                // удаляем пустые элементы массива, потом удалеям темы которые есть и в массиве и в БД
+                $types = array_diff(array_diff($types,array('')), $types_old);
+                foreach ($types as $type) {
+                    Type_competition::create([
+                        'name' => trim($type)
+                    ]);
+                }
+                break;
+            case 'del':
+                Type_competition::where('id', $types['id'])->delete();
+                break;
+            case 'change':
+                Type_competition::where('id', $types['id'])->update([
+                    'name' => $types['val'],
+                ]);
+                break;
+        }
+        $types = Type_competition::all();
+        return $types;
+    }
+
 }

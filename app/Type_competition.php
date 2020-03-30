@@ -8,6 +8,8 @@ class Type_competition extends Model
 {
     protected $table = 'type_competition';
 
+    public $timestamps = false;
+
     public function competition() {
         return $this->hasMany('App\Competition', 'type_id');
     }

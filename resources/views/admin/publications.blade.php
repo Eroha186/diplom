@@ -74,7 +74,7 @@
                     </ul>
                     <div class="ta-center adding">+</div>
                 </div>
-                <div class="wrapper-form">
+                <div class="wrapper-form publication-themes-form">
                     <form action="" class="add-form">
                         <textarea name="theme" cols="30" rows="7" id="themes"
                                   placeholder="Введите темы разделяя их переносом строки..."></textarea>

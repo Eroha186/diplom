@@ -369,7 +369,7 @@ $(function () {
         $('#theme').attr('data-id', data_id);
     })
 
-    $('button.add').on('click', function (e) {
+    $('.publication-themes-form button.add').on('click', function (e) {
         e.preventDefault();
         let val = $('#themes').val();
         $.ajax({
@@ -384,7 +384,8 @@ $(function () {
             }
         })
     })
-    $('button.del').on('click', function (e) {
+
+    $('.publication-themes-form button.del').on('click', function (e) {
         e.preventDefault();
         let data_id = $('#theme').attr('data-id');
         let val = $('#theme').val();
@@ -404,7 +405,8 @@ $(function () {
             })
         }
     })
-    $('button.editing').on('click', function (e) {
+
+    $('.publication-themes-form button.editing').on('click', function (e) {
         e.preventDefault();
         let data_id = $('#theme').attr('data-id');
         let val = $('#theme').val();
@@ -417,6 +419,63 @@ $(function () {
                 val: val
             },
             url: 'publication/change-themes/change',
+            type: 'POST',
+            success: function (e) {
+                resetList(e);
+            }
+        })
+    })
+
+    $('.competition-type-form button.add').on('click', function (e) {
+        e.preventDefault();
+        let val = $('#themes').val();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {data: val},
+            url: 'competition/change-type/add',
+            type: 'POST',
+            success: function (e) {
+                resetList(e);
+            }
+        })
+    })
+
+    $('.competition-type-form button.del').on('click', function (e) {
+        e.preventDefault();
+        let data_id = $('#theme').attr('data-id');
+        let val = $('#theme').val();
+        if (confirm('Вы желаете удалить запись?')) {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    id: data_id,
+                },
+                url: 'competition/change-type/del',
+                type: 'POST',
+                success: function (e) {
+                    resetList(e);
+                }
+            })
+        }
+    })
+
+    $('.competition-type-form button.editing').on('click', function (e) {
+        e.preventDefault();
+        let data_id = $('#theme').attr('data-id');
+        let val = $('#theme').val();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+                id: data_id,
+                val: val
+            },
+            url: 'competition/change-type/change',
             type: 'POST',
             success: function (e) {
                 resetList(e);

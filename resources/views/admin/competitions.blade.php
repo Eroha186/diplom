@@ -6,6 +6,7 @@
             <li class="competition-tab tab competition-tab_active" data-tab="1">Модерирование</li>
             <li class="competition-tab tab" data-tab="2">Создание конкурса</li>
             <li class="competition-tab tab" data-tab="3">Добавление подложек</li>
+            <li class="competition-tab tab" data-tab="4">Создание типов конкурсов</li>
         </ul>
         <div class="tab-content content_active competition-tab-content" data-tab="1">
             <div class="a-work">
@@ -118,6 +119,35 @@
                 <input type="file" id="substrate-file" name="substrate-file">
                 <input type="submit" style="max-width: 120px">
             </form>
+        </div>
+        <div class="tab-content competition-tab-content" data-tab="4">
+            <div class="wrapper" style="display: flex;">
+                <div class="wrapper-list">
+                    <div class="list-header">
+                        Темы
+                    </div>
+                    <ul class="list-body">
+                        @foreach($types as $type)
+                            <li class="list-body__item" data-id="{{$type->id}}">{{$type->name}}</li>
+                        @endforeach
+                    </ul>
+                    <div class="ta-center adding">+</div>
+                </div>
+                <div class="wrapper-form competition-type-form">
+                    <form action="" class="add-form">
+                        <textarea name="theme" cols="30" rows="7" id="themes"
+                                  placeholder="Введите темы разделяя их переносом строки..."></textarea>
+                        <button class="add">Добавить</button>
+                    </form>
+                    <form action="" class="edition-form">
+                        <input type="text" name="theme" id="theme">
+                        <div class="wrap-button">
+                            <button class="del">Удалить</button>
+                            <button class="editing">Редактировать</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

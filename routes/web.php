@@ -112,6 +112,7 @@ Route::get('/diplom-download/{type_work}/{id_work}', ['uses' => 'Reward\Generati
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
     Route::get('publication', ['as' => 'a-publication', 'uses' => 'Admin\PublicationController@show']);
     Route::post('publication/change-themes/{mode}', ['as' => 'change-themes', 'uses' => 'Admin\PublicationController@changeThemes']);
+    Route::post('competition/change-type/{mode}', ['as' => 'change-types', 'uses' => 'Admin\CompetitionController@changeTypes']);
 
     Route::get('confirmation/{id}/{result}/{page}/{idCompetition?}', ['as' => 'a-confirmation', 'uses' => 'Admin\ConfirmationController@confirmation']);
 
