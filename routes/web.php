@@ -150,9 +150,6 @@ Route::post('/authCheck/{email}', function ($email) {
 Route::post('/loginFormPublication', 'Auth\LoginController@login')->name('loginFormPublication');
 Route::post('/loginFormCompetition', 'Auth\LoginController@login')->name('loginFormCompetition');
 Route::post('/publicationSaveSession', ['uses' => 'Publication\PublicationSaveSession@publicationSaveSession']);
-
-Route::auth();
-
 Route::post('/payment', ['as' => 'payment', 'uses' => 'PaymentController@payment']);
-
 Route::get('/test', 'Test@test');
+Route::auth();
