@@ -29,7 +29,7 @@
 					</ul>
 				</div>
 				<div class="footer-widget recent-works-widget col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-					<div><img src="http://diploma.fvds.ru/images/main_page/inn.png" alt="inn" width="130"></div>
+					<div><img src="/images/main_page/inn.png" alt="inn" width="130"></div>
 					<div><span>Международный педагогический <br> портал <br>(лицензия на осуществление <br> образовательной деятельности №  <br>9757-л, свидетельство о регистрации<br> СМИ № ЭЛ ФС 77-65391)</span></div>
 					
 				</div>
