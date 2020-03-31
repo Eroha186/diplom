@@ -153,5 +153,6 @@ Route::post('/publicationSaveSession', ['uses' => 'Publication\PublicationSaveSe
 
 Route::auth();
 
+Route::post('/payment', ['as' => 'payment', 'uses' => 'PaymentController@payment']);
 
 Route::get('/test', 'Test@test');
