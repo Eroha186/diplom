@@ -10,6 +10,8 @@ class Type_competition extends Model
 
     public $timestamps = false;
 
+    protected $fillable = ['name'];
+
     public function competition() {
         return $this->hasMany('App\Competition', 'type_id');
     }
