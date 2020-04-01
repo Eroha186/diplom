@@ -9,10 +9,12 @@ class PaymentController extends Controller
 {
     public function payment(Request $request)
     {
-        $id = $request->get('orderId');
-        Diplom::where('id', $id)->update([
-            'payment' => 1
-        ]);
+        if($request->get('paymentStatus') == 5) {
+            $id = $request->get('orderId');
+            Diplom::where('id', $id)->update([
+                'payment' => 1
+            ]);
+        }
 
         return response('OK', 200);
     }

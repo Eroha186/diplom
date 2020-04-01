@@ -1414,6 +1414,7 @@ footer {
 
 .table-publication table .participation-button {
   border: none;
+  padding: 5px 22px;
   border-radius: 6px;
   background: #86cd5b;
   color: #fff;

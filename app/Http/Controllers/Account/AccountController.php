@@ -17,6 +17,7 @@ class AccountController extends Controller
 {
     protected $field = [
         'author',
+        'diplom',
         'type',
         'education',
         'kind',
@@ -99,7 +100,7 @@ class AccountController extends Controller
 
     public function showPartInContests(Work $workModel)
     {
-        $works = $workModel->with(['competition', 'user'])->where('user_id', Auth::user()->id)->get();
+        $works = $workModel->with(['competition', 'user', 'diplom'])->where('user_id', Auth::user()->id)->get();
         $user = User::where('id', Auth::user()->id)->first();
         foreach ($works as $work) {
             $work['date_add'] = date("d.m.Y", strtotime($work['date_add']));
@@ -115,7 +116,7 @@ class AccountController extends Controller
     }
 
     public function showMyExpressCompetition(ExpressWork $workModel) {
-        $works = $workModel->with(['competition', 'user'])->where('user_id', Auth::user()->id)->get();
+        $works = $workModel->with(['competition', 'user', 'diplom'])->where('user_id', Auth::user()->id)->get();
         $user = User::where('id', Auth::user()->id)->first();
         foreach ($works as $work) {
             $work['date_add'] = date("d.m.Y", strtotime($work['date_add']));

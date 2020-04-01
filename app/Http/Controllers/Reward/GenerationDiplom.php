@@ -36,8 +36,11 @@ class GenerationDiplom extends Controller
         switch ($typeWork) {
             case "publication":
                 $work = Publication::with('author')->where('id', $workId)->first();
-                $substrate['url'] = "substrates/weHnrngpLrHsUUfAFKoj7kUUjCt5woqAbPtmpGad.jpeg";
                 $diplom = asset(Storage::url('substrates/certificate.png'));
+                $aboutPublishing = asset(Storage::url('substrates/about_pub.png'));
+
+                // Тут можно менять подложку
+//                $substrate = Substrate::select('url')->where('id', $substrateId)->first()->toArray();
                 break;
             case "work":
                 $work = Work::with('user')->where('id', $workId)->first();
@@ -124,7 +127,7 @@ class GenerationDiplom extends Controller
                 $y = $key;
             }
             $y += 130;
-            $img->text("www.diploma.fvds.ru/" . $typeWork . "/" .
+            $img->text("www.sovped.ru/" . $typeWork . "/" .
                 ($typeWork === "competition" ? $work->competition_id . "/work/" . $work->id : $work->id),
                 $x, $y, function ($font) {
                     $font->file($this->light);
@@ -295,7 +298,7 @@ class GenerationDiplom extends Controller
                     $font->align('center');
                 });
             }
-            if ($typeWork !== "e-competition") {
+            if ($typeWork !== "expressWork") {
                 $y += 130;
                 $img->text("www.diploma.fvds.ru/" . $typeWork . "/" .
                     ($typeWork === "competition" ? $work->competition_id . "/work/" . $work->id : $work->id),

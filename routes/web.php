@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\DB;
 
-Route::get('/testDiplom/{typeWork}/{workId}', 'Reward\GenerationDiplom@generate');
+Route::get('/diplom/{typeWork}/{workId}', 'Reward\GenerationDiplom@generate')->name('diplom-generate');
 
 //DB::listen(function ($query) {
 //    echo '<pre>';
