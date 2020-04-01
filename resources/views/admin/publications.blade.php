@@ -5,6 +5,7 @@
         <ul class="tabs">
             <li class="publ-tab tab publ-tab_active" data-tab="1">Модерирование</li>
             <li class="publ-tab tab" data-tab="2">Добавление тем</li>
+            <li class="publ-tab tab" data-tab="3">Выбор подложки</li>
         </ul>
         <div class="tab-content content_active publ-tab-content" data-tab="1">
             <div class="publications-list">
@@ -87,6 +88,28 @@
                             <button class="editing">Редактировать</button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content publ-tab-content" data-tab="3">
+            <div class="publ-substrate">
+                <div class="form-group">
+                    <form action="{{ route("active-substrate-for-publication") }}" method="POST">
+                        {{ csrf_field() }}
+                        <label for="substrate">Подложка для награды</label>
+                        <select name="substrate" id="substrate" class="form-control">
+                            <option value="0">Выбирете подложку</option>
+                            @foreach($substrates as $substrate)
+                                <option value="{{$substrate->id}}"
+                                        @if($substrate->active_for_publ) selected="selected" @endif>
+                                    {{$substrate->name}}
+                                </option>
+                            @endforeach
+                        </select>
+                        <button class="mt-lg-3">Активировать подложку</button>
+                    </form>
+                </div>
+                <div class="img-example">
                 </div>
             </div>
         </div>

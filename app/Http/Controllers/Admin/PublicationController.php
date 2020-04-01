@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Publication;
+use App\Substrate;
 use App\User;
 use App\Theme;
 use Illuminate\Http\Request;
@@ -33,6 +34,7 @@ class PublicationController extends Controller
             'user' => $user,
             'publications' => $publications,
             'themes' => $themes,
+            'substrates' => Substrate::all()
         ]);
     }
 

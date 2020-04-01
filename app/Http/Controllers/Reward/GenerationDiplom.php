@@ -38,9 +38,7 @@ class GenerationDiplom extends Controller
                 $work = Publication::with('author')->where('id', $workId)->first();
                 $diplom = asset(Storage::url('substrates/certificate.png'));
                 $aboutPublishing = asset(Storage::url('substrates/about_pub.png'));
-
-                // Тут можно менять подложку
-//                $substrate = Substrate::select('url')->where('id', $substrateId)->first()->toArray();
+                $substrate = Substrate::select('url')->where('active_for_publ', true)->first()->toArray();
                 break;
             case "work":
                 $work = Work::with('user')->where('id', $workId)->first();

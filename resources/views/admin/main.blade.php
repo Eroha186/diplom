@@ -24,6 +24,8 @@
            href="{{route('a-express-competition')}}">Экспресс-конкурсы</a>
         <a class="{{request()->is('admin/mailing') ? "active" : ""}}"
            href="{{route('a-mailing')}}">Email рассылка</a>
+        <a class="{{request()->is('admin/substrates') ? "active" : ""}}"
+           href="{{route('a-add-substrate-show')}}">Добавление подложек</a>
     </nav>
 
     <main style="width: 100%;">

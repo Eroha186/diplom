@@ -12,3 +12,14 @@
 <script src="{{ asset('/js/manifest.js') }}"></script>
 <script src="{{ asset('/js/vendor.js') }}"></script>
 <script src="{{ asset('/js/app.js') }}"></script>
+@if(isset($substrates))
+    @foreach($substrates as $substrate)
+        @if($substrate->active_for_publ)
+            <script>
+                $(function () {
+                    $("#substrate").trigger('change');
+                })
+            </script>
+        @endif
+    @endforeach
+@endif

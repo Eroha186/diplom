@@ -528,9 +528,9 @@ $(function () {
                const [path,] = e.url;
                console.log(path);
               if(!(path === undefined)) {
-                  $('.img-example').html(`<img src="/storage/${path.url}" alt="" id="example-substrate">`);
+                  $('.img-example').html(`<img src="/storage/${path.url}" alt="" id="example-substrate"> <br> <h5 class="mt-lg-3">Выбранная подложка</h5>`);
               } else {
-                  $('#example-substrate').remove();
+                  $('.img-example').html('');
               }
            }
        })

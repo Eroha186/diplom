@@ -126,7 +126,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::get('express-competition', ['as' => 'a-express-competition', 'uses' => 'Admin\ExpressCompetitionController@show']);
     Route::get('competition/place/{place}/{id}', ['as' => 'a-place', 'uses' => 'Admin\CompetitionController@changePlace']);
     Route::post('add-substrates', ['as' => 'a-add-substrate', 'uses' => 'Reward\SubstrateController@addSubstrate']);
+    Route::get('substrates', ['as' => 'a-add-substrate-show', 'uses' => 'Reward\SubstrateController@show']);
     Route::post('view-substrate', ['as' => 'view-substrate', 'uses' => 'Reward\SubstrateController@viewSubstrate']);
+    Route::post('active-substrate-for-publication', ['as' => 'active-substrate-for-publication', 'uses' => 'Reward\SubstrateController@publicationSubstrate']);
     Route::get('mailing', ['as' => 'a-mailing', 'uses' => 'Admin\MailingController@show']);
     Route::post('load-template', ['uses' => 'Admin\MailingController@loadTemplate']);
     Route::post('global-mailing', ['as' => 'a-global-mailing', 'uses' => 'Admin\MailingController@sendMail']);

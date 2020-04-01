@@ -2905,6 +2905,7 @@ main {
 }
 
 .substrate-form {
+  margin: 25px 25px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3015,5 +3016,16 @@ main {
 
 .history-mailing__table .bg-blue {
   background: #c2dfff;
+}
+
+.publ-substrate {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.publ-substrate .form-group {
+  width: 30%;
+  margin-right: 35px;
 }
 

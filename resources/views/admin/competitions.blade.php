@@ -5,8 +5,7 @@
         <ul class="tabs">
             <li class="competition-tab tab competition-tab_active" data-tab="1">Модерирование</li>
             <li class="competition-tab tab" data-tab="2">Создание конкурса</li>
-            <li class="competition-tab tab" data-tab="3">Добавление подложек</li>
-            <li class="competition-tab tab" data-tab="4">Создание типов конкурсов</li>
+            <li class="competition-tab tab" data-tab="3">Создание типов конкурсов</li>
         </ul>
         <div class="tab-content content_active competition-tab-content" data-tab="1">
             <div class="a-work">
@@ -99,28 +98,6 @@
             </div>
         </div>
         <div class="tab-content competition-tab-content" data-tab="3">
-            <form action="{{route('a-add-substrate')}}" class="substrate-form" method="POST" enctype="multipart/form-data">
-                {{ csrf_field() }}
-                @if (count($errors) > 0 || Session::has('error'))
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                            @if (Session::has('error'))
-                                <li>{{ Session::get('error') }}</li>
-                            @endif
-                        </ul>
-                    </div>
-                @endif
-                <label for="substrate-name">Название подложки</label>
-                <input type="text" name="name" id="substrate-name" style="max-width: 260px;">
-                <label for="substrate-file">Добавьте файл</label>
-                <input type="file" id="substrate-file" name="substrate-file">
-                <input type="submit" style="max-width: 120px">
-            </form>
-        </div>
-        <div class="tab-content competition-tab-content" data-tab="4">
             <div class="wrapper" style="display: flex;">
                 <div class="wrapper-list">
                     <div class="list-header">
