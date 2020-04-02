@@ -68,7 +68,8 @@ Route::group(['middleware' => 'emailCheck'], function () {
 
     Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix' => 'account'], function () {
-
+            Route::get('/personal-data', 'Account\AccountController@showPersonalData');
+            Route::post('/personal-data', ['middleware' => 'web', 'as' => 'personal-data', 'uses' => 'Account\AccountController@saveChangePersonalData']);
             Route::get('/my-publication', ['uses' => 'Account\AccountController@showMyPublication']);
             Route::get('/part-in-contests', ['uses' => 'Account\AccountController@showPartInContests']);
             Route::get('/my-express-competition', ['uses' => 'Account\AccountController@showMyExpressCompetition']);
@@ -87,14 +88,9 @@ Route::group(['middleware' => 'emailCheck'], function () {
                 return redirect(route('personal-data'));
             })->name('no-mailing');
         });
-
+        Route::get('payment-from-account/{workId}/{type}', ['as' => 'payment-from-account', 'uses' => 'PaymentController@paymentFromAccount']);
     });
 
-});
-
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('account/personal-data', 'Account\AccountController@showPersonalData');
-    Route::post('account/personal-data', ['middleware' => 'web', 'as' => 'personal-data', 'uses' => 'Account\AccountController@saveChangePersonalData']);
 });
 
 Route::get('two-step-registration', function () {

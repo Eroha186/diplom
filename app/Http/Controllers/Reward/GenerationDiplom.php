@@ -35,7 +35,7 @@ class GenerationDiplom extends Controller
         $aboutPublishing = asset(Storage::url('substrates/publication.png'));
         switch ($typeWork) {
             case "publication":
-                $work = Publication::with('author')->where('id', $workId)->first();
+                $work = Publication::with('user')->where('id', $workId)->first();
                 $diplom = asset(Storage::url('substrates/certificate.png'));
                 $aboutPublishing = asset(Storage::url('substrates/about_pub.png'));
                 $substrate = Substrate::select('url')->where('active_for_publ', true)->first()->toArray();

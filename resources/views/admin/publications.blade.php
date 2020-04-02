@@ -22,11 +22,11 @@
                         <div class="row">
                             <div class="col-xl-10">
                                 <div class="publication-card__author">Автор
-                                    {{$publication->author->f}} {{$publication->author->i}}. {{$publication->author->i}}
+                                    {{$publication->user->f}} {{$publication->user->i}}. {{$publication->user->i}}
                                     .,
-                                    {{$publication->author->stuff}},
-                                    {{$publication->author->town}},
-                                    {{$publication->author->job}}
+                                    {{$publication->user->stuff}},
+                                    {{$publication->user->town}},
+                                    {{$publication->user->job}}
                                 </div>
                             </div>
                         </div>

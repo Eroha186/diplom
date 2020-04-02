@@ -12,7 +12,7 @@ class MainPageController extends Controller
     {
 
         $field = [
-            'author',
+            'user',
             'type',
             'education',
             'kind',
@@ -23,8 +23,8 @@ class MainPageController extends Controller
 
         foreach ($publications as $publication) {
             $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
-            $publication['author']['i'] = mb_substr($publication['author']['i'], 0, 1);
-            $publication['author']['o'] = mb_substr($publication['author']['o'], 0, 1);
+            $publication['user']['i'] = mb_substr($publication['user']['i'], 0, 1);
+            $publication['user']['o'] = mb_substr($publication['user']['o'], 0, 1);
             if(isset($publication['files'][0]['type']))
                 $publication['file'] = $publication['files'][0]['type'];
         }

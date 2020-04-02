@@ -39,7 +39,6 @@ class ExpressCompetitionFormController extends Controller
 
     public function saveExpressWork(FormExpressCompetitionRequest $request) {
         $work = $request->all();
-//        dd($work);
         $placeArray = [1,2,2,3,3,3,4,4,4,4];
         if (Auth::check()) {
             $newWork = ExpressWork::create([
@@ -74,11 +73,21 @@ class ExpressCompetitionFormController extends Controller
                 'place' => array_rand($placeArray, 1),
             ]);
         }
-        Diplom::create([
-            'work_id' => $newWork->id,
-            'type' => 'expressWork',
-        ]);
-        return redirect(route('home'));
+        if ($work['placement-method']) {
+            $diplom = Diplom::create([
+                'work_id' => $newWork->id,
+                'type' => 'expressWork',
+            ]);
+            $post_data = [
+                'userName' => $work['f'] . " " . $work['i'] . " " . $work['o'],
+                'user_email' => $work['email'],
+                'recipientAmount' => $work['cash'],
+                'orderId' => $diplom->id,
+            ];
+            return view('payment', ['post_data' => $post_data]);
+        } else {
+            return redirect('/');
+        }
     }
 
 }

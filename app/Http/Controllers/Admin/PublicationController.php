@@ -16,11 +16,11 @@ class PublicationController extends Controller
     {
         $user = User::where('id', Auth::user()->id)->first();
         $themes = Theme::all();
-        $publications = Publication::with('author')->where('moderation', 0)->paginate(5);
+        $publications = Publication::with('user')->where('moderation', 0)->paginate(5);
         foreach ($publications as $publication) {
             $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
-            $publication['author']['i'] = mb_substr($publication['author']['i'], 0, 1);
-            $publication['author']['o'] = mb_substr($publication['author']['o'], 0, 1);
+            $publication['user']['i'] = mb_substr($publication['user']['i'], 0, 1);
+            $publication['user']['o'] = mb_substr($publication['user']['o'], 0, 1);
             foreach ($publication['files'] as $file) {
                 if ($file['type'] == 'doc') {
                     $publication['doc'] = 1;
@@ -44,8 +44,8 @@ class PublicationController extends Controller
         $publications = $publicationModel::with($this->field)->where('moderation', 1)->orderBy('date_add', 'desc')->limit(7)->get();
         foreach ($publications as $publication) {
             $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
-            $publication['author']['i'] = mb_substr($publication['author']['i'], 0, 1);
-            $publication['author']['o'] = mb_substr($publication['author']['o'], 0, 1);
+            $publication['user']['i'] = mb_substr($publication['user']['i'], 0, 1);
+            $publication['user']['o'] = mb_substr($publication['user']['o'], 0, 1);
             $publication['file'] = $publication['files'][0]['type'];
         }
 

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Validator;
 class AccountController extends Controller
 {
     protected $field = [
-        'author',
+        'user',
         'diplom',
         'type',
         'education',
@@ -91,8 +91,8 @@ class AccountController extends Controller
         $user = User::where('id', Auth::user()->id)->first();
         foreach ($publications as $publication) {
             $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
-            $publication['author']['i'] = mb_substr($publication['author']['i'], 0, 1);
-            $publication['author']['o'] = mb_substr($publication['author']['o'], 0, 1);
+            $publication['user']['i'] = mb_substr($publication['user']['i'], 0, 1);
+            $publication['user']['o'] = mb_substr($publication['user']['o'], 0, 1);
         }
 
         return view('account.my-publication', ['publications' => $publications, 'data' => $user]);

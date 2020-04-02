@@ -30,7 +30,7 @@
                                class="name-publication standart-link">{{$publication->title}}</a>
                         </td>
                         <td class="author ta-center">
-                            {{$publication->author->f}} {{$publication->author->i}}. {{$publication->author->i}}.
+                            {{$publication->user->f}} {{$publication->user->i}}. {{$publication->user->i}}.
                         </td>
                         <td class="status ta-center">
                             @if($publication->moderation == 0)
@@ -42,7 +42,11 @@
                             @endif
                         </td>
                         <td class="certificate ta-center">
-                            <a href="#" class="button download-button">Скачать</a>
+                            @if(is_null($publication->diplom) || $publication->diplom->payment == 0)
+                                <a href="{{ route('payment-from-account', ['workId' => $publication->id, 'type' => "publication"]) }}" class="button participation-button">Заказать</a>
+                            @else
+                                <a href="{{ route('diplom-generate', ['typeWork' => $publication->diplom->type, 'workId' => $publication->diplom->work_id]) }}" class="button download-button">Скачать</a>
+                            @endif
                         </td>
 
 {{--                        <td class="participation ta-center">--}}

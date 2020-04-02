@@ -173,9 +173,9 @@
                                         {{$publication->date_add}}
                                     </div>
                                     <div class="author">
-                                        {{$publication->author->f}} {{$publication->author->i}}. {{$publication->author->i}}
+                                        {{$publication->user->f}} {{$publication->user->i}}. {{$publication->user->i}}
                                         .,
-                                        {{$publication->author->stuff}}
+                                        {{$publication->user->stuff}}
                                     </div>
                                 </div>
                             </div>

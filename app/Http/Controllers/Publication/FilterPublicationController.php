@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Cookie;
 class FilterPublicationController extends Controller
 {
     protected $field = [
-        'author',
+        'user',
         'type',
         'education',
         'theme',

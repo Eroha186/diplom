@@ -78,7 +78,7 @@ class SearchController extends Controller
             if (count($diplom) > 0) {
                 switch ($diplom->type) {
                     case "publication":
-                        $diplom->work = Publication::with('author')->where('id', $diplom->work_id)->first();
+                        $diplom->work = Publication::with('user')->where('id', $diplom->work_id)->first();
                         break;
                     case "competition":
                         $diplom->work = Work::with('user')->where('id', $diplom->work_id)->first();

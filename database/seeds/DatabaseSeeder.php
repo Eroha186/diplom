@@ -30,10 +30,10 @@ class DatabaseSeeder extends Seeder
 //        $this->call(SeedCompetition::class);
 //        $this->call(SeedType_competition::class);
 //        $this->call(SeedPublications::class);
-//        $this->call(SeedEducations::class);
-//        $this->call(SeedKinds::class);
-//        $this->call(SeedTypes::class);
-//        $this->call(SeedThemes::class);
+        $this->call(SeedEducations::class);
+        $this->call(SeedKinds::class);
+        $this->call(SeedTypes::class);
+        $this->call(SeedThemes::class);
 //        $this->call(SeedExpressCompetition::class);
 //        $this->call(SeedExpressWork::class);
     }

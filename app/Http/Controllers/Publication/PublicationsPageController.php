@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Publication;
 
+use App\Diplom;
 use App\Education;
 use App\File;
 use App\Http\Controllers\Auth\RandomPassword;
@@ -24,7 +25,7 @@ class PublicationsPageController extends Controller
 {
 
     protected $field = [
-        'author',
+        'user',
         'type',
         'education',
         'theme',
@@ -51,8 +52,8 @@ class PublicationsPageController extends Controller
 
         foreach ($publications as $publication) {
             $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
-            $publication['author']['i'] = mb_substr($publication['author']['i'], 0, 1);
-            $publication['author']['o'] = mb_substr($publication['author']['o'], 0, 1);
+            $publication['user']['i'] = mb_substr($publication['user']['i'], 0, 1);
+            $publication['user']['o'] = mb_substr($publication['user']['o'], 0, 1);
             foreach ($publication['files'] as $file) {
                 if ($file['type'] == 'doc') {
                     $publication['doc'] = 1;
@@ -101,9 +102,8 @@ class PublicationsPageController extends Controller
     public function savePublication(FormPublicationRequest $formRequest)
     {
         $newPublication = [];
+        $data = $formRequest->all();
         if (Auth::check()) {
-            $data = $formRequest->all();
-            //dump($data);
             $newPublication = Publication::create([
                 'user_id' => Auth::user()->id,
                 'title' => $data['title'],
@@ -140,7 +140,6 @@ class PublicationsPageController extends Controller
             }
         } else {
             $register = new RegisterController();
-            $data = $formRequest->all();
             $pass = RandomPassword::randomPassword();
             $formRequest['password'] = $pass;
             $formRequest['password_confirmation'] = $pass;
@@ -164,7 +163,22 @@ class PublicationsPageController extends Controller
             }
         }
         $this->uploadFile($formRequest->file('files'), $newPublication->id);
-        return redirect('/');
+
+        if ($data['placement-method']) {
+            $diplom = Diplom::create([
+                'work_id' => $newPublication->id,
+                'type' => 'publication',
+            ]);
+            $post_data = [
+                'userName' => $data['f'] . " " . $data['i'] . " " . $data['o'],
+                'user_email' => $data['email'],
+                'recipientAmount' => $data['cash'],
+                'orderId' => $diplom->id,
+            ];
+            return view('payment', ['post_data' => $post_data]);
+        } else {
+            return redirect('/');
+        }
     }
 
     public function uploadFile(array $files, $publ_id)
@@ -232,8 +246,8 @@ class PublicationsPageController extends Controller
         $publications = $publicationModel::with($this->field)->where('moderation', 2)->orderBy('date_add', 'desc')->limit(7)->get();
         foreach ($publications as $publication) {
             $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
-            $publication['author']['i'] = mb_substr($publication['author']['i'], 0, 1);
-            $publication['author']['o'] = mb_substr($publication['author']['o'], 0, 1);
+            $publication['user']['i'] = mb_substr($publication['user']['i'], 0, 1);
+            $publication['user']['o'] = mb_substr($publication['user']['o'], 0, 1);
             $publication['file'] = $publication['files'][0]['type'];
         }
 

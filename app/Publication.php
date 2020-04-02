@@ -17,7 +17,7 @@ class Publication extends Model
     protected $fillable = ['user_id', 'title', 'annotation', 'type_id', 'kind_id', 'education_id', 'text', 'moderation',
         'date_add'];
 
-    public function author()
+    public function user()
     {
         return $this->belongsTo('App\User', 'user_id');
     }
@@ -45,6 +45,11 @@ class Publication extends Model
     public function theme()
     {
         return $this->belongsToMany('App\Theme', 'themes_and_publ', 'publ_id', 'theme_id');
+    }
+
+    public function diplom()
+    {
+        return $this->belongsTo('App\Diplom','work_id');
     }
 
 }

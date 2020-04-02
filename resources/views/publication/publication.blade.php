@@ -41,8 +41,8 @@
                 </div>
                 <div class="publication-content__date">Опубликовано: {{$publication->date_add}}</div>
                 <div class="publication-content__author">
-                    {{$publication->author->f}} {{$publication->author->i}} {{$publication->author->o}},
-                    {{$publication->author->job}} в г.{{$publication->author->town}}, {{$publication->author->stuff}}
+                    {{$publication->user->f}} {{$publication->user->i}} {{$publication->user->o}},
+                    {{$publication->user->job}} в г.{{$publication->user->town}}, {{$publication->user->stuff}}
                 </div>
                 <div class="publication-content__viewport">
                     <div class="row">
@@ -77,10 +77,10 @@
                                 {{$newPublication->title}}
                             </a>
                             <div class="author">
-                                Автор: {{$newPublication->author->f}} {{$newPublication->author->i}}
-                                .{{$newPublication->author->o}}.,
-                                {{$newPublication->author->job}}
-                                <span>г.{{$newPublication->author->town}}, {{$newPublication->author->stuff}}</span>
+                                Автор: {{$newPublication->user->f}} {{$newPublication->user->i}}
+                                .{{$newPublication->user->o}}.,
+                                {{$newPublication->user->job}}
+                                <span>г.{{$newPublication->user->town}}, {{$newPublication->user->stuff}}</span>
                             </div>
                         </div>
                     </div>

@@ -45,7 +45,7 @@
 						</td>
 						<td class="ta-center">
 							@if(is_null($work->diplom) || $work->diplom->payment == 0)
-								<a href="" class="button participation-button">Заказать</a>
+								<a href="{{ route('payment-from-account', ['workId' => $work->id, 'type' => "work"]) }}" class="button participation-button">Заказать</a>
 							@else
 								<a href="{{ route('diplom-generate', ['typeWork' => $work->diplom->type, 'workId' => $work->diplom->work_id]) }}" class="button download-button">Скачать</a>
 							@endif
