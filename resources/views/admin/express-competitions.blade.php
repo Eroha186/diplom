@@ -40,6 +40,12 @@
                 </select>
             </div>
             <div class="form-group">
+                @foreach($nominations as $nomination)
+                    <label for="nomination-{{ $nomination->id }}">{{ $nomination->name }}</label>
+                    <input type="checkbox" id="nomination-{{ $nomination->id }}" name="nominations[]" value="{{ $nomination->id }}">
+                @endforeach
+            </div>
+            <div class="form-group">
                 <label for="substrate">Подложка для награды</label>
                 <select name="substrate" id="substrate" class="form-control">
                     <option value="0">Выбирете подложку</option>

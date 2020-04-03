@@ -1,5 +1,10 @@
 <?php
 
+use App\Education;
+use App\Kind;
+use App\Nomination;
+use App\Theme;
+use App\Type;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +17,11 @@ class DatabaseSeeder extends Seeder
      */
     protected $truncatedTables = [
         User::class,
+        Education::class,
+        Nomination::class,
+        Kind::class,
+        Type::class,
+        Theme::class,
     ];
 
     /**
@@ -25,7 +35,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SeedUsers::class);
 //        $this->call(SeedWork::class);
 //        $this->call(SeedFile::class);
-//        $this->call(SeedNomination::class);
+        $this->call(SeedNomination::class);
 //        $this->call(SeedNominationCompetition::class);
 //        $this->call(SeedCompetition::class);
 //        $this->call(SeedType_competition::class);

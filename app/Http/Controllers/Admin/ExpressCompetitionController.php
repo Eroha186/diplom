@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Nomination;
 use App\Substrate;
 use App\Type_competition;
 use App\User;
@@ -16,6 +17,7 @@ class ExpressCompetitionController extends Controller
             'types' => Type_competition::all(),
             'user' => User::where('id', Auth::user()->id)->first(),
             'substrates' => Substrate::all(),
+            'nominations' => Nomination::all(),
         ]);
     }
 }

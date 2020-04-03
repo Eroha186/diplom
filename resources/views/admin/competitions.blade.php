@@ -73,6 +73,12 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    @foreach($nominations as $nomination)
+                        <label for="nomination-{{ $nomination->id }}">{{ $nomination->name }}</label>
+                        <input type="checkbox" id="nomination-{{ $nomination->id }}" name="nominations[]" value="{{ $nomination->id }}">
+                    @endforeach
+                </div>
+                <div class="form-group">
                     <label for="createDateBegin">Дата начала</label>
                     <input name="date-begin" type="date" class="form-control" id="createDateBegin" required>
                 </div>

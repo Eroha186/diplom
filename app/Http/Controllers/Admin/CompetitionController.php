@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Competition;
+use App\Competition_Nomination;
 use App\ExpressCompetition;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FormCreatCompetitionRequest;
+use App\Nomination;
 use App\Substrate;
 use App\Type_competition;
 use App\User;
@@ -27,6 +29,7 @@ class CompetitionController extends Controller
             'types' => Type_competition::all(),
             'user' => $this->user(),
             'substrates' => Substrate::all(),
+            'nominations' => Nomination::all(),
         ]);
     }
 
@@ -55,13 +58,19 @@ class CompetitionController extends Controller
         $path = $formRequest->file('cover')->store('upload', 'public');
         $competition = 0;
         if ($flag) {
-            ExpressCompetition::create([
+            $expressCompetition = ExpressCompetition::create([
                 'title' => $data['title'],
                 'annotation' => $data['annotation'],
                 'type_id' => (int)$data['type-competition'],
                 'cover' => $path,
                 'substrate_id' => 0 + $data['substrate'],
             ]);
+            foreach ($data['nominations'] as $nomination) {
+                Competition_Nomination::insert([
+                    'nomination_id' => $nomination,
+                    'express_competition_id' => $expressCompetition->id
+                ]);
+            }
         } else {
             $competition = Competition::create([
                 'title' => $data['title'],
@@ -72,9 +81,15 @@ class CompetitionController extends Controller
                 'date_end' => date('Y-m-d H:i:s', strtotime($data['date-end'])),
                 'substrate_id' => 0 + $data['substrate'],
             ]);
+            foreach ($data['nominations'] as $nomination) {
+                Competition_Nomination::insert([
+                    'competition_id' => $competition->id,
+                    'nomination_id' => $nomination,
+                ]);
+            }
         }
         if ($competition)
-            return redirect(route('a-competition', ['id' => $competition]));
+            return redirect(route('a-competition', ['id' => $competition->id]));
         else
             return redirect(route('a-competitions'));
     }
@@ -87,7 +102,8 @@ class CompetitionController extends Controller
         return response()->json(['id' => $id]);
     }
 
-    public function changeTypes(Request $request, $mode) {
+    public function changeTypes(Request $request, $mode)
+    {
         $types = $request->all();
         $types_old = [];
         switch ($mode) {
@@ -99,7 +115,7 @@ class CompetitionController extends Controller
                 $types = preg_split('/\\r\\n?|\\n/', $types['data']);
                 $types = array_unique($types);
                 // удаляем пустые элементы массива, потом удалеям темы которые есть и в массиве и в БД
-                $types = array_diff(array_diff($types,array('')), $types_old);
+                $types = array_diff(array_diff($types, array('')), $types_old);
                 foreach ($types as $type) {
                     Type_competition::create([
                         'name' => trim($type)
