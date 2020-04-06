@@ -22,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
             'SocialiteProviders\VKontakte\VKontakteExtendSocialite@handle',
             'SocialiteProviders\Yandex\YandexExtendSocialite@handle',
         ],
+        'App\Events\RejectedWork' => [
+          'App\Listeners\RejectWork',
+        ],
     ];
 
     /**

@@ -239,7 +239,7 @@
                     <div class="payment-block payment-block_active">
                         <strong>Итого:</strong>
                         <ul class="payment">
-                            <li>Диплом за участие в конкурсе..............<span class="payment-cash">100</span>&#8381;
+                            <li>Диплом за участие в конкурсе..............<span class="payment-cash">{{ $cash }}</span>&#8381;
                             </li>
                         </ul>
 

@@ -19,7 +19,6 @@ class RedirectIfAuthenticated
     {
         if(request()->is('verify/*')) {
             return $next($request);
-            dd('ok');
         }
 //        if (Auth::guard($guard)->check()) {
 //            return redirect('/home');

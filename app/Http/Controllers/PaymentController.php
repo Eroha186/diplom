@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
+    public function __construct()
+    {
+        $this->cash = config('payment_config.cash');
+    }
+
     public function payment(Request $request)
     {
         if ($request->get('paymentStatus') == 5) {
@@ -46,7 +51,7 @@ class PaymentController extends Controller
         $post_data = [
             'userName' => $work->user->f . " " . $work->user->i . " " . $work->user->o,
             'user_email' => $work->user->email,
-            'recipientAmount' => "100",
+            'recipientAmount' => $this->cash,
             'orderId' => $diplom->id,
         ];
         return view('payment', ['post_data' => $post_data]);

@@ -17,6 +17,11 @@ use App\Work;
 
 class FormCompetitionController extends Controller
 {
+    public function __construct()
+    {
+        $this->cash = config('payment_config.cash');
+    }
+
     public function show(Request $request)
     {
         $competitionSelected = $request->get('id');
@@ -33,6 +38,7 @@ class FormCompetitionController extends Controller
             'competitions' => $competitions,
             'nominations' => $nominations,
             'user' => $user,
+            'cash' => $this->cash,
         ]);
     }
 

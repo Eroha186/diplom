@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\RejectedWork;
 use App\Publication;
 use App\Work;
 use Illuminate\Http\Request;
@@ -26,6 +27,7 @@ class ConfirmationController extends Controller
             Publication::where('id', $id)->update([
                 'moderation' => 1,
             ]);
+            event(new RejectedWork($id, $page));
             return redirect(route('a-publication'));
         }
         if($result == 1 && $page == 'competition') {
@@ -37,6 +39,7 @@ class ConfirmationController extends Controller
             Work::where('id', $id)->update([
                 'moderation' => 1,
             ]);
+            event(new RejectedWork($id, $page));
             return redirect(route('a-competition', ['id' => $competitionId]));
         }
     }
