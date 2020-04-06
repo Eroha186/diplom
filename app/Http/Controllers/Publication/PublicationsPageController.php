@@ -123,7 +123,7 @@ class PublicationsPageController extends Controller
                 'moderation' => 0,
                 'date_add' => date('Y-m-d H:i:s', time()),
             ]);
-            if($data['distribution'] == 'on') {
+            if(isset($data['distribution']) && $data['distribution'] == 'on') {
                User::where('id',Auth::user()->id)->update([
                    'mailing' => 1,
                ]);
