@@ -47,7 +47,13 @@
 							@if(is_null($work->diplom) || $work->diplom->payment == 0)
 								<a href="{{ route('payment-from-account', ['workId' => $work->id, 'type' => "work"]) }}" class="button participation-button">Заказать</a>
 							@else
-								<a href="{{ route('diplom-generate', ['typeWork' => $work->diplom->type, 'workId' => $work->diplom->work_id]) }}" class="button download-button">Скачать</a>
+								@if($work->competition->status == 2)
+									<a href="{{ route('diplom-generate', ['typeWork' => $work->diplom->type, 'workId' => $work->diplom->work_id]) }}" class="button download-button">Скачать</a>
+								@elseif($work->competition->status == 1)
+									Подводятся итоги
+								@else
+									Конкурс еще идет
+								@endif
 							@endif
 						</td>
 					</tr>

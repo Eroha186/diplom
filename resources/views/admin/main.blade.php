@@ -26,6 +26,7 @@
            href="{{route('a-mailing')}}">Email рассылка</a>
         <a class="{{request()->is('admin/substrates') ? "active" : ""}}"
            href="{{route('a-add-substrate-show')}}">Добавление подложек</a>
+        <a href="http://mail.sovped.ru/" target="_blank">Редактор шаблонов писем</a>
     </nav>
 
     <main style="width: 100%;">

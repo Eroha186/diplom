@@ -24,6 +24,12 @@ use Illuminate\Support\Facades\Session;
 class PublicationsPageController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->cash = config('payment_config.cash');
+    }
+
+
     protected $field = [
         'user',
         'type',
@@ -87,6 +93,7 @@ class PublicationsPageController extends Controller
                 'kinds' => $kinds,
                 'themes' => $themes,
                 'educations' => $educations,
+                'cash' => $this->cash,
             ]);
         } else {
             return view('publication/form-publication', [
@@ -94,6 +101,7 @@ class PublicationsPageController extends Controller
                 'kinds' => $kinds,
                 'themes' => $themes,
                 'educations' => $educations,
+                'cash' => $this->cash,
             ]);
         }
 
