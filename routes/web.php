@@ -68,17 +68,11 @@ Route::group(['middleware' => 'emailCheck'], function () {
 
     Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix' => 'account'], function () {
-            Route::get('/personal-data', 'Account\AccountController@showPersonalData');
-            Route::post('/personal-data', ['middleware' => 'web', 'as' => 'personal-data', 'uses' => 'Account\AccountController@saveChangePersonalData']);
-            Route::get('/my-publication', ['uses' => 'Account\AccountController@showMyPublication']);
-            Route::get('/part-in-contests', ['uses' => 'Account\AccountController@showPartInContests']);
-            Route::get('/my-express-competition', ['uses' => 'Account\AccountController@showMyExpressCompetition']);
-            Route::get('/order', function () {
-                return view('account/order');
-            });
-            Route::get('/order-publication', function () {
-                return view('account/order-publication');
-            });
+            Route::get('/personal-data', 'Account\PersonalDataController@show');
+            Route::post('/personal-data', ['as' => 'personal-data', 'uses' => 'Account\PersonalDataController@update']);
+            Route::get('/my-publication', ['uses' => 'Account\PublicationController@show']);
+            Route::get('/part-in-contests', ['uses' => 'Account\CompetitionController@show']);
+            Route::get('/my-express-competition', ['uses' => 'Account\ExpressCompetitionController@show']);
 
             Route::get('/no-mailing/{id?}', function ($id = null) {
                 $id = $id ?? Auth::user()->id;

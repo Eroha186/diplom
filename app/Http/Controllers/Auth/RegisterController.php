@@ -10,6 +10,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -92,26 +93,20 @@ class RegisterController extends Controller
             'town' => $data['town'],
             'job' => $data['job'],
             'date_reg' => date('Y-m-d H:i:s', time()),
-            'password' => password_hash($data['password'], PASSWORD_DEFAULT),
+            'password' => Hash::make($data['password']),
         ]);
-        $userInfoForMail = array(
-            'user' => $user,
-            'password' => $data['password'],
-        );
-        $this->verifyCreate($userInfoForMail);
+        $this->verifyCreate($user);
         return $user;
     }
 
     public function verifyCreate($user)
     {
-        $user = (object)$user;
         $verifyUser = VerifyUser::create([
-            'user_id' => $user->user->id,
+            'user_id' => $user->id,
             'token' => str_random(40)
         ]);
 
-        Mail::to($user->user->email)->send(new VerifyMail($user));
-
+        return Mail::to($user->email)->send(new VerifyMail($user->id));
     }
 
     public function verifyUser($token)

@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -17,9 +18,9 @@ class VerifyMail extends Mailable
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($userId)
     {
-        $this->user = $user;
+        $this->user = User::with('verifyUser')->where('id', $userId)->get()[0];
     }
 
     /**
