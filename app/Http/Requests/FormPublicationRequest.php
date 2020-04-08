@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Type;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,7 +32,7 @@ class FormPublicationRequest extends FormRequest
                 'title' => 'required|string',
                 'type' => 'required|min:0',
                 'annotation' => 'required|string|max:200',
-                'text' => 'required|min:700',
+                'text' => 'required|min:' . Type::where('id', $this->get('type'))->first()->number_symbols,
                 'files' => 'required',
                 'files.*' => ['file', 'mimes:jpg,png,doc,docx,pdf,ppt,pptx'],
                 'offer' => 'accepted',

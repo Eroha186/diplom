@@ -13,14 +13,16 @@ class VerifyMail extends Mailable
     use Queueable, SerializesModels;
 
     public $user;
+    public $password;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($userId)
+    public function __construct($userId, $password)
     {
         $this->user = User::with('verifyUser')->where('id', $userId)->get()[0];
+        $this->password = $password;
     }
 
     /**

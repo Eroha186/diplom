@@ -2017,7 +2017,7 @@ input[type="radio"]:checked + .radio-button__title > span::after {
   padding: 7px 20px;
   background: #86cd5b;
   border-radius: 4px;
-  font-size: 18px;
+  font-size: 17px;
   text-transform: uppercase;
   color: #fff;
 }

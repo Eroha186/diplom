@@ -14,27 +14,6 @@ use Illuminate\Support\Facades\DB;
 
 class FilterCompetitionController extends Controller
 {
-    public function setCookieOrderCompetitions(Response $response, $column, $filter)
-    {
-        Cookie::queue(Cookie::make('filter-c', $filter)); //competitions
-        Cookie::queue(Cookie::make('column-c', $column));
-        return $response->status();
-    }
-    public function setCookieOrderArchCompetition(Response $response, $column, $filter)
-    {
-        Cookie::queue(Cookie::make('filter-ac', $filter)); //arch - competitions
-        Cookie::queue(Cookie::make('column-ac', $column));
-        return $response->status();
-    }
-
-    public function setCookieOrderCompetition(Response $response, $column, $filter)
-    {
-        Cookie::queue(Cookie::make('filter-competition', $filter));
-        Cookie::queue(Cookie::make('column-competition', $column));
-        return $response->status();
-    }
-
-
     public function search(Request $request, Competition $competitionModel)
     {
         $filter = $request->cookie('filter-c');
@@ -103,12 +82,6 @@ class FilterCompetitionController extends Controller
         }
 
         return $competitions;
-    }
-
-    public function setCookieFilterNomination(Response $response, $valueFilter)
-    {
-        Cookie::queue(Cookie::make('filter-nomination', $valueFilter));
-        return $response->status();
     }
 
     public function searchWork(Request $request, $id)

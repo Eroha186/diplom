@@ -31,10 +31,10 @@ class PersonalDataController extends Controller
         $this->validator($request->all())->validate();
 
         if ($request->get('email') !== Auth::user()->email) {
+
             $this->userRepository->updatePersonalDataWithChangeEmail($request->all());
 
             (new RegisterController())->verifyCreate($this->userRepository->getUserAuth());
-
             Auth::guard()->logout();
 
             return redirect('/login')->with('status', 'Мы отправили вам код активации. Проверьте свою электронную почту и нажмите на ссылку, чтобы подтвердить.');

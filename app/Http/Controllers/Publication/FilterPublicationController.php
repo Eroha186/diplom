@@ -92,7 +92,7 @@ class FilterPublicationController extends Controller
                 break;
         }
         $publications = is_null($publicationQueryArray['query']) ?
-            $publications->paginate(10, array('*'))                              :
+            $publications->paginate(10, array('*'))              :
             $publications->paginate(10, array('*', $publicationQueryArray['query']));
 
         $publications->withPath(route('search') . '?education=' . $filters['education']

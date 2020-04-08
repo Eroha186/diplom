@@ -118,35 +118,28 @@
                     <label for="town" class="red-star">Населенный пункт</label>
                     <input name="town" id="town" class="input-style" type="text" placeholder="г. Москва"
                            value="{{isset($user) ? $user->town : ''}}" {{isset($user) ? 'readonly' : ''}}>
-                    <label for="education" class="red-star">Уровень образования</label>
-                    <select name="education" id="education" class="input-style">
-                        <option value="0">Выберите уровень образования</option>
-                        @foreach($educations as $education)
-                            <option value="{{$education->id}}"
-                                @if($education->id == Session::get('education'))
-                                    selected
-                                @endif
-                            >{{$education->name}}</option>
-                        @endforeach
-                    </select>
                 </div>
 
                 <div class="form-publication__work border-form-publication">
                     <h3 class="form-title" style="margin-bottom: 20px;">
                         2) Работа
                     </h3>
+                    <label for="education" class="red-star">Уровень образования</label>
+                    <select name="education" id="education" class="input-style">
+                        <option value="0">Выберите уровень образования</option>
+                        @foreach($educations as $education)
+                            <option value="{{$education->id}}"
+                                    @if($education->id == Session::get('education'))
+                                    selected
+                                    @endif
+                            >{{$education->name}}</option>
+                        @endforeach
+                    </select>
                     <label for="kind" class="red-star">Вид публикации</label>
                     <select name="kind" id="kind" class="input-style">
                         <option value="0" disabled selected style="color: #757575">Выберите вид
                             публикации
                         </option>
-                        @foreach($kinds as $kind)
-                            <option value="{{$kind->id}}"
-                                @if($kind->id == Session::get('kind'))
-                                    selected
-                                @endif
-                            >{{$kind->name}}</option>
-                        @endforeach
                     </select>
                     <div style="display: flex; justify-content: space-between ">
                         <div class="col-xl-7" style="padding: 0;">
@@ -193,49 +186,21 @@
                     <textarea name="annotation" id="annotation" cols="30" rows="5" class="input-style"
                               placeholder="Описание работы....">{{Session::has('annotation') ? Session::get('annotation') : ''}}</textarea>
                     <div style="font-weight: bold; margin-top: 30px;">
-                        <label for="text" class="red-star">Полный текст работы</label> (не менее 200 символов)
+                        <label for="text" class="red-star">Полный текст работы</label> <span class="number-symbols"></span>
                     </div>
                     <div id="standalone-container">
                         <div id="toolBar">
-                            <span class="ql-formats">
-{{--                              <select class="ql-font"></select>--}}
-                              <select class="ql-size"></select>
-                            </span>
                             <span class="ql-formats">
                               <button class="ql-bold"></button>
                               <button class="ql-italic"></button>
                               <button class="ql-underline"></button>
                               <button class="ql-strike"></button>
                             </span>
-                            {{--                            <span class="ql-formats">--}}
-                            {{--                              <select class="ql-color"></select>--}}
-                            {{--                              <select class="ql-background"></select>--}}
-                            {{--                            </span>--}}
-                            {{--                            <span class="ql-formats">--}}
-                            {{--                              <button class="ql-script" value="sub"></button>--}}
-                            {{--                              <button class="ql-script" value="super"></button>--}}
-                            {{--                            </span>--}}
-                            {{--                            <span class="ql-formats">--}}
-                            {{--                              <button class="ql-header" value="1"></button>--}}
-                            {{--                              <button class="ql-header" value="2"></button>--}}
-                            {{--                              <button class="ql-blockquote"></button>--}}
-                            {{--                              <button class="ql-code-block"></button>--}}
-                            {{--                            </span>--}}
                             <span class="ql-formats">
                               <button class="ql-list" value="ordered"></button>
                               <button class="ql-list" value="bullet"></button>
                               <button class="ql-indent" value="-1"></button>
                               <button class="ql-indent" value="+1"></button>
-                            </span>
-                            <span class="ql-formats">
-{{--                              <button class="ql-direction" value="rtl"></button>--}}
-                              <select class="ql-align"></select>
-                            </span>
-                            <span class="ql-formats">
-{{--                              <button class="ql-link"></button>--}}
-                              <button class="ql-image"></button>
-{{--                              <button class="ql-video"></button>--}}
-                                {{--                              <button class="ql-formula"></button>--}}
                             </span>
                             <span class="ql-formats">
                               <button class="ql-clean"></button>

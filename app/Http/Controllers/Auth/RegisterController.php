@@ -99,14 +99,14 @@ class RegisterController extends Controller
         return $user;
     }
 
-    public function verifyCreate($user)
+    public function verifyCreate($user, $password = null)
     {
         $verifyUser = VerifyUser::create([
             'user_id' => $user->id,
             'token' => str_random(40)
         ]);
 
-        return Mail::to($user->email)->send(new VerifyMail($user->id));
+        return Mail::to($user->email)->send(new VerifyMail($user->id, $password));
     }
 
     public function verifyUser($token)
@@ -145,12 +145,8 @@ class RegisterController extends Controller
                 return $user;
                 break;
             case 1:
-                $userInfoForMail = array(
-                    'user' => $user,
-                    'password' => $data['password'],
-                );
-                $this->verifyCreate($userInfoForMail);
-                User::where('email', $data['email'])->update(['password' => password_hash($data['password'], PASSWORD_DEFAULT)]);
+                $this->verifyCreate($user, $data['password']);
+                User::where('email', $data['email'])->update(['password' => Hash::make($data['password'])]);
                 return $user;
                 break;
             case 2:

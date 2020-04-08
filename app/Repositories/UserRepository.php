@@ -39,4 +39,18 @@ class UserRepository
             'job' => $data['job'],
         ]);
     }
+
+    public function subscribeMailing($id)
+    {
+        return User::where('id', $id)->update([
+            'mailing' => 1,
+        ]);
+    }
+
+    public function cancelMailing($id)
+    {
+        return User::where('id', $id)->update([
+            'mailing' => 0,
+        ]);
+    }
 }

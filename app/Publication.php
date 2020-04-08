@@ -42,7 +42,7 @@ class Publication extends Model
         return $this->hasMany('App\File', 'publ_id');
     }
 
-    public function theme()
+    public function themes()
     {
         return $this->belongsToMany('App\Theme', 'themes_and_publ', 'publ_id', 'theme_id');
     }

@@ -11,7 +11,9 @@
 <br/>
 Ваш логин: {{ $user->email }}
 <br/>
-
+@if(!is_null($password))
+  Ваш пароль: {{ $password }}
+@endif
 <a href="{{ url('/verify/' . $user->verifyUser->token) }}">Verify Email</a>
 </body>
 

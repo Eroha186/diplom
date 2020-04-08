@@ -31,7 +31,6 @@ Route::group(['middleware' => 'emailCheck'], function () {
 
     Route::group(['prefix' => 'competitions'], function () {
         Route::get('/', ['as' => 'competitions', 'uses' => 'Competitions\CompetitionsController@showCompetitions']);
-        Route::post('/orderBy/{column}/{filter}', ['uses' => 'Competitions\FilterCompetitionController@setCookieOrderCompetitions']);
         Route::get('/search/', ['as' => 'search-с', 'uses' => 'Competitions\FilterCompetitionController@search']);
     });
 
@@ -43,27 +42,34 @@ Route::group(['middleware' => 'emailCheck'], function () {
 
     Route::get('/form-competition', ['as' => 'form-competition', 'uses' => 'Competitions\FormCompetitionController@show']);
     Route::post('/form-competition', ['as' => 'form-competition', 'uses' => 'Competitions\FormCompetitionController@saveWorkCompetition']);
-    Route::post('/competition-filter/{valueFilter}', ['uses' => 'Competitions\FilterCompetitionController@setCookieFilterNomination']);
     Route::get('/competition/{id}/nomination/', ['as' => 'search-work', 'uses' => 'Competitions\FilterCompetitionController@searchWork']);
-    Route::post('competition/orderBy/{column}/{filter}', ['uses' => 'Competitions\FilterCompetitionController@setCookieOrderCompetition']);
-    Route::post('arch-competition/orderBy/{column}/{filter}', ['uses' => 'Competitions\FilterCompetitionController@setCookieOrderArchCompetition']);
     Route::get('/competition/{id}/work/{workId}', ['as' => 'competition-work', 'uses' => 'Competitions\WorkController@show']);
 
     Route::get('/express-competitions', ['uses' => 'Competitions\ExpressCompetitionsController@show']);
-    Route::post('/express-competitions/{column}/{filter}', ['uses' => 'Competitions\ExpressCompetitionsController@setCookieFilter']);
     Route::get('/express-competitions/search', ['uses' => 'Competitions\ExpressCompetitionsController@show', 'as' => 'express-competitions-search']);
     Route::get('/express-competition-form', ['uses' => 'Competitions\ExpressCompetitionFormController@show']);
     Route::post('/express-competition-form', ['uses' => 'Competitions\ExpressCompetitionFormController@saveExpressWork', 'as' => 'express-competitions']);
 
     Route::group(['prefix' => 'publications'], function () {
         Route::get('', ['as' => 'publications', 'uses' => 'Publication\PublicationsPageController@show']);
-        Route::post('/orderBy/{column}/{filter}', ['uses' => 'Publication\FilterPublicationController@setCookieOrder']);
         Route::get('/search/', ['as' => 'search', 'uses' => 'Publication\FilterPublicationController@search']);
     });
 
     Route::get('/publication/{id}', ['as' => 'publication', 'uses' => 'Publication\PublicationsPageController@showPublication']);
-    Route::get('/form-publication', ['as' => 'form-publication', 'uses' => 'Publication\PublicationsPageController@showForm']);
-    Route::post('/form-publication', ['as' => 'form-publication', 'uses' => 'Publication\PublicationsPageController@savePublication']);
+    Route::get('/form-publication', ['as' => 'form-publication', 'uses' => 'Publication\FormPublicationController@show']);
+    Route::post('/form-publication', ['uses' => 'Publication\FormPublicationController@save']);
+    Route::post('ajaxLoadKinds/{education_id}','Publication\FormPublicationController@ajaxLoadKinds');
+    Route::post('ajaxLoadNumberSymbolsInRelationOnType/{type_id}','Publication\FormPublicationController@ajaxLoadNumberSymbolsInRelationOnType');
+
+    /**
+     * Установление куков для фильтрации
+     */
+    Route::post('competitions/orderBy/{column}/{filter}', ['uses' => 'CookiesController@setCookieOrderCompetitions']);
+    Route::post('competition-filter/{valueFilter}', ['uses' => 'CookiesController@setCookieFilterNomination']);
+    Route::post('competition/orderBy/{column}/{filter}', ['uses' => 'CookiesController@setCookieOrderCompetition']);
+    Route::post('arch-competition/orderBy/{column}/{filter}', ['uses' => 'CookiesController@setCookieOrderArchCompetition']);
+    Route::post('express-competitions/{column}/{filter}', ['uses' => 'CookiesController@setCookieFilter']);
+    Route::post('publications/orderBy/{column}/{filter}', ['uses' => 'CookiesController@setCookieOrder']);
 
 
     Route::group(['middleware' => 'auth'], function () {

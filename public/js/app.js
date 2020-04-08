@@ -11227,12 +11227,9 @@ $(function () {
             data: { val: val },
             type: 'POST',
             success: function success(e) {
-                console.log(e);
-
                 var _e$url = _slicedToArray(e.url, 1),
                     path = _e$url[0];
 
-                console.log(path);
                 if (!(path === undefined)) {
                     $('.img-example').html('<img src="/storage/' + path.url + '" alt="" id="example-substrate"> <br> <h5 class="mt-lg-3">\u0412\u044B\u0431\u0440\u0430\u043D\u043D\u0430\u044F \u043F\u043E\u0434\u043B\u043E\u0436\u043A\u0430</h5>');
                 } else {
@@ -11260,6 +11257,46 @@ $(function () {
                     layout += value.content.split('contenteditable="true"').join('');
                 });
                 $('.mail-demo').html(layout);
+            }
+        });
+    });
+
+    $('#education').on('change', function () {
+        var val = $(this).val();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: 'ajaxLoadKinds/' + val,
+            type: 'POST',
+            success: function success(e) {
+                console.log(e);
+                var layout = '';
+                e.forEach(function (item) {
+                    layout += '<option value="' + item.id + '">' + item.name + '</option>';
+                });
+                $("#kind").html(layout);
+            }
+        });
+    });
+
+    $('#type').on('change', function () {
+        var val = $(this).val();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: 'ajaxLoadNumberSymbolsInRelationOnType/' + val,
+            type: 'POST',
+            success: function success(e) {
+                var last = e.number_symbols.toString().slice(-1);
+                var layout = '';
+                if (last === '1') {
+                    layout = '(\u041D\u0435 \u0431\u043E\u043B\u0435\u0435 ' + e.number_symbols + ' \u0441\u0438\u043C\u0432\u043E\u043B\u0430)';
+                } else {
+                    layout = '(\u041D\u0435 \u0431\u043E\u043B\u0435\u0435 ' + e.number_symbols + ' \u0441\u0438\u043C\u0432\u043E\u043B\u043E\u0432)';
+                }
+                $('.number-symbols').html(layout);
             }
         });
     });

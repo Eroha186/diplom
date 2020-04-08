@@ -13,7 +13,7 @@ class Theme extends Model
 
     public $timestamps = false;
 
-    public function publication()
+    public function publications()
     {
         return $this->belongsToMany('App\Publication', 'themes_and_publ', 'theme_id', 'publ_id');
     }

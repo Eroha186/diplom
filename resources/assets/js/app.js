@@ -493,9 +493,9 @@ $(function () {
         $('.list-body').html(layout);
     }
 
-    $('.place').on('change', function (){
-       let place = $(this).val();
-       let id = $(this).attr('data-id');
+    $('.place').on('change', function () {
+        let place = $(this).val();
+        let id = $(this).attr('data-id');
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -506,7 +506,7 @@ $(function () {
                 let id = e.id;
                 $('.wrap-a-work[data-id=' + id + ']').html('<span>Место успешно добавлено</span>');
                 setTimeout(() => {
-                    $('.wrap-a-work[data-id=' + id + ']').remove();                  
+                    $('.wrap-a-work[data-id=' + id + ']').remove();
                 }, 1000)
             }
         });
@@ -514,26 +514,24 @@ $(function () {
 
     // Показ подложки в админк
     $('#substrate').on('change', function () {
-       let val = $(this).val();
+        let val = $(this).val();
 
-       $.ajax({
-           headers: {
-               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-           },
-           url: 'view-substrate',
-           data: {val: val},
-           type: 'POST',
-           success: function (e) {
-               console.log(e);
-               const [path,] = e.url;
-               console.log(path);
-              if(!(path === undefined)) {
-                  $('.img-example').html(`<img src="/storage/${path.url}" alt="" id="example-substrate"> <br> <h5 class="mt-lg-3">Выбранная подложка</h5>`);
-              } else {
-                  $('.img-example').html('');
-              }
-           }
-       })
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: 'view-substrate',
+            data: {val: val},
+            type: 'POST',
+            success: function (e) {
+                const [path,] = e.url;
+                if (!(path === undefined)) {
+                    $('.img-example').html(`<img src="/storage/${path.url}" alt="" id="example-substrate"> <br> <h5 class="mt-lg-3">Выбранная подложка</h5>`);
+                } else {
+                    $('.img-example').html('');
+                }
+            }
+        })
     });
 
     // показ письма
@@ -558,4 +556,43 @@ $(function () {
         })
     });
 
+    $('#education').on('change', function() {
+        let val = $(this).val();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: 'ajaxLoadKinds/' + val,
+            type: 'POST',
+            success: function (e) {
+                console.log(e);
+                let layout = '';
+                e.forEach((item) => {
+                    layout += `<option value="${item.id}">${item.name}</option>`
+                })
+                $("#kind").html(layout);
+            }
+        })
+    })
+
+    $('#type').on('change', function() {
+        let val = $(this).val();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: 'ajaxLoadNumberSymbolsInRelationOnType/' + val,
+            type: 'POST',
+            success: function (e) {
+                let last = e.number_symbols.toString().slice(-1);
+                let layout = '';
+                if (last === '1') {
+                    layout = `(Не более ${e.number_symbols} символа)`;
+                } else {
+                    layout = `(Не более ${e.number_symbols} символов)`;
+                }
+                $('.number-symbols').html(layout);
+            }
+        })
+    })
 });
