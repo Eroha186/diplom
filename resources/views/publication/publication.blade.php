@@ -39,7 +39,7 @@
                         <span class="tag">{{$theme->name}}</span>
                     @endforeach
                 </div>
-                <div class="publication-content__date">Опубликовано: {{$publication->date_add}}</div>
+                <div class="publication-content__date">Опубликовано: {{ date("d.m.Y", strtotime($publication->date_add)) }}</div>
                 <div class="publication-content__author">
                     {{$publication->user->f}} {{$publication->user->i}} {{$publication->user->o}},
                     {{$publication->user->job}} в г.{{$publication->user->town}}, {{$publication->user->stuff}}
