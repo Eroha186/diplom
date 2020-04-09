@@ -35,7 +35,7 @@
                     <div class="col-xl-11 publication-content__title">{{$publication->title}}</div>
                 </div>
                 <div class="publication-content__tags">
-                    @foreach($publication->theme as $theme)
+                    @foreach($publication->themes as $theme)
                         <span class="tag">{{$theme->name}}</span>
                     @endforeach
                 </div>
@@ -53,45 +53,49 @@
                 </div>
                 <div class="row">
                     <div class="col-xl-4">
-                        <a href="{{Storage::url($publication->doc)}}" class="btn green filled-btn" download>Скачать
-                            текст</a>
+                        @if(isset($publication->doc))
+                            <a href="{{Storage::url($publication->doc)}}" class="btn green filled-btn" download>Скачать
+                                текст</a>
+                        @endif
                     </div>
                     <div class="col-xl-6">
-                        <a href="{{Storage::url($publication->ppt)}}" class="btn orange filled-btn" download>Скачать
-                            презентацию</a>
+                        @if(isset($publication->ppt))
+                            <a href="{{Storage::url($publication->ppt)}}" class="btn green filled-btn" download>Скачать
+                                текст</a>
+                        @endif
                     </div>
 
                 </div>
             </div>
-            <div class="col-xl-4  offset-md-1 new-publication">
-                <div class="title">Новые публикации</div>
-                @foreach ($newPublications as $newPublication)
-                    <div class="new-publication__snippet">
-                        <div class="new-publication__snippet-img">
-                            <img src="{{$newPublication['file'] == 'doc' ? asset('images/doc.svg') :
-                            $newPublication['file'] == 'pdf' ? asset('images/pdf.svg') :
-                            $newPublication['file'] == 'ppt' ? asset('images/ppt.svg') : ''}}" alt="Иконка">
-                        </div>
-                        <div class="new-publication__snippet-descr">
-                            <a href="{{route('publication', ['id' => $newPublication->id])}}" class="title">
-                                {{$newPublication->title}}
-                            </a>
-                            <div class="author">
-                                Автор: {{$newPublication->user->f}} {{$newPublication->user->i}}
-                                .{{$newPublication->user->o}}.,
-                                {{$newPublication->user->job}}
-                                <span>г.{{$newPublication->user->town}}, {{$newPublication->user->stuff}}</span>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
+{{--            <div class="col-xl-4  offset-md-1 new-publication">--}}
+{{--                <div class="title">Новые публикации</div>--}}
+{{--                @foreach ($newPublications as $newPublication)--}}
+{{--                    <div class="new-publication__snippet">--}}
+{{--                        <div class="new-publication__snippet-img">--}}
+{{--                            <img src="{{$newPublication['file'] == 'doc' ? asset('images/doc.svg') :--}}
+{{--                            $newPublication['file'] == 'pdf' ? asset('images/pdf.svg') :--}}
+{{--                            $newPublication['file'] == 'ppt' ? asset('images/ppt.svg') : ''}}" alt="Иконка">--}}
+{{--                        </div>--}}
+{{--                        <div class="new-publication__snippet-descr">--}}
+{{--                            <a href="{{route('publication', ['id' => $newPublication->id])}}" class="title">--}}
+{{--                                {{$newPublication->title}}--}}
+{{--                            </a>--}}
+{{--                            <div class="author">--}}
+{{--                                Автор: {{$newPublication->user->f}} {{$newPublication->user->i}}--}}
+{{--                                .{{$newPublication->user->o}}.,--}}
+{{--                                {{$newPublication->user->job}}--}}
+{{--                                <span>г.{{$newPublication->user->town}}, {{$newPublication->user->stuff}}</span>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                @endforeach--}}
+{{--            </div>--}}
         </div>
         <div class="publication-content__text" id="readable">
             <input type="text" id="publication-content__text" class="hide" value="{{$publication->text}}">
         </div>
         <div class="publication-content__passage">
-            @foreach($images as $image)
+            @foreach($publication->images as $image)
                 <img src="{{Storage::url($image)}}" alt="">
             @endforeach
         </div>
@@ -100,11 +104,11 @@
         <div class="container">
             <div style="margin-top: 25px;" class="confirmation row">
                 <div class="col-md-4">
-                    <a href="{{route('a-confirmation', ['id' => $publication->id, 'result' => '1', 'publication'])}}"
+                    <a href="{{route('a-confirmation-publ', ['id' => $publication->id])}}"
                        class="btn green filled-btn">Подтвердить</a>
                 </div>
                 <div class="col-md-4">
-                    <a href="{{route('a-confirmation', ['id' => $publication->id, 'result' => '0', 'publication'])}}"
+                    <a href="{{route('a-reject-publ', ['id' => $publication->id])}}"
                        class="btn orange filled-btn">Отклонить</a>
                 </div>
             </div>

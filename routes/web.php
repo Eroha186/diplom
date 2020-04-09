@@ -69,7 +69,7 @@ Route::group(['middleware' => 'emailCheck'], function () {
     Route::post('competition/orderBy/{column}/{filter}', ['uses' => 'CookiesController@setCookieOrderCompetition']);
     Route::post('arch-competition/orderBy/{column}/{filter}', ['uses' => 'CookiesController@setCookieOrderArchCompetition']);
     Route::post('express-competitions/{column}/{filter}', ['uses' => 'CookiesController@setCookieFilter']);
-    Route::post('publications/orderBy/{column}/{filter}', ['uses' => 'CookiesController@setCookieOrder']);
+    Route::post('publications/orderBy/{column}/{filter}', ['uses' => 'CookiesController@setCookieOrderPublication']);
 
 
     Route::group(['middleware' => 'auth'], function () {
@@ -110,7 +110,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::post('publication/change-themes/{mode}', ['as' => 'change-themes', 'uses' => 'Admin\PublicationController@changeThemes']);
     Route::post('competition/change-type/{mode}', ['as' => 'change-types', 'uses' => 'Admin\CompetitionController@changeTypes']);
 
-    Route::get('confirmation/{id}/{result}/{page}/{idCompetition?}', ['as' => 'a-confirmation', 'uses' => 'Admin\ConfirmationController@confirmation']);
+    Route::get('confirmation-publication/{id}', ['as' => 'a-confirmation-publ', 'uses' => 'Admin\ConfirmationController@confirmPublication']);
+    Route::get('reject-publication/{id}', ['as' => 'a-reject-publ', 'uses' => 'Admin\ConfirmationController@rejectPublication']);
+    Route::get('confirmation-competition/{competition_id}/{id}', ['as' => 'a-confirmation-comp', 'uses' => 'Admin\ConfirmationController@confirmWork']);
+    Route::get('reject-competition/{competition_id}/{id}', ['as' => 'a-reject-comp', 'uses' => 'Admin\ConfirmationController@rejectWork']);
+
+
 
     Route::get('competition', ['as' => 'a-competitions', 'uses' => 'Admin\CompetitionController@show']);
     Route::get('competition/{id}', ['as' => 'a-competition', 'uses' => 'Admin\CompetitionController@showCompetition']);
@@ -118,7 +123,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
         flag = 0 - обычный конкурс
         flag = 1 - экспресс конкурс
     */
-    Route::post('create-competition/{flag}', ['as' => 'create-competition', 'uses' => 'Admin\CompetitionController@createCompetition']);
+    Route::post('create-competition', ['as' => 'create-competition', 'uses' => 'Admin\CompetitionController@createCompetition']);
+    Route::post('create-express-competition', ['as' => 'create-express-competition', 'uses' => 'Admin\CompetitionController@createExpressCompetition']);
     Route::get('express-competition', ['as' => 'a-express-competition', 'uses' => 'Admin\ExpressCompetitionController@show']);
     Route::get('competition/place/{place}/{id}', ['as' => 'a-place', 'uses' => 'Admin\CompetitionController@changePlace']);
     Route::post('add-substrates', ['as' => 'a-add-substrate', 'uses' => 'Reward\SubstrateController@addSubstrate']);

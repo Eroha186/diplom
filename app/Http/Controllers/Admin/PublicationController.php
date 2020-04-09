@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Publication;
+use App\Repositories\PublicationRepository;
+use App\Repositories\UserRepository;
 use App\Substrate;
 use App\User;
 use App\Theme;
@@ -12,44 +14,21 @@ use Illuminate\Support\Facades\Auth;
 
 class PublicationController extends Controller
 {
-    public function show(Request $request)
+    public function __construct()
     {
-        $user = User::where('id', Auth::user()->id)->first();
-        $themes = Theme::all();
-        $publications = Publication::with('user')->where('moderation', 0)->paginate(5);
-        foreach ($publications as $publication) {
-            $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
-            $publication['user']['i'] = mb_substr($publication['user']['i'], 0, 1);
-            $publication['user']['o'] = mb_substr($publication['user']['o'], 0, 1);
-            foreach ($publication['files'] as $file) {
-                if ($file['type'] == 'doc') {
-                    $publication['doc'] = 1;
-                }
-                if ($file['type'] == 'ppt') {
-                    $publication['ppt'] = 1;
-                }
-            }
-        }
-        return view('admin.publications', [
-            'user' => $user,
-            'publications' => $publications,
-            'themes' => $themes,
-            'substrates' => Substrate::all()
-        ]);
+        $this->publicationRepository = new PublicationRepository();
+        $this->userRepository = new UserRepository();
     }
 
-    public function formationSnippetForkNewPublication($publicationModel)
+
+    public function show()
     {
-
-        $publications = $publicationModel::with($this->field)->where('moderation', 1)->orderBy('date_add', 'desc')->limit(7)->get();
-        foreach ($publications as $publication) {
-            $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
-            $publication['user']['i'] = mb_substr($publication['user']['i'], 0, 1);
-            $publication['user']['o'] = mb_substr($publication['user']['o'], 0, 1);
-            $publication['file'] = $publication['files'][0]['type'];
-        }
-
-        return $publications;
+        return view('admin.publications', [
+            'user' => $this->userRepository->getUserAuth(),
+            'publications' => $this->publicationRepository->getAllNotConfirmedPublications(),
+            'themes' => Theme::all(),
+            'substrates' => Substrate::all()
+        ]);
     }
 
     /*

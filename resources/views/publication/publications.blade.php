@@ -52,14 +52,17 @@
                 </div>
                 <div class="col-xl-3">
                     <select name="kind" id="kind" class="select-filter">
-                        <option value="0">Все виды</option>
-                        @foreach($kinds as $kind)
-                            <option value="{{$kind->id}}"
-                                @if(isset($settingFilter['kind']) && $kind->id == $settingFilter['kind'])
-                                    selected="selected"
-                                @endif
-                            >{{$kind->name}}</option>
-                        @endforeach
+                        @if(isset($settingFilter['kind']))
+                                @foreach($kinds as $kind)
+                                    <option value="{{$kind->id}}"
+                                            @if($kind->id == $settingFilter['kind'])
+                                            selected="selected"
+                                            @endif
+                                    >{{$kind->name}}</option>
+                                @endforeach
+                        @else
+                            <option>Выберите уровень образования</option>
+                        @endif
                     </select>
                 </div>
                 <div class="col-xl-3">

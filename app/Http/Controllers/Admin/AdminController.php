@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class AdminController extends Controller
+use App\Repositories\UserRepository;
+
+trait AdminController
 {
-    //
+    function user()
+    {
+        return (new UserRepository())->getUserAuth();
+    }
 }

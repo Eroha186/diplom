@@ -11,6 +11,6 @@ class ExpressWorkRepository extends WorksRepository
 {
     public function getWorkUser()
     {
-        return $this->formatWork(ExpressWork::with($this->field)->where('user_id', Auth::user()->id)->get());
+        return $this->formatWork(ExpressWork::with($this->fields)->where('user_id', Auth::user()->id)->get());
     }
 }

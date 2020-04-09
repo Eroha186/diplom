@@ -54,36 +54,17 @@ class PublicationsPageController extends Controller
 
     public function showPublication($id)
     {
-
-        $publicationModel = new Publication;
-        $images = [];
-
-        $newPublications = $this->formationSnippetForkNewPublication($publicationModel);
-        $publication = $publicationModel::with($this->field)->where('id', $id)->first();
-        $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
-        foreach ($publication['files'] as $file) {
-            if ($file['type'] == 'doc' || $file['type'] == 'pdf') {
-                $publication['doc'] = $file['url'];
-            }
-            if ($file['type'] == 'ppt') {
-                $publication['ppt'] = $file['url'];
-            }
-            if ($file['type'] == 'image') {
-                $images[] = $file['url'];
-            }
-        }
+        $publication = $this->publicationRepository->getPublication($id);
 
         return view('publication/publication', [
             'publication' => $publication,
-            'images' => $images,
-            'newPublications' => $newPublications
         ]);
     }
 
     public function formationSnippetForkNewPublication($publicationModel)
     {
 
-        $publications = $publicationModel::with($this->field)->where('moderation', 2)->orderBy('date_add', 'desc')->limit(7)->get();
+        $publications = $publicationModel::with($this->fields)->where('moderation', 2)->orderBy('date_add', 'desc')->limit(7)->get();
         foreach ($publications as $publication) {
             $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
             $publication['user']['i'] = mb_substr($publication['user']['i'], 0, 1);

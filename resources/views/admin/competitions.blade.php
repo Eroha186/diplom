@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="tab-content competition-tab-content" data-tab="2">
-            <form action="{{route('create-competition', ['flag' => 0])}}" class="create-competition"
+            <form action="{{route('create-competition')}}" class="create-competition"
                   enctype="multipart/form-data" method="POST">
                 {{ csrf_field() }}
                 @if (count($errors) > 0 || Session::has('error'))

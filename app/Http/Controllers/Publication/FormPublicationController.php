@@ -127,7 +127,10 @@ class FormPublicationController extends Controller
      */
     public function ajaxLoadKinds($education_id)
     {
-        return Kind::where('education_id', $education_id)->get()->toArray();
+        $condition = $education_id != 0 ? ['education_id', $education_id] : [];
+        return $education_id == 0 ?
+            Kind::all()           :
+            Kind::where('education_id', $education_id)->get()->toArray();
     }
 
     /**

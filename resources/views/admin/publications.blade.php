@@ -50,7 +50,7 @@
                             @endif
                         </div>
                         <div class="publication-card__tags">
-                            @foreach($publication->theme as $theme)
+                            @foreach($publication->themes as $theme)
                                 <div class="tag">{{$theme->name}}</div>
                             @endforeach
                         </div>

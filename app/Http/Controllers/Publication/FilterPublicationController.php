@@ -20,7 +20,7 @@ class FilterPublicationController extends Controller
         'user',
         'type',
         'education',
-        'theme',
+        'themes',
         'kind',
         'files',
     ];
@@ -103,11 +103,13 @@ class FilterPublicationController extends Controller
 
         $educations = Education::all();
         $types = Type::all();
-        $kinds = Kind::all();
+        $kinds = $filters['education'] == 0 ? Kind::all() : Kind::where('education_id', $filters['education'])->get();
         $themes = Theme::all();
         $filtersInfo['filter-p'] = $filter;
         $filtersInfo['column-p'] = $column;
         $publications = $this->formationSnippetList($publications);
+
+
 
         if (count($publications)) {
             return view('publication/publications', [
@@ -137,8 +139,8 @@ class FilterPublicationController extends Controller
     {
         foreach ($publications as $publication) {
             $publication['date_add'] = date("d.m.Y", strtotime($publication['date_add']));
-            $publication['author']['i'] = mb_substr($publication['author']['i'], 0, 1);
-            $publication['author']['o'] = mb_substr($publication['author']['o'], 0, 1);
+            $publication['user']['i'] = mb_substr($publication['user']['i'], 0, 1);
+            $publication['user']['o'] = mb_substr($publication['user']['o'], 0, 1);
             foreach ($publication['files'] as $file) {
                 if ($file['type'] == 'doc') {
                     $publication['doc'] = 1;

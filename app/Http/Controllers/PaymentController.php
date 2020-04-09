@@ -32,13 +32,13 @@ class PaymentController extends Controller
         $work = [];
         switch ($type) {
             case("work"):
-                $work = Work::with('user')->where('id', $workId)->get()[0];
+                $work = Work::with('user')->where('id', $workId)->get()->first();
                 break;
             case("publication"):
-                $work = Publication::with('user')->where('id', $workId)->get()[0];
+                $work = Publication::with('user')->where('id', $workId)->get()->first();
                 break;
             case("expressWork"):
-                $work = ExpressWork::with('user')->where('id', $workId)->get()[0];
+                $work = ExpressWork::with('user')->where('id', $workId)->get()->first();
                 break;
         }
         $diplom = Diplom::where([['work_id', $workId], ['type', $type]])->first();

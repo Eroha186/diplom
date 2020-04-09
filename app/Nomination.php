@@ -13,4 +13,9 @@ class Nomination extends Model
     {
         return $this->belongsToMany('App\Competition', 'competition_nomination', 'nomination_id', 'competition_id');
     }
+
+    public function expressCompetition()
+    {
+        return $this->belongsToMany('App\ExpressCompetition', 'competition_nomination', 'nomination_id', 'express_competition_id');
+    }
 }

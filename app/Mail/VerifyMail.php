@@ -21,7 +21,7 @@ class VerifyMail extends Mailable
      */
     public function __construct($userId, $password)
     {
-        $this->user = User::with('verifyUser')->where('id', $userId)->get()[0];
+        $this->user = User::with('verifyUser')->where('id', $userId)->get()->first();
         $this->password = $password;
     }
 

@@ -6,10 +6,11 @@ namespace App\Repositories\Works;
 
 class WorksRepository
 {
-    protected $field = [
+    protected $fields = [
         'competition',
         'user',
-        'diplom'
+        'diplom',
+        'file'
     ];
 
     protected function formatWork($works) {

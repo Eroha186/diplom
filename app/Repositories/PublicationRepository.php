@@ -43,6 +43,15 @@ class PublicationRepository
         return Publication::with($this->fields)->where('moderation', 2)->paginate(PublicationRepository::NUMBER_OF_PAGES_FOR_PAGINATION);
     }
 
+    public function getAllNotConfirmedPublications()
+    {
+        return Publication::with($this->fields)->where('moderation', 0)->paginate(PublicationRepository::NUMBER_OF_PAGES_FOR_PAGINATION);
+    }
+
+    public function getPublication($id)
+    {
+        return $this->attachFileUrlToPublication(Publication::with($this->fields)->where('id', $id)->get()->first());
+    }
 
     /**
      * Создание публикации.
@@ -81,6 +90,20 @@ class PublicationRepository
         return Publication::with($this->fields)->where('moderation', 2)->orderBy($column, $orderByParam)->paginate(PublicationRepository::NUMBER_OF_PAGES_FOR_PAGINATION);
     }
 
+    public function confirmPublication($id)
+    {
+        Publication::where('id', $id)->update([
+            'moderation' => 2,
+        ]);
+    }
+
+    public function rejectPublication($id)
+    {
+        Publication::where('id', $id)->update([
+            'moderation' => 1,
+        ]);
+    }
+
 
     ////////////////////////////////////////////////////////////////////////////////
     //////////                 Вспомогательные методы                     //////////
@@ -112,7 +135,27 @@ class PublicationRepository
         return $publications;
     }
 
+    protected function attachFileUrlToPublication($publication)
+    {
 
+        $images = [];
+        foreach ($publication['files'] as $file) {
+            if ($file['type'] == 'doc' || $file['type'] == 'pdf') {
+                $publication['doc'] = $file['url'];
+            }
+            if ($file['type'] == 'ppt') {
+                $publication['ppt'] = $file['url'];
+            }
+            if ($file['type'] == 'image') {
+                $images[] = $file['url'];
+            }
+        }
+
+        $publication['images'] = $images;
+
+        return $publication;
+    }
+    
     /**
      * Добавление тем к публикации.
      *

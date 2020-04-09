@@ -2,7 +2,7 @@
 
 @section('content')
     <div style="display: flex">
-        <form action="{{route('create-competition', ['flag' => 1])}}" class="create-competition"
+        <form action="{{route('create-express-competition')}}" class="create-competition"
               enctype="multipart/form-data" method="POST">
             {{ csrf_field() }}
             @if (count($errors) > 0 || Session::has('error'))

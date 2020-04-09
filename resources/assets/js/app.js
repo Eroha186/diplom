@@ -273,6 +273,7 @@ $(function () {
     });
 
     $('.select2').select2();
+    $('.select-filter').select2();
 
     $('.filter-nomination').on('click', function () {
         $('.filter-nomination').removeClass('filter-nomination_active');
@@ -562,7 +563,7 @@ $(function () {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: 'ajaxLoadKinds/' + val,
+            url: '/ajaxLoadKinds/' + val,
             type: 'POST',
             success: function (e) {
                 console.log(e);

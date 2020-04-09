@@ -7,14 +7,14 @@
             <li class="work-tab tab" data-tab="2">Определения места</li>
         </ul>
         <div class="tab-content content_active work-tab-content" data-tab="1">
-            @foreach($works as $work)
+            @foreach($worksForModeration as $work)
                 @if($work->moderation == 0)
                 <p><a href="{{route('competition-work', ['id' => $idCompetition, 'workId' => $work->id])}}">{{$work->title}}</a></p>
                 @endif
             @endforeach
         </div>
         <div class="tab-content work-tab-content" data-tab="2">
-            @foreach ($works as $work)
+            @foreach ($worksForDebriefing as $work)
                 @if($work->moderation == 2 && $work->place == 0)
                     <form class="wrap-a-work" data-id={{$work->id}}>
                         <div class="img" >

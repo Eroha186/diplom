@@ -7,6 +7,7 @@ use App\Jobs\SendEmail;
 use App\Mailing;
 use App\MlTemplateBlock;
 use App\MlTemplate;
+use App\Repositories\TemplateMailRepository;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,11 +17,7 @@ use Illuminate\Support\Facades\Queue;
 
 class MailingController extends Controller
 {
-
-    protected function user()
-    {
-        return User::where('id', Auth::user()->id)->first();
-    }
+    use AdminController;
 
     public function show()
     {

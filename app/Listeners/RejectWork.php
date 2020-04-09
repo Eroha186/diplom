@@ -33,10 +33,9 @@ class RejectWork
             ['work_id', $event->workId],
             ['type', $event->typeWork],
             ['payment', 1]
-        ])->get()->toArray();
+        ])->get()->first()->toArray();
 
         if (count($diplom) > 0) {
-            $diplom = $diplom[0];
             if ($diplom['payment']) {
                 $userId = $diplom[$event->typeWork]['user']['id'];
                 $user = User::where('id', $userId);
