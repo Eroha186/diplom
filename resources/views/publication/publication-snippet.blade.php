@@ -8,7 +8,7 @@
                     </div>
                 </div>
             </div>
-            <div class="publish-card__date">Опублековано {{$publication->date_add}}</div>
+            <div class="publish-card__date">Опубликовано {{ date("d.m.Y", strtotime($publication->date_add)) }}</div>
             <div class="row">
                 <div class="col-xl-10">
                     <div class="publication-card__author">Автор
