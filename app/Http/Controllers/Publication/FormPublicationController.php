@@ -103,7 +103,7 @@ class FormPublicationController extends Controller
                 ]);
             }
 
-            $diplom = $this->diplomRepository->create($publication->id, $publication);
+            $diplom = $this->diplomRepository->create($publication->id, 'publication');
 
             $post_data = [
                 'userName' => $data['f'] . " " . $data['i'] . " " . $data['o'],

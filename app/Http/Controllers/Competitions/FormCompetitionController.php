@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Competitions;
 
-use App\Competition_Nomination;
 use App\Diplom;
 use App\File;
 use App\Http\Controllers\Auth\RandomPassword;

@@ -4,7 +4,7 @@
 namespace App\Repositories\Works;
 
 
-class WorksRepository
+abstract class WorksRepository
 {
     protected $fields = [
         'competition',

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Competitions;
 
 use App\Competition;
-use App\Competition_Nomination;
 use App\Http\Controllers\SearchController;
 use App\Work;
 use Illuminate\Http\Request;

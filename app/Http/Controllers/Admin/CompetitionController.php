@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Competition;
-use App\Competition_Nomination;
 use App\ExpressCompetition;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FormCreatCompetitionRequest;

@@ -32,25 +32,19 @@ class MailingController extends Controller
 
     public function getAllTemplateMail()
     {
-        $templates = MlTemplate::all();
-        return $templates;
+        return  MlTemplate::all();
     }
 
     public function getTemplateBlocks($id)
     {
-        $id != 0
-            ? $blocks = MlTemplate::find($id)->templateBlocks
-            : $blocks = [];
-        return $blocks;
+        return  $id != 0
+            ?  MlTemplate::find($id)->templateBlocks
+            :  [];
     }
 
     public function loadTemplate()
     {
-        $id = \request()->get('val');
-
-        $template = $this->getTemplateBlocks($id);
-
-        return $template;
+        return $this->getTemplateBlocks(\request()->get('val'));
     }
 
     public function sendMail(Request $request)

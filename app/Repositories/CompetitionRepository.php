@@ -9,14 +9,35 @@ use App\ExpressCompetition;
 
 class CompetitionRepository
 {
+    protected $field = [
+      'nominations'
+    ];
+
+    const NUMBER_OF_PAGES_FOR_PAGINATION = 16;
+
     public function getAllRelevantCompetition()
     {
-        return Competition::where('status', 0)->get();
+        return Competition::with($this->field)->where('status', 0)->get();
+    }
+
+    public function getAllRelevantCompetitionOrderBy($column, $orderByParam)
+    {
+        return Competition::with($this->field)->where('status', '0')->orderBy($column, $orderByParam)->paginate(self::NUMBER_OF_PAGES_FOR_PAGINATION);
+    }
+
+    public function getEndedCompetitions($column, $orderByParam)
+    {
+        return Competition::with($this->field)->where('status', '1')->orWhere('status', '2')->orderBy($column, $orderByParam)->paginate(self::NUMBER_OF_PAGES_FOR_PAGINATION);
     }
 
     public function getAllCompetition()
     {
         return Competition::all();
+    }
+
+    public function getCompetition($id)
+    {
+        return Competition::with($this->field)->where('id', $id)->first();
     }
 
     public function createCompetition($data)
@@ -36,6 +57,21 @@ class CompetitionRepository
         return $competition;
     }
 
+
+    ////////////////////////////////////////////////////////////////////////////////
+    //////////                   Экспресс конкурсы                        //////////
+    ////////////////////////////////////////////////////////////////////////////////
+
+    public function getAllExpressCompetitions()
+    {
+        return ExpressCompetition::with($this->field)->get();
+    }
+
+    public function getExpressCompetition($id)
+    {
+        return ExpressCompetition::with($this->field)->where('id', $id)->get()->first();
+    }
+
     public function createExpressCompetition($data)
     {
         $competition = ExpressCompetition::create([
@@ -51,14 +87,21 @@ class CompetitionRepository
         return $competition;
     }
 
+
+
+    ////////////////////////////////////////////////////////////////////////////////
+    //////////                 Вспомогательные методы                     //////////
+    ////////////////////////////////////////////////////////////////////////////////
+
+
     protected function attachmentNominationForCompetition($competition_id, $nominations)
     {
-        Competition::find($competition_id)->nomination()->attach($nominations);
+        Competition::find($competition_id)->nominations()->attach($nominations);
     }
 
     protected function attachmentNominationForExpressCompetition($competition_id, $nominations)
     {
-        ExpressCompetition::find($competition_id)->nomination()->attach($nominations);
+        ExpressCompetition::find($competition_id)->nominations()->attach($nominations);
     }
 
     protected function uploadCover($file)

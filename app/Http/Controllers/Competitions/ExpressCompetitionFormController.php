@@ -2,92 +2,82 @@
 
 namespace App\Http\Controllers\Competitions;
 
-use App\Competition_Nomination;
 use App\Diplom;
 use App\ExpressCompetition;
 use App\ExpressWork;
-use App\File;
 use App\Http\Controllers\Auth\RandomPassword;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\TransactionController;
 use App\Http\Requests\FormExpressCompetitionRequest;
+use App\Repositories\CompetitionRepository;
+use App\Repositories\DiplomRepository;
+use App\Repositories\UserRepository;
+use App\Repositories\Works\ExpressWorkRepository;
 use App\User;
-use App\Work;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ExpressCompetitionFormController extends Controller
 {
+    public function __construct()
+    {
+        $this->expressCompetitionRepository = new CompetitionRepository();
+        $this->expressWorkRepository = new ExpressWorkRepository();
+        $this->diplomRepository = new DiplomRepository();
+        $this->userRepository = new UserRepository();
+    }
+
     public function show(Request $request)
     {
-        $competitionSelected = $request->get('id');
-        $competitions = ExpressCompetition::all();
-        $nominations = Competition_Nomination::where('express_competition_id', $competitionSelected)
-            ->leftJoin('nominations as n', 'nomination_id', '=', 'n.id')
-            ->get();
-        $user = [];
-        if (Auth::check()) {
-            $user = User::where('id', Auth::user()->id)->first()->toArray();
-        }
+        $id = $request->get('id');
         return view('express-competitions.form-competition', [
-            'competitionSelected' => $competitionSelected,
-            'competitions' => $competitions,
-            'nominations' => $nominations,
-            'user' => $user,
+            'competitionSelected' => $id,
+            'competitions' => $this->expressCompetitionRepository->getAllExpressCompetitions(),
+            'competition' => $this->expressCompetitionRepository->getExpressCompetition($id),
+            'user' => Auth::check()
+                        ? $this->userRepository->getUserAuth()->toArray()
+                        : [],
         ]);
     }
 
     public function saveExpressWork(FormExpressCompetitionRequest $request) {
-        $work = $request->all();
-        $placeArray = [1,2,2,3,3,3,4,4,4,4];
+        $data = $request->all();
+
         if (Auth::check()) {
-            $newWork = ExpressWork::create([
-                'user_id' => Auth::user()->id,
-                'competition_id' => (int) $work['competition'],
-                'title' => $work['title'],
-                'annotation' => $work['annotation'],
-                'fc' => $work['fc'],
-                'ic' => $work['ic'],
-                'oc' => $work['oc'],
-                'nomination_id' => (int) $work['nomination'],
-                'date_add' => date('Y-m-d H:i:s', strtotime(now())),
-                'age' => $work['age'],
-                'place' => $placeArray[array_rand($placeArray, 1)],
-            ]);
+            $data['user_id'] = Auth::user()->id;
         } else {
             $register = new RegisterController();
             $pass = RandomPassword::randomPassword();
-            $formRequest['password'] = $pass;
-            $formRequest['password_confirmation'] = $pass;
-            $newUser = $register->registerFromPublicationForm($formRequest);
-            $newWork = ExpressWork::create([
-                'user_id' => $newUser->id,
-                'title' => $work['title'],
-                'annotation' => $work['annotation'],
-                'fc' => $work['fc'],
-                'ic' => $work['ic'],
-                'oc' => $work['oc'],
-                'nomination_id' => (int) $work['nomination'],
-                'date_add' => date('Y-m-d H:i:s', strtotime(now())),
-                'age' => $work['age'],
-                'place' => array_rand($placeArray, 1),
-            ]);
+            $request['password'] = $pass;
+            $request['password_confirmation'] = $pass;
+            $data['user_id'] = $register->registerFromPublicationForm($request)->id;
         }
-        if ($work['placement-method']) {
-            $diplom = Diplom::create([
-                'work_id' => $newWork->id,
-                'type' => 'expressWork',
-            ]);
+
+        $work = $this->expressWorkRepository->createWork($data);
+
+        if ($data['placement-method']) {
+            if($data['uses-coins']) {
+                (new TransactionController())->transferCoins([
+                    'coins' => $data['coins'],
+                    'user_id' => $work['user_id'],
+                    'type' => 0,
+                ]);
+            }
+
+            $diplom = $this->diplomRepository->create($work->id, 'expressCompetition');
+
             $post_data = [
                 'userName' => $work['f'] . " " . $work['i'] . " " . $work['o'],
                 'user_email' => $work['email'],
                 'recipientAmount' => $work['cash'],
                 'orderId' => $diplom->id,
             ];
+
             return view('payment', ['post_data' => $post_data]);
-        } else {
-            return redirect('/');
         }
+
+        return redirect(route('home'));
     }
 
 }

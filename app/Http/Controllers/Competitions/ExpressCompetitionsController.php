@@ -11,15 +11,10 @@ use PhpParser\Node\Expr;
 
 class ExpressCompetitionsController extends Controller
 {
-    public function setCookieFilter(Response $response, $column, $filter) {
-        Cookie::queue(Cookie::make('filter-express', $filter)); //competitions
-        Cookie::queue(Cookie::make('column-express', $column));
-        return $response->status();
-    }
-
     public function show( Request $request) {
         $filter = $request->cookie('filter-express');
         $column = $request->cookie('column-express');
+
         $searchQuery = $request->get('search');
         $competitions = [];
         switch ($filter) {

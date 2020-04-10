@@ -53,7 +53,7 @@
             <div class="all-nomination nomination">
                 <span class="filter-nomination {{(0 == $filterInfo['nomination'])? "filter-nomination_active" : ""}}" data-value="0">Все номинации</span>
             </div>
-            @foreach($nominations as $nomination)
+            @foreach($competition->nominations as $nomination)
                 <div class="nomination">
                     <span class="filter-nomination {{($nomination->id == $filterInfo['nomination'])? "filter-nomination_active" : ""}}" data-value="{{$nomination->id}}">{{$nomination->name}}</span>
                 </div>
@@ -66,7 +66,10 @@
 
         </form>
 
-        @if(($competition->status == 1 || $competition->status == 2))
+        @if($competition->status == 1)
+            <h4 style="margin-bottom: 35px;">Конкурс закончен. Подводятся итоги</h4>
+        @endif
+        @if($competition->status == 2)
             <table class="result-work">
                 <tr class="dedicated">
                     <th>ФИО участника <br>Куратор</th>

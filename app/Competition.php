@@ -12,7 +12,7 @@ class Competition extends Model
     public $timestamps = false;
     protected $fillable = ['title', 'annotation', 'cover', 'type_id', 'date_begin', 'date_end', 'substrate_id'];
 
-    public function nomination()
+    public function nominations()
     {
         return $this->belongsToMany('App\Nomination', 'competition_nomination','competition_id', 'nomination_id');
     }
@@ -25,4 +25,13 @@ class Competition extends Model
         return $this->belongsTo('App\Type_competition', 'type_id');
     }
 
+    public function getDateEndAttribute($value)
+    {
+        return date("d.m.Y", strtotime($value));
+    }
+
+    public function getDateBeginAttribute($value)
+    {
+        return date("d.m.Y", strtotime($value));
+    }
 }

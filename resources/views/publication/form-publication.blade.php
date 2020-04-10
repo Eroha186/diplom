@@ -154,9 +154,9 @@
                                 <option value="0" disabled selected>Выберите тип работы</option>
                                 @foreach($types as $type)
                                     <option value="{{$type->id}}"
-                                        @if($type->id == Session::get('type'))
+                                            @if($type->id == Session::get('type'))
                                             selected
-                                        @endif
+                                            @endif
                                     >{{$type->name}}</option>
                                 @endforeach
                             </select>
@@ -170,13 +170,13 @@
                     <select name="themes[]" id="themes" multiple class="input-style select2">
                         @foreach($themes as $theme)
                             <option value="{{$theme->id}}"
-                                @if(Session::has('themes'))
+                                    @if(Session::has('themes'))
                                     @foreach(Session::get('themes') as $one)
-                                        @if($theme->id == $one)
-                                            selected
-                                        @endif
+                                    @if($theme->id == $one)
+                                    selected
+                                    @endif
                                     @endforeach
-                                @endif
+                                    @endif
                             >{{$theme->name}}</option>
                         @endforeach
                     </select>
@@ -186,21 +186,49 @@
                     <textarea name="annotation" id="annotation" cols="30" rows="5" class="input-style"
                               placeholder="Описание работы....">{{Session::has('annotation') ? Session::get('annotation') : ''}}</textarea>
                     <div style="font-weight: bold; margin-top: 30px;">
-                        <label for="text" class="red-star">Полный текст работы</label> <span class="number-symbols"></span>
+                        <label for="text" class="red-star">Полный текст работы</label> <span
+                                class="number-symbols"></span>
                     </div>
                     <div id="standalone-container">
                         <div id="toolBar">
+                            <span class="ql-formats">
+                                <select class="ql-font"></select>
+                                <select class="ql-size"></select>
+                            </span>
                             <span class="ql-formats">
                               <button class="ql-bold"></button>
                               <button class="ql-italic"></button>
                               <button class="ql-underline"></button>
                               <button class="ql-strike"></button>
                             </span>
+                                                        <span class="ql-formats">
+                                                          <select class="ql-color"></select>
+                                                          <select class="ql-background"></select>
+                                                        </span>
+                                                        <span class="ql-formats">
+                                                          <button class="ql-script" value="sub"></button>
+                                                          <button class="ql-script" value="super"></button>
+                                                        </span>
+                                                        <span class="ql-formats">
+                                                          <button class="ql-header" value="1"></button>
+                                                          <button class="ql-header" value="2"></button>
+                                                          <button class="ql-blockquote"></button>
+                                                          <button class="ql-code-block"></button>
+                                                        </span>
                             <span class="ql-formats">
                               <button class="ql-list" value="ordered"></button>
                               <button class="ql-list" value="bullet"></button>
                               <button class="ql-indent" value="-1"></button>
                               <button class="ql-indent" value="+1"></button>
+                            </span>
+                            <span class="ql-formats">
+                              <button class="ql-direction" value="rtl"></button>
+                              <select class="ql-align"></select>
+                            </span>
+                            <span class="ql-formats">
+                              <button class="ql-link"></button>
+                              <button class="ql-image"></button>
+                              <button class="ql-formula"></button>
                             </span>
                             <span class="ql-formats">
                               <button class="ql-clean"></button>
@@ -231,7 +259,8 @@
                     </div>
                     <div class="placement-method">
                         <label for="by-diplom" class="by-diplom radio-button radio-button_active">
-                            <input type="radio" name="placement-method" id="by-diplom" class="hide" {{Session::get('placement-method') == "1" ? 'data-check="true"' : ''}}
+                            <input type="radio" name="placement-method" id="by-diplom" class="hide"
+                                   {{Session::get('placement-method') == "1" ? 'data-check="true"' : ''}}
                                    value="1" checked="checked">
                             <div class="radio-button__title">
                                 <img src="{{asset('images/credit-card.svg')}}" alt="кредитная карта">
@@ -244,7 +273,7 @@
                         </label>
                         <label for="without-diplom" class="without-diplom radio-button ">
                             <input type="radio" name="placement-method" id="without-diplom" class="hide" value="0"
-                                {{Session::get('placement-method') == "0" ? 'data-check="true"' : ''}} >
+                                    {{Session::get('placement-method') == "0" ? 'data-check="true"' : ''}} >
                             <div class="radio-button__title">
                                 <img src="{{asset('images/list.svg')}}" alt="кредитная карта">
                                 <span>Разместить работу и заказать диплом позже</span>
@@ -257,14 +286,17 @@
                     <div class="payment-block payment-block_active">
                         <strong>Итого:</strong>
                         <ul class="payment">
-                            <li>Диплом за публикацию материала......<span class="payment-cash">{{ $cash }}</span>&#8381;</li>
+                            <li>Диплом за публикацию материала......<span class="payment-cash">{{ $cash }}</span>&#8381;
+                            </li>
                         </ul>
 
                         <strong>На вашем счету {{isset($user->coins) ? $user->coins : '0'}} бонусов</strong>
                         <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                            <input id="uses-coins" type="checkbox" style="margin-right: 3px;" name="uses-coins" {{Session::has('uses-coins') ?  'checked="checked"' : '' }}>
+                            <input id="uses-coins" type="checkbox" style="margin-right: 3px;"
+                                   name="uses-coins" {{Session::has('uses-coins') ?  'checked="checked"' : '' }}>
                             <span class="margin-right-7">Использовать бонусы</span>
-                            <input type="number" min="0" max="{{isset($user->coins) ? $user->coins : '0'}}" value="{{Session::has('coins') ?  Session::get('coins') : '0' }}"
+                            <input type="number" min="0" max="{{isset($user->coins) ? $user->coins : '0'}}"
+                                   value="{{Session::has('coins') ?  Session::get('coins') : '0' }}"
                                    id="coins-number" name="coins" readonly="readonly">
                         </div>
                         <div class="result-payment">
@@ -274,12 +306,14 @@
 
                     <ul class="agreements">
                         <li class="agreements-item">
-                            <input type="checkbox" id="offer" name="offer" {{Session::has('offer') ?  'checked="checked"' : '' }}>
+                            <input type="checkbox" id="offer"
+                                   name="offer" {{Session::has('offer') ?  'checked="checked"' : '' }}>
                             <label for="offer">Согласен с условием <a href="" class="standart-link">оферты</a></label>
                         </li>
 
                         <li class="agreements-item">
-                            <input type="checkbox" id="processing-pd" name="processing-pd" {{Session::has('processing-pd') ?  'checked="checked"' : '' }}>
+                            <input type="checkbox" id="processing-pd"
+                                   name="processing-pd" {{Session::has('processing-pd') ?  'checked="checked"' : '' }}>
                             <label for="processing-pd">Я подтверждаю свое согласие на обработку персональных
                                 данных</label>
                         </li>

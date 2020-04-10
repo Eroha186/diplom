@@ -106,7 +106,7 @@
                     <label for="nomination" class="red-star">Номинация</label>
                     <select name="nomination" id="nomination" class="input-style">
                         <option value="0">Номинация</option>
-                        @foreach($nominations as $nomination)
+                        @foreach($competition->nominations as $nomination)
                             <option value="{{$nomination->id}}"
                                 {{--                                                            @if($education->id == Session::get('education'))--}}
                                 {{--                                                            selected--}}
@@ -238,7 +238,6 @@
                     <div class="payment-block payment-block_active">
                         <strong>Итого:</strong>
                         <ul class="payment">
-                            <li>Диплом за публикацию материала......<span class="payment-cash">100</span>&#8381;</li>
                             <li>Диплом за участие в конкурсе..............<span class="payment-cash">100</span>&#8381;
                             </li>
                         </ul>

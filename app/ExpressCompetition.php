@@ -16,7 +16,7 @@ class ExpressCompetition extends Model
         return $this->belongsTo('App\Type_competition', 'type_id');
     }
 
-    public function nomination()
+    public function nominations()
     {
         return $this->belongsToMany('App\Nomination', 'competition_nomination', 'express_competition_id', 'nomination_id');
     }
