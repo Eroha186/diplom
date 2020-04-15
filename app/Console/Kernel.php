@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\CronProcess\CronProcessForCompetition;
+use App\Console\CronProcess\DeletingFilesThatNotRelatedToAnything;
 use App\Console\CronProcess\SendingMailExpressCompetitionDiplom;
 use App\Diplom;
 use App\Mail\ExpressCompetitionDiplom;
@@ -33,6 +34,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             SendingMailExpressCompetitionDiplom::sendingMailExpressCompetitionDiplom();
             CronProcessForCompetition::switchingStatusSummarizing();
+            DeletingFilesThatNotRelatedToAnything::deleteFiles();
         })->daily();
     }
 

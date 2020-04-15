@@ -6,7 +6,13 @@ use App\Diplom;
 use App\File;
 use App\Http\Controllers\Auth\RandomPassword;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UploadFileController;
 use App\Http\Requests\FormCompetitionRequest;
+use App\Repositories\CompetitionRepository;
+use App\Repositories\DiplomRepository;
+use App\Repositories\UserRepository;
+use App\Repositories\Works\WorkRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Competition;
@@ -19,108 +25,63 @@ class FormCompetitionController extends Controller
     public function __construct()
     {
         $this->cash = config('payment_config.cash');
+        $this->competitionRepository = new CompetitionRepository();
+        $this->userRepository = new UserRepository();
+        $this->workRepository = new WorkRepository();
+        $this->diplomRepository = new DiplomRepository();
     }
 
     public function show(Request $request)
     {
-        $competitionSelected = $request->get('id');
-        $competitions = Competition::all();
-        $nominations = Competition_Nomination::where('competition_id', $competitionSelected)
-            ->leftJoin('nominations as n', 'nomination_id', '=', 'n.id')
-            ->get();
-        $user = [];
-        if (Auth::check()) {
-            $user = User::where('id', Auth::user()->id)->first()->toArray();
-        }
+        $id = $request->get('id');
+
         return view('competitions/form-competition', [
-            'competitionSelected' => $competitionSelected,
-            'competitions' => $competitions,
-            'nominations' => $nominations,
-            'user' => $user,
+            'competitionSelected' => $this->competitionRepository->getCompetition($id),
+            'competitions' => $this->competitionRepository->getAllRelevantCompetition(),
+            'user' => $this->userRepository->getUserAuth(),
             'cash' => $this->cash,
         ]);
     }
 
     public function saveWorkCompetition(FormCompetitionRequest $formRequest)
     {
-        $work = $formRequest->all();
+        $data = $formRequest->all();
         if (Auth::check()) {
-            $newWork = Work::create([
-                'user_id' => Auth::user()->id,
-                'competition_id' => (int) $work['competition'],
-                'title' => $work['title'],
-                'annotation' => $work['annotation'],
-                'fc' => $work['fc'],
-                'ic' => $work['ic'],
-                'oc' => $work['oc'],
-                'nomination_id' => (int) $work['nomination'],
-                'date_add' => date('Y-m-d H:i:s', time()),
-                'age' => $work['age'],
-            ]);
+            $data['user_id'] = $this->userRepository->getUserAuth();
         } else {
             $register = new RegisterController();
             $pass = RandomPassword::randomPassword();
             $formRequest['password'] = $pass;
             $formRequest['password_confirmation'] = $pass;
-            $newUser = $register->registerFromPublicationForm($formRequest);
-            $newWork = Work::create([
-                'user_id' => $newUser->id,
-                'title' => $work['title'],
-                'annotation' => $work['annotation'],
-                'fc' => $work['fc'],
-                'ic' => $work['ic'],
-                'oc' => $work['oc'],
-                'nomination_id' => (int) $work['nomination'],
-                'date_add' => date('Y-m-d H:i:s', time()),
-                'age' => $work['age'],
-            ]);
+            $data['user_id'] = $register->registerFromPublicationForm($formRequest)->id;
         }
 
-        $this->uploadFile($formRequest->file('file'), $newWork->id);
+        $work = $this->workRepository->createWork($data);
 
-        if ($work['placement-method']) {
-            $diplom = Diplom::create([
-                'work_id' => $newWork->id,
-                'type' => 'work',
-            ]);
+        (new UploadFileController())->uploadFile($formRequest->file('file'), 'work', $work->id);
+
+        if ($formRequest['placement-method']) {
+            if ($formRequest['uses-coins']) {
+                (new TransactionController())->transferCoins([
+                    'coins' => $formRequest['coins'],
+                    'user_id' => $data['user_id'],
+                    'type' => 0,
+                ]);
+            }
+
+            $diplom = $this->diplomRepository->create($work->id, 'competition');
+
             $post_data = [
-                'userName' => $work['f'] . " " . $work['i'] . " " . $work['o'],
-                'user_email' => $work['email'],
-                'recipientAmount' => $work['cash'],
+                'userName' => $data['f'] . " " . $data['i'] . " " . $data['o'],
+                'user_email' => $data['email'],
+                'recipientAmount' => $data['cash'],
                 'orderId' => $diplom->id,
             ];
+
             return view('payment', ['post_data' => $post_data]);
-        } else {
-            return redirect('/');
         }
+
+        return redirect('/');
     }
 
-    public function uploadFile($file, $work_id)
-    {
-        $type = $file->getMimeType();
-        switch ($type) {
-            case ('application/pdf'):
-                $type = 'pdf';
-                break;
-            case ('image/jpeg'):
-            case ('image/png'):
-                $type = 'image';
-                break;
-            case ('application/vnd.openxmlformats-officedocument.wordprocessingml.document'):
-            case ('application/msword'):
-                $type = 'doc';
-                break;
-            case ('application/vnd.openxmlformats-officedocument.presentationml.presentation'):
-            case ('application/vnd.ms-powerpoint'):
-                $type = 'ppt';
-                break;
-        }
-        $path = $file->store('upload', 'public');
-        File::create([
-            'publ_id' => 0,
-            'url' => $path,
-            'type' => $type,
-            'work_id' => $work_id,
-        ]);
-    }
 }

@@ -40,7 +40,7 @@
             <div class="row select-filters">
                 <div class="col-xl-3">
                     <select name="education" id="education" class="select-filter">
-                        <option value="0">Все уровни образования</option>
+                        <option value="all">Все уровни образования</option>
                         @foreach($educations as $education)
                             <option value="{{$education->id}}"
                                 @if(isset($settingFilter['education']) && $education->id == $settingFilter['education'])

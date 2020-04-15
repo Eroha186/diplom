@@ -17,4 +17,9 @@ class Test extends Controller
     {
     }
 
+    public function testPost()
+    {
+        return response('ok');
+    }
+
 }

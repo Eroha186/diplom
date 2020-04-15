@@ -4,6 +4,7 @@
 namespace App\Repositories;
 
 
+use App\Http\Controllers\UploadFileController;
 use App\Publication;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -61,6 +62,7 @@ class PublicationRepository
      */
     public function createPublication($publication)
     {
+        $filesId = $publication['filesId'];
         $publication = Publication::create([
             'user_id' => $publication['user_id'],
             'title' => $publication['title'],
@@ -74,6 +76,7 @@ class PublicationRepository
         ]);
 
         $this->attachmentTheme($publication->id, $publication['themes']);
+        $this->attachPublicationIdForFile($publication->id, $filesId);
 
         return $publication;
     }
@@ -109,6 +112,12 @@ class PublicationRepository
     //////////                 Вспомогательные методы                     //////////
     ////////////////////////////////////////////////////////////////////////////////
 
+    protected function attachPublicationIdForFile($publicationId, $files)
+    {
+        foreach ($files as $file) {
+            (new UploadFileController())->updatePublIdFile($file, $publicationId);
+        }
+    }
 
     /**
      * Форматирование вида публикации.
@@ -155,7 +164,7 @@ class PublicationRepository
 
         return $publication;
     }
-    
+
     /**
      * Добавление тем к публикации.
      *

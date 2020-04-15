@@ -42,7 +42,7 @@ class PaymentController extends Controller
                 break;
         }
         $diplom = Diplom::where([['work_id', $workId], ['type', $type]])->first();
-        if(count($diplom->toArray()) == 0) {
+        if(is_null($diplom)) {
             $diplom = Diplom::create([
                 'work_id' => $work->id,
                 'type' => $type,

@@ -156,4 +156,6 @@ Route::post('/loginFormCompetition', 'Auth\LoginController@login')->name('loginF
 Route::post('/publicationSaveSession', ['uses' => 'Publication\PublicationSaveSession@publicationSaveSession']);
 Route::post('/payment', ['as' => 'payment', 'uses' => 'PaymentController@payment']);
 Route::get('/test', 'Test@test');
+Route::post('/uploadfilepubl', 'UploadFileController@uploaderPublication');
+Route::post('/uploadercomp', 'UploadFileController@uploaderWork');
 Route::auth();

@@ -1,6 +1,7 @@
 global.$ = require('jquery');
 global.select2 = require('select2');
 global.Quill = require('quill');
+global.dmUploader = require('dm-file-uploader');
 $(function () {
     setOrder($('.filter-name[data-condition != 1]'), 1);
 
@@ -30,49 +31,7 @@ $(function () {
         cashInput.val(cash);
     }
 
-    if ($('*').is('#editor')) {
-        let quill = new Quill('#editor', {
-            modules: {
-                toolbar: '#toolBar'
-            },
-            placeholder: 'Введите полное описание текста...',
-            theme: 'snow'
-        });
-        let value = $('input[name=text]').attr('data-value');
-        if (value) {
-            quill.setContents(JSON.parse(value));
-        }
-        let radioButton = $('input[type=radio]');
-        radioButton.each(function () {
-            if (this.getAttribute('data-check')) {
-                this.parentNode.classList.toggle('radio-button_active');
-                if (this.getAttribute('data-check')) {
-                    this.setAttribute('checked', 'checked');
-                }
-                if (this.value != 1) {
-                    $('.payment-block').removeClass('payment-block_active')
-                }
-            }
-        })
 
-        $('.form-publication').on('submit', function () {
-            let about = $('input[name=text]');
-            about.val(JSON.stringify(quill.getContents()));
-        });
-
-        $('#login-form-publication').on('submit', function (e) {
-            let about = $('input[name=text]');
-            about.val(JSON.stringify(quill.getContents()));
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url: '/publicationSaveSession',
-                type: 'POST',
-                data: $('.form-publication').serialize(),
-            });
-        })
-    }
 
 
     if ($('*').is('#publication-content__text')) {
@@ -331,24 +290,6 @@ $(function () {
         return condition.attr('data-condition');
     };
 
-
-    let inputs = document.querySelectorAll('#upload');
-    Array.prototype.forEach.call(inputs, function (input) {
-        let label = document.querySelector('.file-display'),
-            labelVal = label.innerHTML;
-        input.addEventListener('change', function (e) {
-            let fileName = '';
-            if (this.files && this.files.length > 1)
-                fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
-            else
-                fileName = e.target.value.split('\\').pop();
-            if (fileName)
-                document.querySelector('.file-display').innerHTML = fileName;
-            else
-                label.innerHTML = labelVal;
-        });
-    });
-
     $('.adding').on('click', function () {
         $('.list-body__item').removeClass('list-body__item_active');
         $('.edition-form').removeClass('form_active');
@@ -566,11 +507,19 @@ $(function () {
             url: '/ajaxLoadKinds/' + val,
             type: 'POST',
             success: function (e) {
-                console.log(e);
                 let layout = '';
-                e.forEach((item) => {
-                    layout += `<option value="${item.id}">${item.name}</option>`
-                })
+                let data_option = $('#kind').data('option');
+                if(e.length == 0) {
+                    layout += '<option value="0" disabled selected style="color: #757575">Выберите уровень образования </option>'
+                } else {
+                    e.forEach((item) => {
+                        layout += `<option `;
+                        if (data_option != "" && data_option == item.id) {
+                            layout += "selected"
+                        }
+                        layout += `value="${item.id}">${item.name}</option>`
+                    })
+                }
                 $("#kind").html(layout);
             }
         })
@@ -588,12 +537,99 @@ $(function () {
                 let last = e.number_symbols.toString().slice(-1);
                 let layout = '';
                 if (last === '1') {
-                    layout = `(Не более ${e.number_symbols} символа)`;
+                    layout = `(Не менее ${e.number_symbols} символа)`;
                 } else {
-                    layout = `(Не более ${e.number_symbols} символов)`;
+                    layout = `(Не менее ${e.number_symbols} символов)`;
                 }
                 $('.number-symbols').html(layout);
             }
         })
     })
+
+    $("#uploaderpubl").dmUploader({
+        url: '/uploadfilepubl',
+        //... More settings here...
+
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+
+        onInit: function(){
+
+        },
+
+        onNewFile: function(id, file){
+            clearHtml();
+            let list = $('.file-list').html();
+            $('.file-list').html(list + `<div class="file-display" id="${id}">${addDotName(file.name)}</div>`)
+        },
+
+        onUploadSuccess: createListUpload(id, data)
+
+    });
+
+    function createListUpload (id, data){
+        let element = $('#' + id);
+        if(data.errors) {
+            element.addClass('error-file').attr('title', data.errors).text(element.text() + ' - Ошибка загрузки');
+            element.removeClass('file-display');
+            return true;
+        }
+        element.addClass('ready-file').text(element.text() + ' - Успешно загружено');
+        element.removeClass('file-display');
+        $('#fileId').html(
+            $('#fileId').html() + `<input type="text" name="filesId[]" class="hide" value="${data}">`
+        );
+    }
+
+    function clearHtml() {
+        if ($('.not_select').length > 0) {
+            $('.not_select').remove();
+        }
+        return true;
+    }
+
+    function addDotName(name) {
+        if(name.length >= 17) {
+            return name.slice(0,14) + '...';
+        }
+        return name
+    }
+
+    if ($('*').is('#editor')) {
+        let quill = new Quill('#editor', {
+            modules: {
+                toolbar: '#toolBar'
+            },
+            placeholder: 'Введите полное описание текста...',
+            theme: 'snow'
+        });
+        let value = $('input[name=text]').attr('data-value');
+        if (value) {
+            quill.setContents(JSON.parse(value));
+        }
+
+        $('#education').trigger('change');
+        $('#type').trigger('change');
+
+
+
+        $('.form-publication').on('submit', function () {
+            let about = $('input[name=text]');
+            about.val(JSON.stringify(quill.getContents()));
+        });
+
+        $('#login-form-publication').on('submit', function (e) {
+            let about = $('input[name=text]');
+            about.val(JSON.stringify(quill.getContents()));
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: '/publicationSaveSession',
+                type: 'POST',
+                data: $('.form-publication').serialize(),
+            });
+        })
+    }
 });

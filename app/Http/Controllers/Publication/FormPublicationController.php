@@ -90,10 +90,6 @@ class FormPublicationController extends Controller
             $this->userRepository->subscribeMailing($data['user_id']);
         }
 
-        foreach ($formRequest->file('files') as $file) {
-            UploadFileController::uploadFile($file, $publication->id, 'publication');
-        }
-
         if ($formRequest['placement-method']) {
             if($formRequest['uses-coins']) {
                 (new TransactionController())->transferCoins([
@@ -127,8 +123,10 @@ class FormPublicationController extends Controller
      */
     public function ajaxLoadKinds($education_id)
     {
-        $condition = $education_id != 0 ? ['education_id', $education_id] : [];
-        return $education_id == 0 ?
+        if ($education_id === '0')
+            return [];
+
+        return $education_id == 'all' ?
             Kind::all()           :
             Kind::where('education_id', $education_id)->get()->toArray();
     }

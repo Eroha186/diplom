@@ -231,6 +231,20 @@ textarea {
   border: 1px solid #ff2001;
 }
 
+.ready-file {
+  color: #86cd5b;
+  cursor: pointer;
+}
+
+.error-file {
+  color: #ff2001;
+  cursor: pointer;
+}
+
+.load-file {
+  cursor: wait;
+}
+
 .hide {
   width: 0.1px;
   height: 0.1px;
@@ -1823,7 +1837,6 @@ footer {
 }
 
 .file-display {
-  margin-left: 50px;
   color: #d1cece;
 }
 
@@ -2269,7 +2282,6 @@ input[type="radio"]:checked + .radio-button__title > span::after {
 }
 
 .file-display {
-  margin-left: 50px;
   color: #d1cece;
 }
 

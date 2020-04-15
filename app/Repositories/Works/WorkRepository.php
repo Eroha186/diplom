@@ -4,6 +4,7 @@
 namespace App\Repositories\Works;
 
 
+use App\Http\Controllers\UploadFileController;
 use App\Work;
 use Illuminate\Support\Facades\Auth;
 
@@ -56,6 +57,23 @@ class WorkRepository extends WorksRepository
         return Work::with($this->fields)->get()->first();
     }
 
+    public function createWork($data)
+    {
+        $work = Work::create([
+            'user_id' => $data['user_id'],
+            'title' => $data['title'],
+            'annotation' => $data['annotation'],
+            'fc' => $data['fc'],
+            'ic' => $data['ic'],
+            'oc' => $data['oc'],
+            'nomination_id' => (int) $data['nomination'],
+            'date_add' => date('Y-m-d H:i:s', time()),
+            'age' => $data['age'],
+        ]);
+
+        $this->attachWorkIdForFile();
+    }
+
     public function confirmWork($id)
     {
         Work::where('id', $id)->update([
@@ -68,5 +86,18 @@ class WorkRepository extends WorksRepository
         Work::where('id', $id)->update([
             'moderation' => 1,
         ]);
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////////////
+    //////////                 Вспомогательные методы                     //////////
+    ////////////////////////////////////////////////////////////////////////////////
+
+
+    protected function attachWorkIdForFile($publicationId, $files)
+    {
+        foreach ($files as $file) {
+            (new UploadFileController())->updatePublIdFile($file, $publicationId);
+        }
     }
 }

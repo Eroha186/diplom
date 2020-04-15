@@ -129,32 +129,30 @@
                         <option value="0">Выберите уровень образования</option>
                         @foreach($educations as $education)
                             <option value="{{$education->id}}"
-                                    @if($education->id == Session::get('education'))
-                                    selected
+                                    @if($education->id == old('education'))
+                                        selected
                                     @endif
                             >{{$education->name}}</option>
                         @endforeach
                     </select>
                     <label for="kind" class="red-star">Вид публикации</label>
-                    <select name="kind" id="kind" class="input-style">
-                        <option value="0" disabled selected style="color: #757575">Выберите вид
-                            публикации
+                    <select name="kind" id="kind" class="input-style" data-option="{{ old('kind') }}">
+                        <option value="0" disabled selected style="color: #757575">Выберите уровень образования
                         </option>
                     </select>
                     <div style="display: flex; justify-content: space-between ">
                         <div class="col-xl-7" style="padding: 0;">
                             <label for="title" class="red-star">Название работы</label>
                             <input name="title" id="title" class="input-style" type="text" placeholder="С 8 марта!"
-                                   value="{{Session::has('title') ? Session::get('title') : ''}}">
+                                   value="{{ old('title') }}">
                         </div>
                         <div class="col-xl-4" style="padding: 0;">
                             <label for="type" class="red-star">Тип работы</label>
-                            <select name="type" id="type" class="input-style"
-                                    data-option="{{Session::has('type') ? Session::get('type') : '0'}}">
+                            <select name="type" id="type" class="input-style">
                                 <option value="0" disabled selected>Выберите тип работы</option>
                                 @foreach($types as $type)
                                     <option value="{{$type->id}}"
-                                            @if($type->id == Session::get('type'))
+                                            @if($type->id == old('type'))
                                             selected
                                             @endif
                                     >{{$type->name}}</option>
@@ -170,12 +168,12 @@
                     <select name="themes[]" id="themes" multiple class="input-style select2">
                         @foreach($themes as $theme)
                             <option value="{{$theme->id}}"
-                                    @if(Session::has('themes'))
-                                    @foreach(Session::get('themes') as $one)
-                                    @if($theme->id == $one)
-                                    selected
-                                    @endif
-                                    @endforeach
+                                    @if(!is_null(old('themes')))
+                                        @foreach(old('themes') as $one)
+                                            @if($theme->id == $one)
+                                                selected
+                                            @endif
+                                        @endforeach
                                     @endif
                             >{{$theme->name}}</option>
                         @endforeach
@@ -184,7 +182,7 @@
                         <label for="annotation" class="red-star">Описание работы</label> (не более 200 символов)
                     </div>
                     <textarea name="annotation" id="annotation" cols="30" rows="5" class="input-style"
-                              placeholder="Описание работы....">{{Session::has('annotation') ? Session::get('annotation') : ''}}</textarea>
+                              placeholder="Описание работы....">{{ old('annotation') }}</textarea>
                     <div style="font-weight: bold; margin-top: 30px;">
                         <label for="text" class="red-star">Полный текст работы</label> <span
                                 class="number-symbols"></span>
@@ -234,7 +232,7 @@
                               <button class="ql-clean"></button>
                             </span>
                         </div>
-                        <input type="text" class="hide" id="text" name="text" data-value="{{Session::get('text')}}">
+                        <input type="text" class="hide" id="text" name="text" data-value="{{old('text')}}">
                         <div id="editor"></div>
                     </div>
 
@@ -243,11 +241,18 @@
                         .doc, .docx,
                         .pdf, .ppt, .pptx)
                     </div>
-                    <div>
-                        <input type="file" id="upload" multiple data-multiple-caption="Загружено {count} файлов "
-                               name="files[]"
-                               class="hide">
-                        <label for="upload" class="upload filled-btn">Загрузить файл</label> <span class="file-display">Файл не выбран</span>
+                    <div id="uploaderpubl" style="display: flex">
+                        <div style="width: 49%;">
+                            <input type="file" id="upload"
+                                   name="file"
+                                   class="hide">
+                            <label for="upload" class="upload filled-btn">Загрузить файл</label>
+                        </div>
+                        <div style="width: 49%;" class="file-list">
+                            <div class="file-display not_select">Файл не выбран</div>
+                        </div>
+                        <div id="fileId">
+                        </div>
                     </div>
                 </div>
                 <div class="form-publication__placement-method border-form-publication">
@@ -258,10 +263,11 @@
                         <label for="" class="red-star">Выберите способ размещения</label>
                     </div>
                     <div class="placement-method">
-                        <label for="by-diplom" class="by-diplom radio-button radio-button_active">
+                        <label for="by-diplom" class="by-diplom radio-button {{ is_null(old('placement-method')) ? 'radio-button_active' : (old('placement-method') == 1 ? 'radio-button_active' : '') }}">
                             <input type="radio" name="placement-method" id="by-diplom" class="hide"
-                                   {{Session::get('placement-method') == "1" ? 'data-check="true"' : ''}}
-                                   value="1" checked="checked">
+                                   {{is_null(old('placement-method')) ? 'data-check=true' : (old('placement-method') == 1 ? 'data-check=true' : '')}}
+                                   value="1"
+                                   {{is_null(old('placement-method')) ? 'checked=checked' : (old('placement-method') == 1 ? 'checked=checked' : '')}}>
                             <div class="radio-button__title">
                                 <img src="{{asset('images/credit-card.svg')}}" alt="кредитная карта">
                                 <span>Разместить работу и заказать диплом сейчас</span>
@@ -271,9 +277,10 @@
                                 Оплатить можно онлайн любым удобным способом.
                             </div>
                         </label>
-                        <label for="without-diplom" class="without-diplom radio-button ">
+                        <label for="without-diplom" class="without-diplom radio-button {{ is_null(old('placement-method')) ? : (old('placement-method') == 0 ? "radio-button_active" : '') }}">
                             <input type="radio" name="placement-method" id="without-diplom" class="hide" value="0"
-                                    {{Session::get('placement-method') == "0" ? 'data-check="true"' : ''}} >
+                                    {{is_null(old('placement-method')) ? '' : (old('placement-method') == 0 ? 'data-check=true' : '')}}
+                                    {{is_null(old('placement-method')) ? '' : (old('placement-method') == 0 ? 'checked=checked' : '')}}>
                             <div class="radio-button__title">
                                 <img src="{{asset('images/list.svg')}}" alt="кредитная карта">
                                 <span>Разместить работу и заказать диплом позже</span>
@@ -283,7 +290,7 @@
                             </div>
                         </label>
                     </div>
-                    <div class="payment-block payment-block_active">
+                    <div class="payment-block {{ is_null(old('placement-method')) ? 'payment-block_active' : (old('placement-method')  ? 'payment-block_active' : '')}}">
                         <strong>Итого:</strong>
                         <ul class="payment">
                             <li>Диплом за публикацию материала......<span class="payment-cash">{{ $cash }}</span>&#8381;
@@ -293,10 +300,10 @@
                         <strong>На вашем счету {{isset($user->coins) ? $user->coins : '0'}} бонусов</strong>
                         <div style="display: flex; align-items: center; margin-bottom: 15px;">
                             <input id="uses-coins" type="checkbox" style="margin-right: 3px;"
-                                   name="uses-coins" {{Session::has('uses-coins') ?  'checked="checked"' : '' }}>
+                                   name="uses-coins" {{old('uses-coins') ?  'checked="checked"' : '' }}>
                             <span class="margin-right-7">Использовать бонусы</span>
                             <input type="number" min="0" max="{{isset($user->coins) ? $user->coins : '0'}}"
-                                   value="{{Session::has('coins') ?  Session::get('coins') : '0' }}"
+                                   value="{{!is_null(old('coins')) ?  old('coins') : '0' }}"
                                    id="coins-number" name="coins" readonly="readonly">
                         </div>
                         <div class="result-payment">
@@ -307,13 +314,13 @@
                     <ul class="agreements">
                         <li class="agreements-item">
                             <input type="checkbox" id="offer"
-                                   name="offer" {{Session::has('offer') ?  'checked="checked"' : '' }}>
+                                   name="offer" {{old('offer') ?  'checked="checked"' : '' }}>
                             <label for="offer">Согласен с условием <a href="" class="standart-link">оферты</a></label>
                         </li>
 
                         <li class="agreements-item">
                             <input type="checkbox" id="processing-pd"
-                                   name="processing-pd" {{Session::has('processing-pd') ?  'checked="checked"' : '' }}>
+                                   name="processing-pd" {{old('processing-pd') ?  'checked="checked"' : '' }}>
                             <label for="processing-pd">Я подтверждаю свое согласие на обработку персональных
                                 данных</label>
                         </li>
