@@ -109,7 +109,7 @@
                         <option value="0">Номинация</option>
                         @foreach($competitionSelected->nominations as $nomination)
                             <option value="{{$nomination->id}}"
-                                @if($nomination->id == old($nomination))
+                                @if($nomination->id == old('nomination'))
                                     selected
                                 @endif
                             >{{$nomination->name}}</option>

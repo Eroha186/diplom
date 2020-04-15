@@ -32,9 +32,8 @@ class ExpressCompetitionFormController extends Controller
     {
         $id = $request->get('id');
         return view('express-competitions.form-competition', [
-            'competitionSelected' => $id,
+            'competitionSelected' => $this->expressCompetitionRepository->getExpressCompetition($id),
             'competitions' => $this->expressCompetitionRepository->getAllExpressCompetitions(),
-            'competition' => $this->expressCompetitionRepository->getExpressCompetition($id),
             'user' => Auth::check()
                         ? $this->userRepository->getUserAuth()->toArray()
                         : [],

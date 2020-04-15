@@ -93,10 +93,10 @@
                         <option value="0">Конкурс</option>
                         @foreach($competitions as $competition)
                             <option value="{{$competition->id}}"
-                                    @if($competition->id == Session::get('education'))
+                                 @if($competition->id == old('competition'))
                                     selected
-                                    @endif
-                                    @if($competition->id == $competitionSelected)
+                                 @endif
+                                 @if($competition->id == $competitionSelected->id)
                                     selected
                                 @endif
                             >{{$competition->title}}</option>
@@ -106,11 +106,11 @@
                     <label for="nomination" class="red-star">Номинация</label>
                     <select name="nomination" id="nomination" class="input-style">
                         <option value="0">Номинация</option>
-                        @foreach($competition->nominations as $nomination)
+                        @foreach($competitionSelected->nominations as $nomination)
                             <option value="{{$nomination->id}}"
-                                {{--                                                            @if($education->id == Session::get('education'))--}}
-                                {{--                                                            selected--}}
-                                {{--                                                        @endif--}}
+                                    @if($nomination->id == old('nomination'))
+                                        selected
+                                    @endif
                             >{{$nomination->name}}</option>
                         @endforeach
                     </select>
@@ -127,14 +127,14 @@
                     <div style="display: flex; justify-content: space-between ">
                         <div class="col-xl-7" style="padding: 0;">
                             <label for="title" class="red-star">Название работы</label>
-                            <input name="title" id="title" class="input-style" type="text" placeholder="С 8 марта!">
+                            <input name="title" id="title" class="input-style" type="text" placeholder="С 8 марта!" value="{{ old('title') }}">
                         </div>
                     </div>
                     <div style="font-weight: bold;">
                         <label for="annotation" class="red-star">Описание работы</label> (не более 200 символов)
                     </div>
                     <textarea name="annotation" id="annotation" cols="30" rows="5" class="input-style"
-                              placeholder="Описание работы...."></textarea>
+                              placeholder="Описание работы....">{{ old('annotation') }}</textarea>
 
                     <div style="font-weight: bold; margin-bottom: 30px;">
                         <label class="red-star">Прекрепите файл работы</label> (допустимые типы файлов: .jpg, .png,
@@ -155,19 +155,19 @@
                     <div class="fio-children">
                         <div class="fio-children-block">
                             <label for="fc" class="red-star">Фамилия ребенка</label>
-                            <input name="fc" id="fc" class="input-style" type="text" placeholder="Иванов">
+                            <input name="fc" id="fc" class="input-style" type="text" placeholder="Иванов" value="{{ old('fc') }}">
                         </div>
                         <div class="fio-children-block">
                             <label for="ic" class="red-star">Имя ребенка</label>
-                            <input name="ic" id="ic" class="input-style" type="text" placeholder="Иван">
+                            <input name="ic" id="ic" class="input-style" type="text" placeholder="Иван" value="{{ old('ic') }}">
                         </div>
                         <div class="fio-children-block">
                             <label for="oc" class="red-star">Отчество ребенка</label>
-                            <input name="oc" id="oc" class="input-style" type="text" placeholder="Иванович">
+                            <input name="oc" id="oc" class="input-style" type="text" placeholder="Иванович" value="{{ old('oc') }}">
                         </div>
                         <div class="fio-children-block">
                             <label for="age" class="red-star">Возраст ребенка</label>
-                            <input name="age" id="age" class="input-style" type="text" placeholder="14">
+                            <input name="age" id="age" class="input-style" type="text" placeholder="14" value="{{ old('age') }}">
                         </div>
                     </div>
                     <div class="fio">
@@ -210,22 +210,24 @@
                         <label for="" class="red-star">Выберите способ размещения</label>
                     </div>
                     <div class="placement-method">
-                        <label for="by-diplom" class="by-diplom radio-button radio-button_active">
+                        <label for="by-diplom" class="by-diplom radio-button {{ is_null(old('placement-method')) ? 'radio-button_active' : (old('placement-method') == 1 ? 'radio-button_active' : '') }}">
                             <input type="radio" name="placement-method" id="by-diplom" class="hide"
-                                   {{Session::get('placement-method') == "1" ? 'data-check="true"' : ''}}
-                                   value="1" checked="checked">
+                                   {{is_null(old('placement-method')) ? 'data-check=true' : (old('placement-method') == 1 ? 'data-check=true' : '')}}
+                                   value="1"
+                                    {{is_null(old('placement-method')) ? 'checked=checked' : (old('placement-method') == 1 ? 'checked=checked' : '')}}>
                             <div class="radio-button__title">
                                 <img src="{{asset('images/credit-card.svg')}}" alt="кредитная карта">
-                                <span>Разместить работу и заказатьдиплом сейчас</span>
+                                <span>Разместить работу и заказать диплом сейчас</span>
                             </div>
                             <div class="radio-button__descr">
                                 Стоимость одного диплома 100 рублей.
                                 Оплатить можно онлайн любым удобным способом.
                             </div>
                         </label>
-                        <label for="without-diplom" class="without-diplom radio-button ">
+                        <label for="without-diplom" class="without-diplom radio-button {{ is_null(old('placement-method')) ? : (old('placement-method') == 0 ? "radio-button_active" : '') }}">
                             <input type="radio" name="placement-method" id="without-diplom" class="hide" value="0"
-                                {{Session::get('placement-method') == "0" ? 'data-check="true"' : ''}} >
+                                    {{is_null(old('placement-method')) ? '' : (old('placement-method') == 0 ? 'data-check=true' : '')}}
+                                    {{is_null(old('placement-method')) ? '' : (old('placement-method') == 0 ? 'checked=checked' : '')}}>
                             <div class="radio-button__title">
                                 <img src="{{asset('images/list.svg')}}" alt="кредитная карта">
                                 <span>Разместить работу и заказать диплом позже</span>
@@ -235,20 +237,20 @@
                             </div>
                         </label>
                     </div>
-                    <div class="payment-block payment-block_active">
+                    <div class="payment-block {{ is_null(old('placement-method')) ? 'payment-block_active' : (old('placement-method')  ? 'payment-block_active' : '')}}">
                         <strong>Итого:</strong>
                         <ul class="payment">
-                            <li>Диплом за участие в конкурсе..............<span class="payment-cash">100</span>&#8381;
+                            <li>Диплом за публикацию материала......<span class="payment-cash">{{ $cash }}</span>&#8381;
                             </li>
                         </ul>
 
-                        <strong>На вашем счету {{isset($user['coins']) ? $user['coins'] : '0'}} бонусов</strong>
+                        <strong>На вашем счету {{isset($user->coins) ? $user->coins : '0'}} бонусов</strong>
                         <div style="display: flex; align-items: center; margin-bottom: 15px;">
                             <input id="uses-coins" type="checkbox" style="margin-right: 3px;"
-                                   name="uses-coins" {{Session::has('uses-coins') ?  'checked="checked"' : '' }}>
+                                   name="uses-coins" {{old('uses-coins') ?  'checked="checked"' : '' }}>
                             <span class="margin-right-7">Использовать бонусы</span>
-                            <input type="number" min="0" max="{{isset($user['coins']) ? $user['coins'] : '0'}}"
-                                   value="{{Session::has('coins') ?  Session::get('coins') : '0' }}"
+                            <input type="number" min="0" max="{{isset($user->coins) ? $user->coins : '0'}}"
+                                   value="{{!is_null(old('coins')) ?  old('coins') : '0' }}"
                                    id="coins-number" name="coins" readonly="readonly">
                         </div>
                         <div class="result-payment">
@@ -259,13 +261,13 @@
                     <ul class="agreements">
                         <li class="agreements-item">
                             <input type="checkbox" id="offer"
-                                   name="offer" {{Session::has('offer') ?  'checked="checked"' : '' }}>
+                                   name="offer" {{ old('offer') ?  'checked="checked"' : '' }}>
                             <label for="offer">Согласен с условием <a href="" class="standart-link">оферты</a></label>
                         </li>
 
                         <li class="agreements-item">
                             <input type="checkbox" id="processing-pd"
-                                   name="processing-pd" {{Session::has('processing-pd') ?  'checked="checked"' : '' }}>
+                                   name="processing-pd" {{ old('processing-pd') ?  'checked="checked"' : '' }}>
                             <label for="processing-pd">Я подтверждаю свое согласие на обработку персональных
                                 данных</label>
                         </li>
