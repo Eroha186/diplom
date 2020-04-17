@@ -534,14 +534,16 @@ $(function () {
             url: 'ajaxLoadNumberSymbolsInRelationOnType/' + val,
             type: 'POST',
             success: function (e) {
-                let last = e.number_symbols.toString().slice(-1);
-                let layout = '';
-                if (last === '1') {
-                    layout = `(Не менее ${e.number_symbols} символа)`;
-                } else {
-                    layout = `(Не менее ${e.number_symbols} символов)`;
+                if(e !== '') {
+                    let last = e.number_symbols.toString().slice(-1);
+                    let layout = '';
+                    if (last === '1') {
+                        layout = `(Не менее ${e.number_symbols} символа)`;
+                    } else {
+                        layout = `(Не менее ${e.number_symbols} символов)`;
+                    }
+                    $('.number-symbols').html(layout);
                 }
-                $('.number-symbols').html(layout);
             }
         })
     })
@@ -564,7 +566,9 @@ $(function () {
             $('.file-list').html(list + `<div class="file-display" id="${id}">${addDotName(file.name)}</div>`)
         },
 
-        onUploadSuccess: createListUpload(id, data)
+        onUploadSuccess: function(id, data) {
+            createListUpload(id, data);
+        }
 
     });
 

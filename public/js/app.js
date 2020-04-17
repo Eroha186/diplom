@@ -11244,14 +11244,16 @@ $(function () {
             url: 'ajaxLoadNumberSymbolsInRelationOnType/' + val,
             type: 'POST',
             success: function success(e) {
-                var last = e.number_symbols.toString().slice(-1);
-                var layout = '';
-                if (last === '1') {
-                    layout = '(\u041D\u0435 \u043C\u0435\u043D\u0435\u0435 ' + e.number_symbols + ' \u0441\u0438\u043C\u0432\u043E\u043B\u0430)';
-                } else {
-                    layout = '(\u041D\u0435 \u043C\u0435\u043D\u0435\u0435 ' + e.number_symbols + ' \u0441\u0438\u043C\u0432\u043E\u043B\u043E\u0432)';
+                if (e !== '') {
+                    var last = e.number_symbols.toString().slice(-1);
+                    var layout = '';
+                    if (last === '1') {
+                        layout = '(\u041D\u0435 \u043C\u0435\u043D\u0435\u0435 ' + e.number_symbols + ' \u0441\u0438\u043C\u0432\u043E\u043B\u0430)';
+                    } else {
+                        layout = '(\u041D\u0435 \u043C\u0435\u043D\u0435\u0435 ' + e.number_symbols + ' \u0441\u0438\u043C\u0432\u043E\u043B\u043E\u0432)';
+                    }
+                    $('.number-symbols').html(layout);
                 }
-                $('.number-symbols').html(layout);
             }
         });
     });
@@ -11272,27 +11274,10 @@ $(function () {
             $('.file-list').html(list + ('<div class="file-display" id="' + id + '">' + addDotName(file.name) + '</div>'));
         },
 
-        onUploadSuccess: createListUpload(id, data)
+        onUploadSuccess: function onUploadSuccess(id, data) {
+            createListUpload(id, data);
+        }
 
-    });
-
-    $("#uploadercomp").dmUploader({
-        url: '/uploadercomp',
-        //... More settings here...
-
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-
-        onInit: function onInit() {},
-
-        onNewFile: function onNewFile(id, file) {
-            clearHtml();
-            var list = $('.file-list').html();
-            $('.file-list').html(list + ('<div class="file-display" id="' + id + '">' + addDotName(file.name) + '</div>'));
-        },
-
-        onUploadSuccess: createListUpload(id, data)
     });
 
     function createListUpload(id, data) {
