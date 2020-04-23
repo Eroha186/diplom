@@ -54,13 +54,14 @@ class WorkRepository extends WorksRepository
 
     public function getWork($id)
     {
-        return Work::with($this->fields)->get()->first();
+        return Work::with($this->fields)->where('id', $id)->get()->first();
     }
 
     public function createWork($data)
     {
         $work = Work::create([
             'user_id' => $data['user_id'],
+            'competition_id' => $data['competition'],
             'title' => $data['title'],
             'annotation' => $data['annotation'],
             'fc' => $data['fc'],
@@ -71,7 +72,7 @@ class WorkRepository extends WorksRepository
             'age' => $data['age'],
         ]);
 
-        $this->attachWorkIdForFile();
+        return $work;
     }
 
     public function confirmWork($id)
@@ -86,18 +87,5 @@ class WorkRepository extends WorksRepository
         Work::where('id', $id)->update([
             'moderation' => 1,
         ]);
-    }
-
-
-    ////////////////////////////////////////////////////////////////////////////////
-    //////////                 Вспомогательные методы                     //////////
-    ////////////////////////////////////////////////////////////////////////////////
-
-
-    protected function attachWorkIdForFile($publicationId, $files)
-    {
-        foreach ($files as $file) {
-            (new UploadFileController())->updatePublIdFile($file, $publicationId);
-        }
     }
 }

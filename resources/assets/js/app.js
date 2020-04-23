@@ -546,7 +546,45 @@ $(function () {
                 }
             }
         })
-    })
+    });
+
+    $('#competition').on('change', function() {
+        let val = $(this).val();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: 'ajaxLoadNomination/' + val,
+            type: 'POST',
+            success: function (e) {
+                let nominations = e.nominations
+                let layout = '<option value="0">Номинация</option>';
+                nominations.forEach((item) => {
+                    layout += `<option value="${item.id}">${item.name}</option>`
+                })
+
+
+                $("#nomination").html(layout)
+            }
+        })
+    });
+
+    let inputs = document.querySelectorAll('#upload');
+    Array.prototype.forEach.call(inputs, function (input) {
+        let label = document.querySelector('.file-display'),
+            labelVal = label.innerHTML;
+        input.addEventListener('change', function (e) {
+            let fileName = '';
+            if (this.files && this.files.length > 1)
+                fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
+            else
+                fileName = e.target.value.split('\\').pop();
+            if (fileName)
+                document.querySelector('.file-display').innerHTML = fileName;
+            else
+                label.innerHTML = labelVal;
+        });
+    });
 
     $("#uploaderpubl").dmUploader({
         url: '/uploadfilepubl',

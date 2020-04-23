@@ -59,14 +59,15 @@ class FilterCompetitionController extends Controller
                     break;
             }
         }
-        $competitions = is_null($competitionQueryArray['query']) ?
-            $competitions->paginate(10, array('*'))              :
-            $competitions->paginate(10, array('*', $competitionQueryArray['query']));
+        $competitions = is_null($competitionQueryArray['query'])
+            ? $competitions->paginate(10, array('*'))
+            : $competitions->paginate(10, array('*', $competitionQueryArray['query']));
         $competitions = $this->formationSnippet($competitions);
         $filterInfo = [
             'filter-c' => $filter,
             'column-c' => $column
         ];
+
         return view('competitions/competitions', [
             'competitions' => $competitions,
             'filterInfo' => $filterInfo,
@@ -97,7 +98,7 @@ class FilterCompetitionController extends Controller
 
         $field = [
             'user',
-            'file'
+            'file',
         ];
         if ($nominationFilter == 0) {
             $where = [
@@ -124,10 +125,9 @@ class FilterCompetitionController extends Controller
                 break;
         }
         $competition = Competition::where('id', $id)->first();
-        $nominations = Competition_Nomination::where('competition_id', $id)
-            ->leftJoin('nominations', 'nominations.id', '=', 'nomination_id')
-            ->get();
+        $nominations = Competition::with("nominations")->where('id', $id)->get();
         $works->count = count(Work::where('competition_id', $id)->get());
+        
         return view('competitions/competition', [
             'id' => $id,
             'works' => $works,

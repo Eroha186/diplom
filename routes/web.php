@@ -44,6 +44,7 @@ Route::group(['middleware' => 'emailCheck'], function () {
     Route::post('/form-competition', ['as' => 'form-competition', 'uses' => 'Competitions\FormCompetitionController@saveWorkCompetition']);
     Route::get('/competition/{id}/nomination/', ['as' => 'search-work', 'uses' => 'Competitions\FilterCompetitionController@searchWork']);
     Route::get('/competition/{id}/work/{workId}', ['as' => 'competition-work', 'uses' => 'Competitions\WorkController@show']);
+    Route::post('ajaxLoadNomination/{competition_id}','Competitions\FormCompetitionController@ajaxLoadNomination');
 
     Route::get('/express-competitions', ['uses' => 'Competitions\ExpressCompetitionsController@show']);
     Route::get('/express-competitions/search', ['uses' => 'Competitions\ExpressCompetitionsController@show', 'as' => 'express-competitions-search']);

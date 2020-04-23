@@ -35,19 +35,29 @@ class FormCompetitionController extends Controller
     {
         $id = $request->get('id');
 
-        return view('competitions/form-competition', [
-            'competitionSelected' => $this->competitionRepository->getCompetition($id),
-            'competitions' => $this->competitionRepository->getAllRelevantCompetition(),
-            'user' => $this->userRepository->getUserAuth(),
-            'cash' => $this->cash,
-        ]);
+        if(Auth::check()) {
+            $data = [
+                'competitionSelected' => $this->competitionRepository->getCompetition($id),
+                'competitions' => $this->competitionRepository->getAllRelevantCompetition(),
+                'user' => $this->userRepository->getUserAuth(),
+                'cash' => $this->cash,
+            ];
+        } else {
+            $data = [
+                'competitionSelected' => $this->competitionRepository->getCompetition($id),
+                'competitions' => $this->competitionRepository->getAllRelevantCompetition(),
+                'cash' => $this->cash,
+            ];
+        }
+
+        return view('competitions/form-competition', $data);
     }
 
     public function saveWorkCompetition(FormCompetitionRequest $formRequest)
     {
         $data = $formRequest->all();
         if (Auth::check()) {
-            $data['user_id'] = $this->userRepository->getUserAuth();
+            $data['user_id'] = $this->userRepository->getUserAuth()->id;
         } else {
             $register = new RegisterController();
             $pass = RandomPassword::randomPassword();
@@ -58,7 +68,7 @@ class FormCompetitionController extends Controller
 
         $work = $this->workRepository->createWork($data);
 
-        (new UploadFileController())->uploadFile($formRequest->file('file'), 'work', $work->id);
+        (new UploadFileController())->uploadFile($formRequest->file('file'), 'competition', $work->id);
 
         if ($formRequest['placement-method']) {
             if ($formRequest['uses-coins']) {
@@ -82,6 +92,11 @@ class FormCompetitionController extends Controller
         }
 
         return redirect('/');
+    }
+
+    public function ajaxLoadNomination($competition_id)
+    {
+        return Competition::with('nominations')->where('id', $competition_id)->get()->first();
     }
 
 }

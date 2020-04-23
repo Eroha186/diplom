@@ -11258,6 +11258,37 @@ $(function () {
         });
     });
 
+    $('#competition').on('change', function () {
+        var val = $(this).val();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: 'ajaxLoadNomination/' + val,
+            type: 'POST',
+            success: function success(e) {
+                var nominations = e.nominations;
+                var layout = '<option value="0">Номинация</option>';
+                nominations.forEach(function (item) {
+                    layout += '<option value="' + item.id + '">' + item.name + '</option>';
+                });
+
+                $("#nomination").html(layout);
+            }
+        });
+    });
+
+    var inputs = document.querySelectorAll('#upload');
+    Array.prototype.forEach.call(inputs, function (input) {
+        var label = document.querySelector('.file-display'),
+            labelVal = label.innerHTML;
+        input.addEventListener('change', function (e) {
+            var fileName = '';
+            if (this.files && this.files.length > 1) fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);else fileName = e.target.value.split('\\').pop();
+            if (fileName) document.querySelector('.file-display').innerHTML = fileName;else label.innerHTML = labelVal;
+        });
+    });
+
     $("#uploaderpubl").dmUploader({
         url: '/uploadfilepubl',
         //... More settings here...
