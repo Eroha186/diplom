@@ -127,7 +127,7 @@ class FilterCompetitionController extends Controller
         $competition = Competition::where('id', $id)->first();
         $nominations = Competition::with("nominations")->where('id', $id)->get();
         $works->count = count(Work::where('competition_id', $id)->get());
-        
+
         return view('competitions/competition', [
             'id' => $id,
             'works' => $works,
