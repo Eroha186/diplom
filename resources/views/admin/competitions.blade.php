@@ -87,6 +87,10 @@
                     <input name="date-end" type="date" class="form-control" id="createDataEnd" required>
                 </div>
                 <div class="form-group">
+                    <label for="priceDiplom">Стоимость диплома</label>
+                    <input name="price" type="text" class="form-control" id="priceDiplom" required value="{{ config('payment_config.cash_competition') }}">
+                </div>
+                <div class="form-group">
                     <label for="substrate">Подложка для награды</label>
                     <select name="substrate" id="substrate" class="form-control">
                         <option value="0">Выбирете подложку</option>

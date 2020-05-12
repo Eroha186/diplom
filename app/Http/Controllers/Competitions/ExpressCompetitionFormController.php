@@ -26,6 +26,7 @@ class ExpressCompetitionFormController extends Controller
         $this->expressWorkRepository = new ExpressWorkRepository();
         $this->diplomRepository = new DiplomRepository();
         $this->userRepository = new UserRepository();
+        $this->cash = config('payment_config.cash_express_competition');
     }
 
     public function show(Request $request)
@@ -37,6 +38,7 @@ class ExpressCompetitionFormController extends Controller
             'user' => Auth::check()
                         ? $this->userRepository->getUserAuth()->toArray()
                         : [],
+            'cash' => $this->cash,
         ]);
     }
 
@@ -61,6 +63,7 @@ class ExpressCompetitionFormController extends Controller
                     'coins' => $data['coins'],
                     'user_id' => $work['user_id'],
                     'type' => 0,
+                    'price' => $this->cash,
                 ]);
             }
 

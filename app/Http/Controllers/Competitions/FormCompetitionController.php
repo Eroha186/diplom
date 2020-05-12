@@ -24,29 +24,30 @@ class FormCompetitionController extends Controller
 {
     public function __construct()
     {
-        $this->cash = config('payment_config.cash');
         $this->competitionRepository = new CompetitionRepository();
         $this->userRepository = new UserRepository();
         $this->workRepository = new WorkRepository();
         $this->diplomRepository = new DiplomRepository();
     }
 
+
     public function show(Request $request)
     {
         $id = $request->get('id');
+        $cash = $this->competitionRepository->getCompetitionPrice($id);
 
         if(Auth::check()) {
             $data = [
                 'competitionSelected' => $this->competitionRepository->getCompetition($id),
                 'competitions' => $this->competitionRepository->getAllRelevantCompetition(),
                 'user' => $this->userRepository->getUserAuth(),
-                'cash' => $this->cash,
+                'cash' => $cash,
             ];
         } else {
             $data = [
                 'competitionSelected' => $this->competitionRepository->getCompetition($id),
                 'competitions' => $this->competitionRepository->getAllRelevantCompetition(),
-                'cash' => $this->cash,
+                'cash' => $cash,
             ];
         }
 
@@ -76,6 +77,7 @@ class FormCompetitionController extends Controller
                     'coins' => $formRequest['coins'],
                     'user_id' => $data['user_id'],
                     'type' => 0,
+                    'price' => $this->competitionRepository->getCompetitionPrice($data['competition']),
                 ]);
             }
 

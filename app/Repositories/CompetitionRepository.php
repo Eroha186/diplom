@@ -40,6 +40,11 @@ class CompetitionRepository
         return Competition::with($this->field)->where('id', $id)->first();
     }
 
+    public function getCompetitionPrice($id)
+    {
+        return Competition::where('id', $id)->first()->price;
+    }
+
     public function createCompetition($data)
     {
         $competition = Competition::create([
@@ -49,6 +54,7 @@ class CompetitionRepository
             'cover' => $this->uploadCover($data['cover']),
             'date_begin' => date('Y-m-d H:i:s', strtotime($data['date-begin'])),
             'date_end' => date('Y-m-d H:i:s', strtotime($data['date-end'])),
+            'price' => (int)$data['price'],
             'substrate_id' => (int)$data['substrate'],
         ]);
 

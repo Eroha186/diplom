@@ -29,6 +29,7 @@ class FormCreatCompetitionRequest extends FormRequest
             'cover' => 'required|mimes:jpg,png,jpeg',
             'type-competition' => 'required|min:0',
             'substrate' => 'required|min:0',
+            'price' => 'required',
         ];
     }
 }

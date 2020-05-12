@@ -27,7 +27,7 @@ class FormPublicationController extends Controller
         $this->userRepository = new UserRepository();
         $this->publicationRepository = new PublicationRepository();
         $this->diplomRepository = new DiplomRepository();
-        $this->cash = config('payment_config.cash');
+        $this->cash = config('payment_config.cash_publication');
     }
 
 
@@ -96,6 +96,7 @@ class FormPublicationController extends Controller
                     'coins' => $formRequest['coins'],
                     'user_id' => $data['user_id'],
                     'type' => 0,
+                    'price' => $this->cash
                 ]);
             }
 

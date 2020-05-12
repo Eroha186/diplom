@@ -240,16 +240,17 @@
                     <div class="payment-block {{ is_null(old('placement-method')) ? 'payment-block_active' : (old('placement-method')  ? 'payment-block_active' : '')}}">
                         <strong>Итого:</strong>
                         <ul class="payment">
-                            <li>Диплом за публикацию материала......<span class="payment-cash">{{ $cash }}</span>&#8381;
+                            <li>
+                                Диплом за публикацию материала......<span class="payment-cash">{{ $cash }}</span>&#8381;
                             </li>
                         </ul>
 
-                        <strong>На вашем счету {{isset($user->coins) ? $user->coins : '0'}} бонусов</strong>
+                        <strong>На вашем счету {{ count($user) > 0 ? $user['coins'] : '0' }} бонусов</strong>
                         <div style="display: flex; align-items: center; margin-bottom: 15px;">
                             <input id="uses-coins" type="checkbox" style="margin-right: 3px;"
                                    name="uses-coins" {{old('uses-coins') ?  'checked="checked"' : '' }}>
                             <span class="margin-right-7">Использовать бонусы</span>
-                            <input type="number" min="0" max="{{isset($user->coins) ? $user->coins : '0'}}"
+                            <input type="number" min="0" max="{{isset($user['coins']) ? ceil($cash * 0.5) : '0'}}"
                                    value="{{!is_null(old('coins')) ?  old('coins') : '0' }}"
                                    id="coins-number" name="coins" readonly="readonly">
                         </div>

@@ -10,7 +10,7 @@ class Competition extends Model
     use PaginationWithHavings;
 
     public $timestamps = false;
-    protected $fillable = ['title', 'annotation', 'cover', 'type_id', 'date_begin', 'date_end', 'substrate_id'];
+    protected $fillable = ['title', 'annotation', 'cover', 'type_id', 'date_begin', 'date_end', 'substrate_id', 'price'];
 
     public function nominations()
     {

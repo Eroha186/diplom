@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UserRepository
 {
+
     public function getUserAuth()
     {
         return User::where('id', Auth::user()->id)->first();
@@ -38,6 +39,11 @@ class UserRepository
             'stuff' => $data['stuff'],
             'job' => $data['job'],
         ]);
+    }
+
+    public function updateCoinsAuthUser($coins)
+    {
+        return User::where('id', Auth::user()->id)->update(['coins' => $coins]);
     }
 
     public function subscribeMailing($id)
