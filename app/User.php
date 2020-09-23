@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'f', 'i', 'o', 'password', 'email', 'stuff', 'town', 'job', 'confirm'
+        'f', 'i', 'o', 'password', 'email', 'stuff', 'town', 'job', 'confirm', 'hash'
     ];
 
     /**
@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\ExpressWork');
     }
+
+//    public function setHashAttribute($value)
+//    {
+//
+//    }
 }

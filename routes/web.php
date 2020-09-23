@@ -81,18 +81,15 @@ Route::group(['middleware' => 'emailCheck'], function () {
             Route::get('/part-in-contests', ['uses' => 'Account\CompetitionController@show']);
             Route::get('/my-express-competition', ['uses' => 'Account\ExpressCompetitionController@show']);
 
-            Route::get('/no-mailing/{id?}', function ($id = null) {
-                $id = $id ?? Auth::user()->id;
-                App\User::where('id', $id)->update([
-                    'mailing' => 0,
-                ]);
-                return redirect(route('personal-data'));
-            })->name('no-mailing');
         });
         Route::get('payment-from-account/{workId}/{type}', ['as' => 'payment-from-account', 'uses' => 'PaymentController@paymentFromAccount']);
     });
 
 });
+
+Route::get('/unsubscribe/', "UserController@unsubscribe")->name('no-mailing');
+Route::get('/unsubscribe-approved/', "UserController@unsubscribeApproved")->name('no-mailing-approved');
+
 
 Route::get('two-step-registration', function () {
     return view('auth.two-step-registration');

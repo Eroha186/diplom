@@ -94,6 +94,7 @@ class RegisterController extends Controller
             'job' => $data['job'],
             'date_reg' => date('Y-m-d H:i:s', time()),
             'password' => Hash::make($data['password']),
+            'hash' => Hash::make($data['f'] . $data['o'] . $data['email'])
         ]);
         $this->verifyCreate($user);
         return $user;

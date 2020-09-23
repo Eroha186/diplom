@@ -31,5 +31,5 @@
 			</div>
 			<a href="#" class="question-coin">Как использовать бонусы?</a>
 		</div>
-		<a href="{{route('no-mailing')}}" class="no-mailing">Отписаться от орассылки</a>
+		<a href="{{route('no-mailing', ['hash' => Auth::user()->hash])}}" class="no-mailing">Отписаться от рассылки</a>
 	</div>
