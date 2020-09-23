@@ -54,8 +54,8 @@ class User extends Authenticatable
         return $this->hasMany('App\ExpressWork');
     }
 
-//    public function setHashAttribute($value)
-//    {
-//
-//    }
+    public function history_unsubscribe()
+    {
+        return $this->hasMany('App\HistoryUnsubscribe');
+    }
 }

@@ -10,6 +10,7 @@ use App\Http\Controllers\UploadFileController;
 use App\Http\Requests\FormPublicationRequest;
 use App\Kind;
 use App\Repositories\DiplomRepository;
+use App\Repositories\HistoryUnsubscribeRepository;
 use App\Repositories\PublicationRepository;
 use App\Repositories\UserRepository;
 use App\Theme;
@@ -27,6 +28,7 @@ class FormPublicationController extends Controller
         $this->userRepository = new UserRepository();
         $this->publicationRepository = new PublicationRepository();
         $this->diplomRepository = new DiplomRepository();
+        $this->historyRepositore = new HistoryUnsubscribeRepository();
         $this->cash = config('payment_config.cash_publication');
     }
 
@@ -88,6 +90,7 @@ class FormPublicationController extends Controller
 
         if(isset($data['distribution']) && $data['distribution'] == 'on') {
             $this->userRepository->subscribeMailing($data['user_id']);
+            $this->historyRepositore->create($data['user_id'], 0);
         }
 
         if ($formRequest['placement-method']) {

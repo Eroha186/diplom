@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\HistoryUnsubscribe;
+use App\Repositories\HistoryUnsubscribeRepository;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -9,6 +11,13 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    private $repositoryHistory;
+
+    public function __construct()
+    {
+        $this->repositoryHistory = new HistoryUnsubscribeRepository();
+    }
+
     public function unsubscribe(Request $request)
     {
         $hash = $request->get('hash');
@@ -33,6 +42,7 @@ class UserController extends Controller
         if($user !== null ) {
             $user->mailing = 0;
             $user->save();
+            $this->repositoryHistory->create($user->id, 1);
             return redirect('/');
         } else {
             return view('unsubscribe_error');
