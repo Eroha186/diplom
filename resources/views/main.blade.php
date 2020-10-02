@@ -39,7 +39,7 @@
 
 <section class="main-page__items">
     <div class="container">
-        <h1 class="head-text" style="margin-top: 85px; margin-bottom: 85px;">"Современный <span>педагог"</span> - творческая лаборатория</h1>
+        <h2 class="head-text text-center" style="margin-top: 85px; margin-bottom: 85px;">"Современный <span>педагог"</span> - творческая лаборатория</h2>
         <div class="row" style="margin-bottom: 60px;">
             <div class="col-3">
                 <div class="main-page__items_item">
@@ -86,18 +86,18 @@
 
 <section class="main-page__news_conc">
     <div class="container">
-        <h1 class="head-text" style="margin-bottom: 16px;">Новые <span>конкурсы</span></h1>
+        <h2 class="head-text text-center" style="margin-bottom: 16px;">Новые <span>конкурсы</span></h2>
         <p class="text-center">Lorem Ipsum is simply dummy text of the printing and typesetting industry.<br>
             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown..</p>
         <div class="row">
             <div class="col-6 main-page__news_conc-item">
                 <img src="{{asset('images/main_page/CAT.png')}}" alt="Cat">
                 <div class="main-page__news_conc-item-desc">
-                    <img src="{{asset('images/main_page/services-icon-1.png')}}" style="margin-left: auto; margin-right: auto; display: block; width: 27px; height: 27px;" alt="">
+                    <img src="{{asset('images/main_page/services-icon-1.png')}}" class="white-figure" alt="">
                     <p class="text-center"><a href="">Не думай о секундах с высока, наступит время Не думай о секундах с</a></p>
                     <p style="font-size: 14px;">конкурс рисунков</p>
                     <div class="news_conc-item-down" style="width: 50%;">
-                        <p style="font-size: 12px; text-align: center; width: 100%; margin-top: 30px;">С 01.03.2020 - 01.04.2020</p>
+                        <p class="date-publ">С 01.03.2020 - 01.04.2020</p>
                         <button>ПРИНЯТЬ УЧАСТИЕ</button>
                     </div>
                 </div>
@@ -105,11 +105,11 @@
             <div class="col-6 main-page__news_conc-item">
                 <img src="{{asset('images/main_page/CAT.png')}}" alt="Cat">
                 <div class="main-page__news_conc-item-desc">
-                    <img src="{{asset('images/main_page/services-icon-1.png')}}" style="margin-left: auto; margin-right: auto; display: block; width: 27px; height: 27px;" alt="">
+                    <img src="{{asset('images/main_page/services-icon-1.png')}}" class="white-figure" alt="">
                     <p class="text-center"><a href="">Не думай о секундах с высока, наступит время Не думай о секундах с</a></p>
                     <p style="font-size: 14px;">конкурс рисунков</p>
                     <div class="news_conc-item-down" style="width: 50%;">
-                        <p style="font-size: 12px; text-align: center; width: 100%; margin-top: 30px;">С 01.03.2020 - 01.04.2020</p>
+                        <p class="date-publ">С 01.03.2020 - 01.04.2020</p>
                         <button>ПРИНЯТЬ УЧАСТИЕ</button>
                     </div>
                 </div>
@@ -117,11 +117,11 @@
             <div class="col-6 main-page__news_conc-item">
                 <img src="{{asset('images/main_page/CAT.png')}}" alt="Cat">
                 <div class="main-page__news_conc-item-desc">
-                    <img src="{{asset('images/main_page/services-icon-1.png')}}" style="margin-left: auto; margin-right: auto; display: block; width: 27px; height: 27px;" alt="">
+                    <img src="{{asset('images/main_page/services-icon-1.png')}}" class="white-figure" alt="">
                     <p class="text-center"><a href="">Не думай о секундах с высока, наступит время Не думай о секундах с</a></p>
                     <p style="font-size: 14px;">конкурс рисунков</p>
                     <div class="news_conc-item-down" style="width: 50%;">
-                        <p style="font-size: 12px; text-align: center; width: 100%; margin-top: 30px;">С 01.03.2020 - 01.04.2020</p>
+                        <p class="date-publ">С 01.03.2020 - 01.04.2020</p>
                         <button>ПРИНЯТЬ УЧАСТИЕ</button>
                     </div>
                 </div>
@@ -129,24 +129,24 @@
             <div class="col-6 main-page__news_conc-item">
                 <img src="{{asset('images/main_page/CAT.png')}}" alt="Cat">
                 <div class="main-page__news_conc-item-desc">
-                    <img src="{{asset('images/main_page/services-icon-1.png')}}" style="margin-left: auto; margin-right: auto; display: block; width: 27px; height: 27px;" alt="">
+                    <img src="{{asset('images/main_page/services-icon-1.png')}}" class="white-figure" alt="">
                     <p class="text-center"><a href="">Не думай о секундах с высока, наступит время Не думай о секундах с</a></p>
                     <p style="font-size: 14px;">конкурс рисунков</p>
                     <div class="news_conc-item-down" style="width: 50%;">
-                        <p style="font-size: 12px; text-align: center; width: 100%; margin-top: 30px;">С 01.03.2020 - 01.04.2020</p>
+                        <p class="date-publ">С 01.03.2020 - 01.04.2020</p>
                         <button>ПРИНЯТЬ УЧАСТИЕ</button>
                     </div>
                 </div>
             </div> 
         </div>
-        <button class="main-page__news_conc-button">ЕЩЕ 12 конкурсов</button>
+        <button class="main-page__news_conc-button">ЕЩЕ 12 КОНКУРСОВ</button>
     </div>
 </section>
 
 <section class="main-page__last_pub">
     <div class="container">
-        <h1 class="head-text" style="margin-bottom: 16px;">Последние <span>публикации</span></h1>
-        <p class="text-center">
+        <h2 class="head-text text-center" style="margin-bottom: 16px;">Последние <span>публикации</span></h2>
+        <p class="text-center main-page__last_pub-info">
             Более 1234 педагогов опубликовались на нашем сайте за последние 2 года. Спасибо вам за даверие! <br>
             Мы, в свою очередь, гарантируем прозрачность проведенеия конкурсов и оперативное получение <br> дипломов и сертификатов!
         </p>
@@ -154,7 +154,7 @@
             <div class="col-12 d-flex main-page__last_pub-item">
                 <img src="{{asset('images/main_page/doc.png')}}" style="width: 32px; height: 40px; margin-right: 16px;" alt="">
                 <div>
-                    <h2>Моя первая публикация на рандомную тему, но с очень длинным названием</h2>
+                    <a>Моя первая публикация на рандомную тему, но с очень длинным названием</a>
                     <p><span>Конспект занятия • 2 класс</span>            <span> • Весна • Осень</span></p>
                     <p>Самые близкие люди после родителей это братья и сестры. Ценность настоящих братских.</p>
                     <div class="d-flex mb-2">
@@ -168,7 +168,7 @@
             <div class="col-12 d-flex main-page__last_pub-item">
                 <img src="{{asset('images/main_page/doc2.png')}}" style="width: 32px; height: 40px; margin-right: 16px;" alt="">
                 <div>
-                    <h2>Моя первая публикация на рандомную тему, но с очень длинным названием</h2>
+                   <a>Моя первая публикация на рандомную тему, но с очень длинным названием</a>
                     <p><span>Конспект занятия • 2 класс</span>            <span>Зима • Весна • Осень</span></p>
                     <p>Самые близкие люди после родителей это братья и сестры. Ценность настоящих братских.</p>
                     <p class="main-page__last_pub-item-3 mb-0"><span>07.04.2020</span>    <span>Дутов К. К ., д. Малые Залупки</span></p>
@@ -177,7 +177,7 @@
             <div class="col-12 d-flex main-page__last_pub-item">
                 <img src="{{asset('images/main_page/doc2.png')}}" style="width: 32px; height: 40px; margin-right: 16px;" alt="">
                 <div>
-                    <h2>Моя первая публикация на рандомную тему, но с очень длинным названием</h2>
+                  <a>Моя первая публикация на рандомную тему, но с очень длинным названием</a>
                     <p><span>Конспект занятия • 2 класс</span>            <span>Зима • Весна • Осень</span></p>
                     <p>Самые близкие люди после родителей это братья и сестры. Ценность настоящих братских.</p>
                     <p class="main-page__last_pub-item-3 mb-0"><span>07.04.2020</span>    <span>Дутов К. К ., д. Малые Залупки</span></p>
@@ -186,7 +186,7 @@
             <div class="col-12 d-flex main-page__last_pub-item">
                 <img src="{{asset('images/main_page/doc.png')}}" style="width: 32px; height: 40px; margin-right: 16px;" alt="">
                 <div>
-                    <h2>Моя первая публикация на рандомную тему, но с очень длинным названием</h2>
+                 <a>Моя первая публикация на рандомную тему, но с очень длинным названием</a>
                     <p><span>Конспект занятия • 2 класс</span>            <span>Зима • Весна • Осень</span></p>
                     <p>Самые близкие люди после родителей это братья и сестры. Ценность настоящих братских.</p>
                     <div class="d-flex mb-2">
@@ -401,31 +401,31 @@
 
 <section class="main-page__questions">
     <div class="container">
-        <h1 class="head-text" style="margin-top: 85px; margin-bottom: 85px;">Часто задаваемые <span>вопросы</span></h1>
+        <h2 class="head-text text-center" style="margin-top: 85px; margin-bottom: 85px;">Часто задаваемые <span>вопросы</span></h2>
         <div class="row">
             <div class="col-6 d-flex">
                 <img src="{{asset('images/main_page/quest.png')}}" alt="Ребенок">
-                <p style="margin-top: 16px;" data-toggle="modal" data-target="#exampleModal">Сколько стоит участие в конкурсе?</p>
+                <a  data-toggle="modal" data-target="#exampleModal">Сколько стоит участие в конкурсе?</a>
             </div>
             <div class="col-6 d-flex">
                 <img src="{{asset('images/main_page/quest.png')}}" alt="Ребенок">
-                <p style="margin-top: 16px;" data-toggle="modal" data-target="#exampleModal">Кто может участвовать в конкурсе?</p>
+                <a data-toggle="modal" data-target="#exampleModal">Кто может участвовать в конкурсе?</a>
             </div>
             <div class="col-6 d-flex">
                 <img src="{{asset('images/main_page/quest.png')}}" alt="Ребенок">
-                <p style="margin-top: 16px;" data-toggle="modal" data-target="#exampleModal">Как я могу скачать свой сертификат?</p>
+                <a  data-toggle="modal" data-target="#exampleModal">Как я могу скачать свой сертификат?</a>
             </div>
             <div class="col-6 d-flex">
                 <img src="{{asset('images/main_page/quest.png')}}" alt="Ребенок">
-                <p style="margin-top: 16px;" data-toggle="modal" data-target="#exampleModal">Как разместить публикацию на сайте?</p>
+                <a data-toggle="modal" data-target="#exampleModal">Как разместить публикацию на сайте?</a>
             </div>
             <div class="col-6 d-flex">
                 <img src="{{asset('images/main_page/quest.png')}}" alt="Ребенок">
-                <p data-toggle="modal" data-target="#exampleModal">Работы каких тематик принимаются к публикации?</p>
+                <a data-toggle="modal" data-target="#exampleModal">Работы каких тематик принимаются к публикации?</a>
             </div>
             <div class="col-6 d-flex">
                 <img src="{{asset('images/main_page/quest.png')}}" alt="Ребенок">
-                <p data-toggle="modal" data-target="#exampleModal">Как я могу использовать бонусные баллы?</p>
+                <a data-toggle="modal" data-target="#exampleModal">Как я могу использовать бонусные баллы?</a>
             </div>
         </div>
         <p class="main-page__questions_dop">Если у вас возникли другие вопросы, поищите ответы в разделе <a href="">Помощь</a> или напишите в техподержку</p>
@@ -555,10 +555,9 @@
 {{--        </div>--}}
 {{--    </div>--}}
 {{--</section>--}}
-
 <section class="main-page__surprise">
     <div class="container">
-        <h1 class="head-text head-text-white" style="">"Подпишитесь на <span>новостную расслыку</span></h1>
+        <h2 class="head-text text-center head-text-white" style="">Подпишитесь на <span>новостную рассылку</span></h2>
         <p>Подборка только самого интересного не чаще 1 раза в неделю</p>
         <img src="{{asset('images/main_page/form-img.png')}}" alt="Дети">
     </div>
@@ -569,11 +568,12 @@
         <p>Оформите подписку и получите <img src="{{asset('images/main_page/coin.png')}}" alt="Дети"> <span>50 баллов</span><br>на заказ дипломов или сертификатов</p>
         <form action="" class="main-form d-flex row justify-content-center">
             <input type="text" placeholder="Укажите ваш email">
-            <button class="button transparent-btn">Отправить</button>
+            <button class="button transparent-btn">Подписаться</button>
             <img src="{{asset('images/main_page/airplane.png')}}" alt="">
         </form>
     </div>
 </div>
+
 @include('header_footer/footer')
 @include('script')
 </body>

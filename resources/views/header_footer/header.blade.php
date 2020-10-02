@@ -1,16 +1,43 @@
 <header>
 	<div class="header-top">
 		<div class="container">
-			<nav class="row header-top__nav justify-content-between" style="position: relative;">
-				<img src="{{asset('images/logo1.png')}}" alt="Лого" style="position: absolute; top: 10%; height: 90%;">
+			<nav class="row header-top__nav justify-content-between align-items-center" style="position: relative;">
+				<img src="{{asset('images/logo.svg')}}" alt="Лого">
 				<ul class="{{\Illuminate\Support\Facades\Auth::check() ? (\Illuminate\Support\Facades\Auth::user()->admin == 1 ? 'col-xl-8' : 'col-xl-10') : 'col-xl-8'}} header-top__nav-items">
-					<li style="margin-left: 210px;" class="header-top__nav-item {{request()->is('/') ? 'header-top__nav-item_active' : ''}}"><a href="/">Главная</a></li>
-					<li class="header-top__nav-item {{request()->is('competitions') ? 'header-top__nav-item_active' : ''}}"><a href="/competitions">Конкурсы <i class="fa fa-caret-down"></i></a></li>
-					<li class="header-top__nav-item {{request()->is('publications') ? 'header-top__nav-item_active' : ''}} "><a href="/publications">Публикации <i class="fa fa-caret-down"></i></a></li>
-					<li class="header-top__nav-item {{request()->is('express-competitions') ? 'header-top__nav-item_active' : ''}} "><a href="/express-competitions">Экспресс конкурсы <i class="fa fa-caret-down"></i></a></li>
+					<li style="margin-left: 50px;" class="header-top__nav-item {{request()->is('/') ? 'header-top__nav-item_active' : ''}}"><a href="/">Главная</a></li>
+
+					<li class="nav-item ">
+   
+					<li class="header-top__nav-item dropdown {{request()->is('competitions') ? 'header-top__nav-item_active' : ''}}"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Конкурсы
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div> </li>
+						<li class="header-top__nav-item dropdown {{request()->is('competitions') ? 'header-top__nav-item_active' : ''}}"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Публикации
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div> </li>
+						<li class="header-top__nav-item dropdown {{request()->is('competitions') ? 'header-top__nav-item_active' : ''}}"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Экспресс-конкурсы
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div> </li>
 					<li class="header-top__nav-item {{request()->is('') ? 'header-top__nav-item_active' : ''}} "><a href="">Помощь</a></li>
 				</ul>
-				<a class="col-xl-2 ta-center" style="font-size: 15px; font-family: Roboto; font-weight: 100;" href="/login"><img src="{{asset('images/door2.png')}}" alt="Лого" style="position: absolute; top: 0; height: 90%; left: 0;"> Регистрация / Вход</a>
+				<a class="col-xl-2 ta-center login" style="font-size: 15px; font-family: Roboto; font-weight: 100;" href="/login"><img src="{{asset('images/logout.svg')}}" alt="" width="25" style="position: absolute; top: 0; height: 90%; left: 0;"> Регистрация / Вход</a>
 {{--				@if(\Illuminate\Support\Facades\Auth::check())--}}
 {{--					<a class="header-top__nav-button col-xl-2 transparent-btn" href="/account/personal-data">Личный кабинет</a>--}}
 {{--				@else--}}
