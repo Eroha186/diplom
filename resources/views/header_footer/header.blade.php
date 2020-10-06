@@ -16,7 +16,7 @@
           <a class="dropdown-item" href="#">Архив конкурсов</a>
           <a class="dropdown-item" href="#">Добавить работу</a>
         </div> </li>
-						<li class="header-top__nav-item dropdown {{request()->is('competitions') ? 'header-top__nav-item_active' : ''}}"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<li class="header-top__nav-item dropdown {{request()->is('') ? 'header-top__nav-item_active' : ''}}"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Публикации
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -25,7 +25,7 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div> </li>
-						<li class="header-top__nav-item dropdown {{request()->is('competitions') ? 'header-top__nav-item_active' : ''}}"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<li class="header-top__nav-item dropdown {{request()->is('') ? 'header-top__nav-item_active' : ''}}"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Экспресс-конкурсы
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">

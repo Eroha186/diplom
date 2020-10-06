@@ -15,11 +15,11 @@
             </h2>
             <div class="row">
                 <div class="col-xl-12 competitions__descr">
-                 В этом разделе собраны творческие и научные работы педагогов всевозможных форматов на самые разные темы. <br>
-                 Здесь вы найдете конспекты занятий, сценарии празднриков, и еще многое другое для детского сада и школы.
-                 <a href="{{route('form-publication')}}" class="publish-publication"><img src="{{asset('images/upload.svg')}}" alt=""><span>Добавить работу</span></a>
-             </div>
-             <div class="cake">
+                   В этом разделе собраны творческие и научные работы педагогов всевозможных форматов на самые разные темы. <br>
+                   Здесь вы найдете конспекты занятий, сценарии празднриков, и еще многое другое для детского сада и школы.
+                   <a href="{{route('form-publication')}}" class="publish-publication"><img src="{{asset('images/upload.svg')}}" alt=""><span>Добавить работу</span></a>
+               </div>
+               <div class="cake">
                 <img src="{{asset('/images/16941.svg')}}" alt="Ручка">
             </div>
         </div>
@@ -127,7 +127,8 @@
                         @endif
                     </div>
                 </section>
-
+                  @include('header_footer/newsletter')
+                @include('header_footer/footer')
                 @include('script')
 
             </body>

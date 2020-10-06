@@ -9,17 +9,18 @@
 <section class="publications__main bg-arch">
     <div class="container">
         <h2 class="section-title">
-            Публикация материалов
+            {{$publication->title}}
         </h2>
         <div class="row">
-            <div class="col-xl-6 competitions__descr">
+            <div class="col-xl-12 competitions__descr">
                 В настоящем разделе представлены актуальные конкурсы, на которые осуществляется прием заявок на участие.
                 Участвуйте вместе с детьми и в конкурсах для педагогов на участие. Участвуйте вмместе с детьми и в
                 конкурсах для
                 педагогов!
             </div>
+            <a href="//localhost:3004/form-publication" class="publish-publication"><img src="//localhost:3004/images/upload.svg" alt=""><span>Добавить работу</span></a>
             <div class="cake">
-                <img src="{{asset('/images/cake.png')}}" alt="Пироженое">
+                <img src="{{asset('/images/16941.svg')}}" alt="Пироженое">
             </div>
         </div>
     </div>
@@ -28,22 +29,18 @@
 <section class="publication-content">
     <div class="container">
         {!!Breadcrumbs::render('publication', $publication)!!}
-
+ <div class="col-xl-11 publication-content__title">{{$publication->title}}</div>
         <div class="row">
-            <div class="col-xl-7">
+            <div class="col-xl-9">
                 <div class="row">
-                    <div class="col-xl-11 publication-content__title">{{$publication->title}}</div>
+                   
                 </div>
                 <div class="publication-content__tags">
                     @foreach($publication->themes as $theme)
                         <span class="tag">{{$theme->name}}</span>
                     @endforeach
                 </div>
-                <div class="publication-content__date">Опубликовано: {{ date("d.m.Y", strtotime($publication->date_add)) }}</div>
-                <div class="publication-content__author">
-                    {{$publication->user->f}} {{$publication->user->i}} {{$publication->user->o}},
-                    {{$publication->user->job}} в г.{{$publication->user->town}}, {{$publication->user->stuff}}
-                </div>
+                
                 <div class="publication-content__viewport">
                     <div class="row">
                         <div class="col-xl-12 h940">
@@ -66,6 +63,26 @@
                     </div>
 
                 </div>
+            </div>
+            <div class="col-xl-3">
+               <div class="publication-content__info">
+                <div class="publication-content__imgs">
+                    <span>Изображения публикации</span>
+                </div>
+                <div class="caral">
+                    <img src="{{asset('images/caral.svg')}}" alt="">
+                </div>
+                    <div class="publication-content__date">Дата публикации:<br> <span> {{ date("d.m.Y", strtotime($publication->date_add)) }}</span></div>
+                <div class="publication-content__author">
+                    Автор: <br>
+                   <span> {{$publication->user->f}} {{$publication->user->i}} {{$publication->user->o}}
+                   <!--  {{$publication->user->job}} в г.{{$publication->user->town}}, {{$publication->user->stuff}} --> </span>
+                </div>
+                <div class="publication-content__download">
+                    <div class="download-block doc-block"><a href=""><img src="{{asset('images/doc2.svg')}}" alt="">СКАЧАТЬ (.doc) </a></div>
+                    <div class="download-block ppt-block"><a href=""><img src="{{asset('images/ptt.svg')}}" alt="">СКАЧАТЬ (.ptt)</a></div>
+                </div>
+               </div>
             </div>
 {{--            <div class="col-xl-4  offset-md-1 new-publication">--}}
 {{--                <div class="title">Новые публикации</div>--}}
@@ -115,7 +132,8 @@
         </div>
     @endif
 </section>
-
+  @include('header_footer/newsletter')
+  @include('header_footer/footer')
 @include('script')
 </body>
 </html>

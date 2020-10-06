@@ -232,8 +232,7 @@ $(function () {
 
 
 
-    $('li.dropdown').on('click', function(e){
-        e.preventDefault();
+    $('li.dropdown').on('click', function(){
         $(this).children('.dropdown-menu').toggleClass('show');
     })
 
