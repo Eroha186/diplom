@@ -562,7 +562,6 @@
         <img src="{{asset('images/main_page/form-img.png')}}" alt="Дети">
     </div>
 </section>
-
 <div class="main-page__form">
     <div class="container">
         <p>Оформите подписку и получите <img src="{{asset('images/main_page/coin.png')}}" alt="Дети"> <span>50 баллов</span><br>на заказ дипломов или сертификатов</p>

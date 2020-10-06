@@ -24,3 +24,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
         proxy: "http://diplom",
         notify: false
     });
+//  mix.autoload({
+//     'jquery': ['$', 'window.jQuery', "jQuery", "window.$", "jquery", "window.jquery"],
+//     'popper.js/dist/umd/popper.js': ['Popper', 'window.Popper']
+// });

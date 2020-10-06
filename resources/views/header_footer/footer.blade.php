@@ -1,5 +1,7 @@
 
 
+
+
 <footer class="footer-modern-bg" style="background-image: url('images/happykiddo_footer-modern-bg_img.png');">
 	<div class="container">
 		<div class="row clearfix">

@@ -1,4 +1,7 @@
-global.$ = require('jquery');
+// global.$ = require('jquery');
+window.$ = window.jQuery = require('jquery');
+window.Popper = require('popper.js/dist/umd/popper.js').default;
+global.bootstrap = require('bootstrap-sass');
 global.select2 = require('select2');
 global.Quill = require('quill');
 global.dmUploader = require('dm-file-uploader');
@@ -30,6 +33,7 @@ $(function () {
         cashElement.text(cash);
         cashInput.val(cash);
     }
+
 
 
 
@@ -225,6 +229,13 @@ $(function () {
             }
         });
     });
+
+
+
+    $('li.dropdown').on('click', function(e){
+        e.preventDefault();
+        $(this).children('.dropdown-menu').toggleClass('show');
+    })
 
 
     $('.close').on('click', function () {
