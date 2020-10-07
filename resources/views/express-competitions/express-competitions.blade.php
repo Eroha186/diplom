@@ -27,7 +27,7 @@
 <section class="filters">
     <div class="container">
         {!!Breadcrumbs::render('competitions')!!}
-        <h2 class="section-title">Перечень актуальных конкурсов</h2>
+        <h2 class="section-title text-center">Перечень актуальных <span>конкурсов</span></h2>
         <form action="{{route('express-competitions-search')}}" method="GET">
             <div class="row">
                 <div class="col-xl-11">
@@ -68,7 +68,7 @@
                             <div class="name">
                                 {{$competition->type->name}}
                             </div>
-                            <a href="/express-competition-form?id={{$competition->id}}" class="button transparent-btn">учатствовать</a>
+                            <a href="/express-competition-form?id={{$competition->id}}" class="button transparent-btn">участвовать</a>
                         </div>
                     </div>
                 @endforeach
@@ -76,6 +76,8 @@
         </div>
     </div>
 </section>
+ @include('header_footer/newsletter')
+  @include('header_footer/footer')
 @include('script')
 </body>
 </html>

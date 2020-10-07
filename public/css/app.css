@@ -343,9 +343,13 @@ select {
 .dropdown-menu {
   top: 123%;
   padding-bottom: 0;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 .dropdown-item {
+  padding-top: 10px;
+  padding-bottom: 10px;
   font-size: 14px !important;
   font-weight: 600;
   font-family: "Roboto", sans-serif !important;
@@ -356,8 +360,27 @@ select {
   background-color: #ff2001;
 }
 
+.dropdown-item:hover:last-child {
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
 header {
   box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
+}
+
+.login {
+  font-size: 15px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+}
+
+.login:hover {
+  color: #ff2001;
+}
+
+.login img {
+  margin-right: 10px;
 }
 
 footer {
@@ -433,6 +456,8 @@ footer {
 }
 
 .footer-modern-bg .search-form form input[type=search] {
+  width: 100% !important;
+  max-width: 250px;
   -webkit-appearance: textfield;
   -webkit-box-sizing: content-box;
   font-family: inherit;
@@ -1147,7 +1172,7 @@ footer {
 }
 
 .news_conc-item-down {
-  position: absolute;
+  margin-top: 40px;
   bottom: 8px;
   left: 49%;
 }
@@ -1164,7 +1189,7 @@ footer {
 }
 
 .main-page__news_conc-item-desc {
-  padding: 20px;
+  padding: 20px 20px 25px 20px;
   background-color: #85bfe1;
   width: 50%;
 }
@@ -1192,7 +1217,7 @@ footer {
 
 .main-page__news_conc-item-desc a {
   font-family: Roboto Medium, Arial;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
   color: #fff;
   line-height: 18px;
@@ -1356,7 +1381,7 @@ footer {
 }
 
 .modal_question .modal-header button:hover {
-  color: while;
+  color: white;
   background-color: black;
 }
 
@@ -1436,7 +1461,7 @@ footer {
 .main-page__form {
   position: relative;
   padding-top: 45px;
-  padding-bottom: 55px;
+  padding-bottom: 18px;
   background: #F6F6F6;
 }
 
@@ -1842,6 +1867,29 @@ footer {
 
 .head-text span {
   color: #f34235;
+}
+
+.main-page__questions .head-text {
+  margin-top: 40px;
+  margin-bottom: 80px;
+}
+
+.main-page__questions_dop {
+  font-size: 15px;
+  font-family: "Roboto";
+  text-align: center;
+}
+
+.main-page__questions_dop a {
+  font-size: 15px !important;
+  margin: 0 !important;
+  font-family: "Roboto Light", sans-serif;
+  text-decoration: underline;
+}
+
+.main-page__questions_dop a:hover {
+  cursor: pointer !important;
+  color: #f34235 !important;
 }
 
 .white-figure {
@@ -2310,10 +2358,6 @@ h2 span {
 
 .participate-competition:hover {
   color: #fff;
-}
-
-.competitions-list {
-  padding-top: 30px;
 }
 
 .search-wrap {
@@ -3742,5 +3786,43 @@ h1 {
   font-family: "Thin_foma", sans-serif;
   text-align: center;
   font-size: 28px;
+}
+
+.register-page {
+  margin-top: 60px;
+  margin-bottom: 100px;
+}
+
+.register-page form {
+  max-width: 450px;
+  width: 100%;
+}
+
+.register-page input {
+  background-color: #e8f0fe !important;
+}
+
+h1 {
+  font-family: "Thin_foma", sans-serif;
+  margin-bottom: 50px;
+}
+
+h1 button {
+  margin: 10px auto;
+  display: block;
+}
+
+#forgot-password {
+  margin-left: 40px;
+}
+
+#social-sign {
+  font-family: "Thin_foma", sans-serif;
+  text-align: center;
+  font-size: 28px;
+}
+
+label {
+  margin-top: 15px;
 }
 

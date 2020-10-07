@@ -24,7 +24,7 @@
         </div>
     </div>
 </section>
-<section class="filters">
+<section class="filters" style="padding-bottom: 0">
     <div class="container">
         {!!Breadcrumbs::render('competitions')!!}
         <h2 class="section-title text-center">Творческие <span>конкурсы</span></h2>
@@ -68,57 +68,27 @@
 </section>
 <section class="competitions-list">
     <div class="container">
-        <div class="competition-wrap">
-          <div class="row">
-            <div class="col-6 main-page__news_conc-item">
-                <img src="//localhost:3006/images/main_page/CAT.png" alt="Cat">
+             <div class="competition-wrap">
+            @foreach ($competitions as $competition)
+             <div class="col-6 main-page__news_conc-item">
+                <img src="{{asset('images/main_page/CAT.png')}}" alt="Cat">
                 <div class="main-page__news_conc-item-desc">
-                    <img src="//localhost:3006/images/main_page/services-icon-1.png" class="white-figure" alt="">
-                    <p class="text-center"><a href="">Не думай о секундах с высока, наступит время Не думай о секундах с</a></p>
+                    <img src="{{asset('images/main_page/services-icon-1.png')}}" class="white-figure" alt="">
+                    <p class="text-center"><a href=""> {{$competition->title}}</a></p>
                     <p style="font-size: 14px;">конкурс рисунков</p>
-                    <div class="news_conc-item-down" style="width: 50%;">
-                        <p class="date-publ">С 01.03.2020 - 01.04.2020</p>
-                        <button>ПРИНЯТЬ УЧАСТИЕ</button>
+                    <div class="news_conc-item-down">
+                        <p class="date-publ"> С {{$competition->date_begin}}
+                            <span> - {{$competition->date_end}}</span></p>
+                        <a  href="/competition/{{$competition->id}}" class="button transparent-btn">Принять участие</a>
                     </div>
                 </div>
             </div>
-            <div class="col-6 main-page__news_conc-item">
-                <img src="//localhost:3006/images/main_page/CAT.png" alt="Cat">
-                <div class="main-page__news_conc-item-desc">
-                    <img src="//localhost:3006/images/main_page/services-icon-1.png" class="white-figure" alt="">
-                    <p class="text-center"><a href="">Не думай о секундах с высока, наступит время Не думай о секундах с</a></p>
-                    <p style="font-size: 14px;">конкурс рисунков</p>
-                    <div class="news_conc-item-down" style="width: 50%;">
-                        <p class="date-publ">С 01.03.2020 - 01.04.2020</p>
-                        <button>ПРИНЯТЬ УЧАСТИЕ</button>
-                    </div>
-                </div>
-            </div> 
-            <div class="col-6 main-page__news_conc-item">
-                <img src="//localhost:3006/images/main_page/CAT.png" alt="Cat">
-                <div class="main-page__news_conc-item-desc">
-                    <img src="//localhost:3006/images/main_page/services-icon-1.png" class="white-figure" alt="">
-                    <p class="text-center"><a href="">Не думай о секундах с высока, наступит время Не думай о секундах с</a></p>
-                    <p style="font-size: 14px;">конкурс рисунков</p>
-                    <div class="news_conc-item-down" style="width: 50%;">
-                        <p class="date-publ">С 01.03.2020 - 01.04.2020</p>
-                        <button>ПРИНЯТЬ УЧАСТИЕ</button>
-                    </div>
-                </div>
-            </div> 
-            <div class="col-6 main-page__news_conc-item">
-                <img src="//localhost:3006/images/main_page/CAT.png" alt="Cat">
-                <div class="main-page__news_conc-item-desc">
-                    <img src="//localhost:3006/images/main_page/services-icon-1.png" class="white-figure" alt="">
-                    <p class="text-center"><a href="">Не думай о секундах с высока, наступит время Не думай о секундах с</a></p>
-                    <p style="font-size: 14px;">конкурс рисунков</p>
-                    <div class="news_conc-item-down" style="width: 50%;">
-                        <p class="date-publ">С 01.03.2020 - 01.04.2020</p>
-                        <button>ПРИНЯТЬ УЧАСТИЕ</button>
-                    </div>
-                </div>
-            </div> 
+            @endforeach
+            <div class="pagination">
+                {{$competitions->links('paginate')}}
+            </div>
         </div>
+        <div class="competition-wrap">
             <div class="pagination">
                 {{$competitions->links('paginate')}}
             </div>

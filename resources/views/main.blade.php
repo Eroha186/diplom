@@ -96,7 +96,7 @@
                     <img src="{{asset('images/main_page/services-icon-1.png')}}" class="white-figure" alt="">
                     <p class="text-center"><a href="">Не думай о секундах с высока, наступит время Не думай о секундах с</a></p>
                     <p style="font-size: 14px;">конкурс рисунков</p>
-                    <div class="news_conc-item-down" style="width: 50%;">
+                    <div class="news_conc-item-down">
                         <p class="date-publ">С 01.03.2020 - 01.04.2020</p>
                         <button>ПРИНЯТЬ УЧАСТИЕ</button>
                     </div>
@@ -108,7 +108,7 @@
                     <img src="{{asset('images/main_page/services-icon-1.png')}}" class="white-figure" alt="">
                     <p class="text-center"><a href="">Не думай о секундах с высока, наступит время Не думай о секундах с</a></p>
                     <p style="font-size: 14px;">конкурс рисунков</p>
-                    <div class="news_conc-item-down" style="width: 50%;">
+                    <div class="news_conc-item-down">
                         <p class="date-publ">С 01.03.2020 - 01.04.2020</p>
                         <button>ПРИНЯТЬ УЧАСТИЕ</button>
                     </div>
@@ -120,7 +120,7 @@
                     <img src="{{asset('images/main_page/services-icon-1.png')}}" class="white-figure" alt="">
                     <p class="text-center"><a href="">Не думай о секундах с высока, наступит время Не думай о секундах с</a></p>
                     <p style="font-size: 14px;">конкурс рисунков</p>
-                    <div class="news_conc-item-down" style="width: 50%;">
+                    <div class="news_conc-item-down">
                         <p class="date-publ">С 01.03.2020 - 01.04.2020</p>
                         <button>ПРИНЯТЬ УЧАСТИЕ</button>
                     </div>
@@ -132,7 +132,7 @@
                     <img src="{{asset('images/main_page/services-icon-1.png')}}" class="white-figure" alt="">
                     <p class="text-center"><a href="">Не думай о секундах с высока, наступит время Не думай о секундах с</a></p>
                     <p style="font-size: 14px;">конкурс рисунков</p>
-                    <div class="news_conc-item-down" style="width: 50%;">
+                    <div class="news_conc-item-down">
                         <p class="date-publ">С 01.03.2020 - 01.04.2020</p>
                         <button>ПРИНЯТЬ УЧАСТИЕ</button>
                     </div>
@@ -155,12 +155,12 @@
                 <img src="{{asset('images/main_page/doc.png')}}" style="width: 32px; height: 40px; margin-right: 16px;" alt="">
                 <div>
                     <a>Моя первая публикация на рандомную тему, но с очень длинным названием</a>
-                    <p><span>Конспект занятия • 2 класс</span>            <span> • Весна • Осень</span></p>
+                    <p><span>Конспект занятия • 2 класс</span>            <span>Зима • Весна • Осень</span></p>
                     <p>Самые близкие люди после родителей это братья и сестры. Ценность настоящих братских.</p>
                     <div class="d-flex mb-2">
-                        <img src="{{asset('images/main_page/cat1.png')}}" alt="">
-                        <img src="{{asset('images/main_page/cat2.png')}}" alt="">
-                        <img src="{{asset('images/main_page/cat3.png')}}" alt="">
+                        <a href="{{asset('images/main_page/cat1.png')}}" data-fancybox="gallery"><img src="{{asset('images/main_page/cat1.png')}}" alt=""></a>
+                         <a href="{{asset('images/main_page/cat2.png')}}" data-fancybox="gallery"><img src="{{asset('images/main_page/cat2.png')}}" alt=""></a>
+                         <a href="{{asset('images/main_page/cat3.png')}}" data-fancybox="gallery"><img src="{{asset('images/main_page/cat3.png')}}" alt=""></a>
                     </div>
                     <p class="main-page__last_pub-item-3 mb-0"><span>07.04.2020</span>    <span>Дутов К. К ., д. Малые Залупки</span></p>
                 </div>
@@ -401,30 +401,30 @@
 
 <section class="main-page__questions">
     <div class="container">
-        <h2 class="head-text text-center" style="margin-top: 85px; margin-bottom: 85px;">Часто задаваемые <span>вопросы</span></h2>
+        <h2 class="head-text text-center">Часто задаваемые <span>вопросы</span></h2>
         <div class="row">
             <div class="col-6 d-flex">
-                <img src="{{asset('images/main_page/quest.png')}}" alt="Ребенок">
+                <img src="{{asset('images/main_page/quest.png')}}"  width="68" height="68" alt="Ребенок">
                 <a  data-toggle="modal" data-target="#exampleModal">Сколько стоит участие в конкурсе?</a>
             </div>
             <div class="col-6 d-flex">
-                <img src="{{asset('images/main_page/quest.png')}}" alt="Ребенок">
+                <img src="{{asset('images/main_page/quest.png')}}" width="68" height="68"  alt="Ребенок">
                 <a data-toggle="modal" data-target="#exampleModal">Кто может участвовать в конкурсе?</a>
             </div>
             <div class="col-6 d-flex">
-                <img src="{{asset('images/main_page/quest.png')}}" alt="Ребенок">
+                <img src="{{asset('images/main_page/quest.png')}}" width="68" height="68"  alt="Ребенок">
                 <a  data-toggle="modal" data-target="#exampleModal">Как я могу скачать свой сертификат?</a>
             </div>
             <div class="col-6 d-flex">
-                <img src="{{asset('images/main_page/quest.png')}}" alt="Ребенок">
+                <img src="{{asset('images/main_page/quest.png')}}" width="68" height="68"  alt="Ребенок">
                 <a data-toggle="modal" data-target="#exampleModal">Как разместить публикацию на сайте?</a>
             </div>
             <div class="col-6 d-flex">
-                <img src="{{asset('images/main_page/quest.png')}}" alt="Ребенок">
+                <img src="{{asset('images/main_page/quest.png')}}" width="68" height="68"  alt="Ребенок">
                 <a data-toggle="modal" data-target="#exampleModal">Работы каких тематик принимаются к публикации?</a>
             </div>
             <div class="col-6 d-flex">
-                <img src="{{asset('images/main_page/quest.png')}}" alt="Ребенок">
+                <img src="{{asset('images/main_page/quest.png')}}" width="68" height="68"  alt="Ребенок">
                 <a data-toggle="modal" data-target="#exampleModal">Как я могу использовать бонусные баллы?</a>
             </div>
         </div>

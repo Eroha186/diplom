@@ -6,7 +6,9 @@
 </head>
 <body>
 @include('header_footer/header')
-<div class="container">
+<section class="register-page">
+  <div class="container">
+    <h1 class="text-center">Регистрация</h1>
   <div class="row justify-content-center">
     @if (count($errors) > 0)
       <div class="alert alert-danger">
@@ -51,7 +53,7 @@
                required>
       </div>
       <div class="form-group">
-        <label for="stuff">Учебное заведени</label>
+        <label for="stuff">Учебное заведение</label>
         <input name="stuff" type="text" class="form-control" id="stuff" placeholder="Учебное заведение"
                value="{{old('stuff')}}" required>
       </div>
@@ -60,9 +62,10 @@
         <input name="job" type="text" class="form-control" id="ощи" placeholder="Должность" value="{{old('job')}}"
                required>
       </div>
-      <button type="submit" class="btn btn-primary">Зарегестрироваться</button>
+      <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
       @include('auth.social')
     </form>
   </div>
 </div>
+</section>
 @

@@ -6,7 +6,7 @@
 			<form action="" class="main-form d-flex row justify-content-center">
             <input type="text" placeholder="Укажите ваш email">
             <button class="button transparent-btn">Подписаться</button>
-            <img src="//localhost:3006/images/main_page/airplane.png" alt="">
+            <img src="{{asset('images/main_page/airplane.png')}}" alt="">
         </form>
 		
 	</div>

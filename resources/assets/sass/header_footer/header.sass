@@ -44,13 +44,28 @@
 .dropdown-menu 
 	top: 123%
 	padding-bottom: 0
+	border-bottom-left-radius: 15px
+	border-bottom-right-radius: 15px
 .dropdown-item
+	padding-top: 10px
+	padding-bottom: 10px
 	font-size: 14px !important
 	font-weight: 600
 	font-family: "Roboto", sans-serif !important
 	&:hover
 		color: #fff !important
 		background-color: #ff2001
+		&:last-child
+			border-bottom-right-radius: 15px
+			border-bottom-left-radius: 15px
 
 header 
 	box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1)
+.login 
+	font-size: 15px
+	font-family: "Roboto", sans-serif
+	font-weight: 100
+	&:hover
+		color: $red
+	img 
+		margin-right: 10px

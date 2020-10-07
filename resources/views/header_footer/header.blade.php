@@ -13,30 +13,28 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="/competitions">Список конкурсов</a>
-          <a class="dropdown-item" href="#">Архив конкурсов</a>
-          <a class="dropdown-item" href="#">Добавить работу</a>
+          <a class="dropdown-item" href="/archive-competitions">Архив конкурсов</a>
+          <a class="dropdown-item" href="/form-competition">Добавить работу</a>
         </div> </li>
 						<li class="header-top__nav-item dropdown {{request()->is('') ? 'header-top__nav-item_active' : ''}}"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Публикации
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="/publications">Список публикаций</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="#">Архив публикаций</a>
+          <a class="dropdown-item" href="/form-publication">Добавить работу</a>
         </div> </li>
 						<li class="header-top__nav-item dropdown {{request()->is('') ? 'header-top__nav-item_active' : ''}}"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Экспресс-конкурсы
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="/express-competitions">Список экспресс-конкурсов</a>
+          <a class="dropdown-item" href="#">Архив экспресс-конкурсов</a>
+          <a class="dropdown-item" href="">Добавить работу</a>
         </div> </li>
 					<li class="header-top__nav-item {{request()->is('') ? 'header-top__nav-item_active' : ''}} "><a href="">Помощь</a></li>
 				</ul>
-				<a class="col-xl-2 ta-center login" style="font-size: 15px; font-family: Roboto; font-weight: 100;" href="/login"><img src="{{asset('images/logout.svg')}}" alt="" width="25" style="position: absolute; top: 0; height: 90%; left: 0;"> Регистрация / Вход</a>
+				<a class="col-xl-2 ta-center login" href="/login"><img src="{{asset('images/logout.svg')}}" alt="" width="25" style="position: absolute; top: 0; height: 90%; left: 0;"> Регистрация / Вход</a>
 {{--				@if(\Illuminate\Support\Facades\Auth::check())--}}
 {{--					<a class="header-top__nav-button col-xl-2 transparent-btn" href="/account/personal-data">Личный кабинет</a>--}}
 {{--				@else--}}

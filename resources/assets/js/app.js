@@ -1,7 +1,10 @@
 // global.$ = require('jquery');
 window.$ = window.jQuery = require('jquery');
-window.Popper = require('popper.js/dist/umd/popper.js').default;
-global.bootstrap = require('bootstrap-sass');
+const fancybox = require('fancybox')($);
+const fancyboxCSS = require('fancybox/dist/css/jquery.fancybox.css');
+
+// window.Popper = require('popper.js/dist/umd/popper.js').default;
+global.bootstrap = require('bootstrap');
 global.select2 = require('select2');
 global.Quill = require('quill');
 global.dmUploader = require('dm-file-uploader');
@@ -231,10 +234,10 @@ $(function () {
     });
 
 
-
-    $('li.dropdown').on('click', function(){
-        $(this).children('.dropdown-menu').toggleClass('show');
-    })
+       $('a[data-fancybox="gallery"]').fancybox();
+    // $('li.dropdown').on('click', function(){
+    //     $(this).children('.dropdown-menu').toggleClass('show');
+    // })
 
 
     $('.close').on('click', function () {
