@@ -3,7 +3,7 @@
 		<div class="container">
 			<nav class="row header-top__nav justify-content-between align-items-center" style="position: relative;">
 				<a href="/"><img src="{{asset('images/logo.svg')}}" alt="Лого"></a>
-				<ul class="{{\Illuminate\Support\Facades\Auth::check() ? (\Illuminate\Support\Facades\Auth::user()->admin == 1 ? 'col-xl-8' : 'col-xl-10') : 'col-xl-8'}} header-top__nav-items">
+				<ul class="{{\Illuminate\Support\Facades\Auth::check() ? (\Illuminate\Support\Facades\Auth::user()->admin == 1 ? 'col-xl-7' : 'col-xl-10') : 'col-xl-8'}} header-top__nav-items">
 					<li style="margin-left: 50px;" class="header-top__nav-item {{request()->is('/') ? 'header-top__nav-item_active' : ''}}"><a href="/">Главная</a></li>
 
 				
@@ -34,16 +34,19 @@
         </div> </li>
 					<li class="header-top__nav-item {{request()->is('') ? 'header-top__nav-item_active' : ''}} "><a href="">Помощь</a></li>
 				</ul>
-				<a class="col-xl-2 ta-center login" href="/login"><img src="{{asset('images/logout.svg')}}" alt="" width="25" style="position: absolute; top: 0; height: 90%; left: 0;"> Регистрация / Вход</a>
-{{--				@if(\Illuminate\Support\Facades\Auth::check())--}}
-{{--					<a class="header-top__nav-button col-xl-2 transparent-btn" href="/account/personal-data">Личный кабинет</a>--}}
-{{--				@else--}}
-{{--					<a class="header-top__nav-button col-xl-2 transparent-btn ta-center" href="/login">Авторизация</a>--}}
-{{--					<a class="header-top__nav-button col-xl-2 transparent-btn  ta-center" href="register">Регистрация</a>--}}
-{{--				@endif--}}
-{{--				@if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->admin == 1)--}}
-{{--					<a class="header-top__nav-button col-xl-2 transparent-btn ta-center" href="{{route('a-publication')}}">Админка</a>--}}
-{{--				@endif--}}
+				<div class="col-xl-3 ta-center">
+			@if(\Illuminate\Support\Facades\Auth::check())
+					<div class="my-account">
+       <a  href="/account/personal-data"> <img src="{{asset('images/login.svg')}}" alt="" width=""> Мой кабинет</a>     
+      <img src="{{asset('images/logout.svg')}}" alt="" width="25">   <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">Выход</a>
+          </div>
+				@else
+	<div class="login-and-register"> <img src="{{asset('images/logout.svg')}}" alt="" width="25">  <a href="/register">Регистрация</a> / <a href="/login">Вход</a></div>
+			@endif
+				@if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->admin == 1)
+					<a class="header-top__nav-button col-xl-2 transparent-btn ta-center" href="{{route('a-publication')}}">Админка</a>
+				@endif
+        </div>
 			</nav>
 		</div>
 	</div>

@@ -64,7 +64,7 @@
 
                 </div>
             </div>
-            <div class="col-xl-3">
+            <div class="col-xl-3 pl-0">
                <div class="publication-content__info">
                 <div class="publication-content__imgs">
                     <span>Изображения публикации</span>

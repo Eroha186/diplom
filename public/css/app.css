@@ -288,7 +288,6 @@ select {
 }
 
 .header-top__nav-item {
-  margin-right: 15px;
   font-size: 16px;
   font-weight: bold;
   list-style: none;
@@ -369,18 +368,36 @@ header {
   box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
 }
 
-.login {
+.login-and-register {
+  display: flex;
+  flex-flow: wrap row;
+  justify-content: center;
+}
+
+.login-and-register a {
   font-size: 15px;
   font-family: "Roboto", sans-serif;
   font-weight: 100;
+  margin: 0px 3px;
 }
 
-.login:hover {
+.login-and-register a:hover {
   color: #ff2001;
 }
 
-.login img {
+.login-and-register img {
   margin-right: 10px;
+}
+
+.my-account a {
+  font-size: 20px;
+  font-family: "Thin_foma", sans-serif;
+  font-weight: 600;
+  margin: 0px 5px 0 0;
+}
+
+.my-account a:hover {
+  color: #ff2001;
 }
 
 footer {
@@ -556,6 +573,7 @@ footer {
   background-color: #f0f0f0;
   padding-top: 40px;
   border-top: 2px solid #dcdcdc;
+  padding-bottom: 20px;
 }
 
 .newsletter .section-title {
@@ -2458,6 +2476,136 @@ h2 span {
   padding: 7px;
 }
 
+.comp-page__news_conc-item-desc {
+  padding: 20px 20px 25px 20px;
+  background-color: #85bfe1;
+  width: 50%;
+}
+
+.comp-page__news_conc-item-desc p {
+  font-family: "Roboto Light", sans-serif;
+  color: #fff;
+  text-align: center;
+  margin: 0;
+}
+
+.comp-page__news_conc-item-desc a {
+  font-family: Roboto Medium, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+  line-height: 18px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.comp-page__news_conc-item-desc a:hover {
+  text-decoration: underline;
+}
+
+.comp-page__news_conc-item-desc .button {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  font-size: 12px;
+  font-family: Roboto, Arial;
+  font-weight: 500;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0);
+  border: 2px solid #fff;
+  border-radius: 3px;
+  width: 138px;
+  height: 31px;
+  transition: 0.3s;
+}
+
+.comp-page__news_conc-item-desc .button:hover {
+  color: #85bfe1;
+}
+
+.work-page {
+  padding-top: 35px;
+}
+
+.work-page .section-title {
+  margin-top: 75px;
+}
+
+.work-page .work-content__info {
+  padding-left: 25px;
+  padding-right: 20px;
+  background: url("/images/last-publ.jpg");
+  padding-bottom: 34px;
+  padding-top: 21px;
+  box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.19);
+}
+
+.work-page .work-content__info .work__name,
+.work-page .work-content__info .work__teacher,
+.work-page .work-content__info .work__anotation,
+.work-page .work-content__info .date,
+.work-page .work-content__info .competition-title {
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.work-page .work-content__info .work__name span,
+.work-page .work-content__info .work__teacher span,
+.work-page .work-content__info .work__anotation span,
+.work-page .work-content__info .date span,
+.work-page .work-content__info .competition-title span {
+  font-weight: 600;
+  font-size: 15px;
+  font-family: "Roboto", sans-serif;
+}
+
+.work-page .work-content__info .work__teacher {
+  color: #000;
+}
+
+.work-page .work-content__info .caral {
+  margin-top: 40px;
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.work-page .work-content__info .competition-title {
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  text-align: center;
+}
+
+.work-page .work-content__info .date {
+  font-size: 16px;
+  font-family: "Roboto Light", sans-serif;
+  text-align: center;
+}
+
+.work-page .work-content__info .add-work {
+  text-align: center;
+}
+
+.work-page .work-content__info .add-work span {
+  font-weight: 600;
+  font-size: 15px;
+  font-family: "Roboto", sans-serif;
+}
+
+.work-page .work-content__info .add-work-btn {
+  margin-top: 10px;
+  background: #ec5225;
+  color: #fff;
+  font-size: 20px;
+  font-family: "Thin_foma", sans-serif;
+  padding: 10px 20px;
+  display: block;
+}
+
+.work-page .work-content__info .add-work-btn img {
+  margin-right: 15px;
+}
+
 .notice {
   font-weight: bold;
   font-size: 15px;
@@ -3822,7 +3970,7 @@ h1 button {
   font-size: 28px;
 }
 
-label {
+.register-page label {
   margin-top: 15px;
 }
 
