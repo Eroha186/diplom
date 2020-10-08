@@ -400,6 +400,12 @@ header {
   color: #ff2001;
 }
 
+.admin-button {
+  position: absolute;
+  top: 0;
+  right: -120px;
+}
+
 footer {
   background-image: url("/images/happykiddo_footer-modern-bg_img.png") no-repeat;
   background-color: #2a2424;
