@@ -41317,7 +41317,7 @@ $(function () {
    *  Для элементов, которые являются вкладками табов класс прописывается следующим образом
    * class=" name_class tab".
    * И никак иначе
-  */
+   */
 
 
   $('.tab').on('click', function () {
@@ -41493,6 +41493,12 @@ $(function () {
   //     $(this).children('.dropdown-menu').toggleClass('show');
   // })
 
+  $('.hamburger').on('click', function () {
+    $('.mmenu').toggleClass('menu_active');
+    $(this).toggleClass('is-active');
+    $('#wrapper').toggleClass('content_active');
+    $('body').toggleClass('body_overflow');
+  });
   $('.close').on('click', function () {
     $('.modal').hide();
   });
@@ -41569,7 +41575,7 @@ $(function () {
       РЕАЛИЗОВАТЬ
       Удаление некольких объектов
       Если выделенно больше одного объекта, то их можно удалить кучей
-  */
+      */
 
   $('.list-body').on('click', '.list-body__item', function () {
     $('.list-body__item').not(this).removeClass('list-body__item_active');

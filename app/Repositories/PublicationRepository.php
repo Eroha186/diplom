@@ -115,7 +115,7 @@ class PublicationRepository
     protected function attachPublicationIdForFile($publicationId, $files)
     {
         foreach ($files as $file) {
-            (new UploadFileController())->updatePublIdFile($file, $publicationId);
+            (new UploadFileController())->uploaderPublication($file, $publicationId);
         }
     }
 

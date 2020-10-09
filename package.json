@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "dm-file-uploader": "^1.0.2",
+        "hamburgers": "^1.1.3",
         "popper.js": "^1.16.1",
         "quill": "^1.3.7",
         "select2": "^4.0.13"

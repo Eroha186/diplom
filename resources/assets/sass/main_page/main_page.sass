@@ -611,7 +611,8 @@
   .modal-content
     border: 3px black solid
     border-radius: 0
-    min-width: 547px
+    max-width: 547px
+    width: 100%
 
   .modal-header
     button
@@ -735,7 +736,6 @@
 .main-descr__item-1
   font-family: 'Roboto Light', Arial
   font-weight: 300
-  position: absolute
   font-size: 16px
   color: #333333
   top: 46px
@@ -929,11 +929,14 @@
 
   form
     margin-top: 30px
+    display: flex
 
   input
     border: 2px solid #fff
     border-radius: 3px
-    width: 493px
+    max-width: 493px
+    width: 100%
+    margin-right: 10px
     height: 40px
     padding: 10px 15px
 
@@ -1142,3 +1145,5 @@ h2
   span 
     font-family: $thin
 
+.questions-item
+  align-items: center

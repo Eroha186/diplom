@@ -10,26 +10,26 @@
 <section class="main-page__main">
     <div class="container">
         <div class="row">
-            <div class="_diploms-img col-xl-4">
-                <img src="{{asset('images/main_page/diplom2.png')}}" alt="diplom" class="_diplom-1">
+            <div class="_diploms-img col-xl-4 col-lg-4 d-none d-lg-block">
+                <img src="{{asset('images/main_page/diplom2.png')}}" alt="diplom" class="_diplom-1 img-fluid">
             </div>
-            <div class="main-descr col-xl-8">
+            <div class="main-descr col-xl-8 col-lg-8">
                 <ul class="main-descr__items">
                     <li class="main-descr__item">
                         <span class="main-descr__item-2"> Учебные материалы для детского сада и школы</span><br>
-                        <span class="main-descr__item-1">Мастер-классы, конспекты занятий, сценарии, прогулки и т.д.</span>
+                        <p class="main-descr__item-1">Мастер-классы, конспекты занятий, сценарии, прогулки и т.д.</p>
                     </li>
                     <li class="main-descr__item">
                         <span class="main-descr__item-2">Конкурсы для педагогов и детей</span><br>
-                        <span class="main-descr__item-1">Рисунки, поделки, стихи и многое другое. Более 120 номинаций на любую тему</span>
+                        <p class="main-descr__item-1">Рисунки, поделки, стихи и многое другое. Более 120 номинаций на любую тему</p>
                     </li>
                     <li class="main-descr__item">
                         <span class="main-descr__item-2">Материалы для школы и детского сада</span><br>
-                        <span class="main-descr__item-1">Подойдут для пополнения портфолио для аттестации</span>
+                        <p class="main-descr__item-1">Подойдут для пополнения портфолио для аттестации</p>
                     </li>
                     <li class="main-descr__item">
                         <span class="main-descr__item-2">Дипломы и сертификаты от 2х дней</span><br>
-                        <span class="main-descr__item-1">Свидетельство о регистрации СМИ ЭЛ № ФС 77 – 59675 от 11.11.2011</span>
+                        <p class="main-descr__item-1">Свидетельство о регистрации СМИ ЭЛ № ФС 77 – 59675 от 11.11.2011</p>
                     </li>
                 </ul>
             </div>
@@ -41,7 +41,7 @@
     <div class="container">
         <h2 class="head-text text-center" style="margin-top: 85px; margin-bottom: 85px;">"Современный <span>педагог"</span> - творческая лаборатория</h2>
         <div class="row" style="margin-bottom: 60px;">
-            <div class="col-3">
+            <div class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-6">
                 <div class="main-page__items_item">
                     <img src="{{asset('images/main_page/item-icon1.png')}}" style="margin-left: auto; margin-right: auto; display: block;" alt="">
                     <h2>Техподдержка 24/7</h2>
@@ -53,7 +53,7 @@
                     <p>Проводимые конкурсы подготавливаются <br> в соответствии с предписаниями <br>  гос. стандартов.</p>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-6">
                 <div class="main-page__items_item">
                     <img src="{{asset('images/main_page/item-icon6.png')}}" style="margin-left: auto; margin-right: auto; display: block;" alt="">
                     <h2>Международный уровень</h2>
@@ -65,12 +65,12 @@
                     <p>Обработка и хранение персональных данных выполняется в соответствии <br> с 152-ФЗ от 27.07.2006 г</p>
                 </div>
             </div>
-            <div class="col-3">
-                <img src="{{asset('images/main_page/items-1.png')}}" style="width: 100%;" alt="">
+            <div class="d-none d-sm-flex col-md-6 col-lg-3 col-xl-3 col-sm-6 justify-content-center align-items-center">
+                <img class="img-fluid" src="{{asset('images/main_page/items-1.png')}}" style="width: 100%;" alt="">
             </div>
-            <div class="col-3">
+            <div class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-6">
                 <div class="main-page__items_item">
-                    <img src="{{asset('images/main_page/item-icon4.png')}}" style="margin-left: auto; margin-right: auto; display: block;" alt="">
+                    <img  src="{{asset('images/main_page/item-icon4.png')}}" style="margin-left: auto; margin-right: auto; display: block;" alt="">
                     <h2>Более 15 000 авторов</h2>
                     <p>Размести свои работы <br> или участвовали <br> в наших конкурсах.</p>
                 </div>
@@ -90,7 +90,7 @@
         <p class="text-center">Lorem Ipsum is simply dummy text of the printing and typesetting industry.<br>
             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown..</p>
         <div class="row">
-            <div class="col-6 main-page__news_conc-item">
+            <div class="col-12 col-lg-6 col-xl-6 col-md-12 main-page__news_conc-item">
                 <img src="{{asset('images/main_page/CAT.png')}}" alt="Cat">
                 <div class="main-page__news_conc-item-desc">
                     <img src="{{asset('images/main_page/services-icon-1.png')}}" class="white-figure" alt="">
@@ -102,7 +102,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 main-page__news_conc-item">
+            <div class="col-12 col-lg-6 col-xl-6 col-md-12 main-page__news_conc-item">
                 <img src="{{asset('images/main_page/CAT.png')}}" alt="Cat">
                 <div class="main-page__news_conc-item-desc">
                     <img src="{{asset('images/main_page/services-icon-1.png')}}" class="white-figure" alt="">
@@ -114,7 +114,7 @@
                     </div>
                 </div>
             </div> 
-            <div class="col-6 main-page__news_conc-item">
+            <div class="col-12 col-lg-6 col-xl-6 col-md-12 main-page__news_conc-item">
                 <img src="{{asset('images/main_page/CAT.png')}}" alt="Cat">
                 <div class="main-page__news_conc-item-desc">
                     <img src="{{asset('images/main_page/services-icon-1.png')}}" class="white-figure" alt="">
@@ -126,7 +126,7 @@
                     </div>
                 </div>
             </div> 
-            <div class="col-6 main-page__news_conc-item">
+            <div class="col-12 col-lg-6 col-xl-6 col-md-12 main-page__news_conc-item">
                 <img src="{{asset('images/main_page/CAT.png')}}" alt="Cat">
                 <div class="main-page__news_conc-item-desc">
                     <img src="{{asset('images/main_page/services-icon-1.png')}}" class="white-figure" alt="">
@@ -365,7 +365,7 @@
 <section class="main-page__banner">
     <div class="container">
         <div class="row">
-            <div class="col-xl-7">
+            <div class="col-xl-7 col-lg-7 col-md-7">
                 <div class="banner__wrap">
                     <h2>Поиск публикаций</h2>
                     <p>среди более 12 000 материалов</p>
@@ -376,7 +376,7 @@
                     <p class="text-left"><a href="">расширенный поиск</a></p>
                 </div>
             </div>
-            <div class="col-xl-5">
+            <div class="col-xl-5 col-lg-5 col-md-5 d-none d-md-block">
                 <img src="{{asset('images/main_page/children-1.png')}}" alt="Ребенок">
             </div>
         </div>
@@ -403,27 +403,27 @@
     <div class="container">
         <h2 class="head-text text-center">Часто задаваемые <span>вопросы</span></h2>
         <div class="row">
-            <div class="col-6 d-flex">
+            <div class="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex questions-item">
                 <img src="{{asset('images/main_page/quest.png')}}"  width="68" height="68" alt="Ребенок">
                 <a  data-toggle="modal" data-target="#exampleModal">Сколько стоит участие в конкурсе?</a>
             </div>
-            <div class="col-6 d-flex">
+            <div class="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex questions-item">
                 <img src="{{asset('images/main_page/quest.png')}}" width="68" height="68"  alt="Ребенок">
                 <a data-toggle="modal" data-target="#exampleModal">Кто может участвовать в конкурсе?</a>
             </div>
-            <div class="col-6 d-flex">
+            <div class="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex questions-item">
                 <img src="{{asset('images/main_page/quest.png')}}" width="68" height="68"  alt="Ребенок">
                 <a  data-toggle="modal" data-target="#exampleModal">Как я могу скачать свой сертификат?</a>
             </div>
-            <div class="col-6 d-flex">
+            <div class="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex questions-item">
                 <img src="{{asset('images/main_page/quest.png')}}" width="68" height="68"  alt="Ребенок">
                 <a data-toggle="modal" data-target="#exampleModal">Как разместить публикацию на сайте?</a>
             </div>
-            <div class="col-6 d-flex">
+            <div class="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex questions-item">
                 <img src="{{asset('images/main_page/quest.png')}}" width="68" height="68"  alt="Ребенок">
                 <a data-toggle="modal" data-target="#exampleModal">Работы каких тематик принимаются к публикации?</a>
             </div>
-            <div class="col-6 d-flex">
+            <div class="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex questions-item">
                 <img src="{{asset('images/main_page/quest.png')}}" width="68" height="68"  alt="Ребенок">
                 <a data-toggle="modal" data-target="#exampleModal">Как я могу использовать бонусные баллы?</a>
             </div>
