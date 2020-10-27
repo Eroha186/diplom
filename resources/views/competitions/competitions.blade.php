@@ -70,10 +70,10 @@
     <div class="container">
        <div class="competition-wrap">
         @foreach ($competitions as $competition)
-        <div class="col-6 main-page__news_conc-item">
-            <img src="{{asset('images/main_page/CAT.png')}}" alt="Cat">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 comp-page__news_conc-item">
+            <img class="img-fluid" src="{{Storage::url($competition->cover)}}" alt="">
             <div class="comp-page__news_conc-item-desc">
-                <img src="{{asset('images/main_page/services-icon-1.png')}}" class="white-figure" alt="">
+                <img  src="{{asset('images/main_page/services-icon-1.png')}}" class="white-figure" alt="">
                 <p class="text-center"><a href="/competition/{{$competition->id}}"> {{$competition->title}}</a></p>
                 <p style="font-size: 14px;">конкурс рисунков</p>
                 <div class="news_conc-item-down">
@@ -83,6 +83,8 @@
                     </div>
                 </div>
             </div>
+
+            
             @endforeach
             <div class="pagination">
                 {{$competitions->links('paginate')}}

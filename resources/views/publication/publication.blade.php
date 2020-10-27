@@ -18,7 +18,7 @@
                 конкурсах для
                 педагогов!
             </div>
-            <a href="//localhost:3004/form-publication" class="publish-publication"><img src="//localhost:3004/images/upload.svg" alt=""><span>Добавить работу</span></a>
+            <a href="/form-publication" class="publish-publication"><img src="{{asset('images/upload.svg')}}" alt=""><span>Добавить работу</span></a>
             <div class="cake">
                 <img src="{{asset('/images/16941.svg')}}" alt="Пироженое">
             </div>
@@ -84,6 +84,7 @@
                 </div>
                </div>
             </div>
+
 {{--            <div class="col-xl-4  offset-md-1 new-publication">--}}
 {{--                <div class="title">Новые публикации</div>--}}
 {{--                @foreach ($newPublications as $newPublication)--}}
@@ -108,6 +109,7 @@
 {{--                @endforeach--}}
 {{--            </div>--}}
         </div>
+
         <div class="publication-content__text" id="readable">
             <input type="text" id="publication-content__text" class="hide" value="{{$publication->text}}">
         </div>
@@ -116,6 +118,20 @@
                 <img src="{{Storage::url($image)}}" alt="">
             @endforeach
         </div>
+        <div class="row">
+        <div class="col-xl-12">
+            <div class="share-work">
+                <p>Понравился материал? Поделитесь с друзьями!</p>
+                <ul class="share-works">
+                    <li class="social-item" id="social-vk" title="Вконтакте"><a href=""><i class="fab fa-vk"></i></a></li>
+                    <li class="social-item" id="social-fb" title="Фейсбук"><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                    <li class="social-item" id="social-tw" title="Твиттер"><a href=""><i class="fab fa-twitter"></i></a></li>
+                    <li class="social-item" id="social-ok" title="Одноклассники"><a href=""><i class="fab fa-odnoklassniki"></i></a></li>
+                    <li class="social-item" id="social-tg" title="Телеграм"><a href=""><i class="fab fa-telegram-plane"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
     </div>
     @if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->admin == 1 && $publication->moderation == 0)
         <div class="container">
@@ -131,6 +147,7 @@
             </div>
         </div>
     @endif
+
 </section>
   @include('header_footer/newsletter')
   @include('header_footer/footer')

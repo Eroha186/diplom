@@ -35,7 +35,7 @@
         <h2 class="section-title text-center">Творческие и учебные <span>материалы</span></h2>
         <form action="{{route('search')}}" method="GET">
             <div class="row select-filters">
-                <div class="col-xl-3">
+                <div class="col-xl-3 col-lg-3 col-md-6 filter-item">
                     <select name="education" id="education" class="select-filter">
                         <option value="all">Все уровни образования</option>
                         @foreach($educations as $education)
@@ -47,7 +47,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-xl-3">
+                    <div class="col-xl-3 col-lg-3 col-md-6 filter-item">
                         <select name="kind" id="kind" class="select-filter">
                             @if(isset($settingFilter['kind']))
                             @foreach($kinds as $kind)
@@ -62,7 +62,7 @@
                                 @endif
                             </select>
                         </div>
-                        <div class="col-xl-3">
+                        <div class="col-xl-3 col-lg-3 col-md-6 filter-item">
                             <select name="theme" id="theme" class="select-filter">
                                 <option value="0">Все темы</option>
                                 @foreach($themes as $theme)
@@ -74,7 +74,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-xl-2">
+                            <div class="col-xl-2 col-lg-3 col-md-6 filter-item">
                                 <select name="type" id="type" class="select-filter">
                                     <option value="0">Все типы</option>
                                     @foreach($types as $type)

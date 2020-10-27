@@ -67,11 +67,11 @@
 
     @endforeach
 </div>
-<div class="row">
+<!-- <div class="row">
     <div class="col-xl-3">
         <a href="{{route('form-publication')}}" class="publish-publication">Опубликовать работу</a>
     </div>
-</div>
+</div> -->
 <div class="pagination">
     {{$publications->links('paginate')}}
 </div>

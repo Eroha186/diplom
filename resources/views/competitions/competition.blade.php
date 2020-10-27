@@ -18,33 +18,65 @@
                 {{$competition->title}}
             </h2>
             <div class="row">
-                <div class="col-xl-6 competitions__descr">
-                    {{$competition->annotation}}
-                </div>
+               
                 <div class="cake">
-                    <img src="{{asset('/images/cake.png')}}" alt="Пироженое">
+                    <img src="{{asset('/images/pallete.svg')}}" alt="Палитра">
                 </div>
             </div>
         </div>
     </section>
-
-    <section class="filters">
+    <section>
         <div class="container">
-            {!!
+              {!!
                 ($competition->status == 1 || $competition->status == 2) ?
                 Breadcrumbs::render('arch-competition', $competition) :
                 Breadcrumbs::render('competition', $competition)
                 !!}
+            <h1 class="text-center">  {{$competition->title}}</h1>
+            <div class="row">
+                <div class="col-xl-4 col-lg-5 col-md-12">
+                    <div class="single-competition-img text-center">
+                             <img class="img-fluid" src="{{Storage::url($competition->cover)}}" alt="Cat">
+                    </div>
+                </div>
+                <div class="col-xl-8 col-lg-7 col-md-12">
+                  
+                    <div class="single-competition-info">
+                         <div class="descr">
+                             {{$competition->annotation}}
+                         </div>
+                         <div class="dates">
+                           <div><img src="{{asset('images/calendar.svg')}}" alt=""></div>
+                           <div>  <p><span>Прием работ: </span>  <span>С {{$competition->date_begin}}
+                        - {{$competition->date_end}}</span></p>
+                             <p><span style="margin-right: 10px">Подведение итогов: </span> <span>С {{$competition->date_begin}}
+                        - {{$competition->date_end}} </span></p></div>
+                         </div>
+                         <div class="competition-price">
+                             <p>Стоимость участия: <span class="price_comp"> {{$competition->price}}</span> руб</p>
+                         </div>
+                          <a href="{{route('form-competition').'?id='.$id}}" class="participate-competition"> <img src="{{asset('/images/upload.svg')}}" alt="Добавить"> Добавить работу</a>
+                          <div>
+                              <p class="see-docs">Ознакомьтесь с <a href="">Правилами оформления</a> и <a href="">порядком участия</a></p>
+                          </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="filters">
+        <div class="container">
+          
 
                 @if(($competition->status == 1 || $competition->status == 2))
                 <h4 style="margin-bottom: 35px;">Результаты конкурса</h4>
                 @else
-                <h4 style="margin-bottom: 35px;">Всего подано заявок: {{$works->count}}</h4>
+                <h4 class="count-works" style="margin-bottom: 35px;">Всего работ участников: {{$works->count}}</h4>
 
                 <div class="row">
                     <div class="col-xl-4">
-                        <a href="{{route('form-competition').'?id='.$id}}" class="participate-competition">Участвовать в
-                        конкурсе</a>
+                       
                     </div>
                 </div>
                 @endif
@@ -108,7 +140,7 @@
                 </table>
                 @endif
 
-                <h4 style="margin-bottom: 15px;">Работы участников</h4>
+              <!--   <h4 style="margin-bottom: 15px;">Работы участников</h4>
                 <div class="filter" style="margin-bottom: 15px;">
                     Сортировать по:
                     <div class="placement-date">
@@ -127,7 +159,7 @@
                         <span class="arrow-down">&darr;</span>
                         <span class="arrow-up">&uarr;</span>
                     </div>
-                </div>
+                </div> -->
                 <div class="pagination">
                     {{ $works->links('paginate') }}
                 </div>
@@ -140,18 +172,18 @@
 
         <section class="works-list">
             <div class="container">
-                <div class="works-wrap">
+                <div class="works-wrap row">
                     @foreach($works as $work)
-                    <div class="work">
+                    <div class="work col-md-4 col-sm-6 col-12">
                         <div class="work__img">
                             @if($work->file->type == 'image')
-                            <img src="{{Storage::url($work->file->url)}}" alt="картника">
+                            <img  class="img-fluid" src="{{Storage::url($work->file->url)}}" alt="картника">
                             @endif
                             @if($work->file->type == 'doc')
-                            <img src="{{asset("/images/doc.svg")}}" alt="иконка документа">
+                            <img class="img-fluid" src="{{asset("/images/doc.svg")}}" alt="иконка документа">
                             @endif
                             @if($work->file->type == 'ppt')
-                            <img src="{{asset("/images/ppt.svg")}}" alt="иконка презинтации">
+                            <img class="img-fluid" src="{{asset("/images/ppt.svg")}}" alt="иконка презинтации">
                             @endif
                         </div>
                         <a href="{{route('competition-work', ['id' => $competition->id, 'work-id' => $work->id])}}" class="work__title">
@@ -169,6 +201,7 @@
                     </div>
                     @endforeach
                 </div>
+                 <a href="{{route('form-competition').'?id='.$id}}" class="participate-competition"> <img src="{{asset('/images/upload.svg')}}" alt="Добавить"> Добавить работу</a>
                 <div class="pagination">
                     {{ $works->links('paginate') }}
                 </div>

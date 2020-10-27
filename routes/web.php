@@ -87,6 +87,9 @@ Route::group(['middleware' => 'emailCheck'], function () {
 
 });
 
+
+
+
 Route::get('/unsubscribe/', "UserController@unsubscribe")->name('no-mailing');
 Route::get('/unsubscribe-approved/', "UserController@unsubscribeApproved")->name('no-mailing-approved');
 

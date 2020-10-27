@@ -41489,6 +41489,10 @@ $(function () {
       }
     });
   });
+  $('.nav-link-dropdown').on('click', function (e) {
+    e.preventDefault();
+    $(this).parent().find('.dropdown-mmenu').slideToggle();
+  });
   $('a[data-fancybox="gallery"]').fancybox(); // $('li.dropdown').on('click', function(){
   //     $(this).children('.dropdown-menu').toggleClass('show');
   // })
@@ -41496,7 +41500,7 @@ $(function () {
   $('.hamburger').on('click', function () {
     $('.mmenu').toggleClass('menu_active');
     $(this).toggleClass('is-active');
-    $('#wrapper').toggleClass('content_active');
+    $('#wrapper').toggleClass('content-active');
     $('body').toggleClass('body_overflow');
   });
   $('.close').on('click', function () {

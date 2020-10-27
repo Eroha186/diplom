@@ -18,7 +18,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="publish-card__date">Опублековано {{$publication->date_add}}</div>
+                        <div class="publish-card__date">Опубликовано {{$publication->date_add}}</div>
                         <div class="row">
                             <div class="col-xl-10">
                                 <div class="publication-card__author">Автор
@@ -78,7 +78,7 @@
                 <div class="wrapper-form publication-themes-form">
                     <form action="" class="add-form">
                         <textarea name="theme" cols="30" rows="7" id="themes"
-                                  placeholder="Введите темы разделяя их переносом строки..."></textarea>
+                                  placeholder="Введите темы, разделяя их переносом строки..."></textarea>
                         <button class="add">Добавить</button>
                     </form>
                     <form action="" class="edition-form">

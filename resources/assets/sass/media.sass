@@ -22,6 +22,16 @@
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 991px) 
+	.single-competition-info
+		margin-top: 30px
+		display: flex
+		flex-wrap: wrap
+		justify-content: center
+		flex-direction: column
+		align-items: center
+	.filter-item 
+		margin: 10px 0
+
 	.main-form img 
 		display: none
 	.main-page__news_conc-item 
@@ -34,12 +44,22 @@
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 767px) 
+	.publications__main .competitions__descr
+		margin-bottom: 50px
+
+	.form-publication__btn
+		max-width: 470px
+		width: 100%
+		margin: 0 auto 10px !important
+		text-align: center
+	.form-publication__button-wrap
+		flex-direction: column
 	.main-page__questions 
 		padding-top: 0 !important
 	.questions-item 
 		margin-bottom: 20px
-	.main-descr__item-2
-		line-height: 1
+	.main-descr__item
+		line-height: 1.3
 	.head-text 
 		margin-bottom: 40px !important
 
@@ -47,15 +67,29 @@
 
 
 @media only screen and (max-width: 575px) 
+	.main-page__news_conc, .main-page__last_pub
+		padding: 10px 0 20px
+	.head-text 
+		margin-top: 40px !important	
+		margin-bottom: 40px !important	
+	.main-descr__item
+		margin-bottom: 0 !important
+	.fio-children, .fio
+		flex-direction: column
+		align-items: initial !important
+		.fio-children-block, .fio-block
+			margin-right: 0
+	.newsletter .section-title 
+		font-size: 35px !important
 	.main-page__last_pub-item
 		border: 0.5px solid #ebecee
 	.main-page__surprise
 		padding-bottom: 20px !important
 
-	.main-page__news_conc-item img, .main-page__surprise img
+	.main-page__news_conc-item img, .main-page__surprise img, .comp-page__news_conc-item img
 		display: none
 
-	.main-page__news_conc-item-desc
+	.main-page__news_conc-item-desc, .comp-page__news_conc-item-desc
 		width: 100% !important
 	.news_conc-item-down 
 		margin-top: 20px !important
@@ -63,6 +97,28 @@
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width : 480px) 
+	.single-competition-info .dates p
+		flex-direction: column
+	.bg-arch
+		padding: 30px 0 80px
+	.main-page__surprise
+		padding-top: 10px
+	.banner__wrap
+		padding-top: 0
+	.placement-method
+		flex-direction: column
+		label
+			width: 100%
+	.agreements-item label
+		display: initial
+
+	.file-display
+		display: block
+		margin-top: 10px
+	.main-page__main
+		padding-bottom: 0 !important
+	.main-descr 
+		margin-top: 0 !important
 	.main-page__last_pub-item span:nth-child(2)
 		display: block
 	.main-page__questions a
@@ -71,14 +127,20 @@
 		width: 45px !important
 		height: 45px !important
 		right: -6px !important
-	.head-text
+	h2
 		font-size: 30px !important
+	.head-text 
+		margin-top: 20px !important
+		margin-bottom: 20px !important
 	.main-page__items_item h2
 		font-size: 27px !important
 
 
 @media only screen and (max-width : 400px) 
-
+	.banner__wrap input 
+		max-width: 200px
+	.banner__wrap input::placeholder
+			font-size: 12px
 
 
 /* Custom, iPhone Retina */

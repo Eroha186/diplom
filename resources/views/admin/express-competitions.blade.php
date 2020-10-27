@@ -33,7 +33,7 @@
             </div>
             <div class="form-group">
                 <select name="type-competition" id="createTypeCompetition" class="input-style">
-                    <option value="0">Выбирите тип конкурса</option>
+                    <option value="0">Выберите тип конкурса</option>
                     @foreach($types as $type)
                         <option value="{{$type->id}}">{{$type->name}}</option>
                     @endforeach
@@ -48,7 +48,7 @@
             <div class="form-group">
                 <label for="substrate">Подложка для награды</label>
                 <select name="substrate" id="substrate" class="form-control">
-                    <option value="0">Выбирете подложку</option>
+                    <option value="0">Выберите подложку</option>
                     @foreach($substrates as $substrate)
                         <option value="{{$substrate->id}}">{{$substrate->name}}</option>
                     @endforeach

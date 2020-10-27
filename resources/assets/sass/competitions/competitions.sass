@@ -48,9 +48,11 @@
 
   .filter-nominations
     display: flex
-    margin-top: 35px
+    margin-top: 0px
     margin-bottom: 30px
     font-size: 14px
+    flex-wrap: wrap
+
 
   .search-competitions
     position: relative
@@ -90,12 +92,11 @@
       display: none
 
   .nomination
-    margin-left: 25px
+    margin-right: 25px
     color: $space
     cursor: pointer
+    margin-bottom: 10px
 
-    &:first-child
-      margin-left: 0
   .filter-nomination
     border-bottom: 1px dotted $space
     &_active
@@ -104,15 +105,20 @@
 
 .participate-competition
   width: 100%
-  padding: 7px 20px
-  background: $green
+  padding: 15px 20px
+  background: #ec5225
+  display: block
+  max-width: 280px
   border-radius: 4px
-  font-size: 18px
+  font-size: 20px
+  font-family: $thin
   text-transform: uppercase
   color: $white
 
   &:hover
     color: $white
+  img 
+    margin-right: 20px
 
 .competitions-list
   // padding-top: 30px
@@ -148,20 +154,23 @@
   margin-bottom: 30px
   width: 25%
   &__img
+    text-align: center
     padding: 7px
     margin-bottom: 15px
-    border: 1px solid $border_color
-    border-radius: 4px
+    // border: 1px solid $border_color
+    // border-radius: 4px
     img
       width: 250px
       height: 252px
   &__title
+    text-align: center
     font-size: 18px
     font-weight: bold
     color: $space
     cursor: pointer
+    transition: 0.3s ease 
     &:hover
-      color: $space
+      color: #459dff
   &__name
     font-size: 14px
     color: $line_dote_space
@@ -277,3 +286,100 @@
       img
         margin-right: 15px
  
+.comp-page__news_conc-item
+  position: relative
+  display: flex
+  flex-direction: row
+  margin-bottom: 30px
+
+  img
+    width: 50%
+
+.comp-page__news_conc-item-desc
+  padding: 20px 20px 25px 20px
+  background-color: #85bfe1
+  width: 50%
+.competitions__main
+  .breadcrumb
+    margin-top: 50px
+
+.single-competition-info
+  .descr
+    font-family: 'Roboto Light', sans-serif
+    font-size: 15px
+
+  .dates
+    margin-top: 40px
+    display: flex
+    align-items: center
+    font-family: 'Roboto Regular', sans-serif
+    img 
+      margin-right: 22px
+    p
+      margin-bottom: 0
+      display: flex
+      justify-content: space-between
+  .competition-price 
+    margin-top: 50px
+    font-size: 18px
+    font-family: "Roboto", sans-serif
+  
+  .see-docs
+    font-family: 'Roboto Light', sans-serif
+    margin-top: 15px
+    font-size: 14px
+    a
+      color: #459dff 
+
+.count-works
+  font-family: 'Roboto Light', sans-serif
+.share-work
+  margin-left: auto
+  margin-right: auto
+  max-width: 530px
+  width: 100%
+  box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.19)
+  padding: 30px 40px
+  text-align: center
+  margin-bottom: 50px
+.share-works 
+  display: flex
+  justify-content: center
+.social-item 
+  margin: 0px 3px
+  height: 34px
+  display: flex
+  justify-content: center
+  align-items: center
+  border-radius: 5px
+  max-width: 65px
+  width: 100%
+  text-align: center
+  
+  i
+    font-size: 20px
+    color: #fff
+  a
+    width: 100%
+    display: block
+#social-vk
+  background: #5181b8
+#social-ok
+  background: #ee8108
+#social-tg
+  background: #24a1de
+#social-fb
+  background: #3a589e
+#social-tw
+  background: #1da1f2
+.prev-work span, .next-work span
+  font-family: $thin
+  font-size: 26px
+.prev-and-next
+  display: flex
+  justify-content: space-between
+  margin-top: 60px
+  margin-bottom: 100px
+.prev-work a, .next-work a 
+  &:hover 
+    color: #000
