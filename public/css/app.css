@@ -2507,12 +2507,14 @@ footer {
 
 .modal_question .modal-header button {
   position: absolute;
-  width: 100%;
-  height: 11px;
-  background: url("/images/circle-line.png");
-  top: 0;
-  left: 0;
-  overflow: visible;
+  width: 62px;
+  height: 52px;
+  right: -15px;
+  top: -26px;
+  font-size: 26px;
+  color: black;
+  background-color: white;
+  border: 3px solid black;
 }
 
 .modal_question .modal-header button:hover {
@@ -2526,9 +2528,31 @@ footer {
 }
 
 .main-page__questions {
-  padding-top: 120px;
-  padding-bottom: 95px;
-  background: url("/images/main_page/bg_section_1.png");
+  padding: 70px 0;
+  background: url("/images/main_page/usor2.png") repeat;
+  background-color: #fff;
+}
+
+.main-page__questions .col-6 {
+  margin-bottom: 30px;
+}
+
+.main-page__questions .row p {
+  font-family: Roboto, Arial;
+  margin: 0;
+  margin-left: 10px;
+  font-weight: 100;
+  font-size: 24px;
+}
+
+.main-page__questions .row p:hover {
+  color: red;
+}
+
+.main-page__questions_dop p {
+  font-family: Roboto, Arial;
+  font-size: 15px;
+  text-align: center;
 }
 
 .main-page__winner {
@@ -2537,9 +2561,16 @@ footer {
 
 .main-page__surprise {
   position: relative;
-  padding-top: 75px;
+  padding-top: 70px;
   padding-bottom: 310px;
   background: url("/images/main_page/bg_section_3.jpg");
+}
+
+.main-page__surprise p {
+  font-family: "Roboto Light", Arial;
+  font-size: 15px;
+  color: white;
+  text-align: center;
 }
 
 .main-page__surprise .section-title {
@@ -2558,7 +2589,7 @@ footer {
 
 .main-page__surprise img {
   position: absolute;
-  bottom: -162px;
+  bottom: -106px;
   left: 50%;
   transform: translateX(-422px);
   z-index: 2;
@@ -2578,7 +2609,16 @@ footer {
 }
 
 .main-page__form p {
-  font-weight: 500;
+  font-family: "Roboto Light", Arial;
+  font-size: 18px;
+  color: #444444;
+  text-align: center;
+}
+
+.main-page__form p span {
+  font-family: "Roboto Light", Arial;
+  font-size: 18px;
+  color: #96c667;
 }
 
 ._diplom-1 {
@@ -2590,10 +2630,12 @@ footer {
 }
 
 .main-descr__item {
-  font-size: 22px;
-  color: #313131;
-  list-style: url("/images/main_page/service-icon.png");
+  font-size: 34px;
+  color: #224357;
+  list-style: url("/images/main_page/services-icon-1.png");
   margin-left: 35px;
+  position: relative;
+  margin-bottom: 50px;
 }
 
 .main-descr__item-2 {
@@ -2775,7 +2817,8 @@ footer {
 }
 
 .banner__wrap {
-  padding-top: 70px;
+  padding-top: 40px;
+  padding-left: 10px;
   text-align: center;
 }
 

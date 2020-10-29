@@ -41975,9 +41975,9 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\WWW\OSPanel\domains\diplom\resources\assets\js\app.js */"./resources/assets/js/app.js");
-__webpack_require__(/*! C:\WWW\OSPanel\domains\diplom\resources\assets\sass\app.sass */"./resources/assets/sass/app.sass");
-module.exports = __webpack_require__(/*! C:\WWW\OSPanel\domains\diplom\resources\assets\scss\core.scss */"./resources/assets/scss/core.scss");
+__webpack_require__(/*! /var/www/diplom/resources/assets/js/app.js */"./resources/assets/js/app.js");
+__webpack_require__(/*! /var/www/diplom/resources/assets/sass/app.sass */"./resources/assets/sass/app.sass");
+module.exports = __webpack_require__(/*! /var/www/diplom/resources/assets/scss/core.scss */"./resources/assets/scss/core.scss");
 
 
 /***/ })

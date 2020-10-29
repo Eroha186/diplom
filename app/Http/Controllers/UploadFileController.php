@@ -52,4 +52,11 @@ class UploadFileController extends Controller
         }
         return response()->json(['errors' => $validator->errors()->all()]);
     }
+
+    public function attachPublicationIdForFile($file, $publicationId)
+    {
+        $fileModel = File::where('id', '=', $file)->first();
+        $fileModel->publ_id = $publicationId;
+        $fileModel->save();
+    }
 }
