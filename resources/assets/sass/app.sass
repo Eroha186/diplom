@@ -1,7 +1,11 @@
 @import 'variables.sass'
+@import 'fonts.sass'
+@import 'hamburgers/hamburgers.scss'
 #editor
   height: 350px
 
+h1, h2
+  font-family: $thin
 .transparent-btn
   color: #ffffff
   text-shadow: none
@@ -153,7 +157,7 @@ li
   margin-bottom: 20px
   background: transparent
   color: $border_color
-  font-size: 12px
+  font-size: 14px
 
   a
     color: $border_color
@@ -213,8 +217,48 @@ select
     color: $red
   li
     margin-left: 5px
+
+
+.mmenu 
+  display: flex
+  justify-content: center
+  position: fixed
+  overflow: hidden
+  left: 0
+  top: 0
+  z-index: 99999
+  width: 100%
+  height: 100vh
+  background-color: #fafafa
+  transition: 0.5s
+  transform: translateY(-100%)
+  padding: 20px
+
+
+.mmenu-block 
+  z-index: 9999
+
+
+.menu_active 
+  top: 78px
+  transform: translateX(0%) !important
+
+
+.content-active 
+  /*transform: translateX(30%);*/
+  opacity: 0.2
+  pointer-events: none
+
+
+.hamburger
+  z-index: 9999
+
+
+.body_overflow 
+    overflow: hidden
 @import 'header_footer/header'
 @import 'header_footer/footer'
+@import 'header_footer/newsletter'
 @import 'main_page/main_page'
 @import 'account/account'
 @import 'competitions/competitions'
@@ -223,3 +267,6 @@ select
 @import 'publication/form-publication'
 @import 'publication/publication'
 @import 'admin/admin'
+@import 'login/login'
+@import 'login/register'
+@import 'media.sass'

@@ -1,8 +1,12 @@
+
+
+
+
 <footer class="footer-modern-bg" style="background-image: url('images/happykiddo_footer-modern-bg_img.png');">
 	<div class="container">
 		<div class="row clearfix">
 			<div class="footer-widget contact-widget col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-				<h2>ПОИСК ДИПЛОМОВ</h2>
+				<h2>ПОИСК ДИПЛОМА</h2>
 				<p class="description">ПО НОМЕРУ ИЛИ ФАМИЛИИ</p>
 				<div class="search-form">
 					<form  action="{{route('search-diplom')}}" id="search-form-header">
@@ -17,14 +21,14 @@
 
 				</div><!-- end .footer-widget.contact-widget -->
 				<div class="footer-widget col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-					<h2>КАРТА САЙТА</h2>
+					<h2>НАВИГАЦИЯ</h2>
 					<ul>
 						<li><a href="/">ГЛАВНАЯ</a></li>
 						<li><a href="/competitions">КОНКУРСЫ</a></li>
 						<li><a href="/archive-competitions">АРХИВ КОНКУРСОВ</a></li>
 						<li><a href="/publications">ПУБЛИКАЦИИ</a></li>
 						<li><a href="/express-competitions">ЭКСПРЕСС КОНКУРСЫ</a></li>
-						<li><a href="/login">ЛИЧНЫЙ КАБИНЕТ</a></li>
+						<li><a href="/login">ПОМОЩЬ</a></li>
 
 					</ul>
 				</div>

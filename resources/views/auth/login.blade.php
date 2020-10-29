@@ -6,10 +6,12 @@
 </head>
 <body>
 @include('header_footer/header')
-<div class="container">
+<section class="login-page">
+    <div class="container">
+    <h1 class="text-center">Авторизация</h1>
     <div class="row justify-content-center">
 
-        <form style="transform: translateY(50%); min-width: 455px; max-width: 500px" method="POST"
+        <form method="POST"
               action="{{route('login')}}">
             {{ csrf_field() }}
             @if (count($errors) > 0)
@@ -53,14 +55,17 @@
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Войти</button>
-                <a class="btn btn-link" href="{{ route('password.request') }}">
-                    Забыл пароль
+                <a class="btn btn-link" id="forgot-password" href="{{ route('password.request') }}">
+                    Забыли пароль?
                 </a>
             </div>
+            <p id="social-sign">Или войдите, используя соц.сети:</p>
             @include('auth.social')
         </form>
     </div>
 </div>
+</section>
+@include('header_footer/footer')
 @include('script')
 </body>
 </html>

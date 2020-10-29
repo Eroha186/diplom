@@ -2,14 +2,15 @@
 	&-top
 		box-shadow: 0 1px 3px $border_color
 		&__nav
-			padding: 17px 0 17px 0
+			padding-top: 8px
 			&-item
-				margin-right: 25px
 				font-size: 16px
 				font-weight: bold
 				list-style: none
 				& a
 					position: relative
+					font-family: $thin
+					font-size: 20px
 				& a:hover
 					color: $red
 				&s
@@ -39,3 +40,67 @@
 		background-repeat: no-repeat
 		background-position: center
 		background-size: cover
+.dropdown-menu 
+	top: 123%
+	padding-bottom: 0
+	border-bottom-left-radius: 15px
+	border-bottom-right-radius: 15px
+.dropdown-item
+	padding-top: 10px
+	padding-bottom: 10px
+	font-size: 14px !important
+	font-weight: 600
+	font-family: "Roboto", sans-serif !important
+	&:hover
+		color: #fff !important
+		background-color: #ff2001
+		&:last-child
+			border-bottom-right-radius: 15px
+			border-bottom-left-radius: 15px
+
+header 
+	box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1)
+.login-and-register 
+	display: flex
+	flex-flow: wrap row
+	justify-content: center
+	a 
+		font-size: 15px
+		font-family: "Roboto", sans-serif
+		font-weight: 100
+		margin: 0px 3px
+		&:hover
+			color: $red
+	img 
+		margin-right: 10px
+.my-account
+	a
+		font-size: 20px
+		font-family: $thin
+		font-weight: 600
+		margin: 0px 5px 0 0	
+		&:hover
+			color: $red
+.admin-button 
+	position: absolute
+	top: 0
+	right: -120px
+
+.mmenu 
+	.header-top__nav-items
+		display: block
+	.header-top__nav-item
+		margin: 0 !important
+		a
+			font-size: 25px !important
+	.dropdown-mmenu 
+		display: none
+		a
+			font-family: $thin !important
+		.dropdown-item:hover
+			background: none
+			color: $red !important
+	.nav-link-dropdown
+		&:hover	
+			cursor: pointer
+			color: $red !important

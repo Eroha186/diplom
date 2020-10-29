@@ -25,7 +25,7 @@
 <section class="filters">
 	<div class="container">
 		{!!Breadcrumbs::render('competitions')!!}
-		<h2 class="section-title">Завершенные конкурсы</h2>
+		<h2 class="section-title text-center">Завершенные <span>конкурсы</span></h2>
 		<form action="{{route('search-с')}}" method="GET">
 			<div class="row">
 				<div class="col-xl-11">
@@ -93,6 +93,8 @@
 		</div>
 	</div>
 </section>
+ @include('header_footer/newsletter')
+  @include('header_footer/footer')
 @include('script')
 </body>
 </html>

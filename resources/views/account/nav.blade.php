@@ -24,7 +24,7 @@
 			</ul>
 		</div>
 		<div class="nav-block">
-			<div class="title">Бонусныый счет</div>
+			<div class="title">Бонусный счет</div>
 			<div class="coin">
 				<div class="more-coin">{{$data['coins']}}</div>
 				<img src="{{asset('images/coin.svg')}}" alt="монетка">

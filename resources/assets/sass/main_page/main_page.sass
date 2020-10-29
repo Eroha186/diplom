@@ -1,390 +1,1149 @@
 .main-page
-	&__main
-		padding: 70px 0
-		background: url('/images/main_page/bg.png') no-repeat center
-		background-size: cover
-	&__descr
-		padding-top: 70px
-		padding-bottom: 60px
-	&__img
-		display: flex
-		justify-content: flex-end
-	&__contents
-		position: relative
-		padding-top: 75px
-		background: url('/images/main_page/bg_section_1.png') center
-		&::after
-			content: ''
-			position: absolute
-			width: 100%
-			height: 11px
-			background: url('/images/circle-line.png')
-			top: 0
-			left: 0
-			overflow: visible
-	&__banner
-		position: relative
-		padding-top: 25px
-		background: url("/images/main_page/bg_section_2.png")
-		&::after
-			content: ''
-			position: absolute
-			width: 100%
-			height: 11px
-			background: url('/images/circle-line.png')
-			top: 0
-			left: 0
-			overflow: visible
-	&__questions
-		padding-top: 120px
-		padding-bottom: 95px
-		background: url("/images/main_page/bg_section_1.png")
-	&__winner
-		padding: 90px
-	&__surprise
-		position: relative
-		padding-top: 75px
-		padding-bottom: 310px
-		background: url("/images/main_page/bg_section_3.jpg")
-		.section-title
-			margin-bottom: 5px
-			color: $white
-		.sub-title
-			font-size: 22px
-			color: $white
-			span
-				display: block
-		img
-			position: absolute
-			bottom: -162px
-			left: 50%
-			transform: translateX(-422px)
-			z-index: 2
-	&__form
-		padding-top: 105px
-		padding-bottom: 55px
-		background: #F6F6F6
-		.section-title
-			position: relative
-			margin-bottom: 10px
-			z-index: 3
-		p
-			font-weight: 500
+  &__main
+    padding: 70px 0
+    background: url('/images/main_page/bg.png') no-repeat center
+    background-size: cover
+  &__descr
+    padding-top: 70px
+    padding-bottom: 60px
+  &__img
+    display: flex
+    justify-content: flex-end
+  &__contents
+    position: relative
+    padding-top: 75px
+    background: url('/images/main_page/bg_section_1.png') center
+    &::after
+      content: ''
+      position: absolute
+      width: 100%
+      height: 11px
+      background: url('/images/circle-line.png')
+      top: 0
+      left: 0
+      overflow: visible
+  &__banner
+    position: relative
+    padding-top: 25px
+    background: url("/images/main_page/bg_section_2.png")
+    &::after
+      content: ''
+      position: absolute
+      width: 100%
+      height: 11px
+      background: url('/images/circle-line.png')
+      top: 0
+      left: 0
+      overflow: visible
+  &__questions
+    padding-top: 120px
+    padding-bottom: 95px
+    background: url("/images/main_page/bg_section_1.png")
+  &__winner
+    padding: 90px
+  &__surprise
+    position: relative
+    padding-top: 75px
+    padding-bottom: 310px
+    background: url("/images/main_page/bg_section_3.jpg")
+    .section-title
+      margin-bottom: 5px
+      color: $white
+    .sub-title
+      font-size: 22px
+      color: $white
+      span
+        display: block
+    img
+      position: absolute
+      bottom: -162px
+      left: 50%
+      transform: translateX(-422px)
+      z-index: 2
+  &__form
+    padding-top: 105px
+    padding-bottom: 55px
+    background: #F6F6F6
+    .section-title
+      position: relative
+      margin-bottom: 10px
+      z-index: 3
+    p
+      font-weight: 500
 ._diplom-1
-	margin-left: 15px
+  margin-left: 15px
 
 // список на главном экране
 .main-descr
-	margin-top: 33px
-	&__item
-		font-size: 22px
-		color: $space
-		list-style: url("/images/main_page/service-icon.png")
-		margin-left: 35px
+  margin-top: 33px
+  &__item
+    font-size: 22px
+    color: $space
+    list-style: url("/images/main_page/service-icon.png")
+    margin-left: 35px
 
 // карточки со статистикой
 .statbar
-	height: 216px
-	display: flex
-	flex-direction: column
-	justify-content: center
-	padding: 50px 15px 50px 15px
-	border: 1px solid #f1f1f1
-	border-radius: 5px
-	text-align: center
-	&__symbol
-		display: inline-block
-		font-size: 38px
-		font-weight: 600
-		font-family: 'Atma', cursive
-	&__title
-		font-size: 18px
-		font-weight: bold
-	&__descr
-		font-size: 13px
-		font-weight: 500
+  height: 216px
+  display: flex
+  flex-direction: column
+  justify-content: center
+  padding: 50px 15px 50px 15px
+  border: 1px solid #f1f1f1
+  border-radius: 5px
+  text-align: center
+  &__symbol
+    display: inline-block
+    font-size: 38px
+    font-weight: 600
+    font-family: 'Atma', cursive
+  &__title
+    font-size: 18px
+    font-weight: bold
+  &__descr
+    font-size: 13px
+    font-weight: 500
 
 .contents__descr
-	font-size: 14px
-	font-weight: 500
+  font-size: 14px
+  font-weight: 500
 #tabs
-	position: relative
+  position: relative
 .tabs
-	display: flex
-	justify-content: center
-	margin: 0
+  display: flex
+  justify-content: center
+  margin: 0
 .mark
-	margin-right: 2px
-	padding: 15px 40px
-	background: $red
-	border: 1px solid $red
-	border-bottom: none
-	border-top-left-radius: 4px
-	border-top-right-radius: 4px
-	list-style: none
-	text-transform: uppercase
-	color: $white
-	font-weight: 500
-	cursor: pointer
+  margin-right: 2px
+  padding: 15px 40px
+  background: $red
+  border: 1px solid $red
+  border-bottom: none
+  border-top-left-radius: 4px
+  border-top-right-radius: 4px
+  list-style: none
+  text-transform: uppercase
+  color: $white
+  font-weight: 500
+  cursor: pointer
 .mark_active
-	background: $white
-	border: 1px solid $border_color
-	border-bottom: none
-	color: $space
+  background: $white
+  border: 1px solid $border_color
+  border-bottom: none
+  color: $space
 .tab-section
-	padding-top: 40px
-	padding-bottom: 150px
-	margin-top: -1px
-	border-top: 1px solid $border_color
-	background: $white
+  padding-top: 40px
+  padding-bottom: 150px
+  margin-top: -1px
+  border-top: 1px solid $border_color
+  background: $white
 .competition
-	display: flex
-	background: $blue
-	margin-bottom: 15px
-	&__descr
-		display: flex
-		align-items: center
-		flex-direction: column
-		margin: 0 auto
-		margin-top: 25px
-		color: $white
-		.title
-			margin-bottom: 15px
-			font-size: 18px
-			font-weight: 500
-		.name
-			font-size: 15px
-			margin-bottom: 7px
-		.date-time
-			font-size: 13px
-			margin-bottom: 10px
-			span
-				display: block
-		.button:hover
-			color: $blue
+  display: flex
+  background: $blue
+  margin-bottom: 15px
+  &__descr
+    display: flex
+    align-items: center
+    flex-direction: column
+    margin: 0 auto
+    margin-top: 25px
+    color: $white
+    .title
+      margin-bottom: 15px
+      font-size: 18px
+      font-weight: 500
+    .name
+      font-size: 15px
+      margin-bottom: 7px
+    .date-time
+      font-size: 13px
+      margin-bottom: 10px
+      span
+        display: block
+    .button:hover
+      color: $blue
 
 .publication-snippet
-	display: flex
-	flex-wrap: wrap
+  display: flex
+  flex-wrap: wrap
 .publication
-	display: flex
-	width: 50%
-	margin-bottom: 15px
-	padding-right: 55px
-	&__img
-		margin-right: 25px
-	&__descr
-		.title
-			font-size: 18px
-			font-weight: bold
-			&:hover
-				color: $space
-		.date-time
-			font-size: 12px
-			color: #ABA7A7
-		.author
-			font-size: 14px
-			color: #606060
+  display: flex
+  width: 50%
+  margin-bottom: 15px
+  padding-right: 55px
+  &__img
+    margin-right: 25px
+  &__descr
+    .title
+      font-size: 18px
+      font-weight: bold
+      &:hover
+        color: $space
+    .date-time
+      font-size: 12px
+      color: #ABA7A7
+    .author
+      font-size: 14px
+      color: #606060
 .more
-	text-align: right
-	font-size: 12px
-	color: $space
-	a
-		border-bottom: 1px dotted $space
-		&:hover
-			color: $space
+  text-align: right
+  font-size: 12px
+  color: $space
+  a
+    border-bottom: 1px dotted $space
+    &:hover
+      color: $space
 .banner
-	&__title
-		text-transform: uppercase
-		color: $white
-	&__wrap
-		padding-top: 70px
-		text-align: center
-	&__button_wrap
-		display: flex
-		justify-content: center
-	&__button
-		padding: 12px 7px
-		margin-right: 15px
-		color: $white
-		font-size: 14px
-		font-weight:  500
-		&:last-child
-			background: $white
-			color: #96c667
-			&:hover
-				color: $white
-		&.filled-btn:before
-			background: #96c667
-		&:hover
-			color: #96c667
+  &__title
+    text-transform: uppercase
+    color: $white
+  &__wrap
+    padding-top: 70px
+    text-align: center
+  &__button_wrap
+    display: flex
+    justify-content: center
+  &__button
+    padding: 12px 7px
+    margin-right: 15px
+    color: $white
+    font-size: 14px
+    font-weight:  500
+    &:last-child
+      background: $white
+      color: #96c667
+      &:hover
+        color: $white
+    &.filled-btn:before
+      background: #96c667
+    &:hover
+      color: #96c667
 
 .winners
-	padding-top: 65px
+  padding-top: 65px
 .winner__desr
-	font-weight: 500
+  font-weight: 500
 .winer-block
-	display: flex
-	padding: 25px
-	margin-bottom: 40px
-	border-radius: 300px
-	background: $yellow
-	box-shadow: 0px 5px 0px 0px $yellow * 0.9
-	&__img
-		position: relative
-		width: 180px
-		height: 180px
-		border: 8px solid $white
-		border-radius: 50%
-		background-size: cover
-		.mask
-			opacity: 0
-			overflow: visible
-			border: 0 solid rgba(0, 0, 0, 0.7)
-			box-sizing: border-box
-			position: absolute
-			top: 0
-			left: 0
-			width: 100%
-			height: 100%
-			z-index: 999
-			transition: all 0.35s ease-in
-			&-btn
-				display: flex
-				justify-content: center
-				align-items: center
-				flex-direction: column
-				position: relative
-				height: 100%
-				background-color: rgba(0, 0, 0, 0.5)
-				border-radius: 50%
-				z-index: 101
-			i
-				border-radius: 50%
-				background-color: $red
-				color: #ffffff
-				padding: 7px
-				margin-bottom: 10px
-				transition: opacity 0.35s, transform 0.35s
-				transform: scale(1.5)
-			&:hover
-				opacity: 1
-				color: $white
-			&:hover
-				transform: scale(1)
-	&__info
-		display: flex
-		flex-direction: column
-		align-items: center
-		width: 66%
-		text-align: center
-		.name
-			margin-top: 7px
-			font-size: 18px
-			color: $white
-		.date-time
-			margin-top: 7px
-			font-size: 14px
-			font-weight: 500
-			color: $white
-			span
-				display: block
-				font-size: 11px
-				font-weight: 400
-		.descr
-			margin-top: 7px
-			margin-bottom: 10px
-			font-size: 12px
-			font-weight: 500
-			color: $white
-		.button:hover
-			color: $yellow
+  display: flex
+  padding: 25px
+  margin-bottom: 40px
+  border-radius: 300px
+  background: $yellow
+  box-shadow: 0px 5px 0px 0px $yellow
+  &__img
+    position: relative
+    width: 180px
+    height: 180px
+    border: 8px solid $white
+    border-radius: 50%
+    background-size: cover
+    .mask
+      opacity: 0
+      overflow: visible
+      border: 0 solid rgba(0, 0, 0, 0.7)
+      box-sizing: border-box
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      z-index: 999
+      transition: all 0.35s ease-in
+      &-btn
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-direction: column
+        position: relative
+        height: 100%
+        background-color: rgba(0, 0, 0, 0.5)
+        border-radius: 50%
+        z-index: 101
+      i
+        border-radius: 50%
+        background-color: $red
+        color: #ffffff
+        padding: 7px
+        margin-bottom: 10px
+        transition: opacity 0.35s, transform 0.35s
+        transform: scale(1.5)
+      &:hover
+        opacity: 1
+        color: $white
+      &:hover
+        transform: scale(1)
+  &__info
+    display: flex
+    flex-direction: column
+    align-items: center
+    width: 66%
+    text-align: center
+    .name
+      margin-top: 7px
+      font-size: 18px
+      color: $white
+    .date-time
+      margin-top: 7px
+      font-size: 14px
+      font-weight: 500
+      color: $white
+      span
+        display: block
+        font-size: 11px
+        font-weight: 400
+    .descr
+      margin-top: 7px
+      margin-bottom: 10px
+      font-size: 12px
+      font-weight: 500
+      color: $white
+    .button:hover
+      color: $yellow
 
 .fa-eye:before
-	content: "\f06e"
-	height: 12px
-	width: 12px
+  content: "\f06e"
+  height: 12px
+  width: 12px
 .fa
-	display: inline-block
-	font-size: inherit
-	text-rendering: auto
+  display: inline-block
+  font-size: inherit
+  text-rendering: auto
 .title_active
-	height: 97%
+  height: 97%
 .questions__acord
-	margin-bottom: 27px
-	.head
-		display: flex
-		margin-bottom: 10px
-		cursor: pointer
-		.arrow
-			position: relative
-			width: 70px
-			height: 55px
-			background: $red
-			&::before
-				content: ''
-				position: absolute
-				background: url("/images/main_page/arrow.svg") center no-repeat
-				background-size: contain
-				width: 35%
-				height: 35%
-				top: 50%
-				left: 50%
-				margin-left: -12px
-				margin-top: -9px
-			&_active
-				&::before
-					transform: rotate(90deg)
-		.title
-			display: flex
-			align-items: center
-			justify-content: flex-start
-			padding-left: 30px
-			width: 100%
-			border: 1px solid $border_color
-			background: $white
-			font-size: 20px
-			font-weight: bold
-	.body
-		display: none
-		padding: 25px
-		border: 1px solid $border_color
-		background: $white
-		font-size: 14px
-		font-weight: 500
-		&_active
-			display: flex
-	&-wrap
-		padding-top: 55px
+  margin-bottom: 27px
+  .head
+    display: flex
+    margin-bottom: 10px
+    cursor: pointer
+    .arrow
+      position: relative
+      width: 70px
+      height: 55px
+      background: $red
+      &::before
+        content: ''
+        position: absolute
+        background: url("/images/main_page/arrow.svg") center no-repeat
+        background-size: contain
+        width: 35%
+        height: 35%
+        top: 50%
+        left: 50%
+        margin-left: -12px
+        margin-top: -9px
+      &_active
+        &::before
+          transform: rotate(90deg)
+    .title
+      display: flex
+      align-items: center
+      justify-content: flex-start
+      padding-left: 30px
+      width: 100%
+      border: 1px solid $border_color
+      background: $white
+      font-size: 20px
+      font-weight: bold
+  .body
+    display: none
+    padding: 25px
+    border: 1px solid $border_color
+    background: $white
+    font-size: 14px
+    font-weight: 500
+    &_active
+      display: flex
+  &-wrap
+    padding-top: 55px
 .main-form
-	position: relative
-	margin-top: 60px
-	span
-		position: relative
-		margin-left: 4px
-		font-size: 12px
-		font-weight: 500
-		&::before
-			content: '*'
-			position: absolute
-			top: -5px
-			right: -7px
-			color: $red
-	.button
-		padding: 8px 25px
-		border: 1px solid $red
-		background: $red
-		font-weight: bold
-		color: $white
-		&:hover
-			color: $red
-	input
-		width: 98%
-		margin-bottom: 25px
-		padding: 4px 10px
-		border: 1px solid $border_color
-		border-radius: 4px
-	img
-		position: absolute
-		bottom: -55px
-		right: 18%
+  position: relative
+  margin-top: 60px
+  span
+    position: relative
+    margin-left: 4px
+    font-size: 12px
+    font-weight: 500
+    &::before
+      content: '*'
+      position: absolute
+      top: -5px
+      right: -7px
+      color: $red
+  .button
+    padding: 8px 25px
+    border: 1px solid $red
+    background: $red
+    font-weight: bold
+    height: 46px
+    margin-left: 5px
+    color: $white
+    &:hover
+      color: $red
+  input
+    margin-right: 5px
+    width: 100%
+    max-width: 300px
+    margin-bottom: 25px
+    padding: 10px
+    border: 1px solid $border_color
+    border-radius: 4px
+  img
+    position: absolute
+    bottom: -19px
+    right: 53px
+
+.main-page__items_item
+  h2
+    font-family: $thin
+    font-size: 22px
+    text-align: center
+    margin-top: 15px
+    margin-bottom: 15px
+
+  p
+    font-family: 'Roboto Light', sans-serif
+    font-size: 15px
+    text-align: center
+    margin-bottom: 35px
+
+.main-page__news_conc
+  padding: 55px 0
+  background: url("/images/main_page/usor.png") repeat
+  background-color: #F7F7F7
+
+  &::after
+    content: ''
+    position: absolute
+    width: 100%
+    height: 11px
+    background: url(/images/circle-line.png)
+    top: 0
+    left: 0
+    overflow: visible
+
+  p
+    font-family: "Roboto Light", Arial
+    font-size: 15px
+    margin-bottom: 42px
+
+  &:after
+    content: ''
+    position: absolute
+    width: 100%
+    height: 11px
+    background: url("/images/circle-line.png")
+    top: 0
+    left: 0
+    overflow: visible
+
+.news_conc-item-down
+  margin-top: 40px
+  bottom: 8px
+  left: 49%
+
+.main-page__news_conc-item
+  position: relative
+  display: flex
+  flex-direction: row
+  margin-bottom: 30px
+
+  img
+    width: 50%
+
+.main-page__news_conc-item-desc
+  padding: 20px 20px 25px 20px
+  background-color: #85bfe1
+  width: 50%
+
+
+
+.main-page__news_conc-button
+  padding: 10px 15px
+  margin-left: auto
+  margin-right: auto
+  display: block
+  font-size: 12px
+  font-family: Roboto
+  font-weight: 500
+  color: #ff3737
+  background-color: rgba(255, 255, 255, 0)
+  border: 2px solid #ff3737
+  border-radius: 3px
+  transition: 0.3s
+  margin-top: 30px
+
+  &:hover
+    color: #fff
+    background-color: #ff3737
+
+.main-page__news_conc-item-desc
+  a
+    font-family: Roboto Medium, Arial
+    font-weight: 600
+    font-size: 16px
+    color: #fff
+    line-height: 18px
+    text-align: center
+    text-transform: uppercase
+
+    &:hover
+      text-decoration: underline
+
+  p
+    font-family: "Roboto Light", Arial
+    color: #fff
+    text-align: center
+    margin: 0
+
+  button
+    margin-left: auto
+    margin-right: auto
+    display: block
+    font-size: 12px
+    font-family: Roboto, Arial
+    font-weight: 500
+    color: #fff
+    background-color: rgba(255, 255, 255, 0)
+    border: 2px solid #fff
+    border-radius: 3px
+    width: 132px
+    height: 31px
+    transition: 0.3s
+
+    &:hover
+      background-color: #6794af
+
+.main-page__last_pub
+  padding: 70px 0
+
+.main-page__last_pub-item
+  border-radius: 5px
+  padding: 24px 19px
+  transition: 0.3s ease
+
+  &:hover
+    -webkit-box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.19)
+    -moz-box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.19)
+    box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.19)
+
+  a
+    
+    &:hover
+      color: #51c7e1
+    font-family: 'Roboto', sans-serif
+    cursor: pointer
+    font-size: 18px
+    margin-bottom: 0
+    font-weight: 600
+
+  span
+    &:nth-child(1)
+      font-size: 15px
+      color: #818181
+
+    &:nth-child(2)
+      font-size: 15px
+      color: #899ac7
+
+.main-page__last_pub-item-3 span
+  &:nth-child(1)
+    font-size: 14px
+    color: black
+
+  &:nth-child(2)
+    font-size: 13px
+    color: #818181
+
+.main-page__last_pub-item
+  p
+    font-family: Roboto, Arial
+    font-weight: 100
+    font-size: 16px
+
+  .d-flex img
+    width: 40px
+    margin-right: 8px
+
+.main-page__descr
+  padding-top: 70px
+  padding-bottom: 60px
+
+.main-page__img
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  -webkit-box-pack: end
+  -ms-flex-pack: end
+  justify-content: flex-end
+
+.main-page__contents
+  position: relative
+  padding-top: 75px
+  background: url("/images/main_page/bg_section_1.png") center
+
+  &::after
+    content: ''
+    position: absolute
+    width: 100%
+    height: 11px
+    background: url("/images/circle-line.png")
+    top: 0
+    left: 0
+    overflow: visible
+
+.main-page__banner
+  position: relative
+  padding-top: 25px
+  background: url("/images/main_page/bg_section_2.png")
+
+  &::after
+    content: ''
+    position: absolute
+    width: 100%
+    height: 11px
+    background: url(/images/circle-line.png)
+    top: 0
+    left: 0
+    overflow: visible
+
+.modal_question
+  .modal-content
+    border: 3px black solid
+    border-radius: 0
+    max-width: 547px
+    width: 100%
+
+  .modal-header
+    button
+      position: absolute
+      width: 62px
+      height: 52px
+      right: -15px
+      top: -26px
+      font-size: 26px
+      color: black
+      background-color: white
+      border: 3px solid black
+
+      &:hover
+        color: white
+        background-color: black
+
+    border-radius: 0
+    padding: 30px 15px
+
+    p
+      margin: 0px
+      font-family: "Roboto", Arial
+
+.main-page__questions
+  padding: 70px 0
+  background: url("/images/main_page/usor2.png") repeat
+  background-color: #fff
+
+  .col-6
+    margin-bottom: 30px
+
+  .row p
+    font-family: Roboto, Arial
+    margin: 0
+    margin-left: 10px
+    font-weight: 100
+    font-size: 24px
+
+    &:hover
+      color: red
+
+.main-page__questions_dop p
+  font-family: Roboto, Arial
+  font-size: 15px
+  text-align: center
+
+.main-page__winner
+  padding: 90px
+
+.main-page__surprise
+  position: relative
+  padding-top: 70px
+  padding-bottom: 310px
+  background: url("/images/main_page/bg_section_3.jpg")
+
+  p
+    font-family: "Roboto Light", Arial
+    font-size: 15px
+    color: white
+    text-align: center
+
+  .section-title
+    margin-bottom: 5px
+    color: #fff
+
+  .sub-title
+    font-size: 22px
+    color: #fff
+
+    span
+      display: block
+
+  img
+    position: absolute
+    bottom: -106px
+    left: 50%
+    -webkit-transform: translateX(-422px)
+    transform: translateX(-422px)
+    z-index: 2
+
+.main-page__form
+  position: relative
+  padding-top: 45px
+  padding-bottom: 18px
+  background: #F6F6F6
+
+  .section-title
+    position: relative
+    margin-bottom: 10px
+    z-index: 3
+
+  p
+    font-family: "Roboto Light", Arial
+    font-size: 18px
+    color: #444444
+    text-align: center
+
+    span
+      font-family: "Roboto Light", Arial
+      font-size: 18px
+      color: #96c667
+
+._diplom-1
+  margin-left: 15px
+
+.main-descr
+  margin-top: 33px
+
+.main-descr__item
+  font-size: 34px
+  color: #224357
+  list-style: url("/images/main_page/services-icon-1.png")
+  margin-left: 35px
+  position: relative
+  margin-bottom: 50px
+
+.main-descr__item-2
+  font-family: $thin
+
+.main-descr__item-1
+  font-family: 'Roboto Light', Arial
+  font-weight: 300
+  font-size: 16px
+  color: #333333
+  top: 46px
+
+.statbar
+  height: 216px
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  -webkit-box-orient: vertical
+  -webkit-box-direction: normal
+  -ms-flex-direction: column
+  flex-direction: column
+  -webkit-box-pack: center
+  -ms-flex-pack: center
+  justify-content: center
+  padding: 50px 15px 50px 15px
+  border: 1px solid #f1f1f1
+  border-radius: 5px
+  text-align: center
+
+.statbar__symbol
+  display: inline-block
+  font-size: 38px
+  font-weight: 600
+  font-family: 'Atma', cursive
+
+.statbar__title
+  font-size: 18px
+  font-weight: bold
+
+.statbar__descr
+  font-size: 13px
+  font-weight: 500
+
+.contents__descr
+  font-size: 14px
+  font-weight: 500
+
+#tabs
+  position: relative
+
+.tabs
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  -webkit-box-pack: center
+  -ms-flex-pack: center
+  justify-content: center
+  margin: 0
+
+.mark
+  margin-right: 2px
+  padding: 15px 40px
+  background: #ff2001
+  border: 1px solid #ff2001
+  border-bottom: none
+  border-top-left-radius: 4px
+  border-top-right-radius: 4px
+  list-style: none
+  text-transform: uppercase
+  color: #fff
+  font-weight: 500
+  cursor: pointer
+
+.mark_active
+  background: #fff
+  border: 1px solid #d1cece
+  border-bottom: none
+  color: #313131
+
+.tab-section
+  padding-top: 40px
+  padding-bottom: 150px
+  margin-top: -1px
+  border-top: 1px solid #d1cece
+  background: #fff
+
+.competition
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  background: #00bbdc
+  margin-bottom: 15px
+
+.competition__descr
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  -webkit-box-align: center
+  -ms-flex-align: center
+  align-items: center
+  -webkit-box-orient: vertical
+  -webkit-box-direction: normal
+  -ms-flex-direction: column
+  flex-direction: column
+  margin: 0 auto
+  margin-top: 25px
+  color: #fff
+
+  .title
+    margin-bottom: 15px
+    font-size: 18px
+    font-weight: 500
+
+  .name
+    font-size: 15px
+    margin-bottom: 7px
+
+  .date-time
+    font-size: 13px
+    margin-bottom: 10px
+
+    span
+      display: block
+
+  .button:hover
+    color: #00bbdc
+
+.publication-snippet
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  -ms-flex-wrap: wrap
+  flex-wrap: wrap
+
+.publication
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  width: 50%
+  margin-bottom: 15px
+  padding-right: 55px
+
+.publication__img
+  margin-right: 25px
+
+.publication__descr
+  .title
+    font-size: 18px
+    font-weight: bold
+
+    &:hover
+      color: #313131
+
+  .date-time
+    font-size: 12px
+    color: #ABA7A7
+
+  .author
+    font-size: 14px
+    color: #606060
+
+.more
+  text-align: right
+  font-size: 12px
+  color: #313131
+
+  a
+    border-bottom: 1px dotted #313131
+
+    &:hover
+      color: #313131
+
+.banner__title
+  text-transform: uppercase
+  color: #fff
+
+.banner__wrap
+  padding-top: 40px
+  padding-left: 10px
+  text-align: center
+
+  h2
+    font-family: $thin
+    font-size: 44px
+    color: #fff
+    text-align: left
+
+  p
+    font-family: "Roboto Light", Arial
+    font-size: 15px
+    color: #fff
+    text-align: left
+
+  a
+    font-family: "Roboto Light", Arial
+    font-size: 14px
+    color: #fff
+    text-decoration: underline
+
+  form
+    margin-top: 30px
+    display: flex
+
+  input
+    border: 2px solid #fff
+    border-radius: 3px
+    max-width: 493px
+    width: 100%
+    margin-right: 10px
+    height: 40px
+    padding: 10px 15px
+
+  button
+    border: 2px solid #fff
+    border-radius: 3px
+    background-color: rgba(255, 255, 255, 0)
+    color: #fff
+    width: 122px
+    height: 40px
+
+.banner__button
+  padding: 12px 7px
+  margin-right: 15px
+  color: #fff
+  font-size: 14px
+  font-weight: 500
+
+  &:last-child
+    background: #fff
+    color: #96c667
+
+    &:hover
+      color: #fff
+
+  &.filled-btn:before
+    background: #96c667
+
+  &:hover
+    color: #96c667
+
+.winners
+  padding-top: 65px
+
+.winner__desr
+  font-weight: 500
+
+.winer-block
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  padding: 25px
+  margin-bottom: 40px
+  border-radius: 300px
+  background: #f8c145
+  -webkit-box-shadow: 0px 5px 0px 0px #dfae3e
+  box-shadow: 0px 5px 0px 0px #dfae3e
+
+.winer-block__img
+  position: relative
+  width: 180px
+  height: 180px
+  border: 8px solid #fff
+  border-radius: 50%
+  background-size: cover
+
+  .mask
+    opacity: 0
+    overflow: visible
+    border: 0 solid rgba(0, 0, 0, 0.7)
+    -webkit-box-sizing: border-box
+    box-sizing: border-box
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    z-index: 999
+    -webkit-transition: all 0.35s ease-in
+    transition: all 0.35s ease-in
+
+  .mask-btn
+    display: -webkit-box
+    display: -ms-flexbox
+    display: flex
+    -webkit-box-pack: center
+    -ms-flex-pack: center
+    justify-content: center
+    -webkit-box-align: center
+    -ms-flex-align: center
+    align-items: center
+    -webkit-box-orient: vertical
+    -webkit-box-direction: normal
+    -ms-flex-direction: column
+    flex-direction: column
+    position: relative
+    height: 100%
+    background-color: rgba(0, 0, 0, 0.5)
+    border-radius: 50%
+    z-index: 101
+
+  .mask
+    i
+      border-radius: 50%
+      background-color: #ff2001
+      color: #ffffff
+      padding: 7px
+      margin-bottom: 10px
+      -webkit-transition: opacity 0.35s, -webkit-transform 0.35s
+      transition: opacity 0.35s, -webkit-transform 0.35s
+      transition: opacity 0.35s, transform 0.35s
+      transition: opacity 0.35s, transform 0.35s, -webkit-transform 0.35s
+      -webkit-transform: scale(1.5)
+      transform: scale(1.5)
+
+    &:hover
+      opacity: 1
+      color: #fff
+      -webkit-transform: scale(1)
+      transform: scale(1)
+
+.winer-block__info
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  -webkit-box-orient: vertical
+  -webkit-box-direction: normal
+  -ms-flex-direction: column
+  flex-direction: column
+  -webkit-box-align: center
+  -ms-flex-align: center
+  align-items: center
+  width: 66%
+  text-align: center
+
+  .name
+    margin-top: 7px
+    font-size: 18px
+    color: #fff
+
+  .date-time
+    margin-top: 7px
+    font-size: 14px
+    font-weight: 500
+    color: #fff
+
+    span
+      display: block
+      font-size: 11px
+      font-weight: 400
+
+  .descr
+    margin-top: 7px
+    margin-bottom: 10px
+    font-size: 12px
+    font-weight: 500
+    color: #fff
+
+  .button:hover
+    color: #f8c145
+
+.head-text
+  font-size: 44px
+  font-family: $thin
+  span 
+    color: #f34235
+
+.main-page__questions 
+  .head-text
+    margin-top: 40px
+    margin-bottom: 80px
+
+.main-page__questions_dop
+  font-size: 15px
+  font-family: "Roboto"
+  text-align: center
+  a 
+    font-size: 15px !important
+    margin: 0 !important
+    font-family: "Roboto Light", sans-serif
+    text-decoration: underline
+    &:hover
+      cursor: pointer !important
+      color: #f34235 !important
+.white-figure 
+  margin-left: auto
+  margin-right: auto
+  display: block
+  width: 27px !important
+  height: 27px
+  margin-bottom: 18px
+
+.date-publ 
+  font-size: 16px
+  font-family: "Roboto Light" !important
+  text-transform: uppercase
+  margin-bottom: 5px !important
+
+.main-page__last_pub-info
+    margin-bottom: 50px
+.main-page__questions
+  a 
+    margin-left: 20px
+    margin-top: 16px
+    font-size: 24px
+    font-family: "Roboto Light", sans-serif
+    &:hover
+      cursor: pointer
+      color: #f34235 !important
+
+.main-page__surprise
+  h2
+    color: #fff
+
+h2 
+  span 
+    font-family: $thin
+
+.questions-item
+  align-items: center

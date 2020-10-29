@@ -292,6 +292,8 @@
         </div>
     </div>
 </div>
+  @include('header_footer/newsletter')
+        @include('header_footer/footer')
 @include('script')
 <script>
 

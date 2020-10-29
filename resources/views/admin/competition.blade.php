@@ -36,11 +36,11 @@
                         </div>
                         <div class="place-wrap">
                             <select class="place" data-id="{{$work->id}}">
-                                <option value="0">Выбирете место</option>
+                                <option value="0">Выберите место</option>
                                 <option value="1">Первое</option>
                                 <option value="2">Второе</option>
                                 <option value="3">Третье</option>
-                                <option value="4">Лаурят</option>
+                                <option value="4">Лауреат</option>
                             </select>
                         </div> 
                     </form>

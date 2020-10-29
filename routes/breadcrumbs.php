@@ -19,6 +19,7 @@ Breadcrumbs::register('competition', function($breadcrumbs, $competition) {
 	$breadcrumbs->push($competition->title, route('competition', ['id' => $competition->id]));
 });
 
+
 Breadcrumbs::register('arch-competition', function($breadcrumbs, $competition) {
 	$breadcrumbs->parent('arch-competitions', route('arch-competitions'));
 	$breadcrumbs->push($competition->title, route('competition', ['id' => $competition->id]));

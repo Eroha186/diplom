@@ -1,4 +1,10 @@
-global.$ = require('jquery');
+// global.$ = require('jquery');
+window.$ = window.jQuery = require('jquery');
+const fancybox = require('fancybox')($);
+const fancyboxCSS = require('fancybox/dist/css/jquery.fancybox.css');
+
+// window.Popper = require('popper.js/dist/umd/popper.js').default;
+global.bootstrap = require('bootstrap');
 global.select2 = require('select2');
 global.Quill = require('quill');
 global.dmUploader = require('dm-file-uploader');
@@ -34,6 +40,7 @@ $(function () {
 
 
 
+
     if ($('*').is('#publication-content__text')) {
         let textPublication = JSON.parse($('#publication-content__text').val());
         let readable = new Quill('#readable');
@@ -45,9 +52,9 @@ $(function () {
      *  Для элементов, которые являются вкладками табов класс прописывается следующим образом
      * class=" name_class tab".
      * И никак иначе
-    */
+     */
 
-    $('.tab').on('click', function () {
+     $('.tab').on('click', function () {
         let tab = $(this).data('tab');
         let className = $(this).attr('class');
         className = className.split(' ');
@@ -58,14 +65,14 @@ $(function () {
         $('.tab-content[data-tab="' + tab + '"]').addClass('content_active');
     });
 
-    $('.head').on('click', function () {
+     $('.head').on('click', function () {
         $('.head').not(this).parent('.questions__acord').children('.body').removeClass('body_active');
         $('.head').not(this).children('.arrow').removeClass('arrow_active');
         $(this).parent('.questions__acord').children('.body').toggleClass('body_active');
         $(this).children('.arrow').toggleClass('arrow_active');
     });
 
-    $('.filter-name-publications').on('click', function () {
+     $('.filter-name-publications').on('click', function () {
         let column = $(this).attr('data-column');
         let condition = setOrder($(this));
 
@@ -84,7 +91,7 @@ $(function () {
         });
     });
 
-    $('.filter-name-competitions').on('click', function () {
+     $('.filter-name-competitions').on('click', function () {
         let column = $(this).attr('data-column');
         let condition = setOrder($(this));
         $.ajax({
@@ -102,7 +109,7 @@ $(function () {
         });
     });
 
-    $('.filter-name-arch-competitions').on('click', function () {
+     $('.filter-name-arch-competitions').on('click', function () {
         let column = $(this).attr('data-column');
         let condition = setOrder($(this));
         $.ajax({
@@ -120,7 +127,7 @@ $(function () {
         });
     });
 
-    $('.filter-name-express').on('click', function () {
+     $('.filter-name-express').on('click', function () {
         let column = $(this).attr('data-column');
         let condition = setOrder($(this));
         console.log('ok');
@@ -139,7 +146,7 @@ $(function () {
         });
     });
 
-    $('.filter-name-competition').on('click', function () {
+     $('.filter-name-competition').on('click', function () {
         let column = $(this).attr('data-column');
         let condition = setOrder($(this));
         $.ajax({
@@ -158,7 +165,7 @@ $(function () {
     });
 
 
-    $('.radio-button').on('click', function () {
+     $('.radio-button').on('click', function () {
         $('.radio-button').removeClass('radio-button_active');
         $(this).addClass('radio-button_active');
         if ($(this).hasClass('by-diplom')) {
@@ -168,13 +175,13 @@ $(function () {
         }
     });
 
-    $('.search-competitions').keypress(function (e) {
+     $('.search-competitions').keypress(function (e) {
         if (e.ctrlKey || e.keyCode == 13) {
             $('#search').trigger("click");
         }
     });
 
-    $('#coins-number').bind('keyup mouseup', function () {
+     $('#coins-number').bind('keyup mouseup', function () {
         if ($('#uses-coins').is(':checked')) {
             let numberCoins = $(this).val();
             if (numberCoins > +maxValue) {
@@ -187,7 +194,7 @@ $(function () {
         }
     });
 
-    $('#uses-coins').on('click', function () {
+     $('#uses-coins').on('click', function () {
         if ($(this).hasClass('click')) {
             $(this).attr('value', 0);
             $('#coins-number').prop('readonly', true);
@@ -199,7 +206,7 @@ $(function () {
         $(this).toggleClass('click')
     });
 
-    $('#submit-form-publication').on('click', function (e) {
+     $('#submit-form-publication').on('click', function (e) {
         e.preventDefault();
         $.ajax({
             headers: {
@@ -216,15 +223,33 @@ $(function () {
                 switch (response) {
                     case 0:
                     case 1:
-                        $('.form-publication').submit();
-                        break;
+                    $('.form-publication').submit();
+                    break;
                     case 2:
-                        $('.modal').show();
-                        break;
+                    $('.modal').show();
+                    break;
                 }
             }
         });
     });
+
+
+     $('.nav-link-dropdown').on('click', function(e){
+        e.preventDefault();
+        $(this).parent().find('.dropdown-mmenu').slideToggle();
+     })
+
+     $('a[data-fancybox="gallery"]').fancybox();
+    // $('li.dropdown').on('click', function(){
+    //     $(this).children('.dropdown-menu').toggleClass('show');
+    // })
+
+    $('.hamburger').on('click', function(){
+        $('.mmenu').toggleClass('menu_active');
+        $(this).toggleClass('is-active');
+        $('#wrapper').toggleClass('content-active');
+        $('body').toggleClass('body_overflow');
+    })
 
 
     $('.close').on('click', function () {
@@ -273,19 +298,19 @@ $(function () {
 
         switch (a) {
             case '1':
-                condition.parent().children('.arrow-up').show();
-                condition.attr('data-condition', '2');
-                break;
+            condition.parent().children('.arrow-up').show();
+            condition.attr('data-condition', '2');
+            break;
             case '2':
-                condition.parent().children('.arrow-up').hide();
-                condition.parent().children('.arrow-down').show();
-                condition.attr('data-condition', '3');
-                break;
+            condition.parent().children('.arrow-up').hide();
+            condition.parent().children('.arrow-down').show();
+            condition.attr('data-condition', '3');
+            break;
             case '3':
-                condition.parent().children('.arrow-down').hide();
-                condition.removeClass('filter-name_active');
-                condition.attr('data-condition', '1');
-                break;
+            condition.parent().children('.arrow-down').hide();
+            condition.removeClass('filter-name_active');
+            condition.attr('data-condition', '1');
+            break;
         }
         return condition.attr('data-condition');
     };
@@ -299,160 +324,160 @@ $(function () {
         РЕАЛИЗОВАТЬ
         Удаление некольких объектов
         Если выделенно больше одного объекта, то их можно удалить кучей
-    */
-    $('.list-body').on('click', '.list-body__item', function () {
-        $('.list-body__item').not(this).removeClass('list-body__item_active');
-        $(this).addClass('list-body__item_active');
-        $('.add-form').removeClass('form_active');
-        $('.edition-form').addClass('form_active');
-        let value = $(this).text();
-        let data_id = $(this).attr('data-id');
-        $('#theme').val(value);
-        $('#theme').attr('data-id', data_id);
-    })
+        */
+        $('.list-body').on('click', '.list-body__item', function () {
+            $('.list-body__item').not(this).removeClass('list-body__item_active');
+            $(this).addClass('list-body__item_active');
+            $('.add-form').removeClass('form_active');
+            $('.edition-form').addClass('form_active');
+            let value = $(this).text();
+            let data_id = $(this).attr('data-id');
+            $('#theme').val(value);
+            $('#theme').attr('data-id', data_id);
+        })
 
-    $('.publication-themes-form button.add').on('click', function (e) {
-        e.preventDefault();
-        let val = $('#themes').val();
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            data: {data: val},
-            url: 'publication/change-themes/add',
-            type: 'POST',
-            success: function (e) {
-                resetList(e);
+        $('.publication-themes-form button.add').on('click', function (e) {
+            e.preventDefault();
+            let val = $('#themes').val();
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {data: val},
+                url: 'publication/change-themes/add',
+                type: 'POST',
+                success: function (e) {
+                    resetList(e);
+                }
+            })
+        })
+
+        $('.publication-themes-form button.del').on('click', function (e) {
+            e.preventDefault();
+            let data_id = $('#theme').attr('data-id');
+            let val = $('#theme').val();
+            if (confirm('Вы желаете удалить запись?')) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {
+                        id: data_id,
+                    },
+                    url: 'publication/change-themes/del',
+                    type: 'POST',
+                    success: function (e) {
+                        resetList(e);
+                    }
+                })
             }
         })
-    })
 
-    $('.publication-themes-form button.del').on('click', function (e) {
-        e.preventDefault();
-        let data_id = $('#theme').attr('data-id');
-        let val = $('#theme').val();
-        if (confirm('Вы желаете удалить запись?')) {
+        $('.publication-themes-form button.editing').on('click', function (e) {
+            e.preventDefault();
+            let data_id = $('#theme').attr('data-id');
+            let val = $('#theme').val();
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 data: {
                     id: data_id,
+                    val: val
                 },
-                url: 'publication/change-themes/del',
+                url: 'publication/change-themes/change',
                 type: 'POST',
                 success: function (e) {
                     resetList(e);
                 }
             })
-        }
-    })
+        })
 
-    $('.publication-themes-form button.editing').on('click', function (e) {
-        e.preventDefault();
-        let data_id = $('#theme').attr('data-id');
-        let val = $('#theme').val();
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            data: {
-                id: data_id,
-                val: val
-            },
-            url: 'publication/change-themes/change',
-            type: 'POST',
-            success: function (e) {
-                resetList(e);
+        $('.competition-type-form button.add').on('click', function (e) {
+            e.preventDefault();
+            let val = $('#themes').val();
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {data: val},
+                url: 'competition/change-type/add',
+                type: 'POST',
+                success: function (e) {
+                    resetList(e);
+                }
+            })
+        })
+
+        $('.competition-type-form button.del').on('click', function (e) {
+            e.preventDefault();
+            let data_id = $('#theme').attr('data-id');
+            let val = $('#theme').val();
+            if (confirm('Вы желаете удалить запись?')) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {
+                        id: data_id,
+                    },
+                    url: 'competition/change-type/del',
+                    type: 'POST',
+                    success: function (e) {
+                        resetList(e);
+                    }
+                })
             }
         })
-    })
 
-    $('.competition-type-form button.add').on('click', function (e) {
-        e.preventDefault();
-        let val = $('#themes').val();
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            data: {data: val},
-            url: 'competition/change-type/add',
-            type: 'POST',
-            success: function (e) {
-                resetList(e);
-            }
-        })
-    })
-
-    $('.competition-type-form button.del').on('click', function (e) {
-        e.preventDefault();
-        let data_id = $('#theme').attr('data-id');
-        let val = $('#theme').val();
-        if (confirm('Вы желаете удалить запись?')) {
+        $('.competition-type-form button.editing').on('click', function (e) {
+            e.preventDefault();
+            let data_id = $('#theme').attr('data-id');
+            let val = $('#theme').val();
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 data: {
                     id: data_id,
+                    val: val
                 },
-                url: 'competition/change-type/del',
+                url: 'competition/change-type/change',
                 type: 'POST',
                 success: function (e) {
                     resetList(e);
                 }
             })
-        }
-    })
-
-    $('.competition-type-form button.editing').on('click', function (e) {
-        e.preventDefault();
-        let data_id = $('#theme').attr('data-id');
-        let val = $('#theme').val();
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            data: {
-                id: data_id,
-                val: val
-            },
-            url: 'competition/change-type/change',
-            type: 'POST',
-            success: function (e) {
-                resetList(e);
-            }
         })
-    })
 
 
-    function resetList(e) {
-        let layout = '';
-        e.forEach((res) => {
-            layout += '<li class="list-body__item" data-id="' + res.id + '">' + res.name + '</li>'
+        function resetList(e) {
+            let layout = '';
+            e.forEach((res) => {
+                layout += '<li class="list-body__item" data-id="' + res.id + '">' + res.name + '</li>'
+            });
+            $('.list-body').html('');
+            $('.list-body').html(layout);
+        }
+
+        $('.place').on('change', function () {
+            let place = $(this).val();
+            let id = $(this).attr('data-id');
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: 'place/' + place + '/' + id,
+                type: 'GET',
+                success: function (e) {
+                    let id = e.id;
+                    $('.wrap-a-work[data-id=' + id + ']').html('<span>Место успешно добавлено</span>');
+                    setTimeout(() => {
+                        $('.wrap-a-work[data-id=' + id + ']').remove();
+                    }, 1000)
+                }
+            });
         });
-        $('.list-body').html('');
-        $('.list-body').html(layout);
-    }
-
-    $('.place').on('change', function () {
-        let place = $(this).val();
-        let id = $(this).attr('data-id');
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: 'place/' + place + '/' + id,
-            type: 'GET',
-            success: function (e) {
-                let id = e.id;
-                $('.wrap-a-work[data-id=' + id + ']').html('<span>Место успешно добавлено</span>');
-                setTimeout(() => {
-                    $('.wrap-a-work[data-id=' + id + ']').remove();
-                }, 1000)
-            }
-        });
-    });
 
     // Показ подложки в админк
     $('#substrate').on('change', function () {
@@ -572,7 +597,7 @@ $(function () {
     let inputs = document.querySelectorAll('#upload');
     Array.prototype.forEach.call(inputs, function (input) {
         let label = document.querySelector('.file-display'),
-            labelVal = label.innerHTML;
+        labelVal = label.innerHTML;
         input.addEventListener('change', function (e) {
             let fileName = '';
             if (this.files && this.files.length > 1)
@@ -621,7 +646,7 @@ $(function () {
         element.removeClass('file-display');
         $('#fileId').html(
             $('#fileId').html() + `<input type="text" name="filesId[]" class="hide" value="${data}">`
-        );
+            );
     }
 
     function clearHtml() {
