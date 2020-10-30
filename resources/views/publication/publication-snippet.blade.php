@@ -3,7 +3,7 @@
     @foreach($publications as $publication)
 
    
-<div class="col-12 d-flex main-page__last_pub-item">
+<div class="col-12 d-flex pub-item">
                 <img src="{{asset('images/main_page/doc.png')}}" style="width: 32px; height: 40px; margin-right: 16px;" alt="">
                 <div>
                    <a href="/publication/{{$publication->id}}">{{$publication->title}}</a>

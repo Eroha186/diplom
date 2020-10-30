@@ -144,9 +144,13 @@
 </section>
 
 <section class="main-page__last_pub">
+
     <div class="container">
+
         <h2 class="head-text text-center" style="margin-bottom: 16px;">Последние <span>публикации</span></h2>
-        <p class="text-center main-page__last_pub-info">
+
+        
+   <!--      <p class="text-center main-page__last_pub-info">
             Более 1234 педагогов опубликовались на нашем сайте за последние 2 года. Спасибо вам за даверие! <br>
             Мы, в свою очередь, гарантируем прозрачность проведенеия конкурсов и оперативное получение <br> дипломов и сертификатов!
         </p>
@@ -197,7 +201,7 @@
                     <p class="main-page__last_pub-item-3 mb-0"><span>07.04.2020</span>    <span>Дутов К. К ., д. Малые Залупки</span></p>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </section>
 

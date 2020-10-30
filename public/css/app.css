@@ -2396,17 +2396,17 @@ footer {
   padding: 70px 0;
 }
 
-.main-page__last_pub-item {
+.pub-item {
   border-radius: 5px;
   padding: 24px 19px;
   transition: 0.3s ease;
 }
 
-.main-page__last_pub-item:hover {
+.pub-item:hover {
   box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.19);
 }
 
-.main-page__last_pub-item a {
+.pub-item a {
   font-family: "Roboto", sans-serif;
   cursor: pointer;
   font-size: 18px;
@@ -2414,16 +2414,16 @@ footer {
   font-weight: 600;
 }
 
-.main-page__last_pub-item a:hover {
+.pub-item a:hover {
   color: #51c7e1;
 }
 
-.main-page__last_pub-item span:nth-child(1) {
+.pub-item span:nth-child(1) {
   font-size: 15px;
   color: #818181;
 }
 
-.main-page__last_pub-item span:nth-child(2) {
+.pub-item span:nth-child(2) {
   font-size: 15px;
   color: #899ac7;
 }
