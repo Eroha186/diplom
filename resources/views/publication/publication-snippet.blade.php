@@ -6,13 +6,24 @@
 <div class="col-12 d-flex pub-item">
                 <img src="{{asset('images/main_page/doc.png')}}" style="width: 32px; height: 40px; margin-right: 16px;" alt="">
                 <div>
+                   
                    <a href="/publication/{{$publication->id}}">{{$publication->title}}</a>
-                  <p><span>{{$publication->kind->name}} • {{$publication->education->name}}</span>            <span>{{$publication->type->name}} • Весна • Осень</span></p>
+                  <p><span>{{$publication->kind->name}} • {{$publication->education->name}}</span>            <span id="tags">
+                      @foreach ($publication->themes as $theme) 
+                      {{$theme->name}} <span>•</span>
+
+                      @endforeach
+                  </span></p>
                     <p> {{$publication->annotation}}</p>
                     <div class="d-flex mb-2">
-                        <a href="{{asset('images/main_page/cat1.png')}}" data-fancybox="gallery"><img src="{{asset('images/main_page/cat1.png')}}" alt=""></a>
-                         <a href="{{asset('images/main_page/cat2.png')}}" data-fancybox="gallery"><img src="{{asset('images/main_page/cat2.png')}}" alt=""></a>
-                         <a href="{{asset('images/main_page/cat3.png')}}" data-fancybox="gallery"><img src="{{asset('images/main_page/cat3.png')}}" alt=""></a>
+                         @foreach ($publication->files as $file)
+                   
+
+                   
+                        <a href="/storage/{{$file->url}}" data-fancybox="gallery"><img width="50" src="/storage/{{$file->url}}" alt=""></a>
+                         @endforeach
+                        <!--  <a href="{{asset('images/main_page/cat2.png')}}" data-fancybox="gallery"><img src="{{asset('images/main_page/cat2.png')}}" alt=""></a>
+                         <a href="{{asset('images/main_page/cat3.png')}}" data-fancybox="gallery"><img src="{{asset('images/main_page/cat3.png')}}" alt=""></a> -->
                     </div>
                     <p class="main-page__last_pub-item-3 mb-0"><span>{{ date("d.m.Y", strtotime($publication->date_add)) }}</span>    <span>{{$publication->user->f}} {{$publication->user->i}} {{$publication->user->o}},
                         {{$publication->user->stuff}},

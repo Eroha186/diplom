@@ -26,7 +26,8 @@
     font-family: $thin
     text-align: center
 
-
+  &__image
+    margin-top: 30px
   &__tags
     margin-bottom: 10px
 
@@ -89,14 +90,14 @@
       color: rgb(228, 86, 0)
 
   &__text
-    margin-top: 30px
+    margin-top: 0
 
     & .ql-editor
       padding: 0
       height: auto
 
       p
-      font-size: 15px
+      font-size: 16px
 
   .ql-container
     font-family: 'Roboto', sans-serif
@@ -107,12 +108,7 @@
     flex-wrap: wrap
 
     img
-      height: 250px
-      width: 250px
-      margin-right: 20px
-      margin-bottom: 15px
-      border-radius: 4px
-      border: 1px solid $border_color
+      margin-top: 10px
 
 .green.filled-btn
   &::before
@@ -131,7 +127,6 @@
 .h940
   height: 940px
   width: 100%
-  border: 1px solid black
   color: black
   font-size: 25px
   margin-bottom: 30px

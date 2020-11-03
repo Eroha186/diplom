@@ -4327,6 +4327,10 @@ input[type=radio]:checked + .radio-button__title > span::after {
   height: 0;
 }
 
+#tags span:last-child {
+  display: none;
+}
+
 .notice {
   font-weight: bold;
   font-size: 15px;
@@ -4605,6 +4609,10 @@ input[type=radio]:checked + .radio-button__title > span::after {
   text-align: center;
 }
 
+.publication-content__image {
+  margin-top: 30px;
+}
+
 .publication-content__tags {
   margin-bottom: 10px;
 }
@@ -4686,13 +4694,13 @@ input[type=radio]:checked + .radio-button__title > span::after {
 }
 
 .publication-content__text {
-  margin-top: 30px;
+  margin-top: 0;
 }
 
 .publication-content__text .ql-editor {
   padding: 0;
   height: auto;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .publication-content .ql-container {
@@ -4706,12 +4714,7 @@ input[type=radio]:checked + .radio-button__title > span::after {
 }
 
 .publication-content__passage img {
-  height: 250px;
-  width: 250px;
-  margin-right: 20px;
-  margin-bottom: 15px;
-  border-radius: 4px;
-  border: 1px solid #d1cece;
+  margin-top: 10px;
 }
 
 .green.filled-btn::before {
@@ -4733,7 +4736,6 @@ input[type=radio]:checked + .radio-button__title > span::after {
 .h940 {
   height: 940px;
   width: 100%;
-  border: 1px solid black;
   color: black;
   font-size: 25px;
   margin-bottom: 30px;

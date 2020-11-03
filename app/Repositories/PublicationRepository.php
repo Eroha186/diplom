@@ -63,6 +63,8 @@ class PublicationRepository
     public function createPublication($publication)
     {
         $filesId = $publication['filesId'];
+
+      $themes = $publication['themes'];
         $publication = Publication::create([
             'user_id' => $publication['user_id'],
             'title' => $publication['title'],
@@ -75,7 +77,11 @@ class PublicationRepository
             'date_add' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
-        $this->attachmentTheme($publication->id, $publication['themes']);
+       // echo '<pre>';
+       // print_r($publication);
+       // echo '</pre>';
+       // die();
+        $this->attachmentTheme($publication->id, $themes);
         $this->attachPublicationIdForFile($publication->id, $filesId);
 
         return $publication;
@@ -115,7 +121,7 @@ class PublicationRepository
     protected function attachPublicationIdForFile($publicationId, $files)
     {
         foreach ($files as $file) {
-            (new UploadFileController())->uploaderPublication($file, $publicationId);
+             (new UploadFileController())->attachPublicationIdForFile($file, $publicationId);
         }
     }
 

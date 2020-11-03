@@ -1,7 +1,8 @@
-// global.$ = require('jquery');
+global.$ = require('jquery');
 window.$ = window.jQuery = require('jquery');
-const fancybox = require('fancybox')($);
-const fancyboxCSS = require('fancybox/dist/css/jquery.fancybox.css');
+window.jQuery = $;
+const fancybox = require('@fancyapps/fancybox');
+const fancyboxCSS = require('@fancyapps/fancybox/dist/jquery.fancybox.min.css');
 
 // window.Popper = require('popper.js/dist/umd/popper.js').default;
 global.bootstrap = require('bootstrap');
@@ -239,7 +240,7 @@ $(function () {
         $(this).parent().find('.dropdown-mmenu').slideToggle();
      })
 
-     $('a[data-fancybox="gallery"]').fancybox();
+     // $('a[data-fancybox="gallery"]').fancybox();
     // $('li.dropdown').on('click', function(){
     //     $(this).children('.dropdown-menu').toggleClass('show');
     // })
