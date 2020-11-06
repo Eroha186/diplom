@@ -45421,11 +45421,72 @@ $(function () {
   }
 
   if ($('*').is('#editor')) {
+    /**
+    * Step1. select local image
+    *
+    */
+    var selectLocalImage = function selectLocalImage() {
+      var input = document.createElement('input');
+      input.setAttribute('type', 'file');
+      input.click(); // Listen upload local image and save to server
+
+      input.onchange = function () {
+        var file = input.files[0];
+        console.log(file); // file type is only image.
+
+        if (/^image\//.test(file.type)) {
+          saveToServer(file);
+        } else {
+          console.warn('You could only upload images.');
+        }
+      };
+    };
+    /**
+     * Step2. save to server
+     *
+     * @param {File} file
+     */
+
+
+    var saveToServer = function saveToServer(file) {
+      var fd = new FormData();
+      fd.append('image', 'file');
+      console.log(fd);
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'http://localhost:3000/storage/upload/', true);
+
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          // this is callback data: url
+          var url = JSON.parse(xhr.responseText).data;
+          insertToEditor(url);
+        }
+      };
+
+      xhr.send(fd);
+    };
+    /**
+     * Step3. insert image url to rich editor.
+     *
+     * @param {string} url
+     */
+
+
+    var insertToEditor = function insertToEditor(url) {
+      // push image url to rich editor.
+      var range = quill.getSelection();
+      quill.insertEmbed(range.index, 'image', "http://localhost:9000".concat(url));
+    }; // quill editor add image handler
+
+
     var quill = new Quill('#editor', {
+      bounds: '#editor',
       modules: {
-        toolbar: '#toolBar'
+        toolbar: {
+          container: '#toolBar'
+        }
       },
-      placeholder: 'Введите полное описание текста...',
+      placeholder: 'Free Write...',
       theme: 'snow'
     });
     var value = $('input[name=text]').attr('data-value');
@@ -45451,6 +45512,9 @@ $(function () {
         type: 'POST',
         data: $('.form-publication').serialize()
       });
+    });
+    quill.getModule('toolbar').addHandler('image', function () {
+      selectLocalImage();
     });
   }
 });

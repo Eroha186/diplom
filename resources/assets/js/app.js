@@ -238,7 +238,7 @@ $(function () {
      $('.nav-link-dropdown').on('click', function(e){
         e.preventDefault();
         $(this).parent().find('.dropdown-mmenu').slideToggle();
-     })
+    })
 
      // $('a[data-fancybox="gallery"]').fancybox();
     // $('li.dropdown').on('click', function(){
@@ -664,40 +664,114 @@ $(function () {
         return name
     }
 
+
+
+
     if ($('*').is('#editor')) {
-        let quill = new Quill('#editor', {
-            modules: {
-                toolbar: '#toolBar'
-            },
-            placeholder: 'Введите полное описание текста...',
-            theme: 'snow'
-        });
-        let value = $('input[name=text]').attr('data-value');
-        if (value) {
-            quill.setContents(JSON.parse(value));
-        }
-
-        $('#education').trigger('change');
-        $('#type').trigger('change');
-
-
-
-        $('.form-publication').on('submit', function () {
-            let about = $('input[name=text]');
-            about.val(JSON.stringify(quill.getContents()));
-        });
-
-        $('#login-form-publication').on('submit', function (e) {
-            let about = $('input[name=text]');
-            about.val(JSON.stringify(quill.getContents()));
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url: '/publicationSaveSession',
-                type: 'POST',
-                data: $('.form-publication').serialize(),
-            });
-        })
+     const quill = new Quill('#editor', {
+      bounds: '#editor',
+      modules: {
+        toolbar: {
+                container : '#toolBar',
+            }
+    },
+    placeholder: 'Free Write...',
+    theme: 'snow'
+});
+     
+     let value = $('input[name=text]').attr('data-value');
+     if (value) {
+        quill.setContents(JSON.parse(value));
     }
+
+    $('#education').trigger('change');
+    $('#type').trigger('change');
+
+
+
+    $('.form-publication').on('submit', function () {
+        let about = $('input[name=text]');
+        about.val(JSON.stringify(quill.getContents()));
+    });
+
+    $('#login-form-publication').on('submit', function (e) {
+        let about = $('input[name=text]');
+        about.val(JSON.stringify(quill.getContents()));
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '/publicationSaveSession',
+            type: 'POST',
+            data: $('.form-publication').serialize(),
+        });
+    })
+
+
+      /**
+   * Step1. select local image
+   *
+   */
+   function selectLocalImage() {
+      const input = document.createElement('input');
+      input.setAttribute('type', 'file');
+      input.click();
+
+  // Listen upload local image and save to server
+  input.onchange = () => {
+    const file = input.files[0];
+    console.log(file);
+    // file type is only image.
+    if (/^image\//.test(file.type)) {
+      saveToServer(file);
+  } else {
+      console.warn('You could only upload images.');
+  }
+};
+}
+
+/**
+ * Step2. save to server
+ *
+ * @param {File} file
+ */
+ function saveToServer(file) {
+  const fd = new FormData();
+  fd.append('image', 'file');
+
+  console.log(fd);
+
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', 'http://localhost:3000/storage/upload/', true);
+  xhr.onload = () => {
+    if (xhr.status === 200) {
+      // this is callback data: url
+      const url = JSON.parse(xhr.responseText).data;
+      insertToEditor(url);
+  }
+      
+};
+xhr.send(fd);
+}
+
+/**
+ * Step3. insert image url to rich editor.
+ *
+ * @param {string} url
+ */
+ function insertToEditor(url) {
+  // push image url to rich editor.
+  const range = quill.getSelection();
+  quill.insertEmbed(range.index, 'image', `http://localhost:9000${url}`);
+}
+
+// quill editor add image handler
+quill.getModule('toolbar').addHandler('image', () => {
+  selectLocalImage();
+});
+
+}
+
+
+
 });
