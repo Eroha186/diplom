@@ -37,7 +37,10 @@
 			@if(\Illuminate\Support\Facades\Auth::check())
 					<div class="my-account">
        <a  href="/account/personal-data"> <img src="{{asset('images/login.svg')}}" alt="" width=""> Мой кабинет</a>     
-      <img src="{{asset('images/logout.svg')}}" alt="" width="25">   <a href="{{ route('logout') }}" >Выход</a>
+      <img src="{{asset('images/logout.svg')}}" alt="" width="25">   <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" >Выход</a>
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
           </div>
 				@else
 	<div class="login-and-register"> <img src="{{asset('images/logout.svg')}}" alt="" width="25">  <a href="/register">Регистрация</a> / <a href="/login">Вход</a></div>

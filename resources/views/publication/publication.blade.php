@@ -30,23 +30,26 @@
         <div class="row">
             <div class="col-xl-9">
                 <div class="row">
-                   
+                      @if(isset($publication->ppt))
+                <!-- <iframe src='https://view.officeapps.live.com/op/embed.aspx?src=http://localhost:3000//storage/upload/EQ1LjxRLPBEESjvPuYIOfdaebJS7CwID2fAdrl0T.pptx' width='100%' height='600px' frameborder='0'>  -->
+                @endif                
                 </div>
               
                 <div class="publication-content__viewport">
                     <div class="row">
                         <div class="col-xl-12 h940">
+
+
+
                            <div class="publication-content__text" id="readable">
             <input type="text" id="publication-content__text" class="hide" value="{{$publication->text}}">
             
         </div>
         <div class="text-center publication-content__image" >
-                  @foreach($publication->images as $image)
-              <a href="{{Storage::url($image)}}" data-fancybox="gallery">  <img src="{{Storage::url($image)}}"  alt=""></a>
-            @endforeach
 
             </div>
                         </div>
+
                     </div>
                 </div>
                 <div class="row">
@@ -71,7 +74,9 @@
                     <span>Изображения публикации</span>
                      <div class="publication-content__passage">
             @foreach($publication->images as $image)
-              <a href="{{Storage::url($image)}}" data-fancybox="gallery">  <img src="{{Storage::url($image)}}" width="100" alt=""></a>
+             <div class="publication-thumb__item">
+                  <a href="{{Storage::url($image)}}" data-fancybox="gallery">  <img src="{{Storage::url($image)}}" width="100" alt=""></a>
+             </div>
             @endforeach
         </div>
                 </div>
@@ -94,6 +99,13 @@
                 </div>
                </div>
             </div>
+             <div class="publication-gallery">
+                  @foreach($publication->images as $image)
+                  
+              <a href="{{Storage::url($image)}}" data-fancybox="gallery">  <img  src="{{Storage::url($image)}}"  alt=""></a>
+          
+            @endforeach
+</div>
 
 {{--            <div class="col-xl-4  offset-md-1 new-publication">--}}
 {{--                <div class="title">Новые публикации</div>--}}

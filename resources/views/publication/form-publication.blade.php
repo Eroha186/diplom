@@ -237,7 +237,7 @@
                     </div>
 
                     <div style="font-weight: bold; margin-bottom: 30px; margin-top: 30px;">
-                        <label class="red-star">Прекрепите файл работы</label> (допустимые типы файлов: .jpg, .png,
+                        <label class="red-star">Прикрепите файл работы</label> (допустимые типы файлов: .jpg, .png,
                         .doc, .docx,
                         .pdf, .ppt, .pptx)
                     </div>

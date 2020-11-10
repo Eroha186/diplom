@@ -17,13 +17,8 @@
                     <p> {{$publication->annotation}}</p>
                     <div class="d-flex mb-2">
                          @foreach ($publication->files as $file)
-                   
-
-                   
-                        <a href="/storage/{{$file->url}}" data-fancybox="gallery"><img width="50" src="/storage/{{$file->url}}" alt=""></a>
+                        <a href="/storage/{{$file->url}}" data-fancybox="gallery"><img class="img-fluid publication-thumb" width="50" src="/storage/{{$file->url}}" alt=""></a>
                          @endforeach
-                        <!--  <a href="{{asset('images/main_page/cat2.png')}}" data-fancybox="gallery"><img src="{{asset('images/main_page/cat2.png')}}" alt=""></a>
-                         <a href="{{asset('images/main_page/cat3.png')}}" data-fancybox="gallery"><img src="{{asset('images/main_page/cat3.png')}}" alt=""></a> -->
                     </div>
                     <p class="main-page__last_pub-item-3 mb-0"><span>{{ date("d.m.Y", strtotime($publication->date_add)) }}</span>    <span>{{$publication->user->f}} {{$publication->user->i}} {{$publication->user->o}},
                         {{$publication->user->stuff}},

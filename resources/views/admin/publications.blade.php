@@ -9,6 +9,7 @@
         </ul>
         <div class="tab-content content_active publ-tab-content" data-tab="1">
             <div class="publications-list">
+                
                 @foreach($publications as $publication)
                     <div style="width: 100%;" class="publication-card">
                         <div class="row">
@@ -98,7 +99,7 @@
                         {{ csrf_field() }}
                         <label for="substrate">Подложка для награды</label>
                         <select name="substrate" id="substrate" class="form-control">
-                            <option value="0">Выбирете подложку</option>
+                            <option value="0">Выберите подложку</option>
                             @foreach($substrates as $substrate)
                                 <option value="{{$substrate->id}}"
                                         @if($substrate->active_for_publ) selected="selected" @endif>

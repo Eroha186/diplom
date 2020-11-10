@@ -643,7 +643,7 @@ $(function () {
             element.removeClass('file-display');
             return true;
         }
-        element.addClass('ready-file').text(element.text() + ' - Успешно загружено');
+        element.addClass('ready-file').text(element.text() + ' - Изображение загружено');
         element.removeClass('file-display');
         $('#fileId').html(
             $('#fileId').html() + `<input type="text" name="filesId[]" class="hide" value="${data}">`
@@ -672,13 +672,13 @@ $(function () {
       bounds: '#editor',
       modules: {
         toolbar: {
-                container : '#toolBar',
-            }
+            container : '#toolBar',
+        }
     },
-    placeholder: 'Free Write...',
+    placeholder: 'Полное описание работы...',
     theme: 'snow'
 });
-     
+
      let value = $('input[name=text]').attr('data-value');
      if (value) {
         quill.setContents(JSON.parse(value));
@@ -720,12 +720,11 @@ $(function () {
   // Listen upload local image and save to server
   input.onchange = () => {
     const file = input.files[0];
-    console.log(file);
     // file type is only image.
     if (/^image\//.test(file.type)) {
       saveToServer(file);
   } else {
-      console.warn('You could only upload images.');
+      console.warn('Вы можете загрузить только изображения.');
   }
 };
 }
@@ -737,21 +736,24 @@ $(function () {
  */
  function saveToServer(file) {
   const fd = new FormData();
-  fd.append('image', 'file');
+  fd.append('image', file);
 
-  console.log(fd);
+  console.log(file);
+  $.ajax({
+    url : 'publicationImageSave',
+    processData: false,
+    contentType: false,
+    method : 'POST', 
+    data : fd,
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    success: function (e) {
+       
+       insertToEditor(e);
+    }
 
-  const xhr = new XMLHttpRequest();
-  xhr.open('POST', 'http://localhost:3000/storage/upload/', true);
-  xhr.onload = () => {
-    if (xhr.status === 200) {
-      // this is callback data: url
-      const url = JSON.parse(xhr.responseText).data;
-      insertToEditor(url);
-  }
-      
-};
-xhr.send(fd);
+})
 }
 
 /**
@@ -760,9 +762,11 @@ xhr.send(fd);
  * @param {string} url
  */
  function insertToEditor(url) {
+
   // push image url to rich editor.
   const range = quill.getSelection();
-  quill.insertEmbed(range.index, 'image', `http://localhost:9000${url}`);
+  quill.insertEmbed(range.index, 'image', location.origin+'/storage/'+url['path']);
+  $('#fileId').append('<input type="text" name="filesId[]" class="hide" value="'+url['id']+'">')
 }
 
 // quill editor add image handler
