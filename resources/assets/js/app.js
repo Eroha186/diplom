@@ -9,6 +9,7 @@ global.bootstrap = require('bootstrap');
 global.select2 = require('select2');
 global.Quill = require('quill');
 global.dmUploader = require('dm-file-uploader');
+import Headroom from "headroom.js";
 $(function () {
     setOrder($('.filter-name[data-condition != 1]'), 1);
 
@@ -40,7 +41,10 @@ $(function () {
 
 
 
-
+    const header = document.querySelector("header");
+    
+    const headroom = new Headroom(header);
+    headroom.init();
 
     if ($('*').is('#publication-content__text')) {
         let textPublication = JSON.parse($('#publication-content__text').val());
@@ -668,19 +672,19 @@ $(function () {
 
 
     if ($('*').is('#editor')) {
-     const quill = new Quill('#editor', {
-      bounds: '#editor',
-      modules: {
-        toolbar: {
-            container : '#toolBar',
-        }
-    },
-    placeholder: 'Полное описание работы...',
-    theme: 'snow'
-});
+       const quill = new Quill('#editor', {
+          bounds: '#editor',
+          modules: {
+            toolbar: {
+                container : '#toolBar',
+            }
+        },
+        placeholder: 'Полное описание работы...',
+        theme: 'snow'
+    });
 
-     let value = $('input[name=text]').attr('data-value');
-     if (value) {
+       let value = $('input[name=text]').attr('data-value');
+       if (value) {
         quill.setContents(JSON.parse(value));
     }
 
@@ -749,9 +753,9 @@ $(function () {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
     success: function (e) {
-       
-       insertToEditor(e);
-    }
+     
+     insertToEditor(e);
+ }
 
 })
 }

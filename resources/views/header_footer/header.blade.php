@@ -1,4 +1,4 @@
-<header>
+<header class="header--fixed">
 	<div class="header-top">
 		<div class="container">
 			<nav class="row header-top__nav  align-items-center" style="position: relative;">

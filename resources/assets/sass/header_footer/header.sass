@@ -59,6 +59,7 @@
 			border-bottom-left-radius: 15px
 
 header 
+	background: #fff
 	box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1)
 .login-and-register 
 	display: flex
@@ -104,3 +105,19 @@ header
 		&:hover	
 			cursor: pointer
 			color: $red !important
+.headroom 
+	will-change: transform
+	transition: transform 200ms linear
+
+.headroom--pinned 
+	transform: translateY(0%)
+
+.headroom--unpinned 
+	transform: translateY(-100%)
+.header--fixed 
+	width: 100%
+	top: 0
+	left: 0
+	position: fixed !important
+	transition: 0.1s ease
+	z-index: 999

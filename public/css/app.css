@@ -1447,6 +1447,7 @@ select {
 }
 
 header {
+  background: #fff;
   box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
 }
 
@@ -1516,6 +1517,28 @@ header {
 .mmenu .nav-link-dropdown:hover {
   cursor: pointer;
   color: #ff2001 !important;
+}
+
+.headroom {
+  will-change: transform;
+  transition: transform 200ms linear;
+}
+
+.headroom--pinned {
+  transform: translateY(0%);
+}
+
+.headroom--unpinned {
+  transform: translateY(-100%);
+}
+
+.header--fixed {
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: fixed !important;
+  transition: 0.1s ease;
+  z-index: 999;
 }
 
 footer {
@@ -1699,6 +1722,7 @@ footer {
 }
 
 .main-page__main {
+  margin-top: 82px;
   padding: 70px 0;
   background: url("/images/main_page/bg.png") no-repeat center;
   background-size: cover;
@@ -2549,7 +2573,8 @@ footer {
   color: red;
 }
 
-.main-page__questions_dop p {
+.main-page__questions_dop {
+  margin-top: 50px;
   font-family: Roboto, Arial;
   font-size: 15px;
   text-align: center;
@@ -3365,6 +3390,7 @@ h2 span {
   background: url("/images/pattern.png");
   background-color: #93bd5d;
   background-blend-mode: multiply;
+  margin-top: 82px;
 }
 
 .bg-arch::after {
@@ -5265,6 +5291,11 @@ h1 button {
 
 .register-page label {
   margin-top: 15px;
+}
+
+.help__page {
+  margin-top: 82px;
+  padding: 70px 0;
 }
 
 /*==========  Desktop First Method  ==========*/

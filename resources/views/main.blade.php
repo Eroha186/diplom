@@ -84,6 +84,7 @@
     </div>
 </section>
 
+
 <section class="main-page__news_conc">
     <div class="container">
         <h2 class="head-text text-center" style="margin-bottom: 16px;">Новые <span>конкурсы</span></h2>
@@ -432,7 +433,7 @@
                 <a data-toggle="modal" data-target="#exampleModal">Как я могу использовать бонусные баллы?</a>
             </div>
         </div>
-        <p class="main-page__questions_dop">Если у вас возникли другие вопросы, поищите ответы в разделе <a href="">Помощь</a> или напишите в техподержку</p>
+        <p class="main-page__questions_dop">Если у вас возникли другие вопросы, поищите ответы в разделе <a href="/help">Помощь</a> или напишите в техподержку</p>
     </div>
 </section>
 

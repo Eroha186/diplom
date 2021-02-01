@@ -91,7 +91,6 @@ Route::group(['middleware' => 'emailCheck'], function () {
 
 
 
-
 Route::get('/unsubscribe/', "UserController@unsubscribe")->name('no-mailing');
 Route::get('/unsubscribe-approved/', "UserController@unsubscribeApproved")->name('no-mailing-approved');
 
@@ -159,6 +158,9 @@ Route::post('/loginFormCompetition', 'Auth\LoginController@login')->name('loginF
 Route::post('/publicationSaveSession', ['uses' => 'Publication\PublicationSaveSession@publicationSaveSession']);
 Route::post('/payment', ['as' => 'payment', 'uses' => 'PaymentController@payment']);
 Route::get('/test', 'Test@test');
+Route::get('/help', function () {
+    return view('help');
+});
 Route::post('/uploadfilepubl', 'UploadFileController@uploaderPublication');
 Route::post('/uploadercomp', 'UploadFileController@uploaderWork');
 Route::auth();
