@@ -20,7 +20,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="/publications">Список публикаций</a>
-          <a class="dropdown-item" href="#">Архив публикаций</a>
+          <a class="dropdown-item" href="/archive-publications">Архив публикаций</a>
           <a class="dropdown-item" href="/form-publication">Добавить работу</a>
         </div> </li>
 						<li class="header-top__nav-item dropdown {{request()->is('') ? 'header-top__nav-item_active' : ''}}"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

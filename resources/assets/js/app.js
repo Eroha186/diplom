@@ -1,4 +1,4 @@
-global.$ = require('jquery');
+// global.$ = require('jquery');
 window.$ = window.jQuery = require('jquery');
 window.jQuery = $;
 const fancybox = require('@fancyapps/fancybox');
@@ -42,9 +42,11 @@ $(function () {
 
 
     const header = document.querySelector("header");
-    
-    const headroom = new Headroom(header);
+    if($(header).length) {
+        const headroom = new Headroom(header);
     headroom.init();
+    }
+    
 
     if ($('*').is('#publication-content__text')) {
         let textPublication = JSON.parse($('#publication-content__text').val());

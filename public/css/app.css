@@ -3434,7 +3434,7 @@ h2 span {
   bottom: -64px;
   left: 50%;
   transform: translateX(-64px);
-  z-index: 9999;
+  z-index: 20;
 }
 
 .filters {
