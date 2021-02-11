@@ -70,6 +70,8 @@
             </div>
             <div class="col-xl-3 pl-0">
                <div class="publication-content__info">
+                @if (count($publication->images) > 0)
+
                 <div class="publication-content__imgs">
                     <span>Изображения публикации</span>
                      <div class="publication-content__passage">
@@ -80,6 +82,8 @@
             @endforeach
         </div>
                 </div>
+                @endif
+
                 <div class="caral">
                     <img src="{{asset('images/caral.svg')}}" alt="">
                 </div>

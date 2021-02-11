@@ -1,8 +1,8 @@
 
 
 
-
-<footer class="footer-modern-bg" style="background-image: url('images/happykiddo_footer-modern-bg_img.png');">
+</div>
+<footer class="footer-modern-bg">
 	<div class="container">
 		<div class="row clearfix">
 			<div class="footer-widget contact-widget col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">

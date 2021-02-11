@@ -13,7 +13,6 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="/competitions">Список конкурсов</a>
           <a class="dropdown-item" href="/archive-competitions">Архив конкурсов</a>
-          <a class="dropdown-item" href="/form-competition">Добавить работу</a>
         </div> </li>
 						<li class="header-top__nav-item dropdown {{request()->is('') ? 'header-top__nav-item_active' : ''}}"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Публикации
@@ -114,3 +113,4 @@
 {{--		</div>--}}
 {{--	</div>--}}
 </header>
+<div id="wrapper">

@@ -1353,12 +1353,31 @@ select {
   pointer-events: none;
 }
 
+#wrapper {
+  margin-top: 82px;
+}
+
 .hamburger {
   z-index: 9999;
 }
 
 .body_overflow {
   overflow: hidden;
+}
+
+.page-item.active .page-link {
+  background-color: #ff2001;
+  border-color: #ff2001;
+}
+
+.page-link,
+.btn-link {
+  color: #ff2001;
+}
+
+.page-link:hover,
+.btn-link:hover {
+  color: #aa1500;
 }
 
 .header-top {
@@ -1373,6 +1392,7 @@ select {
   font-size: 16px;
   font-weight: bold;
   list-style: none;
+  position: relative;
 }
 
 .header-top__nav-item a {
@@ -1557,6 +1577,7 @@ footer {
   color: #ffffff;
   font-size: 12px;
   line-height: 15px;
+  background-image: url("/images/happykiddo_footer-modern-bg_img.png");
 }
 
 .footer-modern-bg .footer-widget {
@@ -3390,7 +3411,6 @@ h2 span {
   background: url("/images/pattern.png");
   background-color: #93bd5d;
   background-blend-mode: multiply;
-  margin-top: 82px;
 }
 
 .bg-arch::after {
@@ -3862,7 +3882,9 @@ h2 span {
 
 .social-item a {
   width: 100%;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #social-vk {

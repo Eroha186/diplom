@@ -91,26 +91,26 @@
 			<p class="text-center">Lorem Ipsum is simply dummy text of the printing and typesetting industry.<br>
 			Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown..</p>
 			<div class="competition-wrap row">
-				 
-        @foreach ($competitions as $competition)
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 comp-page__news_conc-item">
-            <img class="img-fluid" src="{{Storage::url($competition->cover)}}" alt="">
-            <div class="comp-page__news_conc-item-desc">
-                <img  src="{{asset('images/main_page/services-icon-1.png')}}" class="white-figure" alt="">
-                <p class="text-center"><a href="/competition/{{$competition->id}}"> {{$competition->title}}</a></p>
-                <p style="font-size: 14px;">конкурс рисунков</p>
-                <div class="news_conc-item-down">
-                    <p class="date-publ"> С {{$competition->date_begin}}
-                        <span> - {{$competition->date_end}}</span></p>
-                        <a  href="/competition/{{$competition->id}}" class="button transparent-btn">Принять участие</a>
-                    </div>
-                </div>
-            </div>
 
-            
-            @endforeach
-            
-        </div>
+				@foreach ($competitions as $competition)
+				<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 comp-page__news_conc-item">
+					<img class="img-fluid" src="{{Storage::url($competition->cover)}}" alt="">
+					<div class="comp-page__news_conc-item-desc">
+						<img  src="{{asset('images/main_page/services-icon-1.png')}}" class="white-figure" alt="">
+						<p class="text-center"><a href="/competition/{{$competition->id}}"> {{$competition->title}}</a></p>
+						<p style="font-size: 14px;">конкурс рисунков</p>
+						<div class="news_conc-item-down">
+							<p class="date-publ"> С {{$competition->date_begin}}
+								<span> - {{$competition->date_end}}</span></p>
+								<a  href="/competition/{{$competition->id}}" class="button transparent-btn">Принять участие</a>
+							</div>
+						</div>
+					</div>
+
+
+					@endforeach
+
+				</div>
 			</div>
 			<div class="row d-none">
 				<div class="col-12 col-lg-6 col-xl-6 col-md-12 main-page__news_conc-item">
@@ -179,6 +179,7 @@
 			</p>
 
 			<div class="row p15">
+				
 				@foreach($publications as $publication)
 
 
@@ -190,7 +191,7 @@
 					<div>
 
 						<a href="/publication/{{$publication->id}}">{{$publication->title}}</a>
-						<p><span>{{$publication->kind->name}} • {{$publication->education->name}}</span>            <span id="tags">
+						<p><span>{{$publication->kind['name']}} • {{$publication->education->name}}</span>            <span id="tags">
 							@foreach ($publication->themes as $theme) 
 							{{$theme->name}} <span>•</span>
 
@@ -199,15 +200,22 @@
 						<p> {{$publication->annotation}}</p>
 						<div class="d-flex mb-2">
 							@foreach ($publication->files as $file)
+							@php
+							$filetype = explode('.', $file->url);
+							if($filetype[1] == 'jpg' OR $filetype[1] == 'jpeg' OR  $filetype[1] == 'png') {;
+							@endphp
 							<a href="/storage/{{$file->url}}" data-fancybox="gallery"><img class="img-fluid publication-thumb" width="50" src="/storage/{{$file->url}}" alt=""></a>
-							@endforeach
-						</div>
-						<p class="main-page__last_pub-item-3 mb-0"><span>{{ date("d.m.Y", strtotime($publication->date_add)) }}</span>    <span>{{$publication->user->f}} {{$publication->user->i}} {{$publication->user->o}},
-							{{$publication->user->stuff}},
-							{{$publication->user->town}},
-							{{$publication->user->job}}</span></p>
-						</div>
+							@php
+						} 
+						@endphp
+						@endforeach
 					</div>
+					<p class="main-page__last_pub-item-3 mb-0"><span>{{ date("d.m.Y", strtotime($publication->date_add)) }}</span>    <span>{{$publication->user->f}} {{$publication->user->i}} {{$publication->user->o}},
+						{{$publication->user->stuff}},
+						{{$publication->user->town}},
+						{{$publication->user->job}}</span></p>
+					</div>
+				</div>
        <!--  <div class="col-xl-12 publication-card">
             <div class="row">
                 <div class="col-xl-10">
@@ -475,8 +483,11 @@
 				<div class="banner__wrap">
 					<h2>Поиск публикаций</h2>
 					<p>среди более 12 000 материалов</p>
-					<form action="">
-						<input type="text" placeholder="Введите фразу для поиска">
+					<form action="{{route('search')}}" method="GET">
+						<input type="hidden" name="education" value="all">
+						<input type="hidden" name="kind" value="1">
+						<input type="hidden" name="theme" value="0">
+						<input type="text" name="searchQuery" placeholder="Введите фразу для поиска">
 						<button>НАЙТИ</button>
 					</form>
 					<p class="text-left"><a href="">расширенный поиск</a></p>

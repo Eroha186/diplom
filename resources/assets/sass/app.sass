@@ -249,13 +249,22 @@ select
   opacity: 0.2
   pointer-events: none
 
-
+#wrapper 
+  margin-top: 82px
 .hamburger
   z-index: 9999
 
 
 .body_overflow 
     overflow: hidden
+
+.page-item.active .page-link
+  background-color: #ff2001
+  border-color: #ff2001
+.page-link, .btn-link
+  color: #ff2001
+  &:hover
+    color: #aa1500
 @import 'header_footer/header'
 @import 'header_footer/footer'
 @import 'header_footer/newsletter'
@@ -265,7 +274,7 @@ select
 @import 'competitions/form-competition'
 @import 'publication/publications'
 @import 'publication/form-publication'
-@import 'publication/publication'
+@import 'publication/publication' 
 @import 'admin/admin'
 @import 'login/login'
 @import 'login/register'

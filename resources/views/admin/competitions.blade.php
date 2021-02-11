@@ -20,7 +20,7 @@
                                     {{$competition->title}}
                                 </div>
                                 <div class="name">
-                                    {{$competition->type->name}}
+                                    {{$competition->type['name']}}
                                 </div>
                                 <div class="date-time">
                                     С {{date("d.m.Y", strtotime($competition->date_begin))}}

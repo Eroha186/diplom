@@ -65,6 +65,10 @@ class PublicationRepository
         $filesId = $publication['filesId'];
 
       $themes = $publication['themes'];
+      // if(count($publication['themes']) < 3) {
+      //   echo 'Укажите не менее 3-ех тегов';
+      //   exit;
+      // }
         $publication = Publication::create([
             'user_id' => $publication['user_id'],
             'title' => $publication['title'],

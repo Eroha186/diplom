@@ -34,6 +34,7 @@ class FormPublicationRequest extends FormRequest
                 'annotation' => 'required|string|max:200',
                 'text' => 'required|min:' . (is_null($this->get('type')) ? '1000' : Type::where('id', $this->get('type'))->first()->number_symbols),
                 'filesId' => 'required',
+                'themes' => 'required|array|min:3',
                 'offer' => 'accepted',
                 'processing-pd' => 'accepted',
             ];
@@ -50,6 +51,7 @@ class FormPublicationRequest extends FormRequest
                 'title' => 'required|string',
                 'text' => 'required|min:' . (is_null($this->get('type')) ? '1000' : Type::where('id', $this->get('type'))->first()->number_symbols),
                 'type' => 'required|min:0',
+                 'themes' => 'required|array|min:3',
                 'filesId' => 'required',
                 'annotation' => 'required|string|max:100',
                 'offer' => 'accepted',
@@ -78,6 +80,9 @@ class FormPublicationRequest extends FormRequest
             'title.required' => 'Укажите название работы',
             'type.required' => 'Укажите тип работы',
             'themes.required' => 'Укажите тематику работы',
+            'themes.min' => [
+                'array' => 'Укажите не менее 3-х тегов'
+        ],
             'annotation.required' => 'Укажите описание работы',
             'files.required' => 'Не забудьте приложить файлы',
             'files.*.file' => 'Должен быть файл',

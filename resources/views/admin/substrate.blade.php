@@ -19,6 +19,6 @@
         <input type="text" name="name" id="substrate-name" class="form-control" style="max-width: 260px;">
         <label for="substrate-file">Добавьте файл</label>
         <input type="file" id="substrate-file" name="substrate-file">
-        <input type="submit" style="max-width: 120px">
+        <input type="submit" style="max-width: 120px" value="Загрузить">
     </form>
 @endsection
