@@ -1478,8 +1478,8 @@ header {
 }
 
 .login-and-register a {
-  font-size: 15px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Thin_foma", sans-serif;
+  font-size: 20px;
   font-weight: 100;
   margin: 0px 3px;
 }
@@ -5249,7 +5249,7 @@ main {
 }
 
 .login-page {
-  margin-top: 60px;
+  padding-top: 60px;
   margin-bottom: 100px;
 }
 
@@ -5278,7 +5278,7 @@ h1 {
 }
 
 .register-page {
-  margin-top: 60px;
+  padding-top: 60px;
   margin-bottom: 100px;
 }
 

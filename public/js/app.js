@@ -45858,7 +45858,7 @@ $(function () {
       return true;
     }
 
-    element.addClass('ready-file').text(element.text() + ' - Изображение загружено');
+    element.addClass('ready-file').text(element.text() + ' - Файл загружен');
     element.removeClass('file-display');
     $('#fileId').html($('#fileId').html() + "<input type=\"text\" name=\"filesId[]\" class=\"hide\" value=\"".concat(data, "\">"));
   }
@@ -46011,9 +46011,9 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\WWW\OSPanel\domains\diplom\resources\assets\js\app.js */"./resources/assets/js/app.js");
-__webpack_require__(/*! C:\WWW\OSPanel\domains\diplom\resources\assets\sass\app.sass */"./resources/assets/sass/app.sass");
-module.exports = __webpack_require__(/*! C:\WWW\OSPanel\domains\diplom\resources\assets\scss\core.scss */"./resources/assets/scss/core.scss");
+__webpack_require__(/*! /var/www/diploma/data/www/sovped.ru/resources/assets/js/app.js */"./resources/assets/js/app.js");
+__webpack_require__(/*! /var/www/diploma/data/www/sovped.ru/resources/assets/sass/app.sass */"./resources/assets/sass/app.sass");
+module.exports = __webpack_require__(/*! /var/www/diploma/data/www/sovped.ru/resources/assets/scss/core.scss */"./resources/assets/scss/core.scss");
 
 
 /***/ })

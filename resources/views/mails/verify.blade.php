@@ -14,7 +14,7 @@
 @if(!is_null($password))
   Ваш пароль: {{ $password }}
 @endif
-<a href="{{ url('/verify/' . $user->verifyUser->token) }}">Verify Email</a>
+<a href="{{ url('/verify/' . $user->verifyUser->token) }}">Подтвердить Email</a>
 </body>
 
 </html>

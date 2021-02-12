@@ -649,7 +649,7 @@ $(function () {
             element.removeClass('file-display');
             return true;
         }
-        element.addClass('ready-file').text(element.text() + ' - Изображение загружено');
+        element.addClass('ready-file').text(element.text() + ' - Файл загружен');
         element.removeClass('file-display');
         $('#fileId').html(
             $('#fileId').html() + `<input type="text" name="filesId[]" class="hide" value="${data}">`

@@ -58,16 +58,24 @@ class UploadFileController extends Controller
 			}else {
 				$filePath = $new_path;
 			}
-			$resize = Image::make($new_path)->resize(env('PUBL_IMAGE_WIDTH'), env('PUBL_IMAGE_HEIGHT'), function ($constraint) {
-				$constraint->aspectRatio();
-				$constraint->upsize();
-			})->encode('jpg', env('PUBL_QUALITY'))->save($filePath);
-			$thumbPath = str_replace('upload/', 'upload/thumb/', $filePath);
+
+			switch($type[1]) {
+				case 'jpeg':
+				case 'jpg' :
+				case 'png':
+				$resize = Image::make($new_path)->resize(env('PUBL_IMAGE_WIDTH'), env('PUBL_IMAGE_HEIGHT'), function ($constraint) {
+					$constraint->aspectRatio();
+					$constraint->upsize();
+				})->encode('jpg', env('PUBL_QUALITY'))->save($filePath);
+				$thumbPath = str_replace('upload/', 'upload/thumb/', $filePath);
 			// return $filePath;
-			$resize = Image::make($filePath)->resize(env('THUMB_PUBL_IMAGE_WIDTH'), env('THUMB_PUBL_IMAGE_HEIGHT'), function ($constraint) {
-				$constraint->aspectRatio();
-				$constraint->upsize();
-			})->encode('jpg', env('THUMB_PUBL_QUALITY'))->save($thumbPath);
+				$resize = Image::make($filePath)->resize(env('THUMB_PUBL_IMAGE_WIDTH'), env('THUMB_PUBL_IMAGE_HEIGHT'), function ($constraint) {
+					$constraint->aspectRatio();
+					$constraint->upsize();
+				})->encode('jpg', env('THUMB_PUBL_QUALITY'))->save($thumbPath);
+				break;
+			}
+			
 			return $fileUpload->id;
 
 
